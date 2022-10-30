@@ -3,6 +3,7 @@ package ui.MainFrame;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -27,7 +28,11 @@ public class Main extends JFrame {
         // Add a Top Bar.
         this.add(new TopBar(),BorderLayout.NORTH);
         
-
+        // Add a banner.
+        JLabel banner = new JLabel(Decorations.ICON_BANNER.getIcon());
+        banner.setBorder(Decorations.BORDER_DEFAULT.getBorder());
+        this.add(banner,BorderLayout.WEST);
+        
         this.pack();
         
         // Maximize the Window.
