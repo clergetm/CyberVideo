@@ -23,13 +23,16 @@ public class Main extends JFrame {
 		// Set options.
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        
+        // Add a Top Bar.
+        this.add(new TopBar(),BorderLayout.NORTH);
+        
 
+        this.pack();
         
         // Maximize the Window.
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
-
-
 
 	/**
 	 * Run the Main Window of AL2000.
