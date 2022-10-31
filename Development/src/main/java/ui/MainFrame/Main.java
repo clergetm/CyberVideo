@@ -1,6 +1,10 @@
 package ui.MainFrame;
 
+import ui.Bundles.Multilingual;
+
 import java.awt.BorderLayout;
+
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,47 +15,67 @@ import javax.swing.SwingUtilities;
  * Main Class of AL2000. Initialize the machine Interface.
  */
 @SuppressWarnings("serial")
-public class Main extends JFrame {
+public class Main extends JFrame implements Multilingual {
 
-	/**
-	 * Constructor of Main.
-	 * Initialize the AL200 Main Window.
-	 * @author MathysC
-	 *
-	 */
-	public Main(){
-		super("AL2000");
-		// Set options.
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
-        
-        // Add a Top Bar.
-        this.add(new TopBar(),BorderLayout.NORTH);
-        
+    /*Components*/
+    protected TopBar topBar = new TopBar();
+    protected JLabel banner = new JLabel();
+
+    /*Actions*/
+    static final String SWITCHFR = "Switch_to_fr";
+    static final String SWITCHEN = "Switch_to_en";
+
+    /**
+     * Constructor of Main.
+     * Initialize the AL200 Main Window.
+     * @author MathysC
+     *
+     */
+    public Main() {
+        super("AL2000");
+        new Interaction(this);
+        // Set options.
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLayout(new BorderLayout());
+
+        // Add the Top Bar.
+        this.add(this.topBar, BorderLayout.NORTH);
+
         // Add a banner.
-        JLabel banner = new JLabel(Decorations.ICON_BANNER.getIcon());
+        banner = new JLabel(Decorations.ICON_BANNER.getIcon());
         banner.setBorder(Decorations.BORDER_DEFAULT.getBorder());
-        this.add(banner,BorderLayout.WEST);
-        
+        this.add(banner, BorderLayout.WEST);
+
+        this.setLanguage(this.getRbEN());
         this.pack();
-        
+
         // Maximize the Window.
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-	}
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
 
-	/**
-	 * Run the Main Window of AL2000.
-	 * @author MathysC
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() { 
-				new Main().setVisible(true); 
-			}
-		});
+    /**
+     * Change all Main and Main’s Child text.
+     * @author MathysC
+     * @param rb the choosen language bundle.
+     */
+    @Override
+    public void setLanguage(ResourceBundle rb) {
+        // Set MainFrame Components text.
 
-	}
+        // Set all multilingual child.
+    }
 
+    /**
+     * Run the Main Window of AL2000.
+     * @author MathysC
+     * 
+     * @param args
+     */
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new Main().setVisible(true);
+            }
+        });
+    }
 }
