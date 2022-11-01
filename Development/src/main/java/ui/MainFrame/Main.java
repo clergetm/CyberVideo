@@ -2,6 +2,7 @@ package ui.MainFrame;
 
 import ui.Decorations;
 import ui.Bundles.Multilingual;
+import ui.Pages.Welcome.WelcomePage;
 
 import java.awt.BorderLayout;
 
@@ -21,6 +22,7 @@ public class Main extends JFrame implements Multilingual {
     /*Components*/
     protected TopBar topBar = new TopBar();
     protected JLabel banner = new JLabel();
+    protected WelcomePage welcomePage = new WelcomePage();
 
     /*Actions*/
     static final String SWITCHFR = "Switch_to_fr";
@@ -47,6 +49,9 @@ public class Main extends JFrame implements Multilingual {
         banner.setBorder(Decorations.BORDER_DEFAULT.getBorder());
         this.add(banner, BorderLayout.WEST);
 
+        
+        // Add the welcome page.
+        this.add(welcomePage, BorderLayout.CENTER);
         this.setLanguage(this.getRbEN());
         this.pack();
 
@@ -64,6 +69,7 @@ public class Main extends JFrame implements Multilingual {
         // Set MainFrame Components text.
 
         // Set all multilingual child.
+    	this.welcomePage.setLanguage(rb);
     }
 
     /**
