@@ -1,6 +1,7 @@
-package ui.MainFrame;
+package ui;
 
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
@@ -14,19 +15,19 @@ import javax.swing.border.EmptyBorder;
  * @author MathysC
  * 
  */
-enum Decorations {
+public enum Decorations {
 
     // Dimensions
     DIM_BUTTON(new Dimension(100, 100)),
-        DIM_LOGO(new Dimension(200, 150)),
+    DIM_LOGO(new Dimension(200, 150)),
 
-        // Icons
-        ICON_LOGO("Test_Logo"), // TODO
-        ICON_BUTTON("Test_Button"), // TODO
-        ICON_BANNER("Test_Banner"), // TODO
+    // Icons
+    ICON_LOGO("Test_Logo"), // TODO
+    ICON_BUTTON("Test_Button"), // TODO
+    ICON_BANNER("Test_Banner"), // TODO
 
-        // Borders
-        BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10));
+    // Borders
+    BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
 
     private Object decoration;
     private static String PREFIXPATH = "resources/";

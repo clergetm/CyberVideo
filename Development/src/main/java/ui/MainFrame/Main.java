@@ -1,5 +1,6 @@
 package ui.MainFrame;
 
+import ui.Decorations;
 import ui.Bundles.Multilingual;
 
 import java.awt.BorderLayout;
