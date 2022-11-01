@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Insets;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import ui.Decorations;
+import ui.KeyboardDialog;
 import ui.Bundles.Multilingual;
 
 /**
@@ -33,18 +34,23 @@ import ui.Bundles.Multilingual;
 @SuppressWarnings("serial")
 class LoginPanel extends JPanel implements Multilingual {
 
+    private String idPlaceHolder = "", pwPlaceHolder = "", keyboardIDTitle = "", keyboardPWTitle = "";
+    
+    /* Components */
     JLabel idLabel = new JLabel();
     JTextField idField = new JTextField();
     JPasswordField pwField = new JPasswordField();
     JButton connection = new JButton(), createAccount = new JButton(), continueWithoutConn = new JButton();
-    String idPlaceHolder = "", pwPlaceHolder = "";
+    KeyboardDialog keyboard = new KeyboardDialog();
+    
+    /*Options*/
     private final int maxW = 400, W = (int)(maxW * 0.9),
-        HTextField = 50, HButton = 75;
+            HTextField = 50, HButton = 75;
 
-    // Size of rigid area placed between JComponent to create space.
+    // Size of rigid areas placed between JComponent to create gaps.
     private final Dimension SMALLRIGID = new Dimension(25, 25);
     private final Dimension BIGRIGID = new Dimension(75, 75);
-
+    
     /**
      * Constructor of {@code LoginPanel} 
      * Set JPanel options and add Components.
@@ -78,18 +84,22 @@ class LoginPanel extends JPanel implements Multilingual {
             public void focusLost(FocusEvent e) {
                 if (idField.getText().equals(""))
                     setPlaceHolder(idField, idPlaceHolder);
-
             }
 
             @Override
             public void focusGained(FocusEvent e) {
                 if (idField.getText().equals(idPlaceHolder))
                     unsetPlaceHolder(idField);
+                idField.getRootPane().requestFocus(); // Change the focus to avoid looping              
+                String prompt = keyboard.showKeyboardDialog(keyboardIDTitle, idField);
+                if (prompt.equals(""))
+                    prompt = idPlaceHolder;
+                idField.setText(prompt);
             }
         });
         this.add(idField);
 
-        this.add(Box.createRigidArea(SMALLRIGID)); // Space
+        this.add(Box.createRigidArea(SMALLRIGID)); // Gap.
 
         // Set Password JPasswordField.
         setComponent(pwField, W, HTextField, Component.CENTER_ALIGNMENT);
@@ -103,45 +113,60 @@ class LoginPanel extends JPanel implements Multilingual {
 
             @Override
             public void focusLost(FocusEvent e) {
+                // If nothing has been written. Show the PlaceHolder.
                 if (Arrays.equals(pwField.getPassword(), "".toCharArray())) {
-                    setPlaceHolder(pwField, pwPlaceHolder);
                     pwField.setEchoChar((char) 0);
+                    setPlaceHolder(pwField, pwPlaceHolder);
                 }
 
             }
 
             @Override
             public void focusGained(FocusEvent e) {
-                System.out.println("Gain: " + Arrays.equals(pwField.getPassword(), pwPlaceHolder.toCharArray()));
+                // If nothing has been written. Remove the PlaceHolder.
                 if (Arrays.equals(pwField.getPassword(), pwPlaceHolder.toCharArray())) {
                     unsetPlaceHolder(pwField);
-                    pwField.setEchoChar('*');
                 }
+
+                pwField.getRootPane().requestFocus(); // Change the focus to avoid looping
+                pwField.setEchoChar((char) 0); // Show what written.
+                // Type the entry with the Keyboard.
+                String prompt = keyboard.showKeyboardDialog(keyboardPWTitle, pwField);
+                if (prompt.equals(""))
+                    prompt = pwPlaceHolder;
+                else
+                	pwField.setEchoChar('*'); // Hide what’s written.
+
+                pwField.setText(prompt);
+
+                /* We hide the field here because of the requestFocus() (l: 130) call.
+                 * If we set setEchoChar('*') in  focusLost Method, the entry will be displayed and immediately hidden.  
+                 */
             }
         });
         this.add(pwField);
 
-        this.add(Box.createRigidArea(SMALLRIGID)); // Space
+        this.add(Box.createRigidArea(SMALLRIGID)); // Gap.
 
         // Set connection JButton.
         setComponent(connection, W / 2, HButton / 2, Component.LEFT_ALIGNMENT); // Component.LEFT_ALIGNMENT but a bit centered.
         this.add(connection);
 
-        this.add(Box.createRigidArea(BIGRIGID)); // Space
+        this.add(Box.createRigidArea(BIGRIGID)); // Gap.
 
         // Set create account JButton.
         setComponent(createAccount, W, HButton, Component.CENTER_ALIGNMENT);
         this.add(createAccount);
 
-        this.add(Box.createRigidArea(BIGRIGID)); // Space
+        this.add(Box.createRigidArea(BIGRIGID)); // Gap.
 
         // set continue without connection JButton
         setComponent(continueWithoutConn, W, HButton, Component.CENTER_ALIGNMENT);
         this.add(continueWithoutConn);
 
-        this.setMinimumSize(new Dimension(400, 100));
-        this.setPreferredSize(new Dimension(400, 100));
-        this.setMaximumSize(new Dimension(400, 100));
+        this.setMinimumSize(new Dimension(maxW, 100));
+        this.setPreferredSize(new Dimension(maxW, 100));
+        this.setMaximumSize(new Dimension(maxW, 100));
     }
 
     /**
@@ -218,5 +243,10 @@ class LoginPanel extends JPanel implements Multilingual {
 
         // continue Without an Account JButton
         continueWithoutConn.setText(rb.getString("login_continueWithoutConnection"));
+
+        // KeyboardDialog
+        keyboardIDTitle = rb.getString("login_id_vk_frameName");
+        keyboardPWTitle = rb.getString("login_pw_vk_frameName");
+        keyboard.setLanguage(rb);
     }
 }
