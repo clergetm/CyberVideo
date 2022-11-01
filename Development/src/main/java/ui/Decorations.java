@@ -29,6 +29,9 @@ public enum Decorations {
     // Borders
     BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
 
+	// Fonts
+	FONT_BASIC("Helvetica"),
+	FONT_PLACEHOLDER("Monospaced");
     private Object decoration;
     private static String PREFIXPATH = "resources/";
     private static String FORMATIMAGE = ".png";
@@ -72,6 +75,22 @@ public enum Decorations {
     public Border getBorder() {
         if (this.name().startsWith("BORDER_"))
             return (Border) this.decoration;
+        else
+            return null;
+    }
+    
+    
+    /**
+     * Get the enumerated Font
+     * @author MathysC
+     *
+     * @param style The style of the font.
+     * @param size	The size of the font.
+     * @return Font if the enumerated element name’s start with "FONT_";
+     */
+    public Font getFont(int style, int size) {
+        if (this.name().startsWith("FONT_"))
+            return new Font(this.decoration.toString(),style,size);
         else
             return null;
     }
