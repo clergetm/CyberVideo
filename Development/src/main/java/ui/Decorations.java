@@ -25,6 +25,7 @@ public enum Decorations {
     ICON_LOGO("Test_Logo"), // TODO
     ICON_BUTTON("Test_Button"), // TODO
     ICON_BANNER("Test_Banner"), // TODO
+    ICON_FILM("Test_Film"), // TODO
 
     // Borders
     BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
