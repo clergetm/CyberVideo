@@ -55,7 +55,7 @@ public class TopBar extends JPanel{
 		
 		// Language switch button.
 		languageSwitch.setPreferredSize(Decorations.DIM_BUTTON.getDimension());
-		languageSwitch.setIcon(Decorations.ICON_BUTTON.getIcon());
+		languageSwitch.setIcon(Decorations.ICON_CURRENTEN.getIcon());
 		languageSwitch.setActionCommand(Main.SWITCHFR);
 
 		options.add(languageSwitch);
