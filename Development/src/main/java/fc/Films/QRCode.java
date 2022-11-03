@@ -25,8 +25,12 @@ public class QRCode extends Film {
 		return "QRCode";
 	}
 	
-	public void generateQRCode(File qrFile, String qrCodeText, int size, String fileType)
-			throws WriterException, IOException {
+	public void generateQRCode()throws WriterException, IOException {
+		String qrCodeText = this.generateLink();
+		String filePath = "QRCode.png";
+		int size = 125;
+		String fileType = "png";
+		File qrFile = new File(filePath);
 		// Create the ByteMatrix for the QR-Code that encodes the given String
 		Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<>();
 		hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);

@@ -1,11 +1,6 @@
 package fc;
 
-import java.io.File;
-import java.io.IOException;
-import com.google.zxing.WriterException;
-
 import fc.Films.BluRay;
-import fc.Films.QRCode;
 import fc.Films.StatesBluRay;
 
 
@@ -52,14 +47,8 @@ public class AL2000 {
 	//		return ticket;
 	//	}
 
-	public void printQRCode(QRCode film) throws WriterException, IOException{
-		String qrCodeText = film.generateLink();
-		String filePath = "QRCode.png";
-		int size = 125;
-		String fileType = "png";
-		File qrFile = new File(filePath);
-		film.generateQRCode(qrFile, qrCodeText, size, fileType);
-		System.out.println("DONE");
+	public void printQRCode(){
+		
 	}
 
 	private boolean showBluRayDamagedDiolog() {
