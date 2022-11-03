@@ -1,21 +1,24 @@
-package fc;
+package fc.Clients;
 
 import java.util.ArrayList;
 
+import fc.Films.BluRay;
+import fc.Films.Film;
+
 public abstract class Client {
-    protected CreditCard credCard;
+//    protected CreditCard credCard;
     protected ArrayList<Film> filmCart;
 
     public Client(){
         filmCart = new ArrayList<>();
     }
 
-    public CreditCard getCard(){
-        return credCard;
-    }
-    public void setCard(CreditCard card){
-        credCard = card;
-    }
+//    public CreditCard getCard(){
+//        return credCard;
+//    }
+//    public void setCard(CreditCard card){
+//        credCard = card;
+//    }
 
     public void addToCart(Film film){
         if(filmCart.size() >= 3) return;

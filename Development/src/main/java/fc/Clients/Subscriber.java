@@ -1,4 +1,4 @@
-package fc;
+package fc.Clients;
 
 import java.util.Date;
 
@@ -45,5 +45,5 @@ public class Subscriber {
 
     public void askCard(){}
 
-    public Login getLogin(){ return null;}
+//    public Login getLogin(){ return null;}
 }
