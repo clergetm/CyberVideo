@@ -28,7 +28,9 @@ public enum Decorations {
     ICON_CURRENTEN("CurrentEN"),
     ICON_CURRENTLIGHT("CurrentLight"),
     ICON_CURRENTDARK("CurrentDark"),
-    ICON_BANNER("Test_Banner"), // TODO
+    ICON_BANNERIT("BannerIT"),
+    ICON_BANNERPOLICE("BannerPOLICE"),
+    ICON_BANNERDESERT("BannerDESERT"),
     ICON_FILM("Test_Film"), // TODO
 
     // Borders
