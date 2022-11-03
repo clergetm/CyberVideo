@@ -22,7 +22,7 @@ public enum Decorations {
     DIM_LOGO(new Dimension(200, 150)),
 
     // Icons
-    ICON_LOGO("Test_Logo"), // TODO
+    ICON_LOGO("Light_Logo"),
     ICON_BUTTON("Test_Button"),
     ICON_CURRENTFR("CurrentFR"),
     ICON_CURRENTEN("CurrentEN"),
