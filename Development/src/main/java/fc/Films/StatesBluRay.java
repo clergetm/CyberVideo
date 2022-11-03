@@ -1,4 +1,4 @@
-package fc;
+package fc.Films;
 
 public enum StatesBluRay {
 	AVAILABLE,

@@ -1,4 +1,4 @@
-package fc;
+package fc.Films;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
