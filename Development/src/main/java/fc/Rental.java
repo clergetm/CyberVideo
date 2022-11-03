@@ -3,6 +3,9 @@ package fc;
 import java.util.Calendar;
 import java.util.Date;
 
+import fc.Clients.Cards.Card;
+import fc.Films.Film;
+
 public class Rental {
     private Date startingDate;
     private int tarif;

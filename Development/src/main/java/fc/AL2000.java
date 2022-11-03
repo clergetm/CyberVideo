@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import com.google.zxing.WriterException;
 
+import fc.Films.BluRay;
+import fc.Films.QRCode;
+import fc.Films.StatesBluRay;
+
 
 public class AL2000 {
 
@@ -11,7 +15,7 @@ public class AL2000 {
 		if(checkIDBluRay(film))
 			if(film.getState().equals(StatesBluRay.RENTED)) {
 				if(showBluRayDamagedDiolog()) 
-					film.setState(StatesBluRay.DAMADED);
+					film.setState(StatesBluRay.DAMAGED);
 				else 
 					film.setState(StatesBluRay.AVAILABLE);
 				// CODE : Si le client a bien payé ses retards, si sa situation est reglementé
