@@ -24,6 +24,7 @@ Where did we find the icons used in this project.
         <ul>
             <li><a href="#cybervideo-logo">CyberVideo Logo</a></li>
             <li><a href="#language-switch">Language switch</a></li>
+            <li><a href="#theme-switch">Theme switch</a></li>
         </ul>
     </li>
   </ol>
@@ -57,6 +58,17 @@ We used 4 icons from [softicons][soft].
 
 The flags are originally from [custom-design-icon][cid] and you can find the [licence here][license].
 
+### Theme switch
+
+We used sun and moon icons from [softicons][soft].
+
+- Both icons were taken in these sizes:
+  - 48 x 48 pixels
+- Sun from [here][sun-ico].
+- Moon from [here][moon-ico].
+
+The flags are originally from [David Ferreira][sun-moon-site] and you can find the [licence here][license-wpzoom].
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Acknowledgments
@@ -76,3 +88,7 @@ The flags are originally from [custom-design-icon][cid] and you can find the [li
 [license]: https://www.customicondesign.com/license-agreement/
 [uk-flag]: https://www.softicons.com/web-icons/flag-icons-by-custom-icon-design/united-kingdom-flag-icon
 [fr-flag]: https://www.softicons.com/web-icons/flag-icons-by-custom-icon-design/france-flag-icon
+[moon-ico]: https://www.softicons.com/toolbar-icons/wpzoom-developer-icon-set-by-wpzoom/moon-icon
+[sun-ico]: https://www.softicons.com/toolbar-icons/wpzoom-developer-icon-set-by-wpzoom/sun-icon
+[sun-moon-site]: http://www.wpzoom.com
+[license-wpzoom]: https://files.softicons.com/download/toolbar-icons/wpzoom-developer-icon-set-by-wpzoom/license.txt
