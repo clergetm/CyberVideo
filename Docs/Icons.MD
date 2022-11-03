@@ -22,6 +22,7 @@ Where did we find the icons used in this project.
     <li>
         <a href="#welcome-page">Welcome Page</a>
         <ul>
+            <li><a href="#cybervideo-logo">CyberVideo Logo</a></li>
             <li><a href="#language-switch">Language switch</a></li>
         </ul>
     </li>
@@ -34,9 +35,15 @@ Where did we find the icons used in this project.
 Icons can be found on these sites:
 - [softicons][soft].
 - [custom-design-icon][cid].
+- [free-logo-design][fld].
+- [remove-bg][rbg].
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Welcome Page
+
+### CyberVideo logo
+The logo was created on [FreeLogoDesign][fld].
 
 ### Language switch
 
@@ -62,8 +69,10 @@ The flags are originally from [custom-design-icon][cid] and you can find the [li
 
 [md-url]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [readme-url]: https://github.com/othneildrew/Best-README-Template
-[soft]: www.softicons.com
+[soft]: https://www.softicons.com/
 [cid]: https://www.customicondesign.com
+[rbg]: https://www.remove.bg/
+[fld]: https://www.freelogodesign.org/
 [license]: https://www.customicondesign.com/license-agreement/
 [uk-flag]: https://www.softicons.com/web-icons/flag-icons-by-custom-icon-design/united-kingdom-flag-icon
 [fr-flag]: https://www.softicons.com/web-icons/flag-icons-by-custom-icon-design/france-flag-icon
