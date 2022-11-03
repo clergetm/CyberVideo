@@ -1,3 +1,5 @@
+package fc;
+
 import java.util.ArrayList;
 
 public class SubscriberCard extends Card{
