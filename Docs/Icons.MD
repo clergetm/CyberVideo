@@ -31,6 +31,7 @@ Where did we find the icons used in this project.
     <li>
         <a href="#others">Others</a>
         <ul>
+            <li><a href=#application-icon> Application icon</li>
             <li><a href="#cybervideo-logo">Keyboard Dialog</a></li>
         </ul>
     </li>
@@ -95,7 +96,15 @@ We used 3 images from [pixabay][pbay]:
 
 ## Others
 
-## Keyboard Dialog
+### Application Icon
+
+We used a film icon from [softicons][soft].
+
+- The size of the icon is 16x16.
+- film from [here][film-ico]
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Keyboard Dialog
 
 We used Edit icon from [softicons][soft].
 
@@ -129,3 +138,4 @@ We used Edit icon from [softicons][soft].
 [police]: https://pixabay.com/photos/police-crime-scene-cop-movie-poster-6718716/
 [desert]: https://pixabay.com/photos/desert-fantasy-movie-poster-6952778/
 [edit-ico]: https://www.softicons.com/toolbar-icons/mono-general-icons-2-by-custom-icon-design/edit-icon
+[film-ico]: https://www.softicons.com/toolbar-icons/fugue-16px-icons-by-yusuke-kamiyamane/film-icon
