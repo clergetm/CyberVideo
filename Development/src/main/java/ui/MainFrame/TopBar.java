@@ -50,7 +50,7 @@ public class TopBar extends JPanel{
 
 		// Color switch button.
 		colorSwitch.setPreferredSize(Decorations.DIM_BUTTON.getDimension());
-		colorSwitch.setIcon(Decorations.ICON_BUTTON.getIcon());
+		colorSwitch.setIcon(Decorations.ICON_CURRENTLIGHT.getIcon());
 		colorSwitch.setContentAreaFilled(false); // transparent
 		colorSwitch.setBorderPainted(false); // without border
 		options.add(colorSwitch);

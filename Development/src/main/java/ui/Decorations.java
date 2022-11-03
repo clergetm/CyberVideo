@@ -26,6 +26,8 @@ public enum Decorations {
     ICON_BUTTON("Test_Button"),
     ICON_CURRENTFR("CurrentFR"),
     ICON_CURRENTEN("CurrentEN"),
+    ICON_CURRENTLIGHT("CurrentLight"),
+    ICON_CURRENTDARK("CurrentDark"),
     ICON_BANNER("Test_Banner"), // TODO
     ICON_FILM("Test_Film"), // TODO
 
