@@ -22,16 +22,17 @@ public enum Decorations {
     DIM_LOGO(new Dimension(200, 150)),
 
     // Icons
-    ICON_LOGO("Light_Logo"),
-    ICON_BUTTON("Test_Button"),
-    ICON_CURRENTFR("CurrentFR"),
-    ICON_CURRENTEN("CurrentEN"),
-    ICON_CURRENTLIGHT("CurrentLight"),
-    ICON_CURRENTDARK("CurrentDark"),
-    ICON_BANNERIT("BannerIT"),
-    ICON_BANNERPOLICE("BannerPOLICE"),
-    ICON_BANNERDESERT("BannerDESERT"),
-    ICON_FILM("Test_Film"), // TODO
+    IMG_LOGO("Light_Logo"),
+    IMG_BUTTON("Test_Button"),
+    IMG_CURRENTFR("CurrentFR"),
+    IMG_CURRENTEN("CurrentEN"),
+    IMG_CURRENTLIGHT("CurrentLight"),
+    IMG_CURRENTDARK("CurrentDark"),
+    IMG_BANNERIT("BannerIT"),
+    IMG_BANNERPOLICE("BannerPOLICE"),
+    IMG_BANNERDESERT("BannerDESERT"),
+    IMG_FILM("Test_Film"), // TODO
+    ICO_KEYBOARD("edit"),
 
     // Borders
     BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
@@ -61,13 +62,13 @@ public enum Decorations {
     }
 
     /**
-     * Get the enumerated Icon
+     * Get the enumerated Image
      * @author MathysC
      *
-     * @return ImageIcon if the enumerated element name’s start with "ICON_";
+     * @return ImageIcon if the enumerated element name’s start with "IMG_";
      */
-    public ImageIcon getIcon() {
-        if (this.name().startsWith("ICON_"))
+    public ImageIcon getImg() {
+        if (this.name().startsWith("IMG_"))
             return new ImageIcon(PREFIXPATH + (String) this.decoration + FORMATIMAGE);
         else
             return null;

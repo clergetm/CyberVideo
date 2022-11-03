@@ -45,7 +45,7 @@ public class Main extends JFrame implements Multilingual {
         this.add(this.topBar, BorderLayout.NORTH);
 
         // Add a banner.
-        banner = new JLabel(Decorations.ICON_BANNERDESERT.getIcon());
+        banner = new JLabel(Decorations.IMG_BANNERDESERT.getImg());
         banner.setBorder(Decorations.BORDER_DEFAULT.getBorder());
         this.add(banner, BorderLayout.WEST);
 

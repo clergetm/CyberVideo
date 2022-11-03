@@ -49,7 +49,7 @@ public class Film extends JPanel{
 		
 		JPanel tempforPoster = new JPanel(new FlowLayout());
 		tempforPoster.add(poster);
-		poster.setIcon(Decorations.ICON_FILM.getIcon());
+		poster.setIcon(Decorations.IMG_FILM.getImg());
 		
 		this.add(tempforPoster,BorderLayout.CENTER);
 
