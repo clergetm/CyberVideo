@@ -2,7 +2,12 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -43,7 +48,8 @@ public enum Decorations {
     private Object decoration;
     private static String PREFIXPATH = "resources/";
     private static String FORMATIMAGE = ".png";
-
+    private static String FORMATICON = ".ico";
+    private static int ICOH = 16;
     Decorations(Object o) {
         this.decoration = o;
     }
@@ -74,6 +80,29 @@ public enum Decorations {
             return null;
     }
 
+    /**
+     * Get the enumerated Icon
+     * @author MathysC
+     *
+     * @return ImageIcon if the enumerated element name’s start with "ICO_";
+     */
+    public Image getIco() {
+    	if (this.name().startsWith("ICO_")) {
+    		try {
+    	    	BufferedImage image = new BufferedImage(ICOH, ICOH, BufferedImage.TYPE_INT_RGB);
+    	    	File file = new File(PREFIXPATH + (String) this.decoration + FORMATICON);
+    	    	
+				image = ImageIO.read(file);
+				return image;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+		}   
+    	return null;
+    }
+    
     /**
      * Get the enumerated Border
      * @author MathysC

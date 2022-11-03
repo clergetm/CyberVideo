@@ -59,6 +59,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
     public KeyboardDialog() {
         // Set Options.
         super(null, Dialog.ModalityType.APPLICATION_MODAL);
+        this.setIconImage(Decorations.ICO_KEYBOARD.getIco());
         setLayout(new BorderLayout());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLanguage(this.getRbEN());
