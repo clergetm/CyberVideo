@@ -4,5 +4,5 @@ public enum StatesBluRay {
 	AVAILABLE,
 	STOLEN,
 	RENTED,
-	DAMADED
+	DAMAGED
 }
