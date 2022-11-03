@@ -1,5 +1,10 @@
 package fc;
 
+import java.io.File;
+import java.io.IOException;
+
+import com.google.zxing.WriterException;
+
 /**
  * Main Class
  * @author Mathys
@@ -9,8 +14,7 @@ public class Tests {
 	protected static QRCode film1 = new QRCode("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});
 	protected static BluRay film2 = new BluRay(22.90, StatesBluRay.AVAILABLE, "tata", "tata tutu toto", new String[]{"JM POPO","PE RORO"}, "DUDU", "DADA", AgeRestriction.EVERYONE, new Categories[] {Categories.ANIME});
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws WriterException, IOException {
 		// Checks for the Film class :
 		// Check the type of the films
 		if(!film1.getType().equals("QRCode")) {
@@ -73,5 +77,18 @@ public class Tests {
 		if(film2.getState().equals(StatesBluRay.AVAILABLE))
 			System.out.println("PB with setState film2");
 		film2.setState(StatesBluRay.AVAILABLE);
+		
+		
+		// Checks for the AL2000 class :
+		// Check the generation of the link
+		System.out.println(film1.generateLink());
+		
+		// Check the generation of the QRCode
+		String qrCodeText = film1.generateLink();
+		String filePath = "QRCode.png";
+		int size = 125;
+		String fileType = "png";
+		File qrFile = new File(filePath);
+		film1.generateQRCode(qrFile, qrCodeText, size, fileType);
 	}
 }
