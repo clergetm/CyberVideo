@@ -25,6 +25,7 @@ Where did we find the icons used in this project.
             <li><a href="#cybervideo-logo">CyberVideo Logo</a></li>
             <li><a href="#language-switch">Language switch</a></li>
             <li><a href="#theme-switch">Theme switch</a></li>
+            <li><a href="#banner-images">Banner Images</a></li>
         </ul>
     </li>
   </ol>
@@ -71,6 +72,15 @@ The flags are originally from [David Ferreira][sun-moon-site] and you can find t
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Banner images
+
+we use 3 images from [pixabay][pbay]:
+
+- IT poster from [here][IT].
+- police poster from [here][police].
+- desert poster from [here][desert].
+
+
 ## Acknowledgments
 
 - [Markdown Cheatsheet][md-url]
@@ -92,3 +102,7 @@ The flags are originally from [David Ferreira][sun-moon-site] and you can find t
 [sun-ico]: https://www.softicons.com/toolbar-icons/wpzoom-developer-icon-set-by-wpzoom/sun-icon
 [sun-moon-site]: http://www.wpzoom.com
 [license-wpzoom]: https://files.softicons.com/download/toolbar-icons/wpzoom-developer-icon-set-by-wpzoom/license.txt
+[pbay]: https://pixabay.com/images/search/movie%20posters/?min_width=100&min_height=600&manual_search=1
+[IT]: https://pixabay.com/illustrations/it-it-movie-minimal-poster-poster-3706529/
+[police]: https://pixabay.com/photos/police-crime-scene-cop-movie-poster-6718716/
+[desert]: https://pixabay.com/photos/desert-fantasy-movie-poster-6952778/
