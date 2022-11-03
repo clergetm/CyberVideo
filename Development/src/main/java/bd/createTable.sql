@@ -1,3 +1,4 @@
+
 DROP TABLE OwnedCards;
 DROP TABLE Administrators;
 DROP TABLE HistoricCreditCards;
@@ -17,11 +18,10 @@ DROP TABLE BluRays;
 DROP TABLE QRCodes;
 DROP TABLE Films;
 
-
 CREATE TABLE Films(
     filmID INTEGER,
     title VARCHAR(50),
-    synopsis BLOB,
+    synopsis CLOB,
     directorFirstName VARCHAR(30),
     directorLastName VARCHAR(30),
     restrictedAge CHAR(3) CHECK (restrictedAge IN ('M10', 'M12', 'M16', 'M18', 'ALL') ),
@@ -32,7 +32,6 @@ CREATE TABLE QRCodes(
     QRCodeID INTEGER,
     filmID INTEGER,
     link VARCHAR(255),
-    --CONSTRAINT QRCodeID_unique UNIQUE (QRCodeID),
     CONSTRAINT QRCodeID_pk PRIMARY KEY (QRCodeID),
     CONSTRAINT filmID_QRcodes_fk FOREIGN KEY (filmID) REFERENCES Films(filmID)
 );
