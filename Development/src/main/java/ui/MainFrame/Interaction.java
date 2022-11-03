@@ -3,6 +3,8 @@ package ui.MainFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import ui.Decorations;
+
 /**
  * Interaction class that implements all listener of the machine.
  * @author MathysC
@@ -48,10 +50,13 @@ public class Interaction implements ActionListener {
             // Handle Language Switch Button from the TopBar.
         case Main.SWITCHFR:
             mainFrame.setLanguage(mainFrame.getRbFR());
+            mainFrame.topBar.languageSwitch.setIcon(Decorations.IMG_CURRENTFR.getImg());
             mainFrame.topBar.languageSwitch.setActionCommand(Main.SWITCHEN);
+            
             break;
         case Main.SWITCHEN:
             mainFrame.setLanguage(mainFrame.getRbEN());
+            mainFrame.topBar.languageSwitch.setIcon(Decorations.IMG_CURRENTEN.getImg());
             mainFrame.topBar.languageSwitch.setActionCommand(Main.SWITCHFR);
             break;
         default:

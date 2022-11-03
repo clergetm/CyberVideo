@@ -39,7 +39,7 @@ public class TopBar extends JPanel{
 		
 		// Logo.
 		logo.setPreferredSize(Decorations.DIM_LOGO.getDimension());
-		logo.setIcon(Decorations.ICON_LOGO.getIcon());
+		logo.setIcon(Decorations.IMG_LOGO.getImg());
 		logo.setBorder(Decorations.BORDER_DEFAULT.getBorder());
 		this.add(logo,BorderLayout.WEST);
 
@@ -50,14 +50,17 @@ public class TopBar extends JPanel{
 
 		// Color switch button.
 		colorSwitch.setPreferredSize(Decorations.DIM_BUTTON.getDimension());
-		colorSwitch.setIcon(Decorations.ICON_BUTTON.getIcon());
+		colorSwitch.setIcon(Decorations.IMG_CURRENTLIGHT.getImg());
+		colorSwitch.setContentAreaFilled(false); // transparent
+		colorSwitch.setBorderPainted(false); // without border
 		options.add(colorSwitch);
 		
 		// Language switch button.
 		languageSwitch.setPreferredSize(Decorations.DIM_BUTTON.getDimension());
-		languageSwitch.setIcon(Decorations.ICON_BUTTON.getIcon());
+		languageSwitch.setIcon(Decorations.IMG_CURRENTEN.getImg());
 		languageSwitch.setActionCommand(Main.SWITCHFR);
-
+		languageSwitch.setContentAreaFilled(false); // transparent
+		languageSwitch.setBorderPainted(false); // without border
 		options.add(languageSwitch);
 
 	}

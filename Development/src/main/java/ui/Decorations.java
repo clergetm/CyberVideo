@@ -2,7 +2,12 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -22,10 +27,17 @@ public enum Decorations {
     DIM_LOGO(new Dimension(200, 150)),
 
     // Icons
-    ICON_LOGO("Test_Logo"), // TODO
-    ICON_BUTTON("Test_Button"), // TODO
-    ICON_BANNER("Test_Banner"), // TODO
-    ICON_FILM("Test_Film"), // TODO
+    IMG_LOGO("Light_Logo"),
+    IMG_BUTTON("Test_Button"),
+    IMG_CURRENTFR("CurrentFR"),
+    IMG_CURRENTEN("CurrentEN"),
+    IMG_CURRENTLIGHT("CurrentLight"),
+    IMG_CURRENTDARK("CurrentDark"),
+    IMG_BANNERIT("BannerIT"),
+    IMG_BANNERPOLICE("BannerPOLICE"),
+    IMG_BANNERDESERT("BannerDESERT"),
+    IMG_FILM("Test_Film"), // TODO
+    ICO_KEYBOARD("edit"),
 
     // Borders
     BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
@@ -36,7 +48,8 @@ public enum Decorations {
     private Object decoration;
     private static String PREFIXPATH = "resources/";
     private static String FORMATIMAGE = ".png";
-
+    private static String FORMATICON = ".ico";
+    private static int ICOH = 16;
     Decorations(Object o) {
         this.decoration = o;
     }
@@ -55,18 +68,41 @@ public enum Decorations {
     }
 
     /**
-     * Get the enumerated Icon
+     * Get the enumerated Image
      * @author MathysC
      *
-     * @return ImageIcon if the enumerated element name’s start with "ICON_";
+     * @return ImageIcon if the enumerated element name’s start with "IMG_";
      */
-    public ImageIcon getIcon() {
-        if (this.name().startsWith("ICON_"))
+    public ImageIcon getImg() {
+        if (this.name().startsWith("IMG_"))
             return new ImageIcon(PREFIXPATH + (String) this.decoration + FORMATIMAGE);
         else
             return null;
     }
 
+    /**
+     * Get the enumerated Icon
+     * @author MathysC
+     *
+     * @return ImageIcon if the enumerated element name’s start with "ICO_";
+     */
+    public Image getIco() {
+    	if (this.name().startsWith("ICO_")) {
+    		try {
+    	    	BufferedImage image = new BufferedImage(ICOH, ICOH, BufferedImage.TYPE_INT_RGB);
+    	    	File file = new File(PREFIXPATH + (String) this.decoration + FORMATICON);
+    	    	
+				image = ImageIO.read(file);
+				return image;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+		}   
+    	return null;
+    }
+    
     /**
      * Get the enumerated Border
      * @author MathysC
