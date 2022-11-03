@@ -38,7 +38,7 @@ public enum Decorations {
     IMG_BANNERDESERT("BannerDESERT"),
     IMG_FILM("Test_Film"), // TODO
     ICO_KEYBOARD("edit"),
-
+    ICO_CYBERVIDEO("Logo_ico"),
     // Borders
     BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
 

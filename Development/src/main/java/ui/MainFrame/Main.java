@@ -36,6 +36,7 @@ public class Main extends JFrame implements Multilingual {
      */
     public Main() {
         super("AL2000");
+        this.setIconImage(Decorations.ICO_CYBERVIDEO.getIco());
         new Interaction(this);
         // Set options.
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
