@@ -23,8 +23,7 @@ import javax.swing.border.EmptyBorder;
 public enum Decorations {
     // Icons
     IMG_BUTTON("Test_Button"),
-    IMG_FILM("Test_Film"), // TODO  
-    
+  
 	// Fonts
 	FONT_BASIC("Helvetica"),
 	FONT_PLACEHOLDER("Monospaced");
@@ -52,19 +51,6 @@ public enum Decorations {
     public Dimension getDimension() {
         if (this.name().startsWith("DIM_"))
             return (Dimension) this.decoration;
-        else
-            return null;
-    }
-
-    /**
-     * Get the enumerated Image
-     * @author MathysC
-     *
-     * @return ImageIcon if the enumerated element name’s start with "IMG_";
-     */
-    public ImageIcon getImg() {
-        if (this.name().startsWith("IMG_"))
-            return new ImageIcon(PREFIXIMG + (String) this.decoration + FORMATIMAGE);
         else
             return null;
     }

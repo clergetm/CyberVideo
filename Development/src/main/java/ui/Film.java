@@ -24,6 +24,8 @@ public class Film extends JPanel {
     public static final String RENTBR = "RENT_BLU-RAY";
     public static final String RENTQR = "RENT_QR-CODE";
 
+    
+    private String IMG_FILM; 
     /**
      * Constructor of {@code ui.Film} 
      * Set JPanel options and add Components.
@@ -31,6 +33,8 @@ public class Film extends JPanel {
      *
      */
     public Film() {
+    	IMG_FILM = "Test_Film";// TODO 
+    	
         // JPanel Options
         this.setLayout(new BorderLayout());
 
@@ -52,7 +56,7 @@ public class Film extends JPanel {
 
         JPanel tempforPoster = new JPanel(new FlowLayout());
         tempforPoster.add(poster);
-        poster.setIcon(Decorations.IMG_FILM.getImg());
+        poster.setIcon(Decorations.getImg(IMG_FILM));
 
         this.add(tempforPoster, BorderLayout.CENTER);
 
