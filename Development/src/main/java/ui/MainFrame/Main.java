@@ -22,6 +22,9 @@ public class Main extends JFrame implements Multilingual {
 	/* Icon */
 	public static final String ICO_APP = "App";
 
+	/* Banners */
+	public static final String IMG_BANNER_IT = "BannerIT", IMG_BANNER_POLICE = "BannerPOLICE",
+			IMG_BANNER_DESERT = "BannerDESERT";
     /* Components */
     protected TopBarPanel topBarPanel = new TopBarPanel();
     protected JLabel banner = new JLabel();
@@ -45,7 +48,7 @@ public class Main extends JFrame implements Multilingual {
         this.add(this.topBarPanel, BorderLayout.NORTH);
 
         // Add a banner.
-        banner = new JLabel(Decorations.IMG_BANNERDESERT.getImg());
+        banner = new JLabel(Decorations.getImg(IMG_BANNER_DESERT));
         banner.setBorder(Decorations.BORDER_DEFAULT.getBorder());
         this.add(banner, BorderLayout.WEST);
 
