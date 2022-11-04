@@ -7,8 +7,20 @@ import java.util.Scanner;
 
 
 //Run with this command : java -classpath projectpath\CyberVideo\Development\src\main\java\bd\ojdbc11.jar CreateDatabase.java
+
+/**
+ * @author EvanP
+ * Class that initializes the Cybervideo database.
+ */
 public class CreateDatabase
 {
+
+  /**
+   * Create the connection with JDBC and initialize the whole database.
+   * @author EvanP
+   * 
+   * @param args
+   */
   public static void main(String args[])
   {
     try
@@ -43,6 +55,13 @@ public class CreateDatabase
     }
   }
 
+  /**
+   * Display the chosen table.
+   * @author EvanP
+   * 
+   * @param stmt the JDBC connection Statement
+   * @param query the SQL query to execute
+   */
   public static void displayTable(Statement stmt, String query) throws SQLException{
     ResultSet res = stmt.executeQuery(query);
     ResultSetMetaData rsmd = res.getMetaData();
@@ -54,6 +73,13 @@ public class CreateDatabase
     }
   }
 
+  /**
+   * Execute the whole SQL File specified.
+   * @author EvanP
+   * 
+   * @param conn the JDBC connection object
+   * @param inputFile the executed SQL File.
+   */
   public static void executeSqlScript(Connection conn, File inputFile) { 
     // Delimiter 
     String delimiter = ";"; 
