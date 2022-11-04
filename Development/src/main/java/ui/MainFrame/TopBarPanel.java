@@ -53,12 +53,12 @@ public class TopBarPanel extends JPanel {
         // Logo.
         logo.setPreferredSize(DIM_LOGO);
         logo.setIcon(Decorations.getImg(IMG_LOGO));
-        logo.setBorder(Decorations.BORDER_DEFAULT.getBorder());
+        logo.setBorder(Decorations.getDefaultBorder());
         this.add(logo, BorderLayout.WEST);
 
         // Buttons’ JPanel.
         options.setLayout(new FlowLayout(FlowLayout.TRAILING));
-        options.setBorder(Decorations.BORDER_DEFAULT.getBorder());
+        options.setBorder(Decorations.getDefaultBorder());
         this.add(options, BorderLayout.EAST);
 
         // Color switch button.

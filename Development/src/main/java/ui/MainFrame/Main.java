@@ -49,7 +49,7 @@ public class Main extends JFrame implements Multilingual {
 
         // Add a banner.
         banner = new JLabel(Decorations.getImg(IMG_BANNER_DESERT));
-        banner.setBorder(Decorations.BORDER_DEFAULT.getBorder());
+        banner.setBorder(Decorations.getDefaultBorder());
         this.add(banner, BorderLayout.WEST);
 
         // Add the welcome page.

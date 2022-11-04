@@ -25,9 +25,6 @@ public enum Decorations {
     IMG_BUTTON("Test_Button"),
     IMG_FILM("Test_Film"), // TODO  
     
-    // Borders
-    BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
-
 	// Fonts
 	FONT_BASIC("Helvetica"),
 	FONT_PLACEHOLDER("Monospaced");
@@ -104,16 +101,13 @@ public enum Decorations {
     }
     
     /**
-     * Get the enumerated Border
+     * Get the default Border
      * @author MathysC
      *
-     * @return Border if the enumerated element name’s start with "BORDER_";
+     * @return EmptyBorder a border used as a margin.
      */
-    public Border getBorder() {
-        if (this.name().startsWith("BORDER_"))
-            return (Border) this.decoration;
-        else
-            return null;
+    public static EmptyBorder getDefaultBorder() {
+            return new EmptyBorder(10, 10, 10, 10);
     }
     
     
