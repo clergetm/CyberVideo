@@ -84,31 +84,7 @@ public enum Decorations {
         return new ImageIcon(PREFIXIMG + name + FORMATIMAGE);
 
     }
-    
-    
-    /**
-     * Get the enumerated Icon
-     * @author MathysC
-     *
-     * @return ImageIcon if the enumerated element name’s start with "ICO_";
-     */
-    public Image getIco() {
-    	if (this.name().startsWith("ICO_")) {
-    		try {
-    	    	BufferedImage image = new BufferedImage(ICOH, ICOH, BufferedImage.TYPE_INT_RGB);
-    	    	File file = new File(PREFIXICO + (String) this.decoration + FORMATICON);
-    	    	
-				image = ImageIO.read(file);
-				return image;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	
-		}   
-    	return null;
-    }
-    
+
     /**
      * Get named Icon.
      * @author MathysC
