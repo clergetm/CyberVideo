@@ -21,7 +21,7 @@ import javax.swing.JButton;
  *
  */
 @SuppressWarnings("serial")
-public class TopBar extends JPanel {
+public class TopBarPanel extends JPanel {
 
     protected JPanel topBar = new JPanel(), options = new JPanel();
     protected JLabel logo = new JLabel(), test = new JLabel();
@@ -37,7 +37,7 @@ public class TopBar extends JPanel {
      * @author MathysC
      *
      */
-    public TopBar() {
+    public TopBarPanel() {
         // Set JPanel’s options.
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));

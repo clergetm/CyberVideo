@@ -52,8 +52,8 @@ public class Interaction implements ActionListener {
         this.mainFrame = m;
 
         /*Listeners*/
-        mainFrame.topBar.languageSwitch.addActionListener(this);
-        mainFrame.topBar.askForHelp.addActionListener(this);
+        mainFrame.topBarPanel.languageSwitch.addActionListener(this);
+        mainFrame.topBarPanel.askForHelp.addActionListener(this);
     }
 
     @Override
@@ -61,17 +61,17 @@ public class Interaction implements ActionListener {
         switch (e.getActionCommand()) {
 
             // Handle Language Switch Button from the TopBar.
-        case TopBar.SWITCHFR:
+        case TopBarPanel.SWITCHFR:
             mainFrame.setLanguage(mainFrame.getRbFR());
-            mainFrame.topBar.languageSwitch.setIcon(Decorations.IMG_CURRENTFR.getImg());
-            mainFrame.topBar.languageSwitch.setActionCommand(TopBar.SWITCHEN);
+            mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.IMG_CURRENTFR.getImg());
+            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.SWITCHEN);
             break;
-        case TopBar.SWITCHEN:
+        case TopBarPanel.SWITCHEN:
             mainFrame.setLanguage(mainFrame.getRbEN());
-            mainFrame.topBar.languageSwitch.setIcon(Decorations.IMG_CURRENTEN.getImg());
-            mainFrame.topBar.languageSwitch.setActionCommand(TopBar.SWITCHFR);
+            mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.IMG_CURRENTEN.getImg());
+            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.SWITCHFR);
             break;
-        case TopBar.HELP:
+        case TopBarPanel.HELP:
             playSound(STORERING);
             break;
         default:

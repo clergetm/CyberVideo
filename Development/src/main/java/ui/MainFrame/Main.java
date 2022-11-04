@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities;
 public class Main extends JFrame implements Multilingual {
 
     /*Components*/
-    protected TopBar topBar = new TopBar();
+    protected TopBarPanel topBarPanel = new TopBarPanel();
     protected JLabel banner = new JLabel();
     protected WelcomePage welcomePage = new WelcomePage();
 
@@ -39,7 +39,7 @@ public class Main extends JFrame implements Multilingual {
         this.setLayout(new BorderLayout());
 
         // Add the Top Bar.
-        this.add(this.topBar, BorderLayout.NORTH);
+        this.add(this.topBarPanel, BorderLayout.NORTH);
 
         // Add a banner.
         banner = new JLabel(Decorations.IMG_BANNERDESERT.getImg());
