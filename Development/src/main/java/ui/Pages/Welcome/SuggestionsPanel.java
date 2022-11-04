@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import ui.Decorations;
 import ui.FilmManager;
 import ui.Bundles.Multilingual;
+import ui.Themes.ColorTheme;
 
 /**
  * Instantiate a list of suggested films displayed on Welcome Page.
@@ -21,7 +22,7 @@ import ui.Bundles.Multilingual;
  *
  */
 @SuppressWarnings("serial")
-class SuggestionsPanel extends JPanel implements Multilingual {
+class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
 
 	/* Components */
     protected JLabel sugLabel = new JLabel();
@@ -55,5 +56,17 @@ class SuggestionsPanel extends JPanel implements Multilingual {
         this.sugLabel.setText(rb.getString("sug_label"));
 
     }
+
+	@Override
+	public void setLight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDark() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

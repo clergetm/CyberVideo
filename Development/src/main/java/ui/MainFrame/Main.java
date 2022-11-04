@@ -3,6 +3,7 @@ package ui.MainFrame;
 import ui.Decorations;
 import ui.Bundles.Multilingual;
 import ui.Pages.Welcome.WelcomePage;
+import ui.Themes.ColorTheme;
 
 import java.awt.BorderLayout;
 
@@ -17,7 +18,7 @@ import javax.swing.SwingUtilities;
  * Main Class of AL2000. Initialize the machine Interface.
  */
 @SuppressWarnings("serial")
-public class Main extends JFrame implements Multilingual {
+public class Main extends JFrame implements Multilingual, ColorTheme {
 
 	/* Icon */
 	public static final String ICO_APP = "App";
@@ -54,8 +55,11 @@ public class Main extends JFrame implements Multilingual {
 
         // Add the welcome page.
         this.add(welcomePage, BorderLayout.CENTER);
-        this.setLanguage(this.getRbEN());
         this.pack();
+        
+
+        this.setLanguage(this.getRbEN());
+        this.setLight();
 
         // Maximize the Window.
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -74,6 +78,18 @@ public class Main extends JFrame implements Multilingual {
         this.welcomePage.setLanguage(rb);
     }
 
+	@Override
+	public void setDark() {
+		this.topBarPanel.setDark();
+		this.welcomePage.setDark();
+	}
+
+	@Override
+	public void setLight() {
+		this.topBarPanel.setLight();
+		this.welcomePage.setDark();
+	}
+	
     /**
      * Run the Main Window of AL2000.
      * @author MathysC

@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 import ui.Decorations;
 import ui.KeyboardDialog;
 import ui.Bundles.Multilingual;
+import ui.Themes.ColorTheme;
 
 /**
  * LoginPanel is part of the WelcomePage.
@@ -32,7 +33,7 @@ import ui.Bundles.Multilingual;
  *
  */
 @SuppressWarnings("serial")
-class LoginPanel extends JPanel implements Multilingual {
+class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 
     private String idPlaceHolder = "", pwPlaceHolder = "", keyboardIDTitle = "", keyboardPWTitle = "";
 
@@ -249,4 +250,16 @@ class LoginPanel extends JPanel implements Multilingual {
         keyboardPWTitle = rb.getString("login_pw_vk_frameName");
         keyboard.setLanguage(rb);
     }
+
+	@Override
+	public void setLight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDark() {
+		// TODO Auto-generated method stub
+		
+	}
 }

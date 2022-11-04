@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ui.Decorations;
+import ui.Themes.ColorTheme;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -23,7 +24,7 @@ import javax.swing.JButton;
  *
  */
 @SuppressWarnings("serial")
-public class TopBarPanel extends JPanel {
+public class TopBarPanel extends JPanel implements ColorTheme {
 
     /* Components */
     protected JLabel logo = new JLabel();
@@ -92,4 +93,16 @@ public class TopBarPanel extends JPanel {
         button.setBorderPainted(false); // without border
         this.options.add(button);
     }
+
+	@Override
+	public void setLight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDark() {
+		// TODO Auto-generated method stub
+		
+	}
 }
