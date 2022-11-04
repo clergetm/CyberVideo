@@ -1,8 +1,10 @@
 package bd;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.Properties;
 import java.util.Scanner;
 
 
@@ -29,9 +31,16 @@ public class CreateDatabase
       //Loading the JDBC Driver class
       Class.forName("oracle.jdbc.driver.OracleDriver");
 
+      //Importing connection logs from oracleLogs.properties file
+      Properties dbProps = new Properties();
+      dbProps.load(new FileInputStream("oracleLogs.properties"));
+      
+      String url = dbProps.getProperty("URL");
+      String user = dbProps.getProperty("User");
+      String password = dbProps.getProperty("Password");
+
       //Creating the connection object and the statement
-      Connection conn = DriverManager.getConnection(
-      "jdbc:oracle:thin:@localhost:1521/orclpdb","system","Oracle123"); 
+      Connection conn = DriverManager.getConnection(url,user,password); 
       Statement stmt = conn.createStatement();
 
       //Executing the DB creation request
