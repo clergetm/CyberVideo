@@ -25,8 +25,8 @@ public class QRCode extends Film {
 		return "QRCode";
 	}
 	
-	public void generateQRCode()throws WriterException, IOException {
-		String qrCodeText = this.generateLink();
+	public String generateQRCode()throws WriterException, IOException {
+		String link = "https://www.cybervideo/location/"+this.getTitle()+".com";
 		String filePath = "QRCode.png";
 		int size = 125;
 		String fileType = "png";
@@ -35,7 +35,7 @@ public class QRCode extends Film {
 		Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<>();
 		hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
-		BitMatrix byteMatrix = qrCodeWriter.encode(qrCodeText, BarcodeFormat.QR_CODE, size, size, hintMap);
+		BitMatrix byteMatrix = qrCodeWriter.encode(link, BarcodeFormat.QR_CODE, size, size, hintMap);
 		// Make the BufferedImage that are to hold the QRCode
 		int matrixWidth = byteMatrix.getWidth();
 		BufferedImage image = new BufferedImage(matrixWidth, matrixWidth, BufferedImage.TYPE_INT_RGB);
@@ -55,10 +55,12 @@ public class QRCode extends Film {
 			}
 		}
 		ImageIO.write(image, fileType, qrFile);
+		return link;
 	}
-
-	public String generateLink() {
-		return "https://www.cybervideo/location/"+this.getTitle()+".com";
+	
+	public static void main(String[] args) throws WriterException, IOException {		
+		QRCode qr = new QRCode("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});	
+		System.out.println(qr.generateQRCode());	
 	}
 	
 	// Ressources generator : https://www.digitalocean.com/community/tutorials/java-qr-code-generator-zxing-example
