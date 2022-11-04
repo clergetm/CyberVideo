@@ -46,9 +46,12 @@ public enum Decorations {
 	FONT_BASIC("Helvetica"),
 	FONT_PLACEHOLDER("Monospaced");
     private Object decoration;
-    private static String PREFIXPATH = "resources/";
-    private static String FORMATIMAGE = ".png";
-    private static String FORMATICON = ".ico";
+    private static String PREFIXPATH = "resources/",
+    		PREFIXIMG = PREFIXPATH + "/images/",
+    		PREFIXICO = PREFIXPATH + "/icons/",
+    		
+    		FORMATIMAGE = ".png",
+    		FORMATICON = ".ico";
     private static int ICOH = 16;
     Decorations(Object o) {
         this.decoration = o;
@@ -75,7 +78,7 @@ public enum Decorations {
      */
     public ImageIcon getImg() {
         if (this.name().startsWith("IMG_"))
-            return new ImageIcon(PREFIXPATH + (String) this.decoration + FORMATIMAGE);
+            return new ImageIcon(PREFIXIMG + (String) this.decoration + FORMATIMAGE);
         else
             return null;
     }
@@ -90,7 +93,7 @@ public enum Decorations {
     	if (this.name().startsWith("ICO_")) {
     		try {
     	    	BufferedImage image = new BufferedImage(ICOH, ICOH, BufferedImage.TYPE_INT_RGB);
-    	    	File file = new File(PREFIXPATH + (String) this.decoration + FORMATICON);
+    	    	File file = new File(PREFIXICO + (String) this.decoration + FORMATICON);
     	    	
 				image = ImageIO.read(file);
 				return image;
