@@ -1,12 +1,23 @@
 package fc.Films;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class QRCodeTest {
+import com.google.zxing.WriterException;
+
+import fc.LifecycleLoggerTest;
+
+import java.io.File;
+
+class QRCodeTest implements LifecycleLoggerTest{
 
 	protected static QRCode qrCode = new QRCode("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});
 
+	/**
+	 * Check the getType methode
+	 */
 	@Test
 	void testGetType() {
 		// Test will pass
@@ -17,9 +28,11 @@ class QRCodeTest {
 		Assertions.assertNotEquals("BluRay", qrCode.getType(), "qrCode.getType() test failed");	
 	}
 
+	/**
+	 * Check the constructor of QRCode
+	 */
 	@Test
 	void testQRCode() {
-		// Tests will pass
 		Assertions.assertEquals("toto", qrCode.title, "qrCode.title test passed");
 		Assertions.assertEquals("toto tutu tata", qrCode.synopsis, "qrCode.synopsis test passed");
 		Assertions.assertEquals("JM COCO, PE SOSO", qrCode.getActors(), "qrCode.getActors() test passed");
@@ -29,14 +42,29 @@ class QRCodeTest {
 		Assertions.assertEquals(AgeRestriction.MINUS12, qrCode.restriction, "qrCode.restriction test passed");
 	}
 
-//	@Test
-//	void testGenerateQRCode() {
-//		fail("Not yet implemented");
-//	}
-
+	/**
+	 * Check if the link for the QRCode generation is the good link
+	 * Check if a file.png is generate
+	 * It is voluntary not to test the reading of the QRcode
+	 * @throws IOException 
+	 * @throws WriterException 
+	 */
 	@Test
-	void testGenerateLink() {
-		Assertions.assertEquals("https://www.cybervideo/location/toto.com", qrCode.generateLink(), "qrCode.generateLink() test passed");
+	void testGenerateQRCode() throws WriterException, IOException {		
+		// Check if not exist a QRCode.png
+		File f = new File("QRCode.png");
+		Assertions.assertFalse(f.exists());
+		
+		// Check the link and generate the QRCode.png
+		Assertions.assertEquals("https://www.cybervideo/location/toto.com", qrCode.generateQRCode(), "qrCode.generateQRCode test passed");
+		
+		// Check is the file QRCode.png exist and if is a file
+		Assertions.assertTrue(f.exists());
+		Assertions.assertTrue(f.isFile());
+		
+		// Delete the file for the other tests
+		f.delete();
 	}
 
+	//https://patouche.github.io/2015/01/17/temporary-folder-rule/
 }

@@ -6,9 +6,14 @@ import org.junit.jupiter.api.Test;
 
 class BluRayTest {
 
+	/**
+	 * Create an instance of a BluRay for test BluRay class
+	 */
 	protected static BluRay bluRay = new BluRay(22.90, StatesBluRay.AVAILABLE, "tata", "tata tutu toto", new String[]{"JM POPO","PE RORO"}, "DUDU", "DADA", AgeRestriction.EVERYONE, new Categories[] {Categories.ANIME});
 
-	
+	/**
+	 * Check getType()
+	 */
 	@Test
 	void testGetType() {
 		// Test will pass
@@ -20,9 +25,11 @@ class BluRayTest {
 
 	}
 
+	/**
+	 * Check the constructor of BluRay
+	 */
 	@Test
 	void testBluRay() {
-		// Tests will pass
 		Assertions.assertEquals("tata", bluRay.title, "bluRay.title test passed");
 		Assertions.assertEquals("tata tutu toto", bluRay.synopsis, "bluRay.synopsis test passed");
 		Assertions.assertEquals("JM POPO, PE RORO", bluRay.getActors(), "bluRay.getActors() test passed");
@@ -32,12 +39,17 @@ class BluRayTest {
 		Assertions.assertEquals(AgeRestriction.EVERYONE, bluRay.restriction, "bluRay.restriction test passed");
 	}
 
+	/**
+	 * Check getPrice()
+	 */
 	@Test
 	void testGetPrice() {
-		// Test will pass
 		Assertions.assertEquals(22.90, bluRay.getPrice(), "bluRay.getPrice() test passed");
 	}
 
+	/**
+	 * Check setPrice
+	 */
 	@Test
 	void testSetPrice() {
 		bluRay.setPrice(24.57);
@@ -48,15 +60,20 @@ class BluRayTest {
 		//Test will fail 
 		//Assertions.assertEquals(22.90, bluRay.getPrice(), "bluRay.setPrice() test failed");
 		Assertions.assertNotEquals(22.90, bluRay.getPrice(), "bluRay.setPrice() test failed");
-
 	}
-
+	
+	/**
+	 * Check getState()
+	 */
 	@Test
 	void testGetState() {
 		// Test will pass
 		Assertions.assertEquals(StatesBluRay.AVAILABLE, bluRay.getState(), "bluRay.getState() test passed");
 	}
 
+	/**
+	 * Check setStat()
+	 */
 	@Test
 	void testSetState() {
 		bluRay.setState(StatesBluRay.STOLEN);
@@ -67,6 +84,5 @@ class BluRayTest {
 		//Test will fail 
 		//Assertions.assertEquals(StatesBluRay.AVAILABLE, bluRay.getState(), "bluRay.setState() test failed");
 		Assertions.assertNotEquals(StatesBluRay.AVAILABLE, bluRay.getState(), "bluRay.setState() test failed");
-
 	}
 }
