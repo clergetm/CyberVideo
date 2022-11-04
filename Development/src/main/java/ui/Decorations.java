@@ -43,19 +43,6 @@ public enum Decorations {
     }
 
     /**
-     * Get the enumerated Dimension
-     * @author MathysC
-     *
-     * @return Dimension if the enumerated element name’s start with "DIM_";
-     */
-    public Dimension getDimension() {
-        if (this.name().startsWith("DIM_"))
-            return (Dimension) this.decoration;
-        else
-            return null;
-    }
-
-    /**
      * Get named Image
      * @author MathysC
      *
