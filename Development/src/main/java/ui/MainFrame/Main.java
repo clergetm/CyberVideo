@@ -19,7 +19,7 @@ import javax.swing.SwingUtilities;
 @SuppressWarnings("serial")
 public class Main extends JFrame implements Multilingual {
 
-    /*Components*/
+    /* Components */
     protected TopBarPanel topBarPanel = new TopBarPanel();
     protected JLabel banner = new JLabel();
     protected WelcomePage welcomePage = new WelcomePage();
@@ -46,7 +46,6 @@ public class Main extends JFrame implements Multilingual {
         banner.setBorder(Decorations.BORDER_DEFAULT.getBorder());
         this.add(banner, BorderLayout.WEST);
 
-        
         // Add the welcome page.
         this.add(welcomePage, BorderLayout.CENTER);
         this.setLanguage(this.getRbEN());
@@ -66,7 +65,7 @@ public class Main extends JFrame implements Multilingual {
         // Set MainFrame Components text.
 
         // Set all multilingual child.
-    	this.welcomePage.setLanguage(rb);
+        this.welcomePage.setLanguage(rb);
     }
 
     /**

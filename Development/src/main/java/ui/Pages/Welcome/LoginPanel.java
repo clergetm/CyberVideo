@@ -35,22 +35,22 @@ import ui.Bundles.Multilingual;
 class LoginPanel extends JPanel implements Multilingual {
 
     private String idPlaceHolder = "", pwPlaceHolder = "", keyboardIDTitle = "", keyboardPWTitle = "";
-    
+
     /* Components */
-    JLabel idLabel = new JLabel();
-    JTextField idField = new JTextField();
-    JPasswordField pwField = new JPasswordField();
-    JButton connection = new JButton(), createAccount = new JButton(), continueWithoutConn = new JButton();
-    KeyboardDialog keyboard = new KeyboardDialog();
-    
+    protected JLabel idLabel = new JLabel();
+    protected JTextField idField = new JTextField();
+    protected JPasswordField pwField = new JPasswordField();
+    protected JButton connection = new JButton(), createAccount = new JButton(), continueWithoutConn = new JButton();
+    protected KeyboardDialog keyboard = new KeyboardDialog();
+
     /*Options*/
     private final int maxW = 400, W = (int)(maxW * 0.9),
-            HTextField = 50, HButton = 75;
+        HTextField = 50, HButton = 75;
 
     // Size of rigid areas placed between JComponent to create gaps.
     private final Dimension SMALLRIGID = new Dimension(25, 25);
     private final Dimension BIGRIGID = new Dimension(75, 75);
-    
+
     /**
      * Constructor of {@code LoginPanel} 
      * Set JPanel options and add Components.
@@ -135,7 +135,7 @@ class LoginPanel extends JPanel implements Multilingual {
                 if (prompt.equals(""))
                     prompt = pwPlaceHolder;
                 else
-                	pwField.setEchoChar('*'); // Hide what’s written.
+                    pwField.setEchoChar('*'); // Hide what’s written.
 
                 pwField.setText(prompt);
 

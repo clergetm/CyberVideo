@@ -22,19 +22,22 @@ import ui.Bundles.Multilingual;
  */
 @SuppressWarnings("serial")
 public class KeyboardDialog extends JDialog implements ActionListener, Multilingual {
-	private String entry = ""; // text of the TextField.
+
+    private String entry = ""; // text of the TextField.
     private static String[] multilingualLabels = {}; //  labels of action depend on Multilingual.
-    private static final String VAL_ACT = "Validate",  // Action Names.
-    		BSPACE_ACT = "Back_space", 
-    		SPACE_ACT = "Space"; 
-	private final int beginUpperCase = 65, endUpperCase = 91, beginLowerCase = 97, endLowerCase = 123; // Alphabet in lower and upper cases.
+
+    /* Characters */
+    // Alphabet in lower and upper cases.
+    private final int beginUpperCase = 65, endUpperCase = 91, beginLowerCase = 97, endLowerCase = 123;
     private final char[] specialChars = {
-        '!', '@', '#', '$', '%', '&', '*', '(', ')', '-',
-        '_', '=', '+', '[', ']', '{', '}', '\\', '|', ',',
-        '.', '<', '>', '/', '?', ';', ':', '~'
-    };
+        '!', '@', '#', '$', '%',
+        '&', '*', '(', ')', '-',
+        '_', '=', '+', '[', ']',
+        '{', '}', '\\', '|', ',',
+        '.', '<', '>', '/', '?',
+        ';', ':', '~' };
     
-/* Components */
+    /* Components */
     private JTextField textField = new JTextField(100);
     private JPanel keysPanel = new JPanel();
     private JButton valButton = new JButton(),
@@ -49,6 +52,11 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
         UPCButton,
         LOCButton
     };
+
+    /* Actions */
+    private static final String VAL_ACT = "Validate", // Action Names.
+        BSPACE_ACT = "Back_space",
+        SPACE_ACT = "Space";
 
     /**
      * Constructor of {@code VirtualKeyboard} 
@@ -70,7 +78,6 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
         keysPanel.add(getLowerCaseKeys());
         keysPanel.add(getUpperCaseKeys());
         keysPanel.add(getSpecialKeys());
-
         this.add(keysPanel, BorderLayout.CENTER);
 
         //        JPanel actionsPanel = new JPanel(); // TODO: Find a way to put the component Vertically.

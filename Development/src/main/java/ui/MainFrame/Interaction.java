@@ -37,6 +37,8 @@ import javax.sound.sampled.SourceDataLine;
 public class Interaction implements ActionListener {
 
     private Main mainFrame;
+    
+    /* Sounds */
     private final String PREFIX_SOUND = "resources/sounds/", FORMAT_SOUND = ".wav",
         BELL = PREFIX_SOUND + "Bell" + FORMAT_SOUND,
         DING = PREFIX_SOUND + "Ding" + FORMAT_SOUND,
@@ -50,7 +52,7 @@ public class Interaction implements ActionListener {
     public Interaction(Main m) {
         this.mainFrame = m;
 
-        /*Listeners*/
+        /* Listeners */
         mainFrame.topBarPanel.languageSwitch.addActionListener(this);
         mainFrame.topBarPanel.askForHelp.addActionListener(this);
     }
@@ -59,7 +61,7 @@ public class Interaction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
 
-            // Handle Language Switch Button from the TopBar.
+            // Handle Language Switch Button from the TopBarPanel.
         case TopBarPanel.SWITCHFR:
             mainFrame.setLanguage(mainFrame.getRbFR());
             mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.IMG_CURRENTFR.getImg());
@@ -70,6 +72,8 @@ public class Interaction implements ActionListener {
             mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.IMG_CURRENTEN.getImg());
             mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.SWITCHFR);
             break;
+            
+            // Handle askForHelp button from the TopBarPanel.
         case TopBarPanel.HELP:
             playSound(STORERING);
             break;

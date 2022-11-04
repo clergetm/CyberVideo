@@ -23,14 +23,16 @@ import javax.swing.JButton;
 @SuppressWarnings("serial")
 public class TopBarPanel extends JPanel {
 
+    /* Components */
     protected JPanel topBar = new JPanel(), options = new JPanel();
     protected JLabel logo = new JLabel(), test = new JLabel();
     protected JButton colorSwitch = new JButton(), languageSwitch = new JButton(), askForHelp = new JButton();
 
-    /*Actions*/
+    /* Actions */
     static final String SWITCHFR = "Switch_to_fr";
     static final String SWITCHEN = "Switch_to_en";
     static final String HELP = "Ask_for_help";
+
     /**
      * Constructor of TopBar.
      * Set JPanel options and add components.
