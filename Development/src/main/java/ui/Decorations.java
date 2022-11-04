@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -36,9 +35,9 @@ public enum Decorations {
     		FORMATICON = ".ico";
     private static int ICOH = 16;
     
-    private Object decoration;
+    private String decoration;
 
-    Decorations(Object o) {
+    Decorations(String o) {
         this.decoration = o;
     }
 
@@ -94,7 +93,7 @@ public enum Decorations {
      */
     public Font getFont(int style, int size) {
         if (this.name().startsWith("FONT_"))
-            return new Font(this.decoration.toString(),style,size);
+            return new Font(this.decoration,style,size);
         else
             return null;
     }
