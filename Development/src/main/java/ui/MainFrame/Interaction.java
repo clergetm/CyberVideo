@@ -48,16 +48,16 @@ public class Interaction implements ActionListener {
         switch (e.getActionCommand()) {
 
             // Handle Language Switch Button from the TopBar.
-        case Main.SWITCHFR:
+        case TopBar.SWITCHFR:
             mainFrame.setLanguage(mainFrame.getRbFR());
             mainFrame.topBar.languageSwitch.setIcon(Decorations.IMG_CURRENTFR.getImg());
-            mainFrame.topBar.languageSwitch.setActionCommand(Main.SWITCHEN);
+            mainFrame.topBar.languageSwitch.setActionCommand(TopBar.SWITCHEN);
             
             break;
-        case Main.SWITCHEN:
+        case TopBar.SWITCHEN:
             mainFrame.setLanguage(mainFrame.getRbEN());
             mainFrame.topBar.languageSwitch.setIcon(Decorations.IMG_CURRENTEN.getImg());
-            mainFrame.topBar.languageSwitch.setActionCommand(Main.SWITCHFR);
+            mainFrame.topBar.languageSwitch.setActionCommand(TopBar.SWITCHFR);
             break;
         default:
             throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());

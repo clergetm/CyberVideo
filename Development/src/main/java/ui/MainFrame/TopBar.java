@@ -26,6 +26,10 @@ public class TopBar extends JPanel{
     protected JPanel topBar = new JPanel(), options = new JPanel();
     protected JLabel logo = new JLabel(), test = new JLabel();
     protected JButton colorSwitch = new JButton(), languageSwitch = new JButton();
+    
+    /*Actions*/
+    static final String SWITCHFR = "Switch_to_fr";
+    static final String SWITCHEN = "Switch_to_en";
 	/**
 	 * Constructor of TopBar.
 	 * Set JPanel options and add components.
@@ -58,7 +62,7 @@ public class TopBar extends JPanel{
 		// Language switch button.
 		languageSwitch.setPreferredSize(Decorations.DIM_BUTTON.getDimension());
 		languageSwitch.setIcon(Decorations.IMG_CURRENTEN.getImg());
-		languageSwitch.setActionCommand(Main.SWITCHFR);
+		languageSwitch.setActionCommand(SWITCHFR);
 		languageSwitch.setContentAreaFilled(false); // transparent
 		languageSwitch.setBorderPainted(false); // without border
 		options.add(languageSwitch);

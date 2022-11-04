@@ -24,10 +24,6 @@ public class Main extends JFrame implements Multilingual {
     protected JLabel banner = new JLabel();
     protected WelcomePage welcomePage = new WelcomePage();
 
-    /*Actions*/
-    static final String SWITCHFR = "Switch_to_fr";
-    static final String SWITCHEN = "Switch_to_en";
-
     /**
      * Constructor of Main.
      * Initialize the AL200 Main Window.
