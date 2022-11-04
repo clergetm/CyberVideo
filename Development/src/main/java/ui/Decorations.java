@@ -21,39 +21,32 @@ import javax.swing.border.EmptyBorder;
  * 
  */
 public enum Decorations {
-
-    // Dimensions
-    DIM_BUTTON(new Dimension(100, 100)),
-    DIM_LOGO(new Dimension(200, 150)),
-
     // Icons
-    IMG_LOGO("Light_Logo"),
     IMG_BUTTON("Test_Button"),
-    IMG_CURRENTFR("CurrentFR"),
-    IMG_CURRENTEN("CurrentEN"),
-    IMG_CURRENTLIGHT("CurrentLight"),
-    IMG_CURRENTDARK("CurrentDark"),
-    IMG_QUESTION("Question"),
     IMG_BANNERIT("BannerIT"),
     IMG_BANNERPOLICE("BannerPOLICE"),
     IMG_BANNERDESERT("BannerDESERT"),
     IMG_FILM("Test_Film"), // TODO
     ICO_KEYBOARD("edit"),
     ICO_CYBERVIDEO("Logo_ico"),
+   
     // Borders
     BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
 
 	// Fonts
 	FONT_BASIC("Helvetica"),
 	FONT_PLACEHOLDER("Monospaced");
-    private Object decoration;
-    private static String PREFIXPATH = "resources/",
+
+	private static String PREFIXPATH = "resources/",
     		PREFIXIMG = PREFIXPATH + "/images/",
     		PREFIXICO = PREFIXPATH + "/icons/",
     		
     		FORMATIMAGE = ".png",
     		FORMATICON = ".ico";
     private static int ICOH = 16;
+    
+    private Object decoration;
+
     Decorations(Object o) {
         this.decoration = o;
     }
@@ -84,6 +77,18 @@ public enum Decorations {
             return null;
     }
 
+    /**
+     * Get named Image
+     * @author MathysC
+     *
+     * @return ImageIcon Icon from named image.
+     */
+    public static ImageIcon getImg(String name) {
+        return new ImageIcon(PREFIXIMG + name + FORMATIMAGE);
+
+    }
+    
+    
     /**
      * Get the enumerated Icon
      * @author MathysC
