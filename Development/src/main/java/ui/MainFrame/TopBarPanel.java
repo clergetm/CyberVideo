@@ -70,7 +70,7 @@ public class TopBarPanel extends JPanel {
 
         // ask for help button.
         askForHelp.setPreferredSize(Decorations.DIM_BUTTON.getDimension());
-        askForHelp.setIcon(Decorations.IMG_BUTTON.getImg());
+        askForHelp.setIcon(Decorations.IMG_QUESTION.getImg());
         askForHelp.setActionCommand(HELP);
         askForHelp.setContentAreaFilled(false); // transparent
         askForHelp.setBorderPainted(false); // without border

@@ -33,6 +33,7 @@ public enum Decorations {
     IMG_CURRENTEN("CurrentEN"),
     IMG_CURRENTLIGHT("CurrentLight"),
     IMG_CURRENTDARK("CurrentDark"),
+    IMG_QUESTION("Question"),
     IMG_BANNERIT("BannerIT"),
     IMG_BANNERPOLICE("BannerPOLICE"),
     IMG_BANNERDESERT("BannerDESERT"),
