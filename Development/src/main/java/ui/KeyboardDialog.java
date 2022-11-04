@@ -23,6 +23,9 @@ import ui.Bundles.Multilingual;
 @SuppressWarnings("serial")
 public class KeyboardDialog extends JDialog implements ActionListener, Multilingual {
 
+	/*Icon */
+	public static final String ICO_KEYBOARD = "Keyboard";
+	
     private String entry = ""; // text of the TextField.
     private static String[] multilingualLabels = {}; //  labels of action depend on Multilingual.
 
@@ -67,7 +70,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
     public KeyboardDialog() {
         // Set Options.
         super(null, Dialog.ModalityType.APPLICATION_MODAL);
-        this.setIconImage(Decorations.ICO_KEYBOARD.getIco());
+        this.setIconImage(Decorations.getIco(ICO_KEYBOARD));
         setLayout(new BorderLayout());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLanguage(this.getRbEN());

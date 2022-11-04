@@ -1,6 +1,5 @@
 package ui;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -9,9 +8,58 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+
+/**
+ * Enumeration of resources’ paths.
+ * @author MathysC
+ *
+ */
+enum PATH {
+	RESOURCES_PATH("resources/"),
+	IMG(RESOURCES_PATH+"images/"),
+	ICO(RESOURCES_PATH +"icons/"),
+	SND(RESOURCES_PATH + "sounds/");
+	
+	private String path;
+	
+	PATH(String path) {
+		this.path = path;
+	}
+	
+    @Override
+    public String toString() {
+    	return path;
+    }
+}
+
+/**
+ * Enumeration of used formats.
+ * @author MathysC
+ *
+ */
+enum FORMAT {
+	IMG(".png"),
+	ICO(".ico"),
+	SND(".wav");
+	
+	private String format;
+	
+	FORMAT(String fmt){
+		this.format = fmt;
+	}
+	
+	static int sizeICO() {
+		return 16;
+	}
+	
+    @Override
+    public String toString() {
+    	return format;
+    }
+    
+}
 /**
  * Enumerations of all parameters used.
  * 
@@ -21,106 +69,70 @@ import javax.swing.border.EmptyBorder;
  * 
  */
 public enum Decorations {
-
-    // Dimensions
-    DIM_BUTTON(new Dimension(100, 100)),
-    DIM_LOGO(new Dimension(200, 150)),
-
-    // Icons
-    IMG_LOGO("Light_Logo"),
+	
+    /* Images */
     IMG_BUTTON("Test_Button"),
-    IMG_CURRENTFR("CurrentFR"),
-    IMG_CURRENTEN("CurrentEN"),
-    IMG_CURRENTLIGHT("CurrentLight"),
-    IMG_CURRENTDARK("CurrentDark"),
-    IMG_QUESTION("Question"),
-    IMG_BANNERIT("BannerIT"),
-    IMG_BANNERPOLICE("BannerPOLICE"),
-    IMG_BANNERDESERT("BannerDESERT"),
-    IMG_FILM("Test_Film"), // TODO
-    ICO_KEYBOARD("edit"),
-    ICO_CYBERVIDEO("Logo_ico"),
-    // Borders
-    BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
-
-	// Fonts
+  
+	/* Fonts */
 	FONT_BASIC("Helvetica"),
-	FONT_PLACEHOLDER("Monospaced");
-    private Object decoration;
-    private static String PREFIXPATH = "resources/",
-    		PREFIXIMG = PREFIXPATH + "/images/",
-    		PREFIXICO = PREFIXPATH + "/icons/",
-    		
-    		FORMATIMAGE = ".png",
-    		FORMATICON = ".ico";
-    private static int ICOH = 16;
-    Decorations(Object o) {
+	FONT_PLACEHOLDER("Monospaced"),
+
+    /* Sounds */
+    SND_DING(PATH.SND + "Ding" + FORMAT.SND),
+    SND_BELL(PATH.SND + "Bell" + FORMAT.SND),
+    SND_STORERING(PATH.SND + "StoreRing" + FORMAT.SND);
+
+   private String decoration;
+
+    Decorations(String o) {
         this.decoration = o;
     }
-
+    
+    @Override
+    public String toString() {
+    	return decoration;
+    }
+    
     /**
-     * Get the enumerated Dimension
+     * Get named Image
      * @author MathysC
      *
-     * @return Dimension if the enumerated element name’s start with "DIM_";
+     * @return ImageIcon Icon from named image.
      */
-    public Dimension getDimension() {
-        if (this.name().startsWith("DIM_"))
-            return (Dimension) this.decoration;
-        else
-            return null;
+    public static ImageIcon getImg(String name) {
+        return new ImageIcon(PATH.IMG + name + FORMAT.IMG);
     }
 
     /**
-     * Get the enumerated Image
+     * Get named Icon.
      * @author MathysC
      *
-     * @return ImageIcon if the enumerated element name’s start with "IMG_";
+     * @return ImageIcon Image from named Icon.
      */
-    public ImageIcon getImg() {
-        if (this.name().startsWith("IMG_"))
-            return new ImageIcon(PREFIXIMG + (String) this.decoration + FORMATIMAGE);
-        else
-            return null;
-    }
-
-    /**
-     * Get the enumerated Icon
-     * @author MathysC
-     *
-     * @return ImageIcon if the enumerated element name’s start with "ICO_";
-     */
-    public Image getIco() {
-    	if (this.name().startsWith("ICO_")) {
-    		try {
-    	    	BufferedImage image = new BufferedImage(ICOH, ICOH, BufferedImage.TYPE_INT_RGB);
-    	    	File file = new File(PREFIXICO + (String) this.decoration + FORMATICON);
-    	    	
-				image = ImageIO.read(file);
-				return image;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    public static Image getIco(String name) {
+		try {
+	    	BufferedImage image = new BufferedImage(FORMAT.sizeICO(), FORMAT.sizeICO(), BufferedImage.TYPE_INT_RGB);
+	    	File file = new File(PATH.ICO + name + FORMAT.ICO);
 	    	
-		}   
+			image = ImageIO.read(file);
+			return image;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	return null;
     }
     
     /**
-     * Get the enumerated Border
+     * Get the default Border
      * @author MathysC
      *
-     * @return Border if the enumerated element name’s start with "BORDER_";
+     * @return EmptyBorder a border used as a margin.
      */
-    public Border getBorder() {
-        if (this.name().startsWith("BORDER_"))
-            return (Border) this.decoration;
-        else
-            return null;
+    public static EmptyBorder getDefaultBorder() {
+            return new EmptyBorder(10, 10, 10, 10);
     }
-    
-    
+     
     /**
      * Get the enumerated Font
      * @author MathysC
@@ -131,7 +143,7 @@ public enum Decorations {
      */
     public Font getFont(int style, int size) {
         if (this.name().startsWith("FONT_"))
-            return new Font(this.decoration.toString(),style,size);
+            return new Font(this.decoration,style,size);
         else
             return null;
     }

@@ -38,11 +38,6 @@ public class Interaction implements ActionListener {
 
     private Main mainFrame;
     
-    /* Sounds */
-    private final String PREFIX_SOUND = "resources/sounds/", FORMAT_SOUND = ".wav",
-        BELL = PREFIX_SOUND + "Bell" + FORMAT_SOUND,
-        DING = PREFIX_SOUND + "Ding" + FORMAT_SOUND,
-        STORERING = PREFIX_SOUND + "StoreRing" + FORMAT_SOUND;
     /**
      * Constructor of Interaction.
      * @author MathysC
@@ -61,21 +56,24 @@ public class Interaction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
 
-            // Handle Language Switch Button from the TopBarPanel.
-        case TopBarPanel.SWITCHFR:
+        // Handle Language Switch Button from the TopBarPanel.
+        case TopBarPanel.ACTION_EN:
+        	// Change from English to French
             mainFrame.setLanguage(mainFrame.getRbFR());
-            mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.IMG_CURRENTFR.getImg());
-            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.SWITCHEN);
+            mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
+            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_FR);
             break;
-        case TopBarPanel.SWITCHEN:
-            mainFrame.setLanguage(mainFrame.getRbEN());
-            mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.IMG_CURRENTEN.getImg());
-            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.SWITCHFR);
+        case TopBarPanel.ACTION_FR:
+        	// Change from French to English
+        	mainFrame.setLanguage(mainFrame.getRbEN());
+            mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
+            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_EN);
             break;
             
-            // Handle askForHelp button from the TopBarPanel.
-        case TopBarPanel.HELP:
-            playSound(STORERING);
+        // Handle askForHelp button from the TopBarPanel.
+        case TopBarPanel.ACTION_HELP:
+//	    	System.out.println(PATH.ICO + name + FORMAT.ICO);
+            playSound(Decorations.SND_STORERING.toString());
             break;
         default:
             throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());
