@@ -40,7 +40,6 @@ public class Interaction implements ActionListener {
     private final String PREFIX_SOUND = "resources/sounds/", FORMAT_SOUND = ".wav",
         BELL = PREFIX_SOUND + "Bell" + FORMAT_SOUND,
         DING = PREFIX_SOUND + "Ding" + FORMAT_SOUND,
-        SCHOOLBELL = PREFIX_SOUND + "SchoolBell" + FORMAT_SOUND,
         STORERING = PREFIX_SOUND + "StoreRing" + FORMAT_SOUND;
     /**
      * Constructor of Interaction.
