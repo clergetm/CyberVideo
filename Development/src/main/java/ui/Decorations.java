@@ -27,7 +27,6 @@ public enum Decorations {
     IMG_BANNERPOLICE("BannerPOLICE"),
     IMG_BANNERDESERT("BannerDESERT"),
     IMG_FILM("Test_Film"), // TODO
-    ICO_KEYBOARD("edit"),
     ICO_CYBERVIDEO("Logo_ico"),
    
     // Borders
@@ -109,6 +108,26 @@ public enum Decorations {
 			}
 	    	
 		}   
+    	return null;
+    }
+    
+    /**
+     * Get named Icon.
+     * @author MathysC
+     *
+     * @return ImageIcon Image from named Icon.
+     */
+    public static Image getIco(String name) {
+		try {
+	    	BufferedImage image = new BufferedImage(ICOH, ICOH, BufferedImage.TYPE_INT_RGB);
+	    	File file = new File(PREFIXICO + name + FORMATICON);
+	    	
+			image = ImageIO.read(file);
+			return image;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	return null;
     }
     
