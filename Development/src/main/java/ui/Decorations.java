@@ -26,9 +26,7 @@ public enum Decorations {
     IMG_BANNERIT("BannerIT"),
     IMG_BANNERPOLICE("BannerPOLICE"),
     IMG_BANNERDESERT("BannerDESERT"),
-    IMG_FILM("Test_Film"), // TODO
-    ICO_CYBERVIDEO("Logo_ico"),
-   
+    IMG_FILM("Test_Film"), // TODO  
     // Borders
     BORDER_DEFAULT(new EmptyBorder(10, 10, 10, 10)),
 

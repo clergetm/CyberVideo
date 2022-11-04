@@ -19,6 +19,9 @@ import javax.swing.SwingUtilities;
 @SuppressWarnings("serial")
 public class Main extends JFrame implements Multilingual {
 
+	/* Icon */
+	public static final String ICO_APP = "App";
+
     /* Components */
     protected TopBarPanel topBarPanel = new TopBarPanel();
     protected JLabel banner = new JLabel();
@@ -32,7 +35,7 @@ public class Main extends JFrame implements Multilingual {
      */
     public Main() {
         super("AL2000");
-        this.setIconImage(Decorations.ICO_CYBERVIDEO.getIco());
+        this.setIconImage(Decorations.getIco(ICO_APP));
         new Interaction(this);
         // Set options.
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
