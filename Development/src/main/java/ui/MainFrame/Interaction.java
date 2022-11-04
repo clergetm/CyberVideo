@@ -38,11 +38,6 @@ public class Interaction implements ActionListener {
 
     private Main mainFrame;
     
-    /* Sounds */
-    private final String PREFIX_SOUND = "resources/sounds/", FORMAT_SOUND = ".wav",
-        BELL = PREFIX_SOUND + "Bell" + FORMAT_SOUND,
-        DING = PREFIX_SOUND + "Ding" + FORMAT_SOUND,
-        STORERING = PREFIX_SOUND + "StoreRing" + FORMAT_SOUND;
     /**
      * Constructor of Interaction.
      * @author MathysC
@@ -77,7 +72,8 @@ public class Interaction implements ActionListener {
             
         // Handle askForHelp button from the TopBarPanel.
         case TopBarPanel.ACTION_HELP:
-            playSound(STORERING);
+//	    	System.out.println(PATH.ICO + name + FORMAT.ICO);
+            playSound(Decorations.SND_STORERING.toString());
             break;
         default:
             throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());

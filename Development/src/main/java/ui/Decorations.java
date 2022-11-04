@@ -1,6 +1,5 @@
 package ui;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -11,6 +10,56 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
 
+
+/**
+ * Enumeration of resources’ paths.
+ * @author MathysC
+ *
+ */
+enum PATH {
+	RESOURCES_PATH("resources/"),
+	IMG(RESOURCES_PATH+"images/"),
+	ICO(RESOURCES_PATH +"icons/"),
+	SND(RESOURCES_PATH + "sounds/");
+	
+	private String path;
+	
+	PATH(String path) {
+		this.path = path;
+	}
+	
+    @Override
+    public String toString() {
+    	return path;
+    }
+}
+
+/**
+ * Enumeration of used formats.
+ * @author MathysC
+ *
+ */
+enum FORMAT {
+	IMG(".png"),
+	ICO(".ico"),
+	SND(".wav");
+	
+	private String format;
+	
+	FORMAT(String fmt){
+		this.format = fmt;
+	}
+	
+	static int sizeICO() {
+		return 16;
+	}
+	
+    @Override
+    public String toString() {
+    	return format;
+    }
+    
+}
 /**
  * Enumerations of all parameters used.
  * 
@@ -20,27 +69,30 @@ import javax.swing.border.EmptyBorder;
  * 
  */
 public enum Decorations {
-    // Icons
+	
+    /* Images */
     IMG_BUTTON("Test_Button"),
   
-	// Fonts
+	/* Fonts */
 	FONT_BASIC("Helvetica"),
-	FONT_PLACEHOLDER("Monospaced");
+	FONT_PLACEHOLDER("Monospaced"),
 
-	private static String PREFIXPATH = "resources/",
-    		PREFIXIMG = PREFIXPATH + "/images/",
-    		PREFIXICO = PREFIXPATH + "/icons/",
-    		
-    		FORMATIMAGE = ".png",
-    		FORMATICON = ".ico";
-    private static int ICOH = 16;
-    
-    private String decoration;
+    /* Sounds */
+    SND_DING(PATH.SND + "Ding" + FORMAT.SND),
+    SND_BELL(PATH.SND + "Bell" + FORMAT.SND),
+    SND_STORERING(PATH.SND + "StoreRing" + FORMAT.SND);
+
+   private String decoration;
 
     Decorations(String o) {
         this.decoration = o;
     }
-
+    
+    @Override
+    public String toString() {
+    	return decoration;
+    }
+    
     /**
      * Get named Image
      * @author MathysC
@@ -48,8 +100,7 @@ public enum Decorations {
      * @return ImageIcon Icon from named image.
      */
     public static ImageIcon getImg(String name) {
-        return new ImageIcon(PREFIXIMG + name + FORMATIMAGE);
-
+        return new ImageIcon(PATH.IMG + name + FORMAT.IMG);
     }
 
     /**
@@ -60,8 +111,8 @@ public enum Decorations {
      */
     public static Image getIco(String name) {
 		try {
-	    	BufferedImage image = new BufferedImage(ICOH, ICOH, BufferedImage.TYPE_INT_RGB);
-	    	File file = new File(PREFIXICO + name + FORMATICON);
+	    	BufferedImage image = new BufferedImage(FORMAT.sizeICO(), FORMAT.sizeICO(), BufferedImage.TYPE_INT_RGB);
+	    	File file = new File(PATH.ICO + name + FORMAT.ICO);
 	    	
 			image = ImageIO.read(file);
 			return image;
@@ -81,8 +132,7 @@ public enum Decorations {
     public static EmptyBorder getDefaultBorder() {
             return new EmptyBorder(10, 10, 10, 10);
     }
-    
-    
+     
     /**
      * Get the enumerated Font
      * @author MathysC
