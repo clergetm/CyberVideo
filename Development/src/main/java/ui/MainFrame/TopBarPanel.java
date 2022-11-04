@@ -34,9 +34,8 @@ public class TopBarPanel extends JPanel {
     private Dimension DIM_BUTTON = new Dimension(100, 100), DIM_LOGO = new Dimension(200, 150);
 
     /* Actions */
-    public static final String SWITCHFR = "Switch_to_fr", SWITCHEN = "Switch_to_en", HELP = "Ask_for_help";
+    public static final String ACTION_EN = "Switch_to_fr", ACTION_FR = "Switch_to_en", ACTION_HELP = "Ask_for_help";
 
-    
     /* Icons */
     public static final String IMG_LOGO = "Light_Logo", IMG_FR = "CurrentFR", IMG_EN = "CurrentEN", 
     		IMG_LIGHT = "CurrentLight" , IMG_DARK = "CurrentDark", IMG_QUESTION = "Question";
@@ -66,10 +65,10 @@ public class TopBarPanel extends JPanel {
         setButton(colorSwitch, DIM_BUTTON, Decorations.getImg(IMG_LIGHT), "");
 
         // Language switch button.
-        setButton(languageSwitch, DIM_BUTTON, Decorations.getImg(IMG_EN), SWITCHFR);
+        setButton(languageSwitch, DIM_BUTTON, Decorations.getImg(IMG_EN), ACTION_EN);
 
         // Ask for help button.
-        setButton(askForHelp, DIM_BUTTON, Decorations.getImg(IMG_QUESTION), HELP);
+        setButton(askForHelp, DIM_BUTTON, Decorations.getImg(IMG_QUESTION), ACTION_HELP);
 
     }
 

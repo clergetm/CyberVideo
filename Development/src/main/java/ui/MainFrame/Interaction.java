@@ -61,20 +61,22 @@ public class Interaction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
 
-            // Handle Language Switch Button from the TopBarPanel.
-        case TopBarPanel.SWITCHFR:
+        // Handle Language Switch Button from the TopBarPanel.
+        case TopBarPanel.ACTION_EN:
+        	// Change from English to French
             mainFrame.setLanguage(mainFrame.getRbFR());
             mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
-            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.SWITCHEN);
+            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_FR);
             break;
-        case TopBarPanel.SWITCHEN:
-            mainFrame.setLanguage(mainFrame.getRbEN());
+        case TopBarPanel.ACTION_FR:
+        	// Change from French to English
+        	mainFrame.setLanguage(mainFrame.getRbEN());
             mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
-            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.SWITCHFR);
+            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_EN);
             break;
             
-            // Handle askForHelp button from the TopBarPanel.
-        case TopBarPanel.HELP:
+        // Handle askForHelp button from the TopBarPanel.
+        case TopBarPanel.ACTION_HELP:
             playSound(STORERING);
             break;
         default:
