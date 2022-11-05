@@ -25,6 +25,7 @@ import ui.Decorations;
 import ui.KeyboardDialog;
 import ui.Bundles.Multilingual;
 import ui.Palettes.DarkPalette;
+import ui.Palettes.LightPalette;
 import ui.Themes.ColorTheme;
 
 /**
@@ -253,35 +254,35 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 	@Override
 	public void setLight() {
 		// This JPanel
-        this.setBackground(Color.WHITE);
+        this.setBackground(LightPalette.WHITE.getColor());
         this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLACK));
       
         // ID Label
 		this.idLabel.setForeground(Color.BLACK);
 		
 		// ID TextField
-		this.idField.setBackground(Color.WHITE);
+		this.idField.setBackground(LightPalette.WHITE.getColor());
 		this.idField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.idField.setForeground(Color.BLACK);
 		
 		// Password TextField
-		this.pwField.setBackground(Color.WHITE);
+		this.pwField.setBackground(LightPalette.WHITE.getColor());
 		this.pwField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.pwField.setForeground(Color.BLACK);
 		
 		// Connection Button
-		this.connection.setBackground(Color.BLUE);
-		this.connection.setForeground(Color.WHITE);
+		this.connection.setBackground(LightPalette.BLUE.getColor());
+		this.connection.setForeground(LightPalette.WHITE.getColor());
 		this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// CreateAccount Button
-		this.createAccount.setBackground(Color.BLUE);
-		this.createAccount.setForeground(Color.WHITE);
+		this.createAccount.setBackground(LightPalette.BLUE.getColor());
+		this.createAccount.setForeground(LightPalette.WHITE.getColor());
 		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
 		
 		// ContinueWithoutConn Button
-		this.continueWithoutConn.setBackground(Color.WHITE);
-		this.continueWithoutConn.setForeground(Color.BLUE);
+		this.continueWithoutConn.setBackground(LightPalette.WHITE.getColor());
+		this.continueWithoutConn.setForeground(LightPalette.FG_BLUE.getColor());
 		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));		
 		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 	}
