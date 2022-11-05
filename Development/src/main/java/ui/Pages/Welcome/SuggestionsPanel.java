@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 
 import java.util.ResourceBundle;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -71,7 +72,8 @@ class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
 		// Film ScrollPane.
 		this.filmsPane.setBackground(null);
 		this.filmsPane.getVerticalScrollBar().setBackground(null);
-
+		this.filmsPane.setBorder(BorderFactory.createEmptyBorder());
+		
 		// Films manager.
 		this.manager.setLight();
 	}
