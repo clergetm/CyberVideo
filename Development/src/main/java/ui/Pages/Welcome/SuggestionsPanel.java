@@ -17,6 +17,7 @@ import ui.Decorations;
 import ui.FilmManager;
 import ui.Bundles.Multilingual;
 import ui.Palettes.DarkPalette;
+import ui.Palettes.LightPalette;
 import ui.Themes.ColorTheme;
 
 /**
@@ -63,15 +64,15 @@ class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
 	@Override
 	public void setLight() {
 		// This JPanel.
-        this.setBackground(null);
+        this.setBackground(LightPalette.BG.getColor());
         
         // Suggestion Label.
 		this.sugLabel.setForeground(Color.BLACK);
-		this.panelForLabel.setBackground(null);
+		this.panelForLabel.setBackground(LightPalette.BG.getColor());
 		
 		// Film ScrollPane.
-		this.filmsPane.setBackground(null);
-		this.filmsPane.getVerticalScrollBar().setBackground(null);
+		this.filmsPane.setBackground(LightPalette.BG.getColor());
+		this.filmsPane.getVerticalScrollBar().setBackground(LightPalette.BG.getColor());
 		this.filmsPane.setBorder(BorderFactory.createEmptyBorder());
 		
 		// Films manager.
