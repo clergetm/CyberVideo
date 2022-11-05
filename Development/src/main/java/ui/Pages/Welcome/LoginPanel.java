@@ -62,7 +62,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
     public LoginPanel() {
         // JPanel options
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLACK));
+
         // Set Identification JLabel.
         idLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         idLabel.setBorder(new EmptyBorder(10, 20, 50, 20));
@@ -254,7 +254,8 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 	public void setLight() {
 		// This JPanel
         this.setBackground(Color.WHITE);
-        
+        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLACK));
+      
         // ID Label
 		this.idLabel.setForeground(Color.BLACK);
 		
@@ -289,6 +290,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 	public void setDark() {
 		// This JPanel
 		this.setBackground(DarkPalette.BG.getColor());
+        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, DarkPalette.FOREGROUNG.getColor()));
 		
 		// ID Label
         this.idLabel.setForeground(DarkPalette.FOREGROUNG.getColor());

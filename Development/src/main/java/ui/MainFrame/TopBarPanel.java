@@ -52,7 +52,6 @@ public class TopBarPanel extends JPanel implements ColorTheme {
     public TopBarPanel() {
         // Set JPanel’s options.
         this.setLayout(new BorderLayout());
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
 
         // Logo.
         logo.setPreferredSize(DIM_LOGO);
@@ -101,7 +100,8 @@ public class TopBarPanel extends JPanel implements ColorTheme {
 	public void setLight() {
 		// This Panel
 		this.setBackground(null);
-		
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
+
 		// Options Panel
 		this.options.setBackground(null);
 		
@@ -111,7 +111,8 @@ public class TopBarPanel extends JPanel implements ColorTheme {
 	public void setDark() {
 		// This Panel
 		this.setBackground(DarkPalette.BG.getColor());
-		
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, DarkPalette.FOREGROUNG.getColor()));
+
 		// Options Panel
 		this.options.setBackground(DarkPalette.BG.getColor());
 		
