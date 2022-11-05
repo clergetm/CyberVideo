@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 import ui.Decorations;
 import ui.KeyboardDialog;
 import ui.Bundles.Multilingual;
+import ui.Palettes.DarkPalette;
 import ui.Themes.ColorTheme;
 
 /**
@@ -62,8 +63,6 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         // JPanel options
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLACK));
-        this.setBackground(Color.WHITE);
-
         // Set Identification JLabel.
         idLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         idLabel.setBorder(new EmptyBorder(10, 20, 50, 20));
@@ -253,13 +252,70 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 
 	@Override
 	public void setLight() {
-		// TODO Auto-generated method stub
+		// This JPanel
+        this.setBackground(Color.WHITE);
+        
+        // ID Label
+		this.idLabel.setForeground(Color.BLACK);
 		
-	}
+		// ID TextField
+		this.idField.setBackground(Color.WHITE);
+		this.idField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.idField.setForeground(Color.BLACK);
+		
+		// Password TextField
+		this.pwField.setBackground(Color.WHITE);
+		this.pwField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.pwField.setForeground(Color.BLACK);
+		
+		// Connection Button
+		this.connection.setBackground(Color.BLUE);
+		this.connection.setForeground(Color.WHITE);
+		this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+		
+		// CreateAccount Button
+		this.createAccount.setBackground(Color.BLUE);
+		this.createAccount.setForeground(Color.WHITE);
+		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+		
+		// ContinueWithoutConn Button
+		this.continueWithoutConn.setBackground(Color.WHITE);
+		this.continueWithoutConn.setForeground(Color.BLUE);
+		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));		
+}
 
 	@Override
 	public void setDark() {
-		// TODO Auto-generated method stub
+		// This JPanel
+		this.setBackground(DarkPalette.BG.getColor());
 		
+		// ID Label
+        this.idLabel.setForeground(DarkPalette.FOREGROUNG.getColor());
+        
+		// Id TextField
+        this.idField.setBackground(DarkPalette.CURRENTLINE.getColor());
+        this.idField.setForeground(DarkPalette.FOREGROUNG.getColor());
+		this.idField.setBorder(BorderFactory.createLineBorder(DarkPalette.PURPLE.getColor(), 1));
+
+		// Password TextField
+        this.pwField.setBackground(DarkPalette.CURRENTLINE.getColor());
+        this.pwField.setForeground(DarkPalette.FOREGROUNG.getColor());
+		this.pwField.setBorder(BorderFactory.createLineBorder(DarkPalette.PURPLE.getColor(), 1));
+        
+		// Connection Button
+		this.connection.setBackground(DarkPalette.COMMENT.getColor());
+		this.connection.setForeground(Color.WHITE);
+		this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+		
+		// CreateAccount Button
+		this.createAccount.setBackground(DarkPalette.COMMENT.getColor());
+		this.createAccount.setForeground(Color.WHITE);
+		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+		
+		// ContinueWithoutConn Button
+		this.continueWithoutConn.setBackground(DarkPalette.CURRENTLINE.getColor());
+		this.continueWithoutConn.setForeground(DarkPalette.FOREGROUNG.getColor());
+		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));	
+
 	}
 }
