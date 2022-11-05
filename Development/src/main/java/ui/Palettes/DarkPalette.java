@@ -12,10 +12,10 @@ import java.awt.Color;
 public enum DarkPalette {
 
 	BG(40,42,44),
-	CURRENTLINE(86, 71, 90),
+	PURPLE(86, 71, 90),
 	FOREGROUNG(248, 248, 242),
-	COMMENT(98, 114, 164),
-	PURPLE(189, 147, 249),
+	BLUE(98, 114, 164),
+	PINK(189, 147, 249);
 	
 	
 	private int[] rgb;

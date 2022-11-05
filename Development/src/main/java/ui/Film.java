@@ -160,12 +160,12 @@ public class Film extends JPanel implements ColorTheme{
 		this.availability.setBackground(DarkPalette.BG.getColor());		
 		
 		// QR Code Button
-		this.qrcode.setBackground(DarkPalette.COMMENT.getColor());
+		this.qrcode.setBackground(DarkPalette.BLUE.getColor());
 		this.qrcode.setForeground(DarkPalette.FOREGROUNG.getColor());
 		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// Blu Ray Button
-		this.bluray.setBackground(DarkPalette.COMMENT.getColor());
+		this.bluray.setBackground(DarkPalette.BLUE.getColor());
 		this.bluray.setForeground(DarkPalette.FOREGROUNG.getColor());
 		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));	
 	}

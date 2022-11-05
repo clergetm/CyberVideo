@@ -297,29 +297,29 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         this.idLabel.setForeground(DarkPalette.FOREGROUNG.getColor());
         
 		// Id TextField
-        this.idField.setBackground(DarkPalette.CURRENTLINE.getColor());
+        this.idField.setBackground(DarkPalette.PURPLE.getColor());
         this.idField.setForeground(DarkPalette.FOREGROUNG.getColor());
-		this.idField.setBorder(BorderFactory.createLineBorder(DarkPalette.PURPLE.getColor(), 1));
+		this.idField.setBorder(BorderFactory.createLineBorder(DarkPalette.PINK.getColor(), 1));
 
 		// Password TextField
-        this.pwField.setBackground(DarkPalette.CURRENTLINE.getColor());
+        this.pwField.setBackground(DarkPalette.PURPLE.getColor());
         this.pwField.setForeground(DarkPalette.FOREGROUNG.getColor());
-		this.pwField.setBorder(BorderFactory.createLineBorder(DarkPalette.PURPLE.getColor(), 1));
+		this.pwField.setBorder(BorderFactory.createLineBorder(DarkPalette.PINK.getColor(), 1));
         
 		// Connection Button
-		this.connection.setBackground(DarkPalette.COMMENT.getColor());
+		this.connection.setBackground(DarkPalette.BLUE.getColor());
 		this.connection.setForeground(Color.WHITE);
 		this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// CreateAccount Button
-		this.createAccount.setBackground(DarkPalette.COMMENT.getColor());
+		this.createAccount.setBackground(DarkPalette.BLUE.getColor());
 		this.createAccount.setForeground(Color.WHITE);
 		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
 		
 		// ContinueWithoutConn Button
-		this.continueWithoutConn.setBackground(DarkPalette.CURRENTLINE.getColor());
+		this.continueWithoutConn.setBackground(DarkPalette.PURPLE.getColor());
 		this.continueWithoutConn.setForeground(DarkPalette.FOREGROUNG.getColor());
 		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));	
-		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(DarkPalette.PURPLE.getColor(), 1));
+		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(DarkPalette.PINK.getColor(), 1));
 	}
 }
