@@ -3,12 +3,13 @@ package ui.MainFrame;
 import ui.Decorations;
 import ui.Bundles.Multilingual;
 import ui.Pages.Welcome.WelcomePage;
+import ui.Palettes.DarkPalette;
 import ui.Themes.ColorTheme;
 
 import java.awt.BorderLayout;
-
 import java.util.ResourceBundle;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -50,7 +51,6 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
 
         // Add a banner.
         banner = new JLabel(Decorations.getImg(IMG_BANNER_DESERT));
-        banner.setBorder(Decorations.getDefaultBorder());
         this.add(banner, BorderLayout.WEST);
 
         // Add the welcome page.
@@ -78,13 +78,31 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
 
 	@Override
 	public void setLight() {
+		// This JFrame
+		this.setBackground(null);
+		// Banner
+		banner.setBackground(null);
+		banner.setBorder(Decorations.getDefaultBorder());
+		
+		// Top Bar
 		this.topBarPanel.setLight();
+		
+		// Welcome Page
 		this.welcomePage.setLight();
 	}
 
 	@Override
 	public void setDark() {
+		// This JFrame
+		this.setBackground(DarkPalette.BG.getColor());
+		// Banner
+		banner.setBackground(DarkPalette.BG.getColor());
+        banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, DarkPalette.BG.getColor()));
+        
+		// Top Bar
 		this.topBarPanel.setDark();
+		
+		// Welcome Page
 		this.welcomePage.setDark();
 	}
 
