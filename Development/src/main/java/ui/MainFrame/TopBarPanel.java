@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import ui.Decorations;
 import ui.Palettes.DarkPalette;
+import ui.Palettes.LightPalette;
 import ui.Themes.ColorTheme;
 
 import javax.swing.BorderFactory;
@@ -99,11 +100,11 @@ public class TopBarPanel extends JPanel implements ColorTheme {
 	@Override
 	public void setLight() {
 		// This Panel
-		this.setBackground(null);
+		this.setBackground(LightPalette.BG.getColor());
         this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
 
 		// Options Panel
-		this.options.setBackground(null);
+		this.options.setBackground(LightPalette.BG.getColor());
 		
 	}
 
