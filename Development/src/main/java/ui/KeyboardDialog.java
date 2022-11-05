@@ -1,6 +1,8 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ui.Bundles.Multilingual;
+import ui.Palettes.DarkPalette;
+import ui.Palettes.LightPalette;
+import ui.Themes.ColorTheme;
 
 /**
  * Class that implement a Virtual Keyboard that the client can use to type in TextFields.
@@ -21,7 +26,7 @@ import ui.Bundles.Multilingual;
  *
  */
 @SuppressWarnings("serial")
-public class KeyboardDialog extends JDialog implements ActionListener, Multilingual {
+public class KeyboardDialog extends JDialog implements ActionListener, Multilingual, ColorTheme {
 
 	/*Icon */
 	public static final String ICO_KEYBOARD = "Keyboard";
@@ -38,22 +43,19 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
         '_', '=', '+', '[', ']',
         '{', '}', '\\', '|', ',',
         '.', '<', '>', '/', '?',
-        ';', ':', '~' };
+        ';', ':' };
     
     /* Components */
     private JTextField textField = new JTextField(100);
-    private JPanel keysPanel = new JPanel();
+    private JPanel keysPanel = new JPanel(), specialPanel = new JPanel(), actionsPanel = new JPanel(),
+    		lowerCasePanel = new JPanel(), upperCasePanel = new JPanel();
     private JButton valButton = new JButton(),
         bspaceButton = new JButton(),
-        spaceButton = new JButton(),
-        UPCButton = new JButton(),
-        LOCButton = new JButton();
+        spaceButton = new JButton();
     private JButton[] actionButtons = {
         valButton,
         bspaceButton,
-        spaceButton,
-        UPCButton,
-        LOCButton
+        spaceButton
     };
 
     /* Actions */
@@ -71,22 +73,26 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
         // Set Options.
         super(null, Dialog.ModalityType.APPLICATION_MODAL);
         this.setIconImage(Decorations.getIco(ICO_KEYBOARD));
-        setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLanguage(this.getRbEN());
         this.setLocation(10, 400);
 
         // Add Components.
         keysPanel.setLayout(new BoxLayout(keysPanel, BoxLayout.Y_AXIS));
-        keysPanel.add(getLowerCaseKeys());
-        keysPanel.add(getUpperCaseKeys());
-        keysPanel.add(getSpecialKeys());
+        
+        lowerCasePanel = getLowerCaseKeys();
+        upperCasePanel = getUpperCaseKeys();
+        specialPanel = getSpecialKeys();
+        keysPanel.add(lowerCasePanel);
+        keysPanel.add(upperCasePanel);
+        keysPanel.add(specialPanel);
         this.add(keysPanel, BorderLayout.CENTER);
 
-        //        JPanel actionsPanel = new JPanel(); // TODO: Find a way to put the component Vertically.
-        //        actionsPanel = getActionKeys();
-        //        this.add(actionsPanel, BorderLayout.EAST);
-        this.add(getActionKeys(), BorderLayout.EAST);
+        // TODO: Find a way to put the component Vertically.
+        actionsPanel = getActionKeys();
+        this.add(actionsPanel, BorderLayout.EAST);
+       
         this.pack();
     }
 
@@ -157,7 +163,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
 
         JPanel actions = new JPanel();
         for (int index = 0; index < actionCommands.length; index++) {
-            this.actionButtons[index] = new JButton(multilingualLabels[index]);
+            this.actionButtons[index].setText(multilingualLabels[index]);
             this.actionButtons[index].setActionCommand(actionCommands[index]);
             this.actionButtons[index].addActionListener(this);
             actions.add(this.actionButtons[index]);
@@ -229,4 +235,65 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
             this.actionButtons[index].setText(multilingualLabels[index]);
         }
     }
+
+	@Override
+	public void setLight() {
+		// This Dialog.
+		this.setBackground(LightPalette.BG.getColor());
+
+		// Characters.
+		for(Component panel :this.keysPanel.getComponents()) {
+			panel.setBackground(LightPalette.BG.getColor());
+			for(Component key : ((JPanel) panel).getComponents()) {
+				key.setBackground(LightPalette.BLUE.getColor());
+				key.setForeground(LightPalette.WHITE.getColor());
+			}
+		}
+		
+		// Actions Panel.
+		this.actionsPanel.setBackground(LightPalette.BG.getColor());
+		
+		// Validate Button.
+		this.valButton.setBackground(new Color(217, 221, 146));
+		this.valButton.setForeground(Color.BLACK);
+
+		// Back Space Button.
+		this.bspaceButton.setBackground(new Color(238, 99, 82));
+		this.bspaceButton.setForeground(LightPalette.WHITE.getColor());
+		
+		// Space Button.
+		this.spaceButton.setBackground(LightPalette.WHITE.getColor());
+		this.spaceButton.setForeground(LightPalette.FG_BLUE.getColor());	
+	}
+
+	@Override
+	public void setDark() {
+		// This Dialog.
+		this.setBackground(DarkPalette.BG.getColor());
+
+		// Characters.
+		for(Component panel :this.keysPanel.getComponents()) {
+			panel.setBackground(DarkPalette.BG.getColor());
+			for(Component key : ((JPanel) panel).getComponents()) {
+				key.setBackground(DarkPalette.BLUE.getColor());
+				key.setForeground(DarkPalette.FOREGROUNG.getColor());
+			}
+		}
+		
+		// Actions Panel.
+		this.actionsPanel.setBackground(DarkPalette.BG.getColor());
+		
+		// Validate Button.
+		this.valButton.setBackground(new Color(127, 176, 105));
+		this.valButton.setForeground(DarkPalette.FOREGROUNG.getColor());
+
+		// Back Space Button.
+		this.bspaceButton.setBackground(new Color(211, 97, 53));
+		this.bspaceButton.setForeground(DarkPalette.FOREGROUNG.getColor());
+		
+		// Space Button.
+		this.spaceButton.setBackground(DarkPalette.PURPLE.getColor());
+		this.spaceButton.setForeground(DarkPalette.FOREGROUNG.getColor());	
+	}
+
 }
