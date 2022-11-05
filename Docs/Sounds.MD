@@ -36,17 +36,14 @@ Sounds can be found on these sites:
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Ask for Help button
-We founds 4 possibles sounds used for the `askforHelp` button from `TopBarPanel`.
+We founds 3 possibles sounds used for the `askforHelp` button from `TopBarPanel`.
 1. Store Ring:
 	- Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=96090">Pixabay</a>
 
 2. Bell: 
 	- Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=14687">Pixabay</a>
 
-3. SchoolBell:
-	- Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=85904">Pixabay</a>
-
-4. Ding:
+3. Ding:
 	- Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=47489">Pixabay</a>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
