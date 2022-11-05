@@ -1,11 +1,16 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import ui.Palettes.DarkPalette;
+import ui.Themes.ColorTheme;
 
 /**
  * Graphic Implementation of a Film.
@@ -13,10 +18,11 @@ import javax.swing.JPanel;
  *
  */
 @SuppressWarnings("serial")
-public class Film extends JPanel {
+public class Film extends JPanel implements ColorTheme{
 
     /* Components */
     protected JLabel poster = new JLabel();
+    private JPanel panelforPoster = new JPanel(new FlowLayout());
     protected JPanel availability = new JPanel(new FlowLayout());
     protected JButton qrcode = new JButton(), bluray = new JButton();
 
@@ -43,6 +49,8 @@ public class Film extends JPanel {
 
         // Set Buttons.
         this.setAvailabilityPanel(); // TODO
+        
+        
     }
 
     /**
@@ -54,11 +62,10 @@ public class Film extends JPanel {
      */
     private void setPosterLabel() {
 
-        JPanel tempforPoster = new JPanel(new FlowLayout());
-        tempforPoster.add(poster);
+    	panelforPoster.add(poster);
         poster.setIcon(Decorations.getImg(IMG_FILM));
 
-        this.add(tempforPoster, BorderLayout.CENTER);
+        this.add(panelforPoster, BorderLayout.CENTER);
 
     }
 
@@ -124,4 +131,42 @@ public class Film extends JPanel {
      */
     public void update() {
         /* TODO */ }
+
+	@Override
+	public void setLight() {
+		// Poster
+		this.panelforPoster.setBackground(null);
+		
+		// Buttons Panel
+		this.availability.setBackground(null);
+		
+		// QR Code Button
+		this.qrcode.setBackground(Color.BLUE);
+		this.qrcode.setForeground(Color.WHITE);
+		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+		
+		// Blu Ray Button
+		this.bluray.setBackground(Color.BLUE);
+		this.bluray.setForeground(Color.WHITE);
+		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+	}
+
+	@Override
+	public void setDark() {
+		// Poster
+		this.panelforPoster.setBackground(DarkPalette.BG.getColor());
+		
+		// Buttons Panel
+		this.availability.setBackground(DarkPalette.BG.getColor());		
+		
+		// QR Code Button
+		this.qrcode.setBackground(DarkPalette.COMMENT.getColor());
+		this.qrcode.setForeground(Color.WHITE);
+		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+		
+		// Blu Ray Button
+		this.bluray.setBackground(DarkPalette.COMMENT.getColor());
+		this.bluray.setForeground(Color.WHITE);
+		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));	
+	}
 }
