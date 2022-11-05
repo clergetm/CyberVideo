@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import ui.Palettes.DarkPalette;
+import ui.Palettes.LightPalette;
 import ui.Themes.ColorTheme;
 
 /**
@@ -83,7 +84,7 @@ public class FilmManager extends JPanel implements ColorTheme {
 	@Override
 	public void setLight() {
 		// This JPanel
-		this.setBackground(null);
+		this.setBackground(LightPalette.BG.getColor());
 				
 		// Films
 		for(Film film: this.films)
