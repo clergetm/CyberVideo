@@ -282,7 +282,8 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 		this.continueWithoutConn.setBackground(Color.WHITE);
 		this.continueWithoutConn.setForeground(Color.BLUE);
 		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));		
-}
+		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+	}
 
 	@Override
 	public void setDark() {
@@ -316,6 +317,6 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 		this.continueWithoutConn.setBackground(DarkPalette.CURRENTLINE.getColor());
 		this.continueWithoutConn.setForeground(DarkPalette.FOREGROUNG.getColor());
 		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));	
-
+		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(DarkPalette.PURPLE.getColor(), 1));
 	}
 }
