@@ -4,6 +4,7 @@ import ui.Decorations;
 import ui.Bundles.Multilingual;
 import ui.Pages.Welcome.WelcomePage;
 import ui.Palettes.DarkPalette;
+import ui.Palettes.LightPalette;
 import ui.Themes.ColorTheme;
 
 import java.awt.BorderLayout;
@@ -40,12 +41,12 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
      */
     public Main() {
         super("AL2000");
-        this.setIconImage(Decorations.getIco(ICO_APP));
-        new Interaction(this);
         // Set options.
+        this.setIconImage(Decorations.getIco(ICO_APP));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-
+        new Interaction(this);
+        
         // Add the Top Bar.
         this.add(this.topBarPanel, BorderLayout.NORTH);
 
@@ -79,10 +80,11 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
 	@Override
 	public void setLight() {
 		// This JFrame
-		this.setBackground(null);
+		this.setBackground(LightPalette.BG.getColor());
+		
 		// Banner
-		banner.setBackground(null);
-		banner.setBorder(Decorations.getDefaultBorder());
+		banner.setBackground(LightPalette.BG.getColor());
+		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, LightPalette.BG.getColor()));
 		
 		// Top Bar
 		this.topBarPanel.setLight();
@@ -95,6 +97,7 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
 	public void setDark() {
 		// This JFrame
 		this.setBackground(DarkPalette.BG.getColor());
+		
 		// Banner
 		banner.setBackground(DarkPalette.BG.getColor());
         banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, DarkPalette.BG.getColor()));
