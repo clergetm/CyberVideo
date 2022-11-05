@@ -41,7 +41,8 @@ public class TopBarPanel extends JPanel implements ColorTheme {
 
     /* Icons */
     public static final String IMG_LOGO = "Light_Logo", IMG_FR = "CurrentFR", IMG_EN = "CurrentEN", 
-    		IMG_LIGHT = "CurrentLight" , IMG_DARK = "CurrentDark", IMG_QUESTION = "Question";
+    		IMG_LIGHT = "CurrentLight" , IMG_DARK = "CurrentDark", 
+    		IMG_QUESTION_LIGHT = "QuestionLight", IMG_QUESTION_DARK = "QuestionDark";
     /**
      * Constructor of TopBar.
      * Set JPanel options and add components.
@@ -71,7 +72,7 @@ public class TopBarPanel extends JPanel implements ColorTheme {
         setButton(languageSwitch, DIM_BUTTON, Decorations.getImg(IMG_EN), ACTION_EN);
 
         // Ask for help button.
-        setButton(askForHelp, DIM_BUTTON, Decorations.getImg(IMG_QUESTION), ACTION_HELP);
+        setButton(askForHelp, DIM_BUTTON, Decorations.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
 
     }
 

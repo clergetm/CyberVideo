@@ -82,12 +82,14 @@ public class Interaction implements ActionListener {
         	mainFrame.setDark();
         	mainFrame.topBarPanel.colorSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_DARK));
             mainFrame.topBarPanel.colorSwitch.setActionCommand(TopBarPanel.ACTION_DARK);
-            break;
+        	mainFrame.topBarPanel.askForHelp.setIcon(Decorations.getImg(TopBarPanel.IMG_QUESTION_DARK));
+        	break;
         case TopBarPanel.ACTION_DARK:
         	// Change from Dark to Light theme.
         	mainFrame.setLight();
         	mainFrame.topBarPanel.colorSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_LIGHT));
             mainFrame.topBarPanel.colorSwitch.setActionCommand(TopBarPanel.ACTION_LIGHT);
+            mainFrame.topBarPanel.askForHelp.setIcon(Decorations.getImg(TopBarPanel.IMG_QUESTION_LIGHT));
             break;
         default:
             throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());
