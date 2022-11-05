@@ -15,13 +15,7 @@ public enum DarkPalette {
 	CURRENTLINE(86, 71, 90),
 	FOREGROUNG(248, 248, 242),
 	COMMENT(98, 114, 164),
-	CYAN(139, 233, 253),
-	GREEN(80, 250, 123),
-	ORANGE(255, 184, 108),
-	PINK(255, 121, 198),
 	PURPLE(189, 147, 249),
-	RED(255, 85, 85),
-	YELLOW(241, 250, 140);
 	
 	
 	private int[] rgb;
