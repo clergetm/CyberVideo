@@ -72,11 +72,15 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
      */
     @Override
     public void setLanguage(ResourceBundle rb) {
-        // Set MainFrame Components text.
-
         // Set all multilingual child.
         this.welcomePage.setLanguage(rb);
     }
+
+	@Override
+	public void setLight() {
+		this.topBarPanel.setLight();
+		this.welcomePage.setLight();
+	}
 
 	@Override
 	public void setDark() {
@@ -84,12 +88,6 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
 		this.welcomePage.setDark();
 	}
 
-	@Override
-	public void setLight() {
-		this.topBarPanel.setLight();
-		this.welcomePage.setDark();
-	}
-	
     /**
      * Run the Main Window of AL2000.
      * @author MathysC

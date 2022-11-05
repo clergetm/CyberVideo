@@ -35,7 +35,8 @@ public class TopBarPanel extends JPanel implements ColorTheme {
     private Dimension DIM_BUTTON = new Dimension(100, 100), DIM_LOGO = new Dimension(200, 150);
 
     /* Actions */
-    public static final String ACTION_EN = "Switch_to_fr", ACTION_FR = "Switch_to_en", ACTION_HELP = "Ask_for_help";
+    public static final String ACTION_EN = "Switch_to_fr", ACTION_FR = "Switch_to_en", ACTION_HELP = "Ask_for_help",
+    		ACTION_DARK = "Switch_to_Light", ACTION_LIGHT = "Switch_to_Dark";
 
     /* Icons */
     public static final String IMG_LOGO = "Light_Logo", IMG_FR = "CurrentFR", IMG_EN = "CurrentEN", 
@@ -63,7 +64,7 @@ public class TopBarPanel extends JPanel implements ColorTheme {
         this.add(options, BorderLayout.EAST);
 
         // Color switch button.
-        setButton(colorSwitch, DIM_BUTTON, Decorations.getImg(IMG_LIGHT), "");
+        setButton(colorSwitch, DIM_BUTTON, Decorations.getImg(IMG_LIGHT), ACTION_LIGHT);
 
         // Language switch button.
         setButton(languageSwitch, DIM_BUTTON, Decorations.getImg(IMG_EN), ACTION_EN);
