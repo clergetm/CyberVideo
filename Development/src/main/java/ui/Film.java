@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ui.Palettes.DarkPalette;
+import ui.Palettes.LightPalette;
 import ui.Themes.ColorTheme;
 
 /**
@@ -135,19 +136,19 @@ public class Film extends JPanel implements ColorTheme{
 	@Override
 	public void setLight() {
 		// Poster
-		this.panelforPoster.setBackground(null);
+		this.panelforPoster.setBackground(LightPalette.BG.getColor());
 		
 		// Buttons Panel
-		this.availability.setBackground(null);
+		this.availability.setBackground(LightPalette.BG.getColor());
 		
 		// QR Code Button
-		this.qrcode.setBackground(Color.BLUE);
-		this.qrcode.setForeground(Color.WHITE);
+		this.qrcode.setBackground(LightPalette.BLUE.getColor());
+		this.qrcode.setForeground(LightPalette.WHITE.getColor());
 		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// Blu Ray Button
-		this.bluray.setBackground(Color.BLUE);
-		this.bluray.setForeground(Color.WHITE);
+		this.bluray.setBackground(LightPalette.BLUE.getColor());
+		this.bluray.setForeground(LightPalette.WHITE.getColor());
 		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 	}
 
@@ -161,12 +162,12 @@ public class Film extends JPanel implements ColorTheme{
 		
 		// QR Code Button
 		this.qrcode.setBackground(DarkPalette.COMMENT.getColor());
-		this.qrcode.setForeground(Color.WHITE);
+		this.qrcode.setForeground(DarkPalette.FOREGROUNG.getColor());
 		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// Blu Ray Button
 		this.bluray.setBackground(DarkPalette.COMMENT.getColor());
-		this.bluray.setForeground(Color.WHITE);
+		this.bluray.setForeground(DarkPalette.FOREGROUNG.getColor());
 		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));	
 	}
 }
