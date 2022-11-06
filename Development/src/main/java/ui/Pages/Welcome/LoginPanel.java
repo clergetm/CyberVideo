@@ -36,7 +36,7 @@ import ui.Colors.Light;
 @SuppressWarnings("serial")
 class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 
-    private String placeholderID = "", placeholderPassword = "", keyboardIDTitle = "", keyboardPWTitle = "";
+    private String placeholderID = "", placeholderPassword = "", keyboardTitleID = "", keyboardTitlePassword = "";
 
     /* Components */
     protected JLabel idLabel = new JLabel();
@@ -91,7 +91,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
                 if (idField.getText().equals(placeholderID))
                     unsetPlaceHolder(idField);
                 idField.getRootPane().requestFocus(); // Change the focus to avoid looping              
-                String prompt = keyboard.showKeyboardDialog(keyboardIDTitle, idField);
+                String prompt = keyboard.showKeyboardDialog(keyboardTitleID, idField);
                 if (prompt.equals(""))
                     prompt = prompt;
                 idField.setText(prompt);
@@ -131,7 +131,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
                 pwField.getRootPane().requestFocus(); // Change the focus to avoid looping
                 pwField.setEchoChar((char) 0); // Show what written.
                 // Type the entry with the Keyboard.
-                String prompt = keyboard.showKeyboardDialog(keyboardPWTitle, pwField);
+                String prompt = keyboard.showKeyboardDialog(keyboardTitlePassword, pwField);
                 if (prompt.equals(""))
                     prompt = placeholderPassword;
                 else
@@ -245,8 +245,8 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         continueWithoutConn.setText(rb.getString("login_continueWithoutConnection"));
 
         // KeyboardDialog
-        keyboardIDTitle = rb.getString("login_id_vk_frameName");
-        keyboardPWTitle = rb.getString("login_pw_vk_frameName");
+        keyboardTitleID = rb.getString("login_id_vk_frameName");
+        keyboardTitlePassword = rb.getString("login_pw_vk_frameName");
         keyboard.setLanguage(rb);
     }
 
