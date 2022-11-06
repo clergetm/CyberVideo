@@ -14,8 +14,17 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
+/**
+ * 
+ * @author Clarisse
+ *
+ */
 public class QRCode extends Film {
 
+	/**
+	 * 
+	 * @param param are in Film class
+	 */
 	public QRCode(String title, String synopsis, String[] actors, String FNDirector, String LNDirector, AgeRestriction restriction, Categories[] categories) {
 		super(title, synopsis, actors, FNDirector, LNDirector, restriction, categories);
 	}
@@ -25,6 +34,13 @@ public class QRCode extends Film {
 		return "QRCode";
 	}
 	
+	/**
+	 * Generate the QRCode of the link of the film
+	 * Create a file QRCode.png with the QRCode
+	 * @return the link of the film
+	 * @throws WriterException
+	 * @throws IOException
+	 */
 	public String generateQRCode()throws WriterException, IOException {
 		String link = "https://www.cybervideo/location/"+this.getTitle()+".com";
 		String filePath = "QRCode.png";
@@ -56,11 +72,6 @@ public class QRCode extends Film {
 		}
 		ImageIO.write(image, fileType, qrFile);
 		return link;
-	}
-	
-	public static void main(String[] args) throws WriterException, IOException {		
-		QRCode qr = new QRCode("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});	
-		System.out.println(qr.generateQRCode());	
 	}
 	
 	// Ressources generator : https://www.digitalocean.com/community/tutorials/java-qr-code-generator-zxing-example
