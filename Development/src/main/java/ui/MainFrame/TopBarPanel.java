@@ -30,11 +30,11 @@ public class TopBarPanel extends JPanel implements ColorTheme {
 
     /* Components */
     protected JLabel logo = new JLabel();
-    protected JPanel topBar = new JPanel(), options = new JPanel();
+    protected JPanel options = new JPanel();
     protected JButton colorSwitch = new JButton(), languageSwitch = new JButton(), askForHelp = new JButton();
 
     /* Options */
-    private Dimension DIM_BUTTON = new Dimension(100, 100), DIM_LOGO = new Dimension(200, 150);
+    private final Dimension DIM_BUTTON = new Dimension(100, 100), DIM_LOGO = new Dimension(200, 150);
 
     /* Actions */
     public static final String ACTION_EN = "Switch_to_fr", ACTION_FR = "Switch_to_en", ACTION_HELP = "Ask_for_help",

@@ -28,9 +28,7 @@ import ui.Colors.Light;
 @SuppressWarnings("serial")
 public class KeyboardDialog extends JDialog implements ActionListener, Multilingual, ColorTheme {
 
-	/*Icon */
-	public static final String ICO_KEYBOARD = "Keyboard";
-	
+
     private String entry = ""; // text of the TextField.
     private static String[] multilingualLabels = {}; //  labels of action depend on Multilingual.
 
@@ -59,11 +57,14 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
     };
 
     /* Actions */
-    private static final String VAL_ACT = "Validate", // Action Names.
+    public static final String VAL_ACT = "Validate", // Action Names.
         BSPACE_ACT = "Back_space",
-        SPACE_ACT = "Space";
+        SPACE_ACT = "Space",
 
-    /**
+	/*Icon */
+		ICO_KEYBOARD = "Keyboard";
+	
+	/**
      * Constructor of {@code VirtualKeyboard} 
      * Set JDialog options and add Components.
      * @author MathysC
