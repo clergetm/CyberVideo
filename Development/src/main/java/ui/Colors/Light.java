@@ -1,26 +1,24 @@
-package ui.Palettes;
+package ui.Colors;
 
 import java.awt.Color;
 
 /**
- * Dark Palette of color inspired by Dracula
+ * Light color palette.
  * 
  * @author MathysC
  *
- * @see https://draculatheme.com/contribute
  */
-public enum DarkPalette {
-
-	BG(40,42,44),
-	PURPLE(86, 71, 90),
-	FOREGROUNG(248, 248, 242),
-	BLUE(98, 114, 164),
-	PINK(189, 147, 249);
+public enum Light {
+	BG(238, 239, 240),
+	FG_BLUE(47, 83, 170),	// Foreground Blue.
+	WHITE(255, 255, 255),	// Used as Foreground too.
+	BLUE(47, 63, 170);
+	
 	
 	
 	private int[] rgb;
 	
-	DarkPalette(int r, int g, int b) {
+	Light(int r, int g, int b) {
 		this.rgb = new int[]{r, g, b};
 	}
 	
@@ -32,7 +30,6 @@ public enum DarkPalette {
 	 */
 	public Color getColor() {
 		return new Color(this.r(), this.g(), this.b());
-		
 	}
 	
 	/**

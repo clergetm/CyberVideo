@@ -16,9 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ui.Bundles.Multilingual;
-import ui.Palettes.DarkPalette;
-import ui.Palettes.LightPalette;
-import ui.Themes.ColorTheme;
+import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
 
 /**
  * Class that implement a Virtual Keyboard that the client can use to type in TextFields.
@@ -239,19 +239,19 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
 	@Override
 	public void setLight() {
 		// This Dialog.
-		this.setBackground(LightPalette.BG.getColor());
+		this.setBackground(Light.BG.getColor());
 
 		// Characters.
 		for(Component panel :this.keysPanel.getComponents()) {
-			panel.setBackground(LightPalette.BG.getColor());
+			panel.setBackground(Light.BG.getColor());
 			for(Component key : ((JPanel) panel).getComponents()) {
-				key.setBackground(LightPalette.BLUE.getColor());
-				key.setForeground(LightPalette.WHITE.getColor());
+				key.setBackground(Light.BLUE.getColor());
+				key.setForeground(Light.WHITE.getColor());
 			}
 		}
 		
 		// Actions Panel.
-		this.actionsPanel.setBackground(LightPalette.BG.getColor());
+		this.actionsPanel.setBackground(Light.BG.getColor());
 		
 		// Validate Button.
 		this.valButton.setBackground(new Color(217, 221, 146));
@@ -259,41 +259,41 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
 
 		// Back Space Button.
 		this.bspaceButton.setBackground(new Color(238, 99, 82));
-		this.bspaceButton.setForeground(LightPalette.WHITE.getColor());
+		this.bspaceButton.setForeground(Light.WHITE.getColor());
 		
 		// Space Button.
-		this.spaceButton.setBackground(LightPalette.WHITE.getColor());
-		this.spaceButton.setForeground(LightPalette.FG_BLUE.getColor());	
+		this.spaceButton.setBackground(Light.WHITE.getColor());
+		this.spaceButton.setForeground(Light.FG_BLUE.getColor());	
 	}
 
 	@Override
 	public void setDark() {
 		// This Dialog.
-		this.setBackground(DarkPalette.BG.getColor());
+		this.setBackground(Dark.BG.getColor());
 
 		// Characters.
 		for(Component panel :this.keysPanel.getComponents()) {
-			panel.setBackground(DarkPalette.BG.getColor());
+			panel.setBackground(Dark.BG.getColor());
 			for(Component key : ((JPanel) panel).getComponents()) {
-				key.setBackground(DarkPalette.BLUE.getColor());
-				key.setForeground(DarkPalette.FOREGROUNG.getColor());
+				key.setBackground(Dark.BLUE.getColor());
+				key.setForeground(Dark.FOREGROUNG.getColor());
 			}
 		}
 		
 		// Actions Panel.
-		this.actionsPanel.setBackground(DarkPalette.BG.getColor());
+		this.actionsPanel.setBackground(Dark.BG.getColor());
 		
 		// Validate Button.
 		this.valButton.setBackground(new Color(127, 176, 105));
-		this.valButton.setForeground(DarkPalette.FOREGROUNG.getColor());
+		this.valButton.setForeground(Dark.FOREGROUNG.getColor());
 
 		// Back Space Button.
 		this.bspaceButton.setBackground(new Color(211, 97, 53));
-		this.bspaceButton.setForeground(DarkPalette.FOREGROUNG.getColor());
+		this.bspaceButton.setForeground(Dark.FOREGROUNG.getColor());
 		
 		// Space Button.
-		this.spaceButton.setBackground(DarkPalette.PURPLE.getColor());
-		this.spaceButton.setForeground(DarkPalette.FOREGROUNG.getColor());	
+		this.spaceButton.setBackground(Dark.PURPLE.getColor());
+		this.spaceButton.setForeground(Dark.FOREGROUNG.getColor());	
 	}
 
 }

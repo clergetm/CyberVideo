@@ -16,9 +16,9 @@ import javax.swing.JScrollPane;
 import ui.Decorations;
 import ui.FilmManager;
 import ui.Bundles.Multilingual;
-import ui.Palettes.DarkPalette;
-import ui.Palettes.LightPalette;
-import ui.Themes.ColorTheme;
+import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
 
 /**
  * Instantiate a list of suggested films displayed on Welcome Page.
@@ -64,15 +64,15 @@ class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
 	@Override
 	public void setLight() {
 		// This JPanel.
-        this.setBackground(LightPalette.BG.getColor());
+        this.setBackground(Light.BG.getColor());
         
         // Suggestion Label.
 		this.sugLabel.setForeground(Color.BLACK);
-		this.panelForLabel.setBackground(LightPalette.BG.getColor());
+		this.panelForLabel.setBackground(Light.BG.getColor());
 		
 		// Film ScrollPane.
-		this.filmsPane.setBackground(LightPalette.BG.getColor());
-		this.filmsPane.getVerticalScrollBar().setBackground(LightPalette.BG.getColor());
+		this.filmsPane.setBackground(Light.BG.getColor());
+		this.filmsPane.getVerticalScrollBar().setBackground(Light.BG.getColor());
 		this.filmsPane.setBorder(BorderFactory.createEmptyBorder());
 		
 		// Films manager.
@@ -82,15 +82,15 @@ class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
 	@Override
 	public void setDark() {
 		// This JPanel.
-		this.setBackground(DarkPalette.BG.getColor());
+		this.setBackground(Dark.BG.getColor());
 		
         // Suggestion Label.
-		this.sugLabel.setForeground(DarkPalette.FOREGROUNG.getColor());
-		this.panelForLabel.setBackground(DarkPalette.BG.getColor());
+		this.sugLabel.setForeground(Dark.FOREGROUNG.getColor());
+		this.panelForLabel.setBackground(Dark.BG.getColor());
 		
 		// Film ScrollPane.
-		this.filmsPane.setBackground(DarkPalette.BG.getColor());
-		this.filmsPane.getVerticalScrollBar().setBackground(DarkPalette.BG.getColor());
+		this.filmsPane.setBackground(Dark.BG.getColor());
+		this.filmsPane.getVerticalScrollBar().setBackground(Dark.BG.getColor());
 		
 		// Films manager.
 		this.manager.setDark();

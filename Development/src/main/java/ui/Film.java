@@ -8,9 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import ui.Palettes.DarkPalette;
-import ui.Palettes.LightPalette;
-import ui.Themes.ColorTheme;
+import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
 
 /**
  * Graphic Implementation of a Film.
@@ -135,38 +135,38 @@ public class Film extends JPanel implements ColorTheme{
 	@Override
 	public void setLight() {
 		// Poster
-		this.panelforPoster.setBackground(LightPalette.BG.getColor());
+		this.panelforPoster.setBackground(Light.BG.getColor());
 		
 		// Buttons Panel
-		this.availability.setBackground(LightPalette.BG.getColor());
+		this.availability.setBackground(Light.BG.getColor());
 		
 		// QR Code Button
-		this.qrcode.setBackground(LightPalette.BLUE.getColor());
-		this.qrcode.setForeground(LightPalette.WHITE.getColor());
+		this.qrcode.setBackground(Light.BLUE.getColor());
+		this.qrcode.setForeground(Light.WHITE.getColor());
 		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// Blu Ray Button
-		this.bluray.setBackground(LightPalette.BLUE.getColor());
-		this.bluray.setForeground(LightPalette.WHITE.getColor());
+		this.bluray.setBackground(Light.BLUE.getColor());
+		this.bluray.setForeground(Light.WHITE.getColor());
 		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 	}
 
 	@Override
 	public void setDark() {
 		// Poster
-		this.panelforPoster.setBackground(DarkPalette.BG.getColor());
+		this.panelforPoster.setBackground(Dark.BG.getColor());
 		
 		// Buttons Panel
-		this.availability.setBackground(DarkPalette.BG.getColor());		
+		this.availability.setBackground(Dark.BG.getColor());		
 		
 		// QR Code Button
-		this.qrcode.setBackground(DarkPalette.BLUE.getColor());
-		this.qrcode.setForeground(DarkPalette.FOREGROUNG.getColor());
+		this.qrcode.setBackground(Dark.BLUE.getColor());
+		this.qrcode.setForeground(Dark.FOREGROUNG.getColor());
 		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// Blu Ray Button
-		this.bluray.setBackground(DarkPalette.BLUE.getColor());
-		this.bluray.setForeground(DarkPalette.FOREGROUNG.getColor());
+		this.bluray.setBackground(Dark.BLUE.getColor());
+		this.bluray.setForeground(Dark.FOREGROUNG.getColor());
 		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));	
 	}
 }

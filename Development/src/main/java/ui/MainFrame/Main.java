@@ -2,10 +2,10 @@ package ui.MainFrame;
 
 import ui.Decorations;
 import ui.Bundles.Multilingual;
+import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
 import ui.Pages.Welcome.WelcomePage;
-import ui.Palettes.DarkPalette;
-import ui.Palettes.LightPalette;
-import ui.Themes.ColorTheme;
 
 import java.awt.BorderLayout;
 import java.util.ResourceBundle;
@@ -80,11 +80,11 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
 	@Override
 	public void setLight() {
 		// This JFrame
-		this.setBackground(LightPalette.BG.getColor());
+		this.setBackground(Light.BG.getColor());
 		
 		// Banner
-		banner.setBackground(LightPalette.BG.getColor());
-		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, LightPalette.BG.getColor()));
+		banner.setBackground(Light.BG.getColor());
+		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Light.BG.getColor()));
 		
 		// Top Bar
 		this.topBarPanel.setLight();
@@ -96,11 +96,11 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
 	@Override
 	public void setDark() {
 		// This JFrame
-		this.setBackground(DarkPalette.BG.getColor());
+		this.setBackground(Dark.BG.getColor());
 		
 		// Banner
-		banner.setBackground(DarkPalette.BG.getColor());
-        banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, DarkPalette.BG.getColor()));
+		banner.setBackground(Dark.BG.getColor());
+        banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Dark.BG.getColor()));
         
 		// Top Bar
 		this.topBarPanel.setDark();

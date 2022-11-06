@@ -24,9 +24,9 @@ import javax.swing.border.EmptyBorder;
 import ui.Decorations;
 import ui.KeyboardDialog;
 import ui.Bundles.Multilingual;
-import ui.Palettes.DarkPalette;
-import ui.Palettes.LightPalette;
-import ui.Themes.ColorTheme;
+import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
 
 /**
  * LoginPanel is part of the WelcomePage.
@@ -254,35 +254,35 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 	@Override
 	public void setLight() {
 		// This JPanel
-        this.setBackground(LightPalette.WHITE.getColor());
+        this.setBackground(Light.WHITE.getColor());
         this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLACK));
       
         // ID Label
 		this.idLabel.setForeground(Color.BLACK);
 		
 		// ID TextField
-		this.idField.setBackground(LightPalette.WHITE.getColor());
+		this.idField.setBackground(Light.WHITE.getColor());
 		this.idField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.idField.setForeground(Color.BLACK);
 		
 		// Password TextField
-		this.pwField.setBackground(LightPalette.WHITE.getColor());
+		this.pwField.setBackground(Light.WHITE.getColor());
 		this.pwField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.pwField.setForeground(Color.BLACK);
 		
 		// Connection Button
-		this.connection.setBackground(LightPalette.BLUE.getColor());
-		this.connection.setForeground(LightPalette.WHITE.getColor());
+		this.connection.setBackground(Light.BLUE.getColor());
+		this.connection.setForeground(Light.WHITE.getColor());
 		this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// CreateAccount Button
-		this.createAccount.setBackground(LightPalette.BLUE.getColor());
-		this.createAccount.setForeground(LightPalette.WHITE.getColor());
+		this.createAccount.setBackground(Light.BLUE.getColor());
+		this.createAccount.setForeground(Light.WHITE.getColor());
 		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
 		
 		// ContinueWithoutConn Button
-		this.continueWithoutConn.setBackground(LightPalette.WHITE.getColor());
-		this.continueWithoutConn.setForeground(LightPalette.FG_BLUE.getColor());
+		this.continueWithoutConn.setBackground(Light.WHITE.getColor());
+		this.continueWithoutConn.setForeground(Light.FG_BLUE.getColor());
 		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));		
 		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
@@ -293,37 +293,37 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 	@Override
 	public void setDark() {
 		// This JPanel
-		this.setBackground(DarkPalette.BG.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, DarkPalette.FOREGROUNG.getColor()));
+		this.setBackground(Dark.BG.getColor());
+        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUNG.getColor()));
 		
 		// ID Label
-        this.idLabel.setForeground(DarkPalette.FOREGROUNG.getColor());
+        this.idLabel.setForeground(Dark.FOREGROUNG.getColor());
         
 		// Id TextField
-        this.idField.setBackground(DarkPalette.PURPLE.getColor());
-        this.idField.setForeground(DarkPalette.FOREGROUNG.getColor());
-		this.idField.setBorder(BorderFactory.createLineBorder(DarkPalette.PINK.getColor(), 1));
+        this.idField.setBackground(Dark.PURPLE.getColor());
+        this.idField.setForeground(Dark.FOREGROUNG.getColor());
+		this.idField.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
 
 		// Password TextField
-        this.pwField.setBackground(DarkPalette.PURPLE.getColor());
-        this.pwField.setForeground(DarkPalette.FOREGROUNG.getColor());
-		this.pwField.setBorder(BorderFactory.createLineBorder(DarkPalette.PINK.getColor(), 1));
+        this.pwField.setBackground(Dark.PURPLE.getColor());
+        this.pwField.setForeground(Dark.FOREGROUNG.getColor());
+		this.pwField.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
         
 		// Connection Button
-		this.connection.setBackground(DarkPalette.BLUE.getColor());
+		this.connection.setBackground(Dark.BLUE.getColor());
 		this.connection.setForeground(Color.WHITE);
 		this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// CreateAccount Button
-		this.createAccount.setBackground(DarkPalette.BLUE.getColor());
+		this.createAccount.setBackground(Dark.BLUE.getColor());
 		this.createAccount.setForeground(Color.WHITE);
 		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
 		
 		// ContinueWithoutConn Button
-		this.continueWithoutConn.setBackground(DarkPalette.PURPLE.getColor());
-		this.continueWithoutConn.setForeground(DarkPalette.FOREGROUNG.getColor());
+		this.continueWithoutConn.setBackground(Dark.PURPLE.getColor());
+		this.continueWithoutConn.setForeground(Dark.FOREGROUNG.getColor());
 		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));	
-		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(DarkPalette.PINK.getColor(), 1));
+		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
 		
 		// KeyboardDialog
 		this.keyboard.setDark();

@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import javax.swing.JPanel;
 
 import ui.Bundles.Multilingual;
-import ui.Themes.ColorTheme;
+import ui.Colors.ColorTheme;
 
 /**
  * Welcome page that show the login panel and suggestions panel.

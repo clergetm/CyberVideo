@@ -9,9 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ui.Decorations;
-import ui.Palettes.DarkPalette;
-import ui.Palettes.LightPalette;
-import ui.Themes.ColorTheme;
+import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -100,22 +100,22 @@ public class TopBarPanel extends JPanel implements ColorTheme {
 	@Override
 	public void setLight() {
 		// This Panel
-		this.setBackground(LightPalette.BG.getColor());
+		this.setBackground(Light.BG.getColor());
         this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
 
 		// Options Panel
-		this.options.setBackground(LightPalette.BG.getColor());
+		this.options.setBackground(Light.BG.getColor());
 		
 	}
 
 	@Override
 	public void setDark() {
 		// This Panel
-		this.setBackground(DarkPalette.BG.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, DarkPalette.FOREGROUNG.getColor()));
+		this.setBackground(Dark.BG.getColor());
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Dark.FOREGROUNG.getColor()));
 
 		// Options Panel
-		this.options.setBackground(DarkPalette.BG.getColor());
+		this.options.setBackground(Dark.BG.getColor());
 		
 	}
 }
