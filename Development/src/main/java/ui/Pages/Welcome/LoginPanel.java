@@ -39,7 +39,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
     private String placeholderID = "", placeholderPassword = "", keyboardTitleID = "", keyboardTitlePassword = "";
 
     /* Components */
-    protected JLabel idLabel = new JLabel();
+    protected JLabel loginPanelLabel = new JLabel();
     protected JTextField tfID = new JTextField();
     protected JPasswordField tfPassword = new JPasswordField();
     protected JButton connection = new JButton(), createAccount = new JButton(), continueWithoutConn = new JButton();
@@ -63,15 +63,15 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         // JPanel options
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        // Set Identification JLabel.
-        idLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        idLabel.setBorder(new EmptyBorder(10, 20, 50, 20));
-        idLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
-        this.add(idLabel);
+        // Set Login JLabel.
+        loginPanelLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loginPanelLabel.setBorder(new EmptyBorder(10, 20, 50, 20));
+        loginPanelLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
+        this.add(loginPanelLabel);
 
         this.add(Box.createRigidArea(SMALLRIGID));
 
-        // Set Id JTextField.
+        // Set ID JTextField.
         setComponent(tfID, W, HTextField, Component.CENTER_ALIGNMENT);
         tfID.setColumns(25);
 
@@ -218,7 +218,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
     public void setLanguage(ResourceBundle rb) {
 
         // Label
-        idLabel.setText(rb.getString("login_label"));
+        loginPanelLabel.setText(rb.getString("login_label"));
 
         // ID JTextField
         // If the field wasn’t change. Change the placeholder
@@ -256,8 +256,8 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         this.setBackground(Light.WHITE.getColor());
         this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
       
-        // ID Label
-		this.idLabel.setForeground(Light.BLACK.getColor());
+        // Label
+		this.loginPanelLabel.setForeground(Light.BLACK.getColor());
 		
 		// ID TextField
 		this.tfID.setBackground(Light.REVERSE_BG.getColor());
@@ -295,8 +295,8 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 		this.setBackground(Dark.BG.getColor());
         this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUNG.getColor()));
 		
-		// ID Label
-        this.idLabel.setForeground(Dark.FOREGROUNG.getColor());
+		// Label
+        this.loginPanelLabel.setForeground(Dark.FOREGROUNG.getColor());
         
 		// Id TextField
         this.tfID.setBackground(Dark.PURPLE.getColor());
