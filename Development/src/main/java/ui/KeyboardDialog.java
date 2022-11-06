@@ -256,7 +256,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
 		
 		// Validate Button.
 		this.valButton.setBackground(new Color(217, 221, 146));
-		this.valButton.setForeground(Color.BLACK);
+		this.valButton.setForeground(Light.BLACK.getColor());
 
 		// Back Space Button.
 		this.bspaceButton.setBackground(new Color(238, 99, 82));
@@ -264,7 +264,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
 		
 		// Space Button.
 		this.spaceButton.setBackground(Light.WHITE.getColor());
-		this.spaceButton.setForeground(Light.FG_BLUE.getColor());	
+		this.spaceButton.setForeground(Light.REVERSE_FG.getColor());	
 	}
 
 	@Override

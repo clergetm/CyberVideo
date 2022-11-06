@@ -1,7 +1,6 @@
 package ui.Pages.Welcome;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -67,7 +66,7 @@ class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
         this.setBackground(Light.BG.getColor());
         
         // Suggestion Label.
-		this.sugLabel.setForeground(Color.BLACK);
+		this.sugLabel.setForeground(Light.BLACK.getColor());
 		this.panelForLabel.setBackground(Light.BG.getColor());
 		
 		// Film ScrollPane.

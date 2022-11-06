@@ -1,6 +1,5 @@
 package ui.Pages.Welcome;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -255,20 +254,20 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 	public void setLight() {
 		// This JPanel
         this.setBackground(Light.WHITE.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLACK));
+        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
       
         // ID Label
-		this.idLabel.setForeground(Color.BLACK);
+		this.idLabel.setForeground(Light.BLACK.getColor());
 		
 		// ID TextField
-		this.idField.setBackground(Light.WHITE.getColor());
-		this.idField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		this.idField.setForeground(Color.BLACK);
+		this.idField.setBackground(Light.REVERSE_BG.getColor());
+		this.idField.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+		this.idField.setForeground(Light.BLACK.getColor());
 		
 		// Password TextField
-		this.pwField.setBackground(Light.WHITE.getColor());
-		this.pwField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		this.pwField.setForeground(Color.BLACK);
+		this.pwField.setBackground(Light.REVERSE_BG.getColor());
+		this.pwField.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+		this.pwField.setForeground(Light.BLACK.getColor());
 		
 		// Connection Button
 		this.connection.setBackground(Light.BLUE.getColor());
@@ -281,10 +280,10 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
 		
 		// ContinueWithoutConn Button
-		this.continueWithoutConn.setBackground(Light.WHITE.getColor());
-		this.continueWithoutConn.setForeground(Light.FG_BLUE.getColor());
+		this.continueWithoutConn.setBackground(Light.REVERSE_BG.getColor());
+		this.continueWithoutConn.setForeground(Light.REVERSE_FG.getColor());
 		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));		
-		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
 		
 		// KeyboardDialog
 		this.keyboard.setLight();
@@ -311,12 +310,12 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         
 		// Connection Button
 		this.connection.setBackground(Dark.BLUE.getColor());
-		this.connection.setForeground(Color.WHITE);
+		this.connection.setForeground(Dark.FOREGROUNG.getColor());
 		this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// CreateAccount Button
 		this.createAccount.setBackground(Dark.BLUE.getColor());
-		this.createAccount.setForeground(Color.WHITE);
+		this.createAccount.setForeground(Dark.FOREGROUNG.getColor());
 		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
 		
 		// ContinueWithoutConn Button

@@ -101,7 +101,7 @@ public class TopBarPanel extends JPanel implements ColorTheme {
 	public void setLight() {
 		// This Panel
 		this.setBackground(Light.BG.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Light.BLACK.getColor()));
 
 		// Options Panel
 		this.options.setBackground(Light.BG.getColor());

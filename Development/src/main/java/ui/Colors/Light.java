@@ -10,9 +10,11 @@ import java.awt.Color;
  */
 public enum Light {
 	BG(238, 239, 240),
-	FG_BLUE(47, 83, 170),	// Foreground Blue.
-	WHITE(255, 255, 255),	// Used as Foreground too.
-	BLUE(47, 63, 170);
+	REVERSE_FG(47, 83, 170),	// Foreground Blue used on white buttons.
+	REVERSE_BG(255, 255, 255),	// Background White used on white buttons.
+	BLACK(0, 0 ,0),
+	BLUE(47, 63, 170),
+	WHITE(245, 246, 243);
 	
 	
 	
