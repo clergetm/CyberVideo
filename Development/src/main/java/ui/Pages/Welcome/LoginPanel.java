@@ -40,8 +40,8 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 
     /* Components */
     protected JLabel idLabel = new JLabel();
-    protected JTextField idField = new JTextField();
-    protected JPasswordField pwField = new JPasswordField();
+    protected JTextField tfID = new JTextField();
+    protected JPasswordField tfPassword = new JPasswordField();
     protected JButton connection = new JButton(), createAccount = new JButton(), continueWithoutConn = new JButton();
     protected KeyboardDialog keyboard = new KeyboardDialog();
 
@@ -72,51 +72,51 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         this.add(Box.createRigidArea(SMALLRIGID));
 
         // Set Id JTextField.
-        setComponent(idField, W, HTextField, Component.CENTER_ALIGNMENT);
-        idField.setColumns(25);
+        setComponent(tfID, W, HTextField, Component.CENTER_ALIGNMENT);
+        tfID.setColumns(25);
 
         /**
          * FocusListener to handle the placeholder of the JTextField. 
          */
-        idField.addFocusListener(new FocusListener() {
+        tfID.addFocusListener(new FocusListener() {
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (idField.getText().equals(""))
-                    setDefaultPlaceholder(idField, placeholderID);
+                if (tfID.getText().equals(""))
+                    setDefaultPlaceholder(tfID, placeholderID);
             }
 
             @Override
             public void focusGained(FocusEvent e) {
-                if (idField.getText().equals(placeholderID))
-                    unsetPlaceHolder(idField);
-                idField.getRootPane().requestFocus(); // Change the focus to avoid looping              
-                String prompt = keyboard.showKeyboardDialog(keyboardTitleID, idField);
+                if (tfID.getText().equals(placeholderID))
+                    resetDefaultPlaceholder(tfID);
+                tfID.getRootPane().requestFocus(); // Change the focus to avoid looping              
+                String prompt = keyboard.showKeyboardDialog(keyboardTitleID, tfID);
                 if (prompt.equals(""))
                     prompt = prompt;
-                idField.setText(prompt);
+                tfID.setText(prompt);
             }
         });
-        this.add(idField);
+        this.add(tfID);
 
         this.add(Box.createRigidArea(SMALLRIGID)); // Gap.
 
         // Set Password JPasswordField.
-        setComponent(pwField, W, HTextField, Component.CENTER_ALIGNMENT);
-        pwField.setColumns(25);
-        pwField.setEchoChar((char) 0);
+        setComponent(tfPassword, W, HTextField, Component.CENTER_ALIGNMENT);
+        tfPassword.setColumns(25);
+        tfPassword.setEchoChar((char) 0);
 
         /**
          * FocusListener to handle the placeholder of the JPasswordField. 
          */
-        pwField.addFocusListener(new FocusListener() {
+        tfPassword.addFocusListener(new FocusListener() {
 
             @Override
             public void focusLost(FocusEvent e) {
                 // If nothing has been written. Show the PlaceHolder.
-                if (Arrays.equals(pwField.getPassword(), "".toCharArray())) {
-                    pwField.setEchoChar((char) 0);
-                    setDefaultPlaceholder(pwField, placeholderPassword);
+                if (Arrays.equals(tfPassword.getPassword(), "".toCharArray())) {
+                    tfPassword.setEchoChar((char) 0);
+                    setDefaultPlaceholder(tfPassword, placeholderPassword);
                 }
 
             }
@@ -124,27 +124,27 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
             @Override
             public void focusGained(FocusEvent e) {
                 // If nothing has been written. Remove the PlaceHolder.
-                if (Arrays.equals(pwField.getPassword(), placeholderPassword.toCharArray())) {
-                    unsetPlaceHolder(pwField);
+                if (Arrays.equals(tfPassword.getPassword(), placeholderPassword.toCharArray())) {
+                    resetDefaultPlaceholder(tfPassword);
                 }
 
-                pwField.getRootPane().requestFocus(); // Change the focus to avoid looping
-                pwField.setEchoChar((char) 0); // Show what written.
+                tfPassword.getRootPane().requestFocus(); // Change the focus to avoid looping
+                tfPassword.setEchoChar((char) 0); // Show what written.
                 // Type the entry with the Keyboard.
-                String prompt = keyboard.showKeyboardDialog(keyboardTitlePassword, pwField);
+                String prompt = keyboard.showKeyboardDialog(keyboardTitlePassword, tfPassword);
                 if (prompt.equals(""))
                     prompt = placeholderPassword;
                 else
-                    pwField.setEchoChar('*'); // Hide what’s written.
+                    tfPassword.setEchoChar('*'); // Hide what’s written.
 
-                pwField.setText(prompt);
+                tfPassword.setText(prompt);
 
                 /* We hide the field here because of the requestFocus() (l: 130) call.
                  * If we set setEchoChar('*') in  focusLost Method, the entry will be displayed and immediately hidden.  
                  */
             }
         });
-        this.add(pwField);
+        this.add(tfPassword);
 
         this.add(Box.createRigidArea(SMALLRIGID)); // Gap.
 
@@ -199,12 +199,12 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
     }
 
     /**
-     * Remove the placeholde of a JTextField.
+     * Remove the placeholder of a JTextField.
      * @author MathysC
      *
      * @param tf The JTextField to unset.
      */
-    private void unsetPlaceHolder(JTextField tf) {
+    private void resetDefaultPlaceholder(JTextField tf) {
         tf.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 16));
         tf.setText("");
     }
@@ -222,16 +222,16 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 
         // ID JTextField
         // If the field wasn’t change. Change the placeholder
-        if (idField.getText().equals(placeholderID))
-            setDefaultPlaceholder(idField, rb.getString("login_id_placeholder"));
+        if (tfID.getText().equals(placeholderID))
+            setDefaultPlaceholder(tfID, rb.getString("login_id_placeholder"));
 
         // And change the String value for condition in FocusListener.
         placeholderID = rb.getString("login_id_placeholder");
 
         // Password JPasswordField
         // If the field wasn’t change. Change the placeholder
-        if (Arrays.equals(pwField.getPassword(), placeholderPassword.toCharArray()))
-            setDefaultPlaceholder(pwField, rb.getString("login_pw_placeholder"));
+        if (Arrays.equals(tfPassword.getPassword(), placeholderPassword.toCharArray()))
+            setDefaultPlaceholder(tfPassword, rb.getString("login_pw_placeholder"));
         // And change the String value for condition in FocusListener.
         placeholderPassword = rb.getString("login_pw_placeholder");
 
@@ -260,14 +260,14 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 		this.idLabel.setForeground(Light.BLACK.getColor());
 		
 		// ID TextField
-		this.idField.setBackground(Light.REVERSE_BG.getColor());
-		this.idField.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
-		this.idField.setForeground(Light.BLACK.getColor());
+		this.tfID.setBackground(Light.REVERSE_BG.getColor());
+		this.tfID.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+		this.tfID.setForeground(Light.BLACK.getColor());
 		
 		// Password TextField
-		this.pwField.setBackground(Light.REVERSE_BG.getColor());
-		this.pwField.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
-		this.pwField.setForeground(Light.BLACK.getColor());
+		this.tfPassword.setBackground(Light.REVERSE_BG.getColor());
+		this.tfPassword.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+		this.tfPassword.setForeground(Light.BLACK.getColor());
 		
 		// Connection Button
 		this.connection.setBackground(Light.BLUE.getColor());
@@ -299,14 +299,14 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         this.idLabel.setForeground(Dark.FOREGROUNG.getColor());
         
 		// Id TextField
-        this.idField.setBackground(Dark.PURPLE.getColor());
-        this.idField.setForeground(Dark.FOREGROUNG.getColor());
-		this.idField.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+        this.tfID.setBackground(Dark.PURPLE.getColor());
+        this.tfID.setForeground(Dark.FOREGROUNG.getColor());
+		this.tfID.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
 
 		// Password TextField
-        this.pwField.setBackground(Dark.PURPLE.getColor());
-        this.pwField.setForeground(Dark.FOREGROUNG.getColor());
-		this.pwField.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+        this.tfPassword.setBackground(Dark.PURPLE.getColor());
+        this.tfPassword.setForeground(Dark.FOREGROUNG.getColor());
+		this.tfPassword.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
         
 		// Connection Button
 		this.connection.setBackground(Dark.BLUE.getColor());
