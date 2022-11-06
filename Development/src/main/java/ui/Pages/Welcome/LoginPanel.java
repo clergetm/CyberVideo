@@ -83,7 +83,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
             @Override
             public void focusLost(FocusEvent e) {
                 if (idField.getText().equals(""))
-                    setPlaceHolder(idField, placeholderID);
+                    setDefaultPlaceholder(idField, placeholderID);
             }
 
             @Override
@@ -116,7 +116,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
                 // If nothing has been written. Show the PlaceHolder.
                 if (Arrays.equals(pwField.getPassword(), "".toCharArray())) {
                     pwField.setEchoChar((char) 0);
-                    setPlaceHolder(pwField, placeholderPassword);
+                    setDefaultPlaceholder(pwField, placeholderPassword);
                 }
 
             }
@@ -193,7 +193,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
      * @param tf The JTextField component to set.
      * @param prompt The text to put as a placeholder.
      */
-    private void setPlaceHolder(JTextField tf, String prompt) {
+    private void setDefaultPlaceholder(JTextField tf, String prompt) {
         tf.setFont(Decorations.FONT_PLACEHOLDER.getFont(Font.PLAIN, 16));
         tf.setText(prompt);
     }
@@ -223,7 +223,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         // ID JTextField
         // If the field wasn’t change. Change the placeholder
         if (idField.getText().equals(placeholderID))
-            setPlaceHolder(idField, rb.getString("login_id_placeholder"));
+            setDefaultPlaceholder(idField, rb.getString("login_id_placeholder"));
 
         // And change the String value for condition in FocusListener.
         placeholderID = rb.getString("login_id_placeholder");
@@ -231,7 +231,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         // Password JPasswordField
         // If the field wasn’t change. Change the placeholder
         if (Arrays.equals(pwField.getPassword(), placeholderPassword.toCharArray()))
-            setPlaceHolder(pwField, rb.getString("login_pw_placeholder"));
+            setDefaultPlaceholder(pwField, rb.getString("login_pw_placeholder"));
         // And change the String value for condition in FocusListener.
         placeholderPassword = rb.getString("login_pw_placeholder");
 
