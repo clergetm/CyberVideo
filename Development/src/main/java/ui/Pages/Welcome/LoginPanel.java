@@ -120,44 +120,46 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         tfPassword.setColumns(25);
         tfPassword.setEchoChar((char) 0);
 
-        /**
-         * FocusListener to handle the placeholder of the JPasswordField. 
-         */
-        tfPassword.addFocusListener(new FocusListener() {
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                // If nothing has been written. Show the PlaceHolder.
-                if (Arrays.equals(tfPassword.getPassword(), "".toCharArray())) {
-                    tfPassword.setEchoChar((char) 0);
-                    setDefaultPlaceholder(tfPassword, placeholderPassword);
-                }
-
-            }
-
-            @Override
-            public void focusGained(FocusEvent e) {
-                // If nothing has been written. Remove the PlaceHolder.
+        
+        tfPassword.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) { /* Unused. */ }
+			
+			@Override
+			public void mousePressed(MouseEvent e) { /* Unused. */ }
+			
+			@Override
+			public void mouseExited(MouseEvent e) { /* Unused. */ }
+			
+			@Override
+			public void mouseEntered(MouseEvent e) { /* Unused. */ }
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// If nothing has been written. Remove the PlaceHolder.
                 if (Arrays.equals(tfPassword.getPassword(), placeholderPassword.toCharArray())) {
                     resetDefaultPlaceholder(tfPassword);
                 }
 
-                tfPassword.getRootPane().requestFocus(); // Change the focus to avoid looping
-                tfPassword.setEchoChar((char) 0); // Show what written.
-                // Type the entry with the Keyboard.
+                // Show what’s written.
+                tfPassword.setEchoChar((char) 0); 
+                
+                // Get new prompt
                 String prompt = keyboard.showKeyboardDialog(keyboardTitlePassword, tfPassword);
-                if (prompt.equals(""))
-                    prompt = placeholderPassword;
-                else
-                    tfPassword.setEchoChar('*'); // Hide what’s written.
+                
+                // If empty prompt
+                if (prompt.equals("")) { 
+                	// Set to default
+                	setDefaultPlaceholder(tfPassword, placeholderPassword);
+                } else {
+                	// Hide what’s written.
+                    tfPassword.setEchoChar('*'); 
+                    tfPassword.setText(prompt);
+                }
+			}
+		});
 
-                tfPassword.setText(prompt);
-
-                /* We hide the field here because of the requestFocus() (l: 130) call.
-                 * If we set setEchoChar('*') in  focusLost Method, the entry will be displayed and immediately hidden.  
-                 */
-            }
-        });
         this.add(tfPassword);
 
         this.add(Box.createRigidArea(SMALLRIGID)); // Gap.
