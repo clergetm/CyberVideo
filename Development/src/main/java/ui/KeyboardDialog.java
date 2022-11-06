@@ -205,9 +205,9 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
         case KeyboardDialog.VAL_ACT:
             this.setVisible(false);
             break;
-            // Remove the last char.
+            // Remove the last character.
         case KeyboardDialog.BSPACE_ACT:
-            this.entry = entry.substring(0, entry.length() - 1);
+            if(entry.length() > 0) this.entry = entry.substring(0, entry.length() - 1);
             this.textField.setText(entry);
             break;
             // Add a space.
@@ -221,7 +221,6 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
             this.textField.setText(entry);
             break;
         }
-
     }
 
     /**
