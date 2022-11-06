@@ -3,9 +3,12 @@ package ui.Pages.Welcome;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
@@ -75,28 +78,39 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         setComponent(tfID, W, HTextField, Component.CENTER_ALIGNMENT);
         tfID.setColumns(25);
 
-        /**
-         * FocusListener to handle the placeholder of the JTextField. 
-         */
-        tfID.addFocusListener(new FocusListener() {
+        tfID.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) { /* Unused. */ }
+			
+			@Override
+			public void mousePressed(MouseEvent e) { /* Unused. */ }
+			
+			@Override
+			public void mouseExited(MouseEvent e) { /* Unused. */ }
+			
+			@Override
+			public void mouseEntered(MouseEvent e) { /* Unused. */ }
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				// if text is default value
+				if (tfID.getText().equals(placeholderID)) {
+					resetDefaultPlaceholder(tfID);
+				}
+				// Get new text
+				String prompt = keyboard.showKeyboardDialog(keyboardTitleID, tfID);
+				
+				// If empty prompt
+                if (prompt.equals("")) {
+                	setDefaultPlaceholder(tfID, placeholderID);
+                } else { 
+                	tfID.setText(prompt);
+                }
+			}
+		});
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (tfID.getText().equals(""))
-                    setDefaultPlaceholder(tfID, placeholderID);
-            }
-
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (tfID.getText().equals(placeholderID))
-                    resetDefaultPlaceholder(tfID);
-                tfID.getRootPane().requestFocus(); // Change the focus to avoid looping              
-                String prompt = keyboard.showKeyboardDialog(keyboardTitleID, tfID);
-                if (prompt.equals(""))
-                    prompt = prompt;
-                tfID.setText(prompt);
-            }
-        });
         this.add(tfID);
 
         this.add(Box.createRigidArea(SMALLRIGID)); // Gap.
