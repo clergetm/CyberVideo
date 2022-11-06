@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javax.swing.JPanel;
 
 import ui.Bundles.Multilingual;
+import ui.Colors.ColorTheme;
 
 /**
  * Welcome page that show the login panel and suggestions panel.
@@ -14,7 +15,7 @@ import ui.Bundles.Multilingual;
  *
  */
 @SuppressWarnings("serial")
-public class WelcomePage extends JPanel implements Multilingual {
+public class WelcomePage extends JPanel implements Multilingual, ColorTheme {
 
     /* Components */
     protected SuggestionsPanel suggestionsPanel = new SuggestionsPanel();
@@ -42,4 +43,16 @@ public class WelcomePage extends JPanel implements Multilingual {
         this.suggestionsPanel.setLanguage(rb);
         this.loginPanel.setLanguage(rb);
     }
+
+	@Override
+	public void setLight() {
+		this.suggestionsPanel.setLight();
+		this.loginPanel.setLight();
+	}
+
+	@Override
+	public void setDark() {
+		this.suggestionsPanel.setDark();
+		this.loginPanel.setDark();
+	}
 }

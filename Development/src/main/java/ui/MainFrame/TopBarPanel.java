@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ui.Decorations;
+import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -23,22 +26,24 @@ import javax.swing.JButton;
  *
  */
 @SuppressWarnings("serial")
-public class TopBarPanel extends JPanel {
+public class TopBarPanel extends JPanel implements ColorTheme {
 
     /* Components */
     protected JLabel logo = new JLabel();
-    protected JPanel topBar = new JPanel(), options = new JPanel();
+    protected JPanel options = new JPanel();
     protected JButton colorSwitch = new JButton(), languageSwitch = new JButton(), askForHelp = new JButton();
 
     /* Options */
-    private Dimension DIM_BUTTON = new Dimension(100, 100), DIM_LOGO = new Dimension(200, 150);
+    private final Dimension DIM_BUTTON = new Dimension(100, 100), DIM_LOGO = new Dimension(200, 150);
 
     /* Actions */
-    public static final String ACTION_EN = "Switch_to_fr", ACTION_FR = "Switch_to_en", ACTION_HELP = "Ask_for_help";
+    public static final String ACTION_EN = "Switch_to_fr", ACTION_FR = "Switch_to_en", ACTION_HELP = "Ask_for_help",
+    		ACTION_DARK = "Switch_to_Light", ACTION_LIGHT = "Switch_to_Dark";
 
     /* Icons */
     public static final String IMG_LOGO = "Light_Logo", IMG_FR = "CurrentFR", IMG_EN = "CurrentEN", 
-    		IMG_LIGHT = "CurrentLight" , IMG_DARK = "CurrentDark", IMG_QUESTION = "Question";
+    		IMG_LIGHT = "CurrentLight" , IMG_DARK = "CurrentDark", 
+    		IMG_QUESTION_LIGHT = "QuestionLight", IMG_QUESTION_DARK = "QuestionDark";
     /**
      * Constructor of TopBar.
      * Set JPanel options and add components.
@@ -48,7 +53,6 @@ public class TopBarPanel extends JPanel {
     public TopBarPanel() {
         // Set JPanel’s options.
         this.setLayout(new BorderLayout());
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
 
         // Logo.
         logo.setPreferredSize(DIM_LOGO);
@@ -62,13 +66,13 @@ public class TopBarPanel extends JPanel {
         this.add(options, BorderLayout.EAST);
 
         // Color switch button.
-        setButton(colorSwitch, DIM_BUTTON, Decorations.getImg(IMG_LIGHT), "");
+        setButton(colorSwitch, DIM_BUTTON, Decorations.getImg(IMG_LIGHT), ACTION_LIGHT);
 
         // Language switch button.
         setButton(languageSwitch, DIM_BUTTON, Decorations.getImg(IMG_EN), ACTION_EN);
 
         // Ask for help button.
-        setButton(askForHelp, DIM_BUTTON, Decorations.getImg(IMG_QUESTION), ACTION_HELP);
+        setButton(askForHelp, DIM_BUTTON, Decorations.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
 
     }
 
@@ -92,4 +96,26 @@ public class TopBarPanel extends JPanel {
         button.setBorderPainted(false); // without border
         this.options.add(button);
     }
+
+	@Override
+	public void setLight() {
+		// This Panel
+		this.setBackground(Light.BG.getColor());
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Light.BLACK.getColor()));
+
+		// Options Panel
+		this.options.setBackground(Light.BG.getColor());
+		
+	}
+
+	@Override
+	public void setDark() {
+		// This Panel
+		this.setBackground(Dark.BG.getColor());
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Dark.FOREGROUNG.getColor()));
+
+		// Options Panel
+		this.options.setBackground(Dark.BG.getColor());
+		
+	}
 }

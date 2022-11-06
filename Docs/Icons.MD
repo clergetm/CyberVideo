@@ -25,6 +25,7 @@ Where did we find the icons used in this project.
             <li><a href="#cybervideo-logo">CyberVideo Logo</a></li>
             <li><a href="#language-switch">Language switch</a></li>
             <li><a href="#theme-switch">Theme switch</a></li>
+            <li><a href="#ask-for-help-button">Ask For Help Button</a></li>
             <li><a href="#banner-images">Banner Images</a></li>
         </ul>
     </li>
@@ -47,6 +48,7 @@ Icons can be found on these sites:
 - [custom-design-icon][cid].
 - [free-logo-design][fld].
 - [remove-bg][rbg].
+- [iloveimg][ili].
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -62,7 +64,7 @@ The logo was created on [FreeLogoDesign][fld].
 
 We used 4 icons from [softicons][soft].
 
-- Both flags were taken in these sizes:
+- Both flags were used in these sizes:
   - 64 x 64 pixels
   - 48 x 48 pixels
 - UK flags from [here][uk-flag].
@@ -76,14 +78,23 @@ The flags are originally from [custom-design-icon][cid] and you can find the [li
 
 We used sun and moon icons from [softicons][soft].
 
-- Both icons were taken in these sizes:
-  - 48 x 48 pixels
-- Sun from [here][sun].
-- Moon from [here][moon].
+- Both icons were used in these sizes:
+  - 100 x 100 pixels (originally 128 x 128 pixels)
+- Sun from [here][light].
+- Moon from [here][dark].
 
-The flags are originally from [David Ferreira][sun-moon-site] and you can find the [licence here][license-wpzoom].
+The flags are originally from [Bartosz Kaszubowski][theme-site] and you can find the [licence here][theme-license].
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+### Ask for Help Button
+
+We used faq icons from [custom-design-icon][cid].
+
+- Both faq icons (black and white) were used in these sizes:
+  - 96 x 96 pixels
+  - faq icon from [here][faq-icon].
+  <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Banner images
 
@@ -126,16 +137,18 @@ We used Edit icon from [softicons][soft].
 [cid]: https://www.customicondesign.com
 [rbg]: https://www.remove.bg/
 [fld]: https://www.freelogodesign.org/
+[ili]: https://www.iloveimg.com/resize-image
 [license]: https://www.customicondesign.com/license-agreement/
 [uk-flag]: https://www.softicons.com/web-icons/flag-icons-by-custom-icon-design/united-kingdom-flag-icon
 [fr-flag]: https://www.softicons.com/web-icons/flag-icons-by-custom-icon-design/france-flag-icon
-[moon]: https://www.softicons.com/toolbar-icons/wpzoom-developer-icon-set-by-wpzoom/moon-icon
-[sun]: https://www.softicons.com/toolbar-icons/wpzoom-developer-icon-set-by-wpzoom/sun-icon
-[sun-moon-site]: http://www.wpzoom.com
-[license-wpzoom]: https://files.softicons.com/download/toolbar-icons/wpzoom-developer-icon-set-by-wpzoom/license.txt
+[dark]: https://www.softicons.com/web-icons/vector-stylish-weather-icons-by-bartosz-kaszubowski/sun-big-cloud-dark-icon
+[light]: https://www.softicons.com/web-icons/vector-stylish-weather-icons-by-bartosz-kaszubowski/sun-rays-small-icon
+[theme-site]: https://simekdesign.eu/
+[theme-license]: https://creativecommons.org/licenses/by-nc-sa/3.0/
 [pbay]: https://pixabay.com/images/search/movie%20posters/?min_width=100&min_height=600&manual_search=1
 [it]: https://pixabay.com/illustrations/it-it-movie-minimal-poster-poster-3706529/
 [police]: https://pixabay.com/photos/police-crime-scene-cop-movie-poster-6718716/
 [desert]: https://pixabay.com/photos/desert-fantasy-movie-poster-6952778/
 [edit-ico]: https://www.softicons.com/toolbar-icons/mono-general-icons-2-by-custom-icon-design/edit-icon
 [film-ico]: https://www.softicons.com/toolbar-icons/fugue-16px-icons-by-yusuke-kamiyamane/film-icon
+[faq-ico]: https://www.customicondesign.com/free-icons/mono-icon-set/mono-general-1/

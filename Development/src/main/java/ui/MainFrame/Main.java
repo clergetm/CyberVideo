@@ -2,12 +2,15 @@ package ui.MainFrame;
 
 import ui.Decorations;
 import ui.Bundles.Multilingual;
+import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
 import ui.Pages.Welcome.WelcomePage;
 
 import java.awt.BorderLayout;
-
 import java.util.ResourceBundle;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -17,7 +20,7 @@ import javax.swing.SwingUtilities;
  * Main Class of AL2000. Initialize the machine Interface.
  */
 @SuppressWarnings("serial")
-public class Main extends JFrame implements Multilingual {
+public class Main extends JFrame implements Multilingual, ColorTheme {
 
 	/* Icon */
 	public static final String ICO_APP = "App";
@@ -38,24 +41,26 @@ public class Main extends JFrame implements Multilingual {
      */
     public Main() {
         super("AL2000");
-        this.setIconImage(Decorations.getIco(ICO_APP));
-        new Interaction(this);
         // Set options.
+        this.setIconImage(Decorations.getIco(ICO_APP));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-
+        new Interaction(this);
+        
         // Add the Top Bar.
         this.add(this.topBarPanel, BorderLayout.NORTH);
 
         // Add a banner.
         banner = new JLabel(Decorations.getImg(IMG_BANNER_DESERT));
-        banner.setBorder(Decorations.getDefaultBorder());
         this.add(banner, BorderLayout.WEST);
 
         // Add the welcome page.
         this.add(welcomePage, BorderLayout.CENTER);
-        this.setLanguage(this.getRbEN());
         this.pack();
+        
+
+        this.setLanguage(this.getRbEN());
+        this.setLight();
 
         // Maximize the Window.
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -68,11 +73,41 @@ public class Main extends JFrame implements Multilingual {
      */
     @Override
     public void setLanguage(ResourceBundle rb) {
-        // Set MainFrame Components text.
-
         // Set all multilingual child.
         this.welcomePage.setLanguage(rb);
     }
+
+	@Override
+	public void setLight() {
+		// This JFrame
+		this.setBackground(Light.BG.getColor());
+		
+		// Banner
+		banner.setBackground(Light.BG.getColor());
+		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Light.BG.getColor()));
+		
+		// Top Bar
+		this.topBarPanel.setLight();
+		
+		// Welcome Page
+		this.welcomePage.setLight();
+	}
+
+	@Override
+	public void setDark() {
+		// This JFrame
+		this.setBackground(Dark.BG.getColor());
+		
+		// Banner
+		banner.setBackground(Dark.BG.getColor());
+        banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Dark.BG.getColor()));
+        
+		// Top Bar
+		this.topBarPanel.setDark();
+		
+		// Welcome Page
+		this.welcomePage.setDark();
+	}
 
     /**
      * Run the Main Window of AL2000.

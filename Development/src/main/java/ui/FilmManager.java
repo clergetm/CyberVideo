@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
+
 /**
  * TODO: Implement use of Film class from fc package.
  *
@@ -13,7 +17,7 @@ import javax.swing.JPanel;
  *
  */
 @SuppressWarnings("serial")
-public class FilmManager extends JPanel {
+public class FilmManager extends JPanel implements ColorTheme {
 
     private List < Film > films = new ArrayList < Film > (); // List of managed Films. 
 
@@ -76,4 +80,24 @@ public class FilmManager extends JPanel {
         /*TODO*/
         return false;
     }
+
+	@Override
+	public void setLight() {
+		// This JPanel
+		this.setBackground(Light.BG.getColor());
+				
+		// Films
+		for(Film film: this.films)
+			film.setLight();		
+	}
+
+	@Override
+	public void setDark() {
+		// This JPanel
+		this.setBackground(Dark.BG.getColor());
+		
+		// Films
+		for(Film film: this.films)
+			film.setDark();			
+	}
 }
