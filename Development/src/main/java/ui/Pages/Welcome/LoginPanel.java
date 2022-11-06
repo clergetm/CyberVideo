@@ -36,7 +36,7 @@ import ui.Colors.Light;
 @SuppressWarnings("serial")
 class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 
-    private String idPlaceHolder = "", pwPlaceHolder = "", keyboardIDTitle = "", keyboardPWTitle = "";
+    private String placeholderID = "", placeholderPassword = "", keyboardIDTitle = "", keyboardPWTitle = "";
 
     /* Components */
     protected JLabel idLabel = new JLabel();
@@ -83,17 +83,17 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
             @Override
             public void focusLost(FocusEvent e) {
                 if (idField.getText().equals(""))
-                    setPlaceHolder(idField, idPlaceHolder);
+                    setPlaceHolder(idField, placeholderID);
             }
 
             @Override
             public void focusGained(FocusEvent e) {
-                if (idField.getText().equals(idPlaceHolder))
+                if (idField.getText().equals(placeholderID))
                     unsetPlaceHolder(idField);
                 idField.getRootPane().requestFocus(); // Change the focus to avoid looping              
                 String prompt = keyboard.showKeyboardDialog(keyboardIDTitle, idField);
                 if (prompt.equals(""))
-                    prompt = idPlaceHolder;
+                    prompt = prompt;
                 idField.setText(prompt);
             }
         });
@@ -116,7 +116,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
                 // If nothing has been written. Show the PlaceHolder.
                 if (Arrays.equals(pwField.getPassword(), "".toCharArray())) {
                     pwField.setEchoChar((char) 0);
-                    setPlaceHolder(pwField, pwPlaceHolder);
+                    setPlaceHolder(pwField, placeholderPassword);
                 }
 
             }
@@ -124,7 +124,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
             @Override
             public void focusGained(FocusEvent e) {
                 // If nothing has been written. Remove the PlaceHolder.
-                if (Arrays.equals(pwField.getPassword(), pwPlaceHolder.toCharArray())) {
+                if (Arrays.equals(pwField.getPassword(), placeholderPassword.toCharArray())) {
                     unsetPlaceHolder(pwField);
                 }
 
@@ -133,7 +133,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
                 // Type the entry with the Keyboard.
                 String prompt = keyboard.showKeyboardDialog(keyboardPWTitle, pwField);
                 if (prompt.equals(""))
-                    prompt = pwPlaceHolder;
+                    prompt = placeholderPassword;
                 else
                     pwField.setEchoChar('*'); // Hide what’s written.
 
@@ -222,18 +222,18 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 
         // ID JTextField
         // If the field wasn’t change. Change the placeholder
-        if (idField.getText().equals(idPlaceHolder))
+        if (idField.getText().equals(placeholderID))
             setPlaceHolder(idField, rb.getString("login_id_placeholder"));
 
         // And change the String value for condition in FocusListener.
-        idPlaceHolder = rb.getString("login_id_placeholder");
+        placeholderID = rb.getString("login_id_placeholder");
 
         // Password JPasswordField
         // If the field wasn’t change. Change the placeholder
-        if (Arrays.equals(pwField.getPassword(), pwPlaceHolder.toCharArray()))
+        if (Arrays.equals(pwField.getPassword(), placeholderPassword.toCharArray()))
             setPlaceHolder(pwField, rb.getString("login_pw_placeholder"));
         // And change the String value for condition in FocusListener.
-        pwPlaceHolder = rb.getString("login_pw_placeholder");
+        placeholderPassword = rb.getString("login_pw_placeholder");
 
         // connection JButton
         connection.setText(rb.getString("login_connection"));
