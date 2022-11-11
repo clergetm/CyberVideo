@@ -9,7 +9,6 @@ public class BluRay extends Film {
 
 	private double price;
 	private StatesBluRay state;
-	
 	/**
 	 * Constructor of the class BluRay
 	 * @param price is the purchase price of the BluRay
@@ -61,6 +60,17 @@ public class BluRay extends Film {
 	public void setState(StatesBluRay state) {
 		this.state=state;
 		
+	}
+	
+	/**
+	 * Getter of the Availability of the BluRay.
+	 * @author MathysC
+	 *
+	 * @return true if the BluRay is stated AVAILABLE, else false.
+	 */
+	@Override
+	public boolean isBRAvailable() {
+		return this.state == StatesBluRay.AVAILABLE? true: false;
 	}
 
 }

@@ -30,7 +30,7 @@ public class Film {
 	protected String LNameDirector;
 	protected AgeRestriction restriction;
 	protected Categories[] categories;
-	
+	protected boolean QRAvailable = true;
 	
 	/**
 	 * Constructor of the class Film
@@ -162,6 +162,36 @@ public class Film {
 			e.printStackTrace();
 		}
 		return link;
+	}
+	
+	/**
+	 * 
+	 * @author MathysC
+	 *
+	 * @param state the QR Code availability to set
+	 */
+	public void setQRAvailable(boolean state) {
+		this.QRAvailable = state;
+	}
+	
+	/**
+	 * 
+	 * @author MathysC
+	 *
+	 * @return the QR Code availability
+	 */
+	public boolean isQRAvailable() {
+		return this.QRAvailable;
+	}
+	
+	/**
+	 * 
+	 * @author MathysC
+	 *
+	 * @return Always false, a QRCode film only cannot be available as a Blu Ray,
+	 */
+	public boolean isBRAvailable() {
+		return false;
 	}
 	
 }
