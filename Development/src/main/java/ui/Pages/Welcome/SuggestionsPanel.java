@@ -25,7 +25,7 @@ import ui.Colors.Light;
  *
  */
 @SuppressWarnings("serial")
-class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
+public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
 
 	/* Components */
     protected JLabel sugLabel = new JLabel();
@@ -54,6 +54,14 @@ class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
         this.add(filmsPane, BorderLayout.CENTER);
     }
 
+    /**
+     * Getter of filmManager of {@code SuggestionsPanel}
+     * @author MathysC
+     *
+     * @return FilmManager
+     */
+    public FilmManager getFilmManager() { return this.manager; }
+    
     @Override
     public void setLanguage(ResourceBundle rb) {
         this.sugLabel.setText(rb.getString("sug_label"));
