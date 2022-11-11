@@ -120,4 +120,21 @@ class FilmTest implements LifecycleLoggerTest {
 			f.delete();
 		}
 	}
+
+	@Test
+	void testSetQRAvailable() {
+		boolean state = true;
+		film.setQRAvailable(state);
+		Assertions.assertEquals(state, film.QRAvailable);
+	}
+
+	@Test
+	void testIsQRAvailable() {
+		Assertions.assertEquals(film.QRAvailable, film.isQRAvailable());
+	}
+	
+	@Test
+	void testIsBRAvailable() {
+		Assertions.assertFalse(film.isBRAvailable());
+	}
 }
