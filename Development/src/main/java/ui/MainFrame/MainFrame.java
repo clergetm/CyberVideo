@@ -67,6 +67,22 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
     }
 
     /**
+     * Getter of topBar
+     * @author MathysC
+     *
+     * @return TopBarPanel
+     */
+    public TopBarPanel topBar() { return this.topBarPanel; }
+    
+    /**
+     * Getter of welcomePage
+     * @author MathysC
+     *
+     * @return WelcomePage
+     */
+    public WelcomePage welcome() { return this.welcomePage; }
+    
+    /**
      * Change all Main and Main’s Child text.
      * @author MathysC
      * @param rb the choosen language bundle.
