@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities;
  * Main Class of AL2000. Initialize the machine Interface.
  */
 @SuppressWarnings("serial")
-public class Main extends JFrame implements Multilingual, ColorTheme {
+public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 
 	/* Icon */
 	public static final String ICO_APP = "App";
@@ -39,7 +39,7 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
      * @author MathysC
      *
      */
-    public Main() {
+    public MainFrame() {
         super("AL2000");
         // Set options.
         this.setIconImage(Decorations.getIco(ICO_APP));
@@ -118,7 +118,7 @@ public class Main extends JFrame implements Multilingual, ColorTheme {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new MainFrame().setVisible(true);
             }
         });
     }

@@ -36,7 +36,7 @@ import javax.sound.sampled.SourceDataLine;
  */
 public class Interaction implements ActionListener {
 
-    private Main mainFrame;
+    private MainFrame mainFrame;
     
     /**
      * Constructor of Interaction.
@@ -44,7 +44,7 @@ public class Interaction implements ActionListener {
      *
      * @param m The main Frame of the machine.
      */
-    public Interaction(Main m) {
+    public Interaction(MainFrame m) {
         this.mainFrame = m;
 
         /* Listeners */
