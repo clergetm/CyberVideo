@@ -29,10 +29,6 @@ public class FilmManager extends JPanel implements ColorTheme {
      */
     public FilmManager(LayoutManager layout) {
         this.setLayout(layout);
-
-        /*TODO: remove it after implementing Film from fc package*/
-        for (int i = 0; i < 100; i++)
-            this.addFilm(new FilmPanel());
     }
 
     /**
