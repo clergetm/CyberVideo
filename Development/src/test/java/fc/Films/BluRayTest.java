@@ -6,10 +6,36 @@ import org.junit.jupiter.api.Test;
 
 class BluRayTest {
 
+	/* Create Film attributes */
+	private final double price = 20;
+	private final StatesBluRay state = StatesBluRay.AVAILABLE;
+	private final String title = "Ghostbusters",
+			synopsis = "Three parapsychologists forced out of their university "
+					+ "funding set up shop as a unique ghost removal service in New York City, "
+					+ "attracting frightened yet skeptical customers.",
+			director_lname = "Reitman",
+			director_fname = "Ivan";
+	private final String[] actors = {"Bill Murray", "Dan Aykroyd", "Harold Ramis", "Ernie Hudson"};
+	private final AgeRestriction restriction = AgeRestriction.EVERYONE;
+	private final Categories[] categories = {Categories.ACTION, Categories.COMEDIES};
+	
+	/* Create an instance of a BluRay for test BluRay class */
+	protected BluRay bluRay = new BluRay(price, state, title, synopsis, actors, director_fname, director_lname, restriction, categories);
+
+
 	/**
-	 * Create an instance of a BluRay for test BluRay class
+	 * Check the constructor of BluRay
 	 */
-	protected static BluRay bluRay = new BluRay(22.90, StatesBluRay.AVAILABLE, "tata", "tata tutu toto", new String[]{"JM POPO","PE RORO"}, "DUDU", "DADA", AgeRestriction.EVERYONE, new Categories[] {Categories.ANIME});
+	@Test
+	void testBluRay() {
+		Assertions.assertEquals(title, bluRay.title, "bluRay.title test passed");
+		Assertions.assertEquals(synopsis, bluRay.synopsis, "bluRay.synopsis test passed");
+		Assertions.assertEquals(actors, bluRay.getActors(), "bluRay.getActors() test passed");
+		Assertions.assertEquals(director_fname, bluRay.FNameDirector, "bluRay.FNameDirector test passed");
+		Assertions.assertEquals(director_lname, bluRay.LNameDirector, "bluRay.LNameDirector test passed");
+		Assertions.assertEquals(categories, bluRay.getCategories(), "bluRay.getCategories() test passed");
+		Assertions.assertEquals(restriction, bluRay.restriction, "bluRay.restriction test passed");
+	}
 
 	/**
 	 * Check getType()
@@ -18,33 +44,15 @@ class BluRayTest {
 	void testGetType() {
 		// Test will pass
 		Assertions.assertEquals("BluRay", bluRay.getType(), "bluRay.getType() test passed");
-		
-		//Test will fail 
-	    //Assertions.assertEquals("QRCode", bluRay.getType(), "bluRay.getType() test failed");
 	    Assertions.assertNotEquals("QRCode", bluRay.getType(), "bluRay.getType() test failed");
 
 	}
-
-	/**
-	 * Check the constructor of BluRay
-	 */
-	@Test
-	void testBluRay() {
-		Assertions.assertEquals("tata", bluRay.title, "bluRay.title test passed");
-		Assertions.assertEquals("tata tutu toto", bluRay.synopsis, "bluRay.synopsis test passed");
-		Assertions.assertEquals("JM POPO, PE RORO", bluRay.getActors(), "bluRay.getActors() test passed");
-		Assertions.assertEquals("DUDU", bluRay.FNameDirector, "bluRay.FNameDirector test passed");
-		Assertions.assertEquals("DADA", bluRay.LNameDirector, "bluRay.LNameDirector test passed");
-		Assertions.assertEquals("ANIME", bluRay.getCategories(), "bluRay.getCategories() test passed");
-		Assertions.assertEquals(AgeRestriction.EVERYONE, bluRay.restriction, "bluRay.restriction test passed");
-	}
-
 	/**
 	 * Check getPrice()
 	 */
 	@Test
 	void testGetPrice() {
-		Assertions.assertEquals(22.90, bluRay.getPrice(), "bluRay.getPrice() test passed");
+		Assertions.assertEquals(price, bluRay.getPrice(), "bluRay.getPrice() test passed");
 	}
 
 	/**
@@ -52,14 +60,11 @@ class BluRayTest {
 	 */
 	@Test
 	void testSetPrice() {
-		bluRay.setPrice(24.57);
+		final double testPrice = 24.57;
+		bluRay.setPrice(testPrice);
 		
-		// Test will pass
-		Assertions.assertEquals(24.57, bluRay.getPrice(), "bluRay.setPrice() test passed");
-		
-		//Test will fail 
-		//Assertions.assertEquals(22.90, bluRay.getPrice(), "bluRay.setPrice() test failed");
-		Assertions.assertNotEquals(22.90, bluRay.getPrice(), "bluRay.setPrice() test failed");
+		Assertions.assertNotEquals(price, bluRay.getPrice(), "bluRay.setPrice() test failed");
+		Assertions.assertEquals(testPrice, bluRay.getPrice(), "bluRay.setPrice() test passed");
 	}
 	
 	/**
@@ -68,21 +73,27 @@ class BluRayTest {
 	@Test
 	void testGetState() {
 		// Test will pass
-		Assertions.assertEquals(StatesBluRay.AVAILABLE, bluRay.getState(), "bluRay.getState() test passed");
+		Assertions.assertEquals(state, bluRay.getState(), "bluRay.getState() test passed");
 	}
 
 	/**
-	 * Check setStat()
+	 * Check setState()
 	 */
 	@Test
 	void testSetState() {
-		bluRay.setState(StatesBluRay.STOLEN);
+		final StatesBluRay testState = StatesBluRay.STOLEN;
+		bluRay.setState(testState);
 		
-		// Test will pass
-		Assertions.assertEquals(StatesBluRay.STOLEN, bluRay.getState(), "bluRay.setState() test passed");
+		Assertions.assertNotEquals(state, bluRay.getState(), "bluRay.setState() test failed");
+		Assertions.assertEquals(testState, bluRay.getState(), "bluRay.setState() test passed");
+	}
+	
+	@Test
+	void testIsBRAvailable() {
+		bluRay.setState(state);
+		Assertions.assertTrue(bluRay.isBRAvailable());
 		
-		//Test will fail 
-		//Assertions.assertEquals(StatesBluRay.AVAILABLE, bluRay.getState(), "bluRay.setState() test failed");
-		Assertions.assertNotEquals(StatesBluRay.AVAILABLE, bluRay.getState(), "bluRay.setState() test failed");
+		bluRay.setState(StatesBluRay.DAMAGED);
+		Assertions.assertFalse(bluRay.isBRAvailable());
 	}
 }

@@ -63,7 +63,6 @@ public class BluRay extends Film {
 	}
 	
 	/**
-	 * Getter of the Availability of the BluRay.
 	 * @author MathysC
 	 *
 	 * @return true if the BluRay is stated AVAILABLE, else false.
