@@ -19,7 +19,7 @@ import ui.Colors.Light;
 @SuppressWarnings("serial")
 public class FilmManager extends JPanel implements ColorTheme {
 
-    private List < Film > films = new ArrayList < Film > (); // List of managed Films. 
+    private List < FilmPanel > filmPanels = new ArrayList < FilmPanel > (); // List of managed Films. 
 
     /**
      * Constructor of FilmManager
@@ -32,7 +32,7 @@ public class FilmManager extends JPanel implements ColorTheme {
 
         /*TODO: remove it after implementing Film from fc package*/
         for (int i = 0; i < 100; i++)
-            this.addFilm(new Film());
+            this.addFilm(new FilmPanel());
     }
 
     /**
@@ -40,11 +40,11 @@ public class FilmManager extends JPanel implements ColorTheme {
      * Add a Film in the list of films and a JComponent of this film.
      * @author MathysC
      *
-     * @param film
+     * @param filmPanel
      */
-    public void addFilm(Film film) {
-        this.films.add(film);
-        this.add(film);
+    public void addFilm(FilmPanel filmPanel) {
+        this.filmPanels.add(filmPanel);
+        this.add(filmPanel);
     }
 
     /**
@@ -52,15 +52,15 @@ public class FilmManager extends JPanel implements ColorTheme {
      * Remove one Film from the list.
      * @author MathysC
      *
-     * @param film
+     * @param filmPanel
      * @return
      */
-    public boolean removeFilm(Film film) {
-        if (!this.films.contains(film))
+    public boolean removeFilm(FilmPanel filmPanel) {
+        if (!this.filmPanels.contains(filmPanel))
             return false;
 
-        this.films.remove(film);
-        this.remove(film);
+        this.filmPanels.remove(filmPanel);
+        this.remove(filmPanel);
 
         //IMPORTANT: We have to revalidate and repaint when we remove a graphic component.
         this.revalidate();
@@ -73,10 +73,10 @@ public class FilmManager extends JPanel implements ColorTheme {
      * Update one film from the list.
      * @author MathysC
      *
-     * @param film
+     * @param filmPanel
      * @return
      */
-    public boolean updateFilm(Film film) {
+    public boolean updateFilm(FilmPanel filmPanel) {
         /*TODO*/
         return false;
     }
@@ -87,8 +87,8 @@ public class FilmManager extends JPanel implements ColorTheme {
 		this.setBackground(Light.BG.getColor());
 				
 		// Films
-		for(Film film: this.films)
-			film.setLight();		
+		for(FilmPanel filmPanel: this.filmPanels)
+			filmPanel.setLight();		
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class FilmManager extends JPanel implements ColorTheme {
 		this.setBackground(Dark.BG.getColor());
 		
 		// Films
-		for(Film film: this.films)
-			film.setDark();			
+		for(FilmPanel filmPanel: this.filmPanels)
+			filmPanel.setDark();			
 	}
 }

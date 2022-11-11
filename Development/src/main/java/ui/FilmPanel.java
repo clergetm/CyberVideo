@@ -18,7 +18,7 @@ import ui.Colors.Light;
  *
  */
 @SuppressWarnings("serial")
-public class Film extends JPanel implements ColorTheme{
+public class FilmPanel extends JPanel implements ColorTheme{
 
     /* Components */
     protected JLabel poster = new JLabel();
@@ -33,12 +33,12 @@ public class Film extends JPanel implements ColorTheme{
     
     private String IMG_FILM; 
     /**
-     * Constructor of {@code ui.Film} 
+     * Constructor of {@code FilmPanel} 
      * Set JPanel options and add Components.
      * @author MathysC
      *
      */
-    public Film() {
+    public FilmPanel() {
     	IMG_FILM = "Test_Film";// TODO 
     	
         // JPanel Options
