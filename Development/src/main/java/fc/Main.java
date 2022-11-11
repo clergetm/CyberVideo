@@ -7,8 +7,6 @@ package fc;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Hello, Group2");
-
+		new AL2000().start();
 	}
-
 }

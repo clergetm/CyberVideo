@@ -1,11 +1,26 @@
 package fc;
 
+import javax.swing.SwingUtilities;
+
 import fc.Films.BluRay;
 import fc.Films.StatesBluRay;
+import ui.MainFrame.MainFrame;
 
 
 public class AL2000 {
 
+	private MainFrame ui;
+	
+	/**
+	 * Constructor of {@code AL2000}
+	 * @author MathysC
+	 *
+	 */
+	public AL2000() {
+		// Initialize User Interface.
+		this.ui = new MainFrame();
+	}
+	
 	public boolean collectBluRay(BluRay film) {
 		if(checkIDBluRay(film))
 			if(film.getState().equals(StatesBluRay.RENTED)) {
@@ -56,5 +71,16 @@ public class AL2000 {
 		return true;
 	}
 
-
+	/**
+	 * Show the User Interface.
+	 * @author MathysC
+	 *
+	 */
+	public void start() {
+		SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+            	ui.setVisible(true);
+            }
+        });
+	}
 }
