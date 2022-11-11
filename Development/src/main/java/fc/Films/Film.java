@@ -78,17 +78,13 @@ public class Film {
 	}
 	
 	/**
-	 * 
-	 * @return the actors of the film : 
-	 * "fNameActeur1 lNameActeur1, fNameActeur2 lNameActeur2" 
+	 * Getter of actors.
+	 * @author MathysC
+	 *
+	 * @return film’s actors.
 	 */
-	public String getActors() {
-		String actorsList="";
-		for (int i=0;i<actors.length-1;i++) {
-			actorsList+=actors[i]+", ";
-		}
-		actorsList+=actors[actors.length-1];
-		return actorsList;
+	public String[] getActors() {
+		return this.actors;
 	}
 
 	/**
@@ -108,12 +104,22 @@ public class Film {
 		return restriction;
 	}
 
+
+	/**
+	 * Getter of categories.
+	 * @author MathysC
+	 *
+	 * @return film’s categories
+	 */
+	public Categories[] getCategories() {
+		return this.categories;
+	}	
+
 	/**
 	 * Generate the QRCode of the link of the film
 	 * Create a file QRCode.png with the QRCode
 	 * @return the link of the film
 	 * 
-	 * @return the categories of the film
 	 * @see Ressources generator : https://www.digitalocean.com/community/tutorials/java-qr-code-generator-zxing-example
 	 */
 	public String generateQRCode() {
