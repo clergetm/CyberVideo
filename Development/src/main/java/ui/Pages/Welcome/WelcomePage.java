@@ -34,6 +34,22 @@ public class WelcomePage extends JPanel implements Multilingual, ColorTheme {
     }
 
     /**
+     * Getter of suggestionsPanel
+     * @author MathysC
+     *
+     * @return SuggestionsPanel
+     */
+    public SuggestionsPanel suggestions() { return this.suggestionsPanel; }
+    
+    /** 
+     * Getter of loginPanel
+     * @author MathysC
+     *
+     * @return LoginPanel
+     */
+    public LoginPanel login() { return this.loginPanel; }
+    
+    /**
      * Set the language of the two panels.
      * @author MathysC
      *
