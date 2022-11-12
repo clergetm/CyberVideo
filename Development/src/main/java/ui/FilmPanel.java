@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fc.Films.Film;
 import ui.Colors.ColorTheme;
 import ui.Colors.Dark;
 import ui.Colors.Light;
@@ -18,7 +20,7 @@ import ui.Colors.Light;
  *
  */
 @SuppressWarnings("serial")
-public class FilmPanel extends JPanel implements ColorTheme{
+public class FilmPanel extends JPanel implements ColorTheme {
 
     /* Components */
     protected JLabel poster = new JLabel();
@@ -30,52 +32,30 @@ public class FilmPanel extends JPanel implements ColorTheme{
     public static final String RENTBR = "RENT_BLU-RAY";
     public static final String RENTQR = "RENT_QR-CODE";
 
+    /* FC */
+    private String IMG_FILM; // TODO
+    private Film film;
     
-    private String IMG_FILM; 
     /**
      * Constructor of {@code FilmPanel} 
      * Set JPanel options and add Components.
      * @author MathysC
-     *
      */
-    public FilmPanel() {
-    	IMG_FILM = "Test_Film";// TODO 
+    public FilmPanel(Film f) {
+    	// Film
+    	this.film = f;
     	
         // JPanel Options
         this.setLayout(new BorderLayout());
 
         // Set Poster.
-        this.setPosterLabel(); // TODO
-
-        // Set Buttons.
-        this.setAvailabilityPanel(); // TODO
-        
-        
-    }
-
-    /**
-     * TODO: Find a way to implement the right image for the poster.
-     * TODO: Add action from click on the poster to the Information of the Film
-     * Set the icon of the poster Label.
-     * @author MathysC
-     *
-     */
-    private void setPosterLabel() {
-
     	panelforPoster.add(poster);
-        poster.setIcon(Decorations.getImg(IMG_FILM));
-
         this.add(panelforPoster, BorderLayout.CENTER);
 
-    }
+        IMG_FILM = "Test_Film";// TODO 
+        this.setPosterLabel(Decorations.getImg(IMG_FILM)); // TODO
 
-    /**
-     * TODO
-     * Set actions of buttons
-     * @author MathysC
-     *
-     */
-    private void setAvailabilityPanel() {
+        // Set Buttons.
         qrcode = new JButton("QRCode");
         qrcode.setActionCommand(RENTQR);
         availability.add(qrcode);
@@ -85,52 +65,42 @@ public class FilmPanel extends JPanel implements ColorTheme{
         availability.add(bluray);
 
         this.add(availability, BorderLayout.SOUTH);
-
     }
 
     /**
-     * Set the BluRay Available.
+     * TODO: Add action from click on the poster to the Information of the Film
      * @author MathysC
-     *
+     * @param img The image of the film to set.
      */
-    public void setBluRayAvailable() {
-        this.bluray.setEnabled(true);
+    private void setPosterLabel(ImageIcon img) {
+        poster.setIcon(img);
     }
 
     /**
-     * Set the BluRay Unavailable.
      * @author MathysC
-     *
+     * @param availability The BluRay availability to set
      */
-    public void setBluRayUnavailable() {
-        this.bluray.setEnabled(false);
+    public void setBluRayAvailable(boolean availability) {
+        this.bluray.setEnabled(availability);
     }
-
+   
     /**
-     * Set the QR Code Available.
      * @author MathysC
-     *
+     * @param availability The QR Code availability to set
      */
-    public void setQRCodeAvailable() {
-        this.qrcode.setEnabled(true);
+    public void setQRCodeAvailable(boolean availability) {
+        this.qrcode.setEnabled(availability);
     }
-
+    
     /**
-     * Set the QR Code Unavailable.
+     * TODO: Update Poster
+     * Update Panel with {@code this.film} data.
      * @author MathysC
-     *
-     */
-    public void setQRCodeUnavailable() {
-        this.qrcode.setEnabled(false);
-    }
-
-    /**
-     * TODO: update the {@code ui.Film} with data from {@code fc.Film}
-     * @author MathysC
-     *
      */
     public void update() {
-        /* TODO */ }
+       this.setQRCodeAvailable(this.film.isQRAvailable());
+       this.setBluRayAvailable(this.film.isBRAvailable());
+    }
 
 	@Override
 	public void setLight() {
