@@ -1,6 +1,5 @@
 package fc;
 
-import javax.swing.SwingUtilities;
 
 import fc.Films.BluRay;
 import fc.Films.StatesBluRay;
@@ -9,16 +8,15 @@ import ui.MainFrame.MainFrame;
 
 public class AL2000 {
 
-	private MainFrame ui;
 	
 	/**
 	 * Constructor of {@code AL2000}
 	 * @author MathysC
 	 *
 	 */
-	public AL2000() {
-		// Initialize User Interface.
-		this.ui = new MainFrame();
+	public AL2000() {	
+	}
+	
 	}
 	
 	public boolean collectBluRay(BluRay film) {
@@ -53,7 +51,7 @@ public class AL2000 {
 	}
 
 	//	public String printReceipt(Rented location) {
-	//		String ticket="CyberViveo";
+	//		String ticket="CyberVideo";
 	//		// get le film
 	//		// get la carte
 	//		// get la date
@@ -69,18 +67,5 @@ public class AL2000 {
 	private boolean showBluRayDamagedDiolog() {
 		// IHM : Boite de dialog qui demande si oui ou non le DVD est endomagé
 		return true;
-	}
-
-	/**
-	 * Show the User Interface.
-	 * @author MathysC
-	 *
-	 */
-	public void start() {
-		SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-            	ui.setVisible(true);
-            }
-        });
 	}
 }

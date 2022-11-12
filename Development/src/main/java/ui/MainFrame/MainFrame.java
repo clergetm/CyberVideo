@@ -15,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+import fc.AL2000;
+
 /**
  * @author MathysC
  * Main Class of AL2000. Initialize the machine Interface.
@@ -26,13 +28,18 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	public static final String ICO_APP = "App";
 
 	/* Banners */
-	public static final String IMG_BANNER_IT = "BannerIT", IMG_BANNER_POLICE = "BannerPOLICE",
+	public static final String IMG_BANNER_IT = "BannerIT", 
+			IMG_BANNER_POLICE = "BannerPOLICE",
 			IMG_BANNER_DESERT = "BannerDESERT";
-    /* Components */
+	
+	/* Components */
     protected TopBarPanel topBarPanel = new TopBarPanel();
     protected JLabel banner = new JLabel();
     protected WelcomePage welcomePage = new WelcomePage();
 
+    /* FC */
+    private AL2000 fc;
+    
     /**
      * Constructor of Main.
      * Initialize the AL200 Main Window.
@@ -64,6 +71,8 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 
         // Maximize the Window.
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        fc = new AL2000();
     }
 
     /**
@@ -81,7 +90,7 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
      * @return WelcomePage
      */
     public WelcomePage welcome() { return this.welcomePage; }
-    
+        
     /**
      * Change all Main and Main’s Child text.
      * @author MathysC
