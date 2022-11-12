@@ -1,11 +1,11 @@
 package ui;
 
 import java.awt.LayoutManager;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import javax.swing.JPanel;
 
+import fc.Films.Film;
 import ui.Colors.ColorTheme;
 import ui.Colors.Dark;
 import ui.Colors.Light;
@@ -19,12 +19,11 @@ import ui.Colors.Light;
 @SuppressWarnings("serial")
 public class FilmManager extends JPanel implements ColorTheme {
 
-    private List < FilmPanel > filmPanels = new ArrayList < FilmPanel > (); // List of managed Films. 
+    private HashMap < Film,FilmPanel > films = new HashMap<> (); // List of managed Films. 
 
     /**
      * Constructor of FilmManager
      * @author MathysC
-     *
      * @param layout
      */
     public FilmManager(LayoutManager layout) {
@@ -32,32 +31,30 @@ public class FilmManager extends JPanel implements ColorTheme {
     }
 
     /**
-     * TODO: Use Film class from fc.
      * Add a Film in the list of films and a JComponent of this film.
      * @author MathysC
-     *
-     * @param filmPanel
+     * @param film The {@code fc.Film} to add.
      */
-    public void addFilm(FilmPanel filmPanel) {
-        this.filmPanels.add(filmPanel);
-        this.add(filmPanel);
+    public void addFilm(Film film) {
+    	FilmPanel panel = new FilmPanel(film);
+        this.films.put(film, panel);
+        this.add(panel);
     }
 
+
     /**
-     * TODO: Use Film class from fc.
-     * Remove one Film from the list.
+     * Remove one Film from the Manager. 
      * @author MathysC
-     *
-     * @param filmPanel
-     * @return
+     * @param film The {@code fc.Film} to remove.
+     * @return true if the film is removed, else false.
      */
-    public boolean removeFilm(FilmPanel filmPanel) {
-        if (!this.filmPanels.contains(filmPanel))
+    public boolean removeFilm(Film film) {
+        if (!this.films.containsKey(film))
             return false;
-
-        this.filmPanels.remove(filmPanel);
-        this.remove(filmPanel);
-
+        
+        this.remove(this.films.get(film));
+        this.films.remove(film);
+        
         //IMPORTANT: We have to revalidate and repaint when we remove a graphic component.
         this.revalidate();
         this.repaint();
@@ -65,16 +62,17 @@ public class FilmManager extends JPanel implements ColorTheme {
     }
 
     /**
-     * TODO: Use Film class from fc.
-     * Update one film from the list.
+     * Update one film from the Manager.
      * @author MathysC
-     *
-     * @param filmPanel
-     * @return
+     * @param film The {@code fc.Film} to update.
+     * @return true if the film was updated, else false.
      */
-    public boolean updateFilm(FilmPanel filmPanel) {
-        /*TODO*/
-        return false;
+    public boolean updateFilm(Film film) {
+        if (!this.films.containsKey(film))
+            return false;
+       
+        this.films.get(film).update();
+        return true;
     }
 
 	@Override
@@ -83,7 +81,7 @@ public class FilmManager extends JPanel implements ColorTheme {
 		this.setBackground(Light.BG.getColor());
 				
 		// Films
-		for(FilmPanel filmPanel: this.filmPanels)
+		for(FilmPanel filmPanel: this.films.values())
 			filmPanel.setLight();		
 	}
 
@@ -93,7 +91,7 @@ public class FilmManager extends JPanel implements ColorTheme {
 		this.setBackground(Dark.BG.getColor());
 		
 		// Films
-		for(FilmPanel filmPanel: this.filmPanels)
+		for(FilmPanel filmPanel: this.films.values())
 			filmPanel.setDark();			
 	}
 }

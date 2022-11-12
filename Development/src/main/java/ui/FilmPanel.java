@@ -65,6 +65,8 @@ public class FilmPanel extends JPanel implements ColorTheme {
         availability.add(bluray);
 
         this.add(availability, BorderLayout.SOUTH);
+        
+        this.update();
     }
 
     /**
