@@ -20,14 +20,15 @@ import ui.Colors.Light;
 public class FilmManager extends JPanel implements ColorTheme {
 
     private HashMap < Film,FilmPanel > films = new HashMap<> (); // List of managed Films. 
-
+    private double percent; // scale of dimension of Films
     /**
      * Constructor of FilmManager
      * @author MathysC
      * @param layout
      */
-    public FilmManager(LayoutManager layout) {
+    public FilmManager(LayoutManager layout, double p) {
         this.setLayout(layout);
+        this.percent = p;
     }
 
     /**
@@ -36,7 +37,7 @@ public class FilmManager extends JPanel implements ColorTheme {
      * @param film The {@code fc.Film} to add.
      */
     public void addFilm(Film film) {
-    	FilmPanel panel = new FilmPanel(film);
+    	FilmPanel panel = new FilmPanel(film, this.percent);
         this.films.put(film, panel);
         this.add(panel);
     }
