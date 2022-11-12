@@ -24,7 +24,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 
     /* Components */
     protected JLabel poster = new JLabel();
-    private JPanel panelforPoster = new JPanel(new FlowLayout());
+    private JPanel mainPanel = new JPanel(new BorderLayout()), panelforPoster = new JPanel(new FlowLayout());
     protected JPanel availability = new JPanel(new FlowLayout());
     protected JButton qrcode = new JButton(), bluray = new JButton();
 
@@ -33,7 +33,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
     public static final String RENTQR = "RENT_QR-CODE";
 
     /* FC */
-    private String IMG_FILM; // TODO
+    private ImageIcon posterImg = Decorations.getImg("Test_Film"); // TODO
     private Film film;
     
     /**
@@ -46,14 +46,14 @@ public class FilmPanel extends JPanel implements ColorTheme {
     	this.film = f;
     	
         // JPanel Options
-        this.setLayout(new BorderLayout());
-
+        this.setLayout(new FlowLayout());
+    
         // Set Poster.
+        // TODO: Add action from click on the poster to the Information of the Film
     	panelforPoster.add(poster);
-        this.add(panelforPoster, BorderLayout.CENTER);
+    	mainPanel.add(panelforPoster, BorderLayout.CENTER);
+        poster.setIcon(posterImg);
 
-        IMG_FILM = "Test_Film";// TODO 
-        this.setPosterLabel(Decorations.getImg(IMG_FILM)); // TODO
 
         // Set Buttons.
         qrcode = new JButton("QRCode");
@@ -64,19 +64,12 @@ public class FilmPanel extends JPanel implements ColorTheme {
         bluray.setActionCommand(RENTBR);
         availability.add(bluray);
 
-        this.add(availability, BorderLayout.SOUTH);
-        
+        mainPanel.add(availability, BorderLayout.SOUTH);
+            
+        this.add(mainPanel);
         this.update();
-    }
-
-    /**
-     * TODO: Add action from click on the poster to the Information of the Film
-     * @author MathysC
-     * @param img The image of the film to set.
-     */
-    private void setPosterLabel(ImageIcon img) {
-        poster.setIcon(img);
-    }
+        
+        }
 
     /**
      * @author MathysC
