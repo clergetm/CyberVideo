@@ -1,150 +1,164 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fc.Films.Film;
 import ui.Colors.ColorTheme;
 import ui.Colors.Dark;
 import ui.Colors.Light;
 
 /**
  * Graphic Implementation of a Film.
+ * 
  * @author MathysC
  *
  */
 @SuppressWarnings("serial")
-public class FilmPanel extends JPanel implements ColorTheme{
+public class FilmPanel extends JPanel implements ColorTheme {
 
-    /* Components */
-    protected JLabel poster = new JLabel();
-    private JPanel panelforPoster = new JPanel(new FlowLayout());
-    protected JPanel availability = new JPanel(new FlowLayout());
-    protected JButton qrcode = new JButton(), bluray = new JButton();
+	/* Components */
+	protected JLabel poster = new JLabel();
+	private JPanel mainPanel = new JPanel(new BorderLayout()), panelforPoster = new JPanel(new FlowLayout());
+	protected JPanel availability = new JPanel(new FlowLayout());
+	protected JButton qrcode = new JButton(), bluray = new JButton();
 
-    /* Actions */
-    public static final String RENTBR = "RENT_BLU-RAY";
-    public static final String RENTQR = "RENT_QR-CODE";
+	/* Actions */
+	public static final String RENTBR = "RENT_BLU-RAY";
+	public static final String RENTQR = "RENT_QR-CODE";
 
-    
-    private String IMG_FILM; 
-    /**
-     * Constructor of {@code FilmPanel} 
-     * Set JPanel options and add Components.
-     * @author MathysC
-     *
-     */
-    public FilmPanel() {
-    	IMG_FILM = "Test_Film";// TODO 
-    	
-        // JPanel Options
-        this.setLayout(new BorderLayout());
+	/* Options */
+	private int witdhPanel = 200, heightPanel = 200,
+			witdhButton = 85, heightButton = 25,
+			witdhPoster = 100, heightPoster = 150;
 
-        // Set Poster.
-        this.setPosterLabel(); // TODO
+	/* FC */
+	private ImageIcon posterImg = Decorations.getImg("Test_Film"); // TODO
+	private Film film;
 
-        // Set Buttons.
-        this.setAvailabilityPanel(); // TODO
-        
-        
-    }
+	/**
+	 * Constructor of {@code FilmPanel}
+	 * Set JPanel options and add Components.
+	 * 
+	 * @author MathysC
+	 */
+	public FilmPanel(Film f, double percent) {
+		// Film
+		this.film = f;
 
-    /**
-     * TODO: Find a way to implement the right image for the poster.
-     * TODO: Add action from click on the poster to the Information of the Film
-     * Set the icon of the poster Label.
-     * @author MathysC
-     *
-     */
-    private void setPosterLabel() {
+		// JPanel Options
+		this.setLayout(new FlowLayout());
 
-    	panelforPoster.add(poster);
-        poster.setIcon(Decorations.getImg(IMG_FILM));
+		// Set Poster.
+		// TODO: Add action from click on the poster to the Information of the Film
+		panelforPoster.add(poster);
+		mainPanel.add(panelforPoster, BorderLayout.CENTER);
+		poster.setIcon(posterImg);
 
-        this.add(panelforPoster, BorderLayout.CENTER);
+		// Set Buttons.
+		qrcode = new JButton("QRCode");
+		qrcode.setActionCommand(RENTQR);
+		availability.add(qrcode);
 
-    }
+		bluray = new JButton("BluRay");
+		bluray.setActionCommand(RENTBR);
+		availability.add(bluray);
 
-    /**
-     * TODO
-     * Set actions of buttons
-     * @author MathysC
-     *
-     */
-    private void setAvailabilityPanel() {
-        qrcode = new JButton("QRCode");
-        qrcode.setActionCommand(RENTQR);
-        availability.add(qrcode);
+		mainPanel.add(availability, BorderLayout.SOUTH);
 
-        bluray = new JButton("BluRay");
-        bluray.setActionCommand(RENTBR);
-        availability.add(bluray);
+		this.add(mainPanel);
+		this.setPanelScale(percent);
+		this.update();
 
-        this.add(availability, BorderLayout.SOUTH);
+	}
 
-    }
+	/**
+	 * @author MathysC
+	 * @param availability The BluRay availability to set
+	 */
+	public void setBluRayAvailable(boolean availability) {
+		this.bluray.setEnabled(availability);
+	}
 
-    /**
-     * Set the BluRay Available.
-     * @author MathysC
-     *
-     */
-    public void setBluRayAvailable() {
-        this.bluray.setEnabled(true);
-    }
+	/**
+	 * @author MathysC
+	 * @param availability The QR Code availability to set
+	 */
+	public void setQRCodeAvailable(boolean availability) {
+		this.qrcode.setEnabled(availability);
+	}
 
-    /**
-     * Set the BluRay Unavailable.
-     * @author MathysC
-     *
-     */
-    public void setBluRayUnavailable() {
-        this.bluray.setEnabled(false);
-    }
+	/**
+	 * TODO: Update Poster
+	 * Update Panel with {@code this.film} data.
+	 * 
+	 * @author MathysC
+	 */
+	public void update() {
+		this.setQRCodeAvailable(this.film.isQRAvailable());
+		this.setBluRayAvailable(this.film.isBRAvailable());
+	}
 
-    /**
-     * Set the QR Code Available.
-     * @author MathysC
-     *
-     */
-    public void setQRCodeAvailable() {
-        this.qrcode.setEnabled(true);
-    }
+	/**
+	 * 
+	 * @author MathysC
+	 *
+	 * @param percent the percent to scale the panel to.
+	 * @requires percent must be positive or will be reset to 100.
+	 */
+	public void setPanelScale(double percent) {
+		percent = (percent < 0) ? 100 : percent;
+		// Change size of main Panel.
+		mainPanel.setPreferredSize(
+				new Dimension(
+						(int) (percent * witdhPanel / 100),
+						(int) (percent * heightPanel / 100)));
 
-    /**
-     * Set the QR Code Unavailable.
-     * @author MathysC
-     *
-     */
-    public void setQRCodeUnavailable() {
-        this.qrcode.setEnabled(false);
-    }
+		// Change size of QR Code button.
+		qrcode.setPreferredSize(
+				new Dimension(
+						(int) (percent * witdhButton / 100),
+						(int) (percent * heightButton / 100)));
 
-    /**
-     * TODO: update the {@code ui.Film} with data from {@code fc.Film}
-     * @author MathysC
-     *
-     */
-    public void update() {
-        /* TODO */ }
+		// Change size of Blu Ray button.
+		bluray.setPreferredSize(
+				new Dimension(
+						(int) (percent * witdhButton / 100),
+						(int) (percent * heightButton / 100)));
+
+		// Change size of Poster
+		poster.setIcon(
+				new ImageIcon(
+						posterImg.getImage().getScaledInstance(
+								(int) (percent * witdhPoster / 100),
+								(int) (percent * heightPoster / 100),
+								java.awt.Image.SCALE_SMOOTH)));
+	}
 
 	@Override
 	public void setLight() {
+		// Jpanel
+		this.setBackground(Light.BG.getColor());
+		this.mainPanel.setBackground(mainPanel.getParent().getBackground());
+
 		// Poster
-		this.panelforPoster.setBackground(Light.BG.getColor());
-		
+		this.panelforPoster.setBackground(panelforPoster.getParent().getBackground());
+
 		// Buttons Panel
-		this.availability.setBackground(Light.BG.getColor());
-		
+		this.availability.setBackground(availability.getParent().getBackground());
+
 		// QR Code Button
 		this.qrcode.setBackground(Light.BLUE.getColor());
 		this.qrcode.setForeground(Light.WHITE.getColor());
 		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
-		
+
 		// Blu Ray Button
 		this.bluray.setBackground(Light.BLUE.getColor());
 		this.bluray.setForeground(Light.WHITE.getColor());
@@ -153,20 +167,24 @@ public class FilmPanel extends JPanel implements ColorTheme{
 
 	@Override
 	public void setDark() {
+		// JPanel
+		this.setBackground(Dark.BG.getColor());
+		this.mainPanel.setBackground(mainPanel.getParent().getBackground());
+
 		// Poster
-		this.panelforPoster.setBackground(Dark.BG.getColor());
-		
+		this.panelforPoster.setBackground(panelforPoster.getParent().getBackground());
+
 		// Buttons Panel
-		this.availability.setBackground(Dark.BG.getColor());		
-		
+		this.availability.setBackground(availability.getParent().getBackground());
+
 		// QR Code Button
 		this.qrcode.setBackground(Dark.BLUE.getColor());
 		this.qrcode.setForeground(Dark.FOREGROUNG.getColor());
 		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
-		
+
 		// Blu Ray Button
 		this.bluray.setBackground(Dark.BLUE.getColor());
 		this.bluray.setForeground(Dark.FOREGROUNG.getColor());
-		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));	
+		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 	}
 }

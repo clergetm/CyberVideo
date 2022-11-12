@@ -15,6 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+import fc.AL2000;
+import fc.Films.Film;
+
 /**
  * @author MathysC
  * Main Class of AL2000. Initialize the machine Interface.
@@ -26,21 +29,35 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	public static final String ICO_APP = "App";
 
 	/* Banners */
-	public static final String IMG_BANNER_IT = "BannerIT", IMG_BANNER_POLICE = "BannerPOLICE",
+	public static final String IMG_BANNER_IT = "BannerIT", 
+			IMG_BANNER_POLICE = "BannerPOLICE",
 			IMG_BANNER_DESERT = "BannerDESERT";
-    /* Components */
+	
+	/* Components */
     protected TopBarPanel topBarPanel = new TopBarPanel();
     protected JLabel banner = new JLabel();
     protected WelcomePage welcomePage = new WelcomePage();
 
+    /* FC */
+    private AL2000 fc;
+    
     /**
      * Constructor of Main.
-     * Initialize the AL200 Main Window.
+     * Initialize the AL2000 Functional Core.
+     * Initialize the AL2000 Main Window.
      * @author MathysC
      *
      */
     public MainFrame() {
         super("AL2000");
+        
+        // Initialize FC before the GUI (atleast this.setLanguage and this.setLight functions)
+        fc = new AL2000();
+        // TODO: Change TestHydrate function
+        for(int i = 0; i <1; i++)
+        	for(Film f : this.fc.TESTHYDRATE())
+        		this.welcomePage.suggestions().getFilmManager().addFilm(f);
+        
         // Set options.
         this.setIconImage(Decorations.getIco(ICO_APP));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -64,6 +81,7 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 
         // Maximize the Window.
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -81,7 +99,7 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
      * @return WelcomePage
      */
     public WelcomePage welcome() { return this.welcomePage; }
-    
+        
     /**
      * Change all Main and Main’s Child text.
      * @author MathysC
