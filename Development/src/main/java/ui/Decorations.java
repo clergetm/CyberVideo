@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -133,7 +134,15 @@ public enum Decorations {
     public static EmptyBorder getDefaultBorder() {
             return new EmptyBorder(10, 10, 10, 10);
     }
-     
+    
+    /**
+     * @author MathysC
+     *
+     * @return Dimension the default Button dimension.
+     */
+    public static Dimension getDefaultButtonDimension() {
+    	return new Dimension(100, 100);
+    }
     /**
      * Get the enumerated Font
      * @author MathysC

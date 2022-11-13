@@ -36,7 +36,6 @@ public class TopBarPanel extends JPanel implements ColorTheme {
     protected JButton searchButton = new JButton();
     
     /* Options */
-    private final Dimension DIM_BUTTON = new Dimension(100, 100);
     private final Dimension DIM_LOGO = new Dimension(200, 150);
 
     /* Actions */
@@ -72,16 +71,16 @@ public class TopBarPanel extends JPanel implements ColorTheme {
         this.add(options, BorderLayout.EAST);
         
         // Search Button
-        setButton(searchButton, DIM_BUTTON, Decorations.getImg(IMG_SEARCH_LIGHT), ACTION_SEARCH);
+        setButton(searchButton, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_SEARCH_LIGHT), ACTION_SEARCH);
         
         // Color switch button.
-        setButton(colorSwitch, DIM_BUTTON, Decorations.getImg(IMG_LIGHT), ACTION_LIGHT);
+        setButton(colorSwitch, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_LIGHT), ACTION_LIGHT);
 
         // Language switch button.
-        setButton(languageSwitch, DIM_BUTTON, Decorations.getImg(IMG_EN), ACTION_EN);
+        setButton(languageSwitch, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_EN), ACTION_EN);
 
         // Ask for help button.
-        setButton(askForHelpButton, DIM_BUTTON, Decorations.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
+        setButton(askForHelpButton, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
 
     }
 
