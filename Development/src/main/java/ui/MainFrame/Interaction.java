@@ -37,7 +37,7 @@ import javax.sound.sampled.SourceDataLine;
 public class Interaction implements ActionListener {
 
     private MainFrame mainFrame;
-    
+
     /**
      * Constructor of Interaction.
      * @author MathysC
@@ -55,42 +55,53 @@ public class Interaction implements ActionListener {
         mainFrame.actionPanel.getUndoButton().addActionListener(this);
         mainFrame.actionPanel.getRedoButton().addActionListener(this);
         mainFrame.actionPanel.getConnectionButton().addActionListener(this);
-}
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-        // Handle Search Button from the TopBarPanel.
+            // Handle Search Button from the TopBarPanel.
         case TopBarPanel.ACTION_SEARCH:
-        	mainFrame.changeCurrentPage(MainFrame.ID_RESULT_PAGE);
-        	break;
-        // Handle Language Switch Button from the TopBarPanel.
+            // Go to Search Page
+            mainFrame.changeCurrentPage(MainFrame.ID_RESULT_PAGE);
+            mainFrame.topBarPanel.searchButton.setActionCommand(TopBarPanel.ACTION_WELCOME);
+            break;
+
+        case TopBarPanel.ACTION_WELCOME:
+            // Go to Welcome Page
+            mainFrame.changeCurrentPage(MainFrame.ID_WELCOME_PAGE);
+            mainFrame.topBarPanel.searchButton.setActionCommand(TopBarPanel.ACTION_SEARCH);
+            break;
+            
+            // Handle Language Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_EN:
-        	// Change from English to French
+            // Change from English to French
             mainFrame.setLanguage(mainFrame.getRbFR());
             mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
             mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_FR);
             break;
+            
         case TopBarPanel.ACTION_FR:
-        	// Change from French to English
-        	mainFrame.setLanguage(mainFrame.getRbEN());
+            // Change from French to English
+            mainFrame.setLanguage(mainFrame.getRbEN());
             mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
             mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_EN);
             break;
-            
-        // Handle askForHelp button from the TopBarPanel.
+
+            // Handle askForHelp button from the TopBarPanel.
         case TopBarPanel.ACTION_HELP:
             playSound(Decorations.SND_STORERING.toString());
             break;
-            
-        // Handle Color Switch Button from the TopBarPanel.
+
+            // Handle Color Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_LIGHT:
-        	// Change from Light to Dark theme.
-        	mainFrame.setDark();
-        	break;
+            // Change from Light to Dark theme.
+            mainFrame.setDark();
+            break;
+            
         case TopBarPanel.ACTION_DARK:
-        	// Change from Dark to Light theme.
-        	mainFrame.setLight();
+            // Change from Dark to Light theme.
+            mainFrame.setLight();
             break;
         default:
             throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());

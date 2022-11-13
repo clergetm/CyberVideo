@@ -39,13 +39,21 @@ public class TopBarPanel extends JPanel implements ColorTheme {
     private final Dimension DIM_LOGO = new Dimension(200, 150);
 
     /* Actions */
-    public static final String ACTION_EN = "Switch_to_fr", ACTION_FR = "Switch_to_en", ACTION_HELP = "Ask_for_help",
-    		ACTION_DARK = "Switch_to_Light", ACTION_LIGHT = "Switch_to_Dark";
-    public static final String ACTION_SEARCH = "Search";
+    public static final String ACTION_EN = "Switch_to_fr";
+    public static final String ACTION_FR = "Switch_to_en";
+    public static final String ACTION_HELP = "Ask_for_help";
+    public static final String ACTION_DARK = "Switch_to_Light";
+    public static final String ACTION_LIGHT = "Switch_to_Dark";
+    public static final String ACTION_SEARCH = "Go_to_Search_page";
+    public static final String ACTION_WELCOME = "Go_to_Welcome_page";
     /* Icons */
-    public static final String IMG_LOGO = "Light_Logo", IMG_FR = "CurrentFR", IMG_EN = "CurrentEN", 
-    		IMG_LIGHT = "CurrentLight" , IMG_DARK = "CurrentDark", 
-    		IMG_QUESTION_LIGHT = "QuestionLight", IMG_QUESTION_DARK = "QuestionDark";
+    public static final String IMG_LOGO = "Light_Logo";
+    public static final String IMG_FR = "CurrentFR";
+    public static final String IMG_EN = "CurrentEN";
+    public static final String IMG_LIGHT = "CurrentLight" ;
+    public static final String IMG_DARK = "CurrentDark";
+    public static final String IMG_QUESTION_LIGHT = "QuestionLight";
+    public static final String IMG_QUESTION_DARK = "QuestionDark";
     
     public static final String IMG_SEARCH_LIGHT = "searchLight";
     public static final String IMG_SEARCH_DARK = "searchDark";
