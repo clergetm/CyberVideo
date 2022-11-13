@@ -64,8 +64,6 @@ enum FORMAT {
 /**
  * Enumerations of all parameters used.
  * 
- * TODO: Find a better way to represent this ugly code.
- * 
  * @author MathysC
  * 
  */
@@ -119,7 +117,6 @@ public enum Decorations {
 			image = ImageIO.read(file);
 			return image;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	return null;

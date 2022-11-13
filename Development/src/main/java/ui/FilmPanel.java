@@ -40,7 +40,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 			witdhPoster = 100, heightPoster = 150;
 
 	/* FC */
-	private ImageIcon posterImg = Decorations.getImg(Decorations.IMG_FILM.toString()); // TODO
+	private ImageIcon posterImg = Decorations.getImg(Decorations.IMG_FILM.toString()); // TODO #8
 	private Film film;
 
 	/**
@@ -57,7 +57,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 		this.setLayout(new FlowLayout());
 
 		// Set Poster.
-		// TODO: Add action from click on the poster to the Information of the Film
+		// TODO #40 Add action from click on the poster to the Information of the Film
 		panelforPoster.add(poster);
 		mainPanel.add(panelforPoster, BorderLayout.CENTER);
 		poster.setIcon(posterImg);
@@ -96,7 +96,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 	}
 
 	/**
-	 * TODO: Update Poster
+	 * TODO #8 Update Poster (not sure if useful)
 	 * Update Panel with {@code this.film} data.
 	 * 
 	 * @author MathysC

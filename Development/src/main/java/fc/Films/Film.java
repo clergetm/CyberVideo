@@ -158,7 +158,6 @@ public class Film {
 
 		
 		} catch (IOException | WriterException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return link;

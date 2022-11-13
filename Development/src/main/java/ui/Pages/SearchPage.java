@@ -91,7 +91,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    
 	    this.add(mainPanel,BorderLayout.CENTER);
 	    
-	    // TODO Remove after completing implementation
+	    // TODO #29 Remove after completing implementation
 	    Film film = new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});
 	    this.addResult(film);
 	    mostRentedManager.addFilm(film);

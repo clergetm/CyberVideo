@@ -39,7 +39,7 @@ class CheckedOutFilmPanel extends JPanel implements Multilingual, ColorTheme {
 		filmOptions.setLayout(new BoxLayout(filmOptions, BoxLayout.Y_AXIS));
 			
 		/* Poster */
-		// poster.setIcon(film.getIcon()); // TODO: getter of the film Icon
+		// poster.setIcon(film.getIcon()); // TODO #8 getter of the film Icon
 		poster.setIcon(Decorations.getImg(Decorations.IMG_FILM.toString()));
 		this.add(poster);
 		
@@ -159,7 +159,7 @@ class CheckoutPanel extends JPanel implements Multilingual, ColorTheme {
 	 */
 	private void addToCart(Film film, String rent) {
 		CheckedOutFilmPanel filmCheckedOut = new CheckedOutFilmPanel(film, rent); 
-//		this.checkoutManager.addFilm(filmCheckedOut); // TODO: addFilm to manager
+//		this.checkoutManager.addFilm(filmCheckedOut); // TODO#29 addFilm to manager
 		this.cart.put(film, filmCheckedOut);
 	}
 	
@@ -244,7 +244,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 	
 	/*Action pages */
 	private HashMap<Integer, JPanel> subActionsPanel = new HashMap<>();
-	protected JPanel filmPage = new JPanel();  //TODO: change JPanel when FilmPage added
+	protected JPanel filmPage = new JPanel();  //TODO #39 change JPanel when FilmPage added
 	protected SearchPage searchPage = new SearchPage();
 	private int current_subAction;
 	/*Action actions*/
@@ -275,13 +275,13 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 		
 		/* Search Panel */
 		// Search TextField
-		// TODO: Add MouseListener
-		// TODO: Add KeyboardDialog
+		// TODO #29 Add MouseListener
+		// TODO #29 Add KeyboardDialog
 		tfSearch.setColumns(30);
 		searchPanel.add(tfSearch);
 		
 		// Filter ComboxBox
-		// TODO: Correct Size and Color Combobox
+		// TODO #29 Correct Size and Color Combobox
 		searchPanel.add(filterCBox);
 		
 		topPanel.add(searchPanel,BorderLayout.WEST);
@@ -300,7 +300,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 		commandPanel.add(redoButton);
 
 		// Connection Button
-//		connectionButton.setActionCommand(ACTION_UNDO); // TODO
+//		connectionButton.setActionCommand(ACTION_UNDO); // TODO #39
 		connectionButton.setPreferredSize(Decorations.getDefaultButtonDimension());
 		commandPanel.add(connectionButton);
 
@@ -312,13 +312,12 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 		this.add(checkoutPanel,BorderLayout.EAST);
 		
 		
-		// TODO: add ResultPage to actionCenterPanel
-		current_subAction = MainFrame.ID_RESULT_PAGE;
 		
-        /*Initialize subPanel map*/
+		/*Initialize subPanel map*/
 		subActionsPanel.put(MainFrame.ID_RESULT_PAGE, searchPage);
 		subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
-	}
+		current_subAction = MainFrame.ID_RESULT_PAGE;
+}
 
 	/**
 	 * Remove the current subAction Panel and add another one.
@@ -327,9 +326,9 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 	 * @param id The ID of the Page to show.
 	 */
 	public void changeCurrentActionPage(int id) {
-		this.actionCenterPanel.remove(this.subActionsPanel.get(current_subAction));
-    	this.actionCenterPanel.add(this.subActionsPanel.get(id), BorderLayout.CENTER);
-    	current_subAction = id;
+	    this.actionCenterPanel.remove(this.subActionsPanel.get(current_subAction));
+	    this.actionCenterPanel.add(this.subActionsPanel.get(id), BorderLayout.CENTER);
+	    current_subAction = id;
 	}
 	
 	@Override

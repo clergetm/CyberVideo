@@ -90,7 +90,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
         keysPanel.add(specialPanel);
         this.add(keysPanel, BorderLayout.CENTER);
 
-        // TODO: Find a way to put the component Vertically.
+        // TODO #41 Find a way to put the component Vertically.
         actionsPanel = getActionKeys();
         this.add(actionsPanel, BorderLayout.EAST);
        

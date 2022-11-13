@@ -65,7 +65,7 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 
 		// Initialize FC before the GUI (atleast this.setLanguage and this.setLight functions)
 		fc = new AL2000();
-		// TODO: Change TestHydrate function
+		// TODO #38 Change TestHydrate function
 		for(int i = 0; i <1; i++)
 			for(Film f : this.fc.TESTHYDRATE())
 				this.welcomePage.suggestions().getFilmManager().addFilm(f);

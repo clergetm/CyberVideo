@@ -20,7 +20,7 @@ public class AL2000 {
 	}
 	
 	/**
-	 * TODO: TO REMOVE AFTER LINK BETWEEN EACH PART
+	 * TODO #38 TO REMOVE AFTER LINK BETWEEN EACH PART
 	 * @author MathysC
 	 *
 	 */
