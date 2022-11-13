@@ -1,7 +1,6 @@
 package ui.MainFrame;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
@@ -31,19 +30,26 @@ public class TopBarPanel extends JPanel implements ColorTheme {
     /* Components */
     protected JLabel logo = new JLabel();
     protected JPanel options = new JPanel();
-    protected JButton colorSwitch = new JButton(), languageSwitch = new JButton(), askForHelp = new JButton();
-
+    protected JButton colorSwitch = new JButton();
+    protected JButton languageSwitch = new JButton();
+    protected JButton askForHelpButton = new JButton();
+    protected JButton searchButton = new JButton();
+    
     /* Options */
-    private final Dimension DIM_BUTTON = new Dimension(100, 100), DIM_LOGO = new Dimension(200, 150);
+    private final Dimension DIM_BUTTON = new Dimension(100, 100);
+    private final Dimension DIM_LOGO = new Dimension(200, 150);
 
     /* Actions */
     public static final String ACTION_EN = "Switch_to_fr", ACTION_FR = "Switch_to_en", ACTION_HELP = "Ask_for_help",
     		ACTION_DARK = "Switch_to_Light", ACTION_LIGHT = "Switch_to_Dark";
-
+    public static final String ACTION_SEARCH = "Search";
     /* Icons */
     public static final String IMG_LOGO = "Light_Logo", IMG_FR = "CurrentFR", IMG_EN = "CurrentEN", 
     		IMG_LIGHT = "CurrentLight" , IMG_DARK = "CurrentDark", 
     		IMG_QUESTION_LIGHT = "QuestionLight", IMG_QUESTION_DARK = "QuestionDark";
+    
+    public static final String IMG_SEARCH_LIGHT = "searchLight";
+    public static final String IMG_SEARCH_DARK = "searchDark";
     /**
      * Constructor of TopBar.
      * Set JPanel options and add components.
@@ -64,7 +70,10 @@ public class TopBarPanel extends JPanel implements ColorTheme {
         options.setLayout(new FlowLayout(FlowLayout.TRAILING));
         options.setBorder(Decorations.getDefaultBorder());
         this.add(options, BorderLayout.EAST);
-
+        
+        // Search Button
+        setButton(searchButton, DIM_BUTTON, Decorations.getImg(IMG_SEARCH_LIGHT), ACTION_SEARCH);
+        
         // Color switch button.
         setButton(colorSwitch, DIM_BUTTON, Decorations.getImg(IMG_LIGHT), ACTION_LIGHT);
 
@@ -72,7 +81,7 @@ public class TopBarPanel extends JPanel implements ColorTheme {
         setButton(languageSwitch, DIM_BUTTON, Decorations.getImg(IMG_EN), ACTION_EN);
 
         // Ask for help button.
-        setButton(askForHelp, DIM_BUTTON, Decorations.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
+        setButton(askForHelpButton, DIM_BUTTON, Decorations.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
 
     }
 
@@ -105,7 +114,12 @@ public class TopBarPanel extends JPanel implements ColorTheme {
 
 		// Options Panel
 		this.options.setBackground(Light.BG.getColor());
-		
+
+		// Buttons
+    	colorSwitch.setIcon(Decorations.getImg(IMG_LIGHT));
+        colorSwitch.setActionCommand(ACTION_LIGHT);
+        askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_LIGHT));
+        searchButton.setIcon(Decorations.getImg(IMG_SEARCH_LIGHT));
 	}
 
 	@Override
@@ -117,5 +131,10 @@ public class TopBarPanel extends JPanel implements ColorTheme {
 		// Options Panel
 		this.options.setBackground(Dark.BG.getColor());
 		
+		// Buttons
+    	colorSwitch.setIcon(Decorations.getImg(IMG_DARK));
+        colorSwitch.setActionCommand(ACTION_DARK);
+    	askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_DARK));
+        searchButton.setIcon(Decorations.getImg(IMG_SEARCH_DARK));
 	}
 }
