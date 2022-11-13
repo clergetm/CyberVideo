@@ -25,9 +25,15 @@ Where did we find the images used in this project.
               <li><a href="#cybervideo-logo">CyberVideo Logo</a></li>
               <li><a href="#search-button">Search Button</a></li>
               <li><a href="#language-switch">Language switch</a></li>
-             <li><a href="#theme-switch">Theme switch</a></li>
+              <li><a href="#theme-switch">Theme switch</a></li>
               <li><a href="#ask-for-help-button">Ask For Help Button</a></li>
               <li><a href="#banner-images">Banner Images</a></li>
+            </ul>
+        </li>
+        <li> 
+          <a href="#welcome-page">Action Page</a>
+            <ul>
+              <li><a href="#undo-button">Undo Button</a></li>
             </ul>
         </li>
       </ul>
@@ -135,6 +141,19 @@ We used 3 images from [pixabay][pbay-movie-poster]:
 
 ---
 
+### Action Page
+
+#### Undo Button
+We used undo images from [custom-design-icon][cid].
+
+- Both undo images (black and white) were used in these sizes:
+  - 96 x 96 pixels
+  - undo images from [here][undo-redo-img].
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+---
+
 ## Icons
 
 ### Application Icon
@@ -190,3 +209,4 @@ We used Edit icon from [softicons][soft].
 [film-ico]: https://www.softicons.com/toolbar-icons/fugue-16px-icons-by-yusuke-kamiyamane/film-icon
 [faq-ico]: https://www.customicondesign.com/free-icons/mono-icon-set/mono-general-1/
 [search-img]: https://www.customicondesign.com/free-icons/mono-icon-set/mono-general-2/
+[undo-redo-img]: https://www.customicondesign.com/free-icons/mono-icon-set/mono-general-3/#
