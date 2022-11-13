@@ -34,6 +34,7 @@ Where did we find the images used in this project.
           <a href="#welcome-page">Action Page</a>
             <ul>
               <li><a href="#undo-button">Undo Button</a></li>
+             <li><a href="#redo-button">Redo Button</a></li>
             </ul>
         </li>
       </ul>
@@ -153,6 +154,18 @@ We used undo images from [custom-design-icon][cid].
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ---
+
+#### Redo Button
+We used redo images from [custom-design-icon][cid].
+
+- Both redo images (black and white) were used in these sizes:
+  - 96 x 96 pixels
+  - redo images from [here][undo-redo-img].
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+---
+
 
 ## Icons
 
