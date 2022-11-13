@@ -92,7 +92,7 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
 		this.setBackground(Dark.BG.getColor());
 		
         // Suggestion Label.
-		this.sugLabel.setForeground(Dark.FOREGROUNG.getColor());
+		this.sugLabel.setForeground(Dark.FOREGROUND.getColor());
 		this.panelForLabel.setBackground(Dark.BG.getColor());
 		
 		// Film ScrollPane.
