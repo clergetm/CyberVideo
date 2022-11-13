@@ -248,13 +248,13 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         placeholderPassword = rb.getString("login_pw_placeholder");
 
         // connection JButton
-        connection.setText(rb.getString("login_connection"));
+        connection.setText(rb.getString("login_in"));
 
         // createAccount JButton
-        createAccount.setText(rb.getString("login_createAccount"));
+        createAccount.setText(rb.getString("login_up"));
 
         // continue Without an Account JButton
-        continueWithoutConn.setText(rb.getString("login_continueWithoutConnection"));
+        continueWithoutConn.setText(rb.getString("login_without"));
 
         // KeyboardDialog
         keyboardTitleID = rb.getString("login_id_vk_frameName");
