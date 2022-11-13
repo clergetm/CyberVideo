@@ -5,18 +5,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Insets;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.concurrent.Flow;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -26,6 +22,7 @@ import ui.Bundles.Multilingual;
 import ui.Colors.ColorTheme;
 import ui.Colors.Dark;
 import ui.Colors.Light;
+import ui.MainFrame.MainFrame;
 
 @SuppressWarnings("serial")
 class CheckedOutFilmPanel extends JPanel implements Multilingual, ColorTheme {
@@ -246,9 +243,10 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 	}
 	
 	/*Action pages */
-	public static final int RESULT_PAGE = 0;
-	public static final int FILM_PAGE = 1;
-	
+	private HashMap<Integer, JPanel> subActionsPanel = new HashMap<>();
+	protected JPanel FilmPage = new JPanel();  //TODO: change JPanel when FilmPage added
+	protected JPanel ResultPage = new JPanel(); // TODO: Change JPanel when ResultPage added
+	private int current_subAction;
 	/*Action actions*/
 	public static final String ACTION_UNDO = "Undo";
 	public static final String ACTION_REDO = "Redo";
@@ -313,8 +311,27 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 		this.add(actionCenterPanel, BorderLayout.CENTER);
 		this.add(checkoutPanel,BorderLayout.EAST);
 		
+		
+		// TODO: add ResultPage to actionCenterPanel
+		current_subAction = MainFrame.ID_RESULT_PAGE;
+		
+        /*Initialize subPanel map*/
+		subActionsPanel.put(MainFrame.ID_RESULT_PAGE, ResultPage);
+		subActionsPanel.put(MainFrame.ID_FILM_PAGE, FilmPage);
 	}
 
+	/**
+	 * Remove the current subAction Panel and add another one.
+	 * @author MathysC
+	 *
+	 * @param id The ID of the Page to show.
+	 */
+	public void changeCurrentActionPage(int id) {
+		this.actionCenterPanel.remove(this.subActionsPanel.get(current_subAction));
+    	this.actionCenterPanel.add(this.subActionsPanel.get(id), BorderLayout.CENTER);
+    	current_subAction = id;
+	}
+	
 	@Override
 	public void setLight() {
 		// Panels
@@ -351,6 +368,5 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 		this.checkoutPanel.setLanguage(rb);
 		
 		connectionButton.setText(rb.getString("login_in"));
-	
 	}
 }
