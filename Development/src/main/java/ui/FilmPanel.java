@@ -40,7 +40,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 			witdhPoster = 100, heightPoster = 150;
 
 	/* FC */
-	private ImageIcon posterImg = Decorations.getImg("Test_Film"); // TODO
+	private ImageIcon posterImg = Decorations.getImg(Decorations.IMG_FILM.toString()); // TODO
 	private Film film;
 
 	/**

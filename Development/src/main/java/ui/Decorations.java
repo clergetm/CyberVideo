@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
  *
  */
 enum PATH {
-	RESOURCES_PATH("resources/"),
+	RESOURCES_PATH("src/main/resources/"),
 	IMG(RESOURCES_PATH+"images/"),
 	ICO(RESOURCES_PATH +"icons/"),
 	SND(RESOURCES_PATH + "sounds/");
@@ -71,7 +71,8 @@ enum FORMAT {
 public enum Decorations {
 	
     /* Images */
-    IMG_BUTTON("Test_Button"),
+	IMG_BUTTON("Test_Button"),
+	IMG_FILM("Test_Film"),
   
 	/* Fonts */
 	FONT_BASIC("Helvetica"),
