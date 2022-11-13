@@ -103,19 +103,19 @@ class CheckedOutFilmPanel extends JPanel implements Multilingual, ColorTheme {
         this.filmOptions.setBackground(this.filmOptions.getParent().getBackground());
         
         // Film title Label
-		this.filmTitle.setForeground(Dark.FOREGROUNG.getColor());
+		this.filmTitle.setForeground(Dark.FOREGROUND.getColor());
 
         // Rent type Label
-		this.rentType.setForeground(Dark.FOREGROUNG.getColor());
+		this.rentType.setForeground(Dark.FOREGROUND.getColor());
 		
 		// Information Button
 		this.informationButton.setBackground(Dark.BLUE.getColor());
-		this.informationButton.setForeground(Dark.FOREGROUNG.getColor());
+		this.informationButton.setForeground(Dark.FOREGROUND.getColor());
 		this.informationButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		
 		// Remove Button
 		this.removeButton.setBackground(Dark.BLUE.getColor());
-		this.removeButton.setForeground(Dark.FOREGROUNG.getColor());
+		this.removeButton.setForeground(Dark.FOREGROUND.getColor());
 		this.removeButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));	
 		
 	}
@@ -185,7 +185,7 @@ class CheckoutPanel extends JPanel implements Multilingual, ColorTheme {
 	public void setDark() {
 		// This Panel
 		this.setBackground(Dark.BG.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUNG.getColor()));
+        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUND.getColor()));
 
 		// Checkout Manager
 		this.checkoutManager.setBackground(this.checkoutManager.getParent().getBackground());
@@ -196,7 +196,7 @@ class CheckoutPanel extends JPanel implements Multilingual, ColorTheme {
 		
 		// Checkout Button
 		this.checkoutButton.setBackground(Dark.BLUE.getColor());
-		this.checkoutButton.setForeground(Dark.FOREGROUNG.getColor());
+		this.checkoutButton.setForeground(Dark.FOREGROUND.getColor());
 		this.checkoutButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));	
 	}
 
@@ -244,8 +244,8 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 	
 	/*Action pages */
 	private HashMap<Integer, JPanel> subActionsPanel = new HashMap<>();
-	protected JPanel FilmPage = new JPanel();  //TODO: change JPanel when FilmPage added
-	protected JPanel ResultPage = new JPanel(); // TODO: Change JPanel when ResultPage added
+	protected JPanel filmPage = new JPanel();  //TODO: change JPanel when FilmPage added
+	protected SearchPage searchPage = new SearchPage();
 	private int current_subAction;
 	/*Action actions*/
 	public static final String ACTION_UNDO = "Undo";
@@ -316,8 +316,8 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 		current_subAction = MainFrame.ID_RESULT_PAGE;
 		
         /*Initialize subPanel map*/
-		subActionsPanel.put(MainFrame.ID_RESULT_PAGE, ResultPage);
-		subActionsPanel.put(MainFrame.ID_FILM_PAGE, FilmPage);
+		subActionsPanel.put(MainFrame.ID_RESULT_PAGE, searchPage);
+		subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
 	}
 
 	/**
@@ -345,7 +345,9 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 		redoButton.setIcon(Decorations.getImg(IMG_REDO_LIGHT));
 		connectionButton.setBackground(Light.BLUE.getColor());
 		connectionButton.setForeground(Light.WHITE.getColor());
-		connectionButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));		
+		connectionButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));	
+		
+		searchPage.setLight();
 	}
 
 	@Override
@@ -359,8 +361,10 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 		undoButton.setIcon(Decorations.getImg(IMG_UNDO_DARK));
 		redoButton.setIcon(Decorations.getImg(IMG_REDO_DARK));
 		connectionButton.setBackground(Dark.BLUE.getColor());
-		connectionButton.setForeground(Dark.FOREGROUNG.getColor());
-		connectionButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));	
+		connectionButton.setForeground(Dark.FOREGROUND.getColor());
+		connectionButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+		
+		searchPage.setDark();
 	}
 
 	@Override
@@ -368,5 +372,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 		this.checkoutPanel.setLanguage(rb);
 		
 		connectionButton.setText(rb.getString("login_in"));
+		
+		this.searchPage.setLanguage(rb);
 	}
 }
