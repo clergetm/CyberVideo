@@ -60,7 +60,10 @@ public class Interaction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-
+        // Handle Search Button from the TopBarPanel.
+        case TopBarPanel.ACTION_SEARCH:
+        	mainFrame.changeCurrentPage(MainFrame.ID_RESULT_PAGE);
+        	break;
         // Handle Language Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_EN:
         	// Change from English to French
