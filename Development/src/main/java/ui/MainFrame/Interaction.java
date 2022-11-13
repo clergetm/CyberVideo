@@ -52,7 +52,9 @@ public class Interaction implements ActionListener {
         mainFrame.topBarPanel.askForHelpButton.addActionListener(this);
         mainFrame.topBarPanel.colorSwitch.addActionListener(this);
         mainFrame.topBarPanel.searchButton.addActionListener(this);
-        
+        mainFrame.actionPanel.getUndoButton().addActionListener(this);
+        mainFrame.actionPanel.getRedoButton().addActionListener(this);
+        mainFrame.actionPanel.getConnectionButton().addActionListener(this);
 }
 
     @Override
