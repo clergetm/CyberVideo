@@ -30,8 +30,10 @@ public class CreateDatabase
       File createTable = new File("createTable.sql");
       File max5CardsTrigger = new File("testTrigger/test_trigger_max_5_cards.sql");
       File creditAfter20RentalsTrigger = new File("testTrigger/test_trigger_credit_after_20_rentals.sql");
+      File max1YearHistoric = new File("testTrigger/test_trigger_max_1_year_historic.sql");
       File deleteTablesTrigger1 = new File("testTrigger/deleteTablesTrigger1.sql");
       File deleteTablesTrigger2 = new File("testTrigger/deleteTablesTrigger2.sql");
+      File deleteTablesTrigger3 = new File("testTrigger/deleteTablesTrigger3.sql");
 
       //Loading the JDBC Driver class
       Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -60,6 +62,7 @@ public class CreateDatabase
       System.out.println("\tCreation of triggers\n");
       stmt.executeUpdate("CREATE OR REPLACE TRIGGER max_5_cards_subscriber BEFORE INSERT ON OwnedCards FOR EACH ROW DECLARE nbCards INTEGER; BEGIN SELECT COUNT(*)INTO nbCards FROM OwnedCards WHERE subID = :new.subID; IF (nbCards >= 5) THEN RAISE_APPLICATION_ERROR(-20001,'A subscriber cannot have more than 5 subscriber cards'); END IF; END;");
       stmt.executeUpdate("CREATE OR REPLACE TRIGGER credit_after_20_rentals BEFORE INSERT ON Rentals FOR EACH ROW DECLARE nbRented INTEGER; BEGIN SELECT COUNT(*) INTO nbRented FROM Rentals WHERE supportCardID = :new.supportCardID; IF(nbRented >= 19) THEN UPDATE SubscriberCards SET balance = balance + 10 WHERE supportCardID = :new.supportCardID; END IF; END;");
+      stmt.executeUpdate("CREATE OR REPLACE TRIGGER max_1_year_historic AFTER UPDATE ON HistoricCreditCards BEGIN DELETE FROM HistoricCreditCards WHERE (SYSDATE-actionDate) > 365; END;");
       System.out.println("\tTriggers created\n");
 
       //------------------------INSERTING VALUES AND DISPLAY TABLE TEST WITH THE DATABASE CREATED------------------------//
@@ -80,6 +83,11 @@ public class CreateDatabase
       executeSqlScript(conn,creditAfter20RentalsTrigger);
       displayTable(stmt, "SELECT balance FROM SubscriberCards");
       executeSqlScript(conn,deleteTablesTrigger2);
+
+      System.out.println("\t\tMax 1 year historic of credit cards Trigger TEST\n");
+      executeSqlScript(conn,max1YearHistoric);
+      displayTable(stmt, "SELECT * FROM HistoricCreditCards");
+      executeSqlScript(conn,deleteTablesTrigger3);
       //-------------------------------END TRIGGERS TEST----------------------------//
 
       System.out.println("Base de données crée avec succés...");

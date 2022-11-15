@@ -1,0 +1,3 @@
+INSERT INTO HistoricCreditCards VALUES(1,1,TO_DATE('01/05/2022','DD/MM/YYYY'),'REFUND',10);
+INSERT INTO HistoricCreditCards VALUES(2,1,TO_DATE('06/05/2022','DD/MM/YYYY'),'REFUND',20);
+UPDATE HistoricCreditCards SET actionDate = TO_DATE('04/02/2021','DD/MM/YYYY') WHERE HistoricID = 1;
