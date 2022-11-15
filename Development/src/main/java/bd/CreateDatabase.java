@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.Scanner;
 
+import bd.DAO_Classes.FilmsDAO;
+import bd.DAO_Classes.MainDAO;
+
 
 //Run with this command : java -classpath projectpath\CyberVideo\Development\src\main\java\bd\ojdbc11.jar CreateDatabase.java
 
@@ -98,7 +101,11 @@ public class CreateDatabase
       executeSqlScript(conn,deleteTablesTrigger4);
       //-------------------------------END TRIGGERS TEST----------------------------//
 
-      System.out.println("Base de données crée avec succés...");
+      System.out.println("Database successfully created...");
+
+      //-------------------------------DAO Initialisation----------------------------//
+      
+      //MainDAO<Films> daoFilms = new FilmsDAO(conn);
 
       //Closing the connection object
       conn.close();
