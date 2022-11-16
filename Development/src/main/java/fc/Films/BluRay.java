@@ -5,22 +5,19 @@ package fc.Films;
  * @author Clarisse
  *
  */
-public class BluRay extends Film {
+public class BluRay extends Support {
 
-	private double price;
+	private double purchasePrice;
 	private StatesBluRay state;
+	
 	/**
 	 * Constructor of the class BluRay
-	 * @param price is the purchase price of the BluRay
+	 * @param purchasePrice is the purchase price of the BluRay
 	 * @param state is the current state of the BluRay
 	 * @param other param are in Film class
 	 */
-	public BluRay(double price, StatesBluRay state, String title, 
-			String synopsis, String[] actors, String FNDirector, String LNDirector,
-			AgeRestriction restriction, Categories[] categories) {
-		super(title, synopsis, actors, FNDirector, LNDirector, restriction, categories);
-
-		this.price=price;
+	public BluRay(double price, StatesBluRay state) {
+		this.purchasePrice=price;
 		this.state=state;
 	}
 	
@@ -28,21 +25,23 @@ public class BluRay extends Film {
 	public String getType() {
 		return "BluRay";
 	}
+	
+	@Override
+	public double getTariff() {
+		return 5;
+	}
+
+	@Override
+	public boolean isAvailable() {
+		return state==StatesBluRay.AVAILABLE ;
+	}
 
 	/**
 	 * 
 	 * @return the price of the bluray
 	 */
-	public double getPrice() {
-		return price;
-	}
-
-	/**
-	 * change the purchase price of the bluray
-	 * @param price the new price of the bluray
-	 */
-	public void setPrice(double price) {
-		this.price = price;
+	public double getPurchasePrice() {
+		return purchasePrice;
 	}
 	
 	/**
@@ -58,18 +57,6 @@ public class BluRay extends Film {
 	 * @param state
 	 */
 	public void setState(StatesBluRay state) {
-		this.state=state;
-		
+		this.state=state;	
 	}
-	
-	/**
-	 * @author MathysC
-	 *
-	 * @return true if the BluRay is stated AVAILABLE, else false.
-	 */
-	@Override
-	public boolean isBRAvailable() {
-		return this.state == StatesBluRay.AVAILABLE? true: false;
-	}
-
 }
