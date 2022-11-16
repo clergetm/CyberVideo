@@ -5,8 +5,8 @@ import ui.Bundles.Multilingual;
 import ui.Colors.ColorTheme;
 import ui.Colors.Dark;
 import ui.Colors.Light;
-import ui.Pages.ActionPanel;
 import ui.Pages.Welcome.WelcomePage;
+import ui.Pages.actions.ActionPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
