@@ -148,7 +148,7 @@ CREATE TABLE Subscribers (
 );
 
 CREATE TABLE HistoricCreditCards(
-    historicID VARCHAR(100),
+    historicID INTEGER,
     creditID INTEGER,
     actionDate DATE,
     action VARCHAR(15) CHECK( action IN ('STARTRENTAL', 'ENDRENTAL', 'PAYFULLPRICE', 'REFUND') ),

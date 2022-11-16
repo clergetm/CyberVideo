@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.Scanner;
 
+import bd.DAO_Classes.FilmsDAO;
+import bd.DAO_Classes.MainDAO;
+
 
 //Run with this command : java -classpath projectpath\CyberVideo\Development\src\main\java\bd\ojdbc11.jar CreateDatabase.java
 
@@ -30,8 +33,12 @@ public class CreateDatabase
       File createTable = new File("createTable.sql");
       File max5CardsTrigger = new File("testTrigger/test_trigger_max_5_cards.sql");
       File creditAfter20RentalsTrigger = new File("testTrigger/test_trigger_credit_after_20_rentals.sql");
+      File max1YearHistoric = new File("testTrigger/test_trigger_max_1_year_historic.sql");
+      File max1YearRentals = new File("testTrigger/test_trigger_max_1_year_rentals.sql");
       File deleteTablesTrigger1 = new File("testTrigger/deleteTablesTrigger1.sql");
       File deleteTablesTrigger2 = new File("testTrigger/deleteTablesTrigger2.sql");
+      File deleteTablesTrigger3 = new File("testTrigger/deleteTablesTrigger3.sql");
+      File deleteTablesTrigger4 = new File("testTrigger/deleteTablesTrigger4.sql");
 
       //Loading the JDBC Driver class
       Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -60,6 +67,8 @@ public class CreateDatabase
       System.out.println("\tCreation of triggers\n");
       stmt.executeUpdate("CREATE OR REPLACE TRIGGER max_5_cards_subscriber BEFORE INSERT ON OwnedCards FOR EACH ROW DECLARE nbCards INTEGER; BEGIN SELECT COUNT(*)INTO nbCards FROM OwnedCards WHERE subID = :new.subID; IF (nbCards >= 5) THEN RAISE_APPLICATION_ERROR(-20001,'A subscriber cannot have more than 5 subscriber cards'); END IF; END;");
       stmt.executeUpdate("CREATE OR REPLACE TRIGGER credit_after_20_rentals BEFORE INSERT ON Rentals FOR EACH ROW DECLARE nbRented INTEGER; BEGIN SELECT COUNT(*) INTO nbRented FROM Rentals WHERE supportCardID = :new.supportCardID; IF(nbRented >= 19) THEN UPDATE SubscriberCards SET balance = balance + 10 WHERE supportCardID = :new.supportCardID; END IF; END;");
+      stmt.executeUpdate("CREATE OR REPLACE TRIGGER max_1_year_historic AFTER UPDATE ON HistoricCreditCards BEGIN DELETE FROM HistoricCreditCards WHERE (SYSDATE-actionDate) > 365; END;");
+      stmt.executeUpdate("CREATE OR REPLACE TRIGGER max_1_year_location AFTER UPDATE ON Rentals BEGIN DELETE FROM Rentals WHERE (SYSDATE - beginDate) > 365; END;");
       System.out.println("\tTriggers created\n");
 
       //------------------------INSERTING VALUES AND DISPLAY TABLE TEST WITH THE DATABASE CREATED------------------------//
@@ -80,9 +89,23 @@ public class CreateDatabase
       executeSqlScript(conn,creditAfter20RentalsTrigger);
       displayTable(stmt, "SELECT balance FROM SubscriberCards");
       executeSqlScript(conn,deleteTablesTrigger2);
+
+      System.out.println("\t\tMax 1 year historic of credit cards Trigger TEST\n");
+      executeSqlScript(conn,max1YearHistoric);
+      displayTable(stmt, "SELECT * FROM HistoricCreditCards");
+      executeSqlScript(conn,deleteTablesTrigger3);
+
+      System.out.println("\t\tMax 1 year rentals Trigger TEST\n");
+      executeSqlScript(conn,max1YearRentals);
+      displayTable(stmt, "SELECT * FROM Rentals");
+      executeSqlScript(conn,deleteTablesTrigger4);
       //-------------------------------END TRIGGERS TEST----------------------------//
 
-      System.out.println("Base de données crée avec succés...");
+      System.out.println("Database successfully created...");
+
+      //-------------------------------DAO Initialisation----------------------------//
+      
+      //MainDAO<Films> daoFilms = new FilmsDAO(conn);
 
       //Closing the connection object
       conn.close();
