@@ -14,7 +14,6 @@ public class BluRay extends Support {
 	 * Constructor of the class BluRay
 	 * @param purchasePrice is the purchase price of the BluRay
 	 * @param state is the current state of the BluRay
-	 * @param other param are in Film class
 	 */
 	public BluRay(double price, StatesBluRay state) {
 		this.purchasePrice=price;

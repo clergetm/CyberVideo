@@ -12,8 +12,8 @@ public class Film {
 	private String title;
 	private String synopsis;
 	private String[] actors;
-	private String FNameDirector;
-	private String LNameDirector;
+	private String directorFname;
+	private String directorLname;
 	private Year year;
 	private Categories[] categories;
 	private AgeRestriction restriction;
@@ -36,8 +36,8 @@ public class Film {
 		this.title=title;
 		this.synopsis=synopsis;
 		this.actors=actors;
-		this.FNameDirector=FNDirector;
-		this.LNameDirector=LNDirector;
+		this.directorFname=FNDirector;
+		this.directorLname=LNDirector;
 		this.year=year;
 		this.categories=categories;
 		this.restriction=restriction;
@@ -76,7 +76,7 @@ public class Film {
 	 * "fnameDir lnameDir"
 	 */
 	public String getNamesDirector() {
-		return FNameDirector+" "+LNameDirector;
+		return directorFname+" "+directorLname;
 	}
 	
 	/**
