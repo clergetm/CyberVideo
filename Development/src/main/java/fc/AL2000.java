@@ -13,29 +13,56 @@ public class AL2000 {
 	String pw;
 	ArrayList<Film> filmList;
 	//Film attrs
-	String title, synopsis, directorLastName, directorFirstName, restrictedAge;
 	int filmID;
-	ArrayList<String> actors;
+	String title, synopsis, directorLastName, directorFirstName, restrictedAge;
+	ArrayList<String> actors, categories;
 
 	public AL2000(){
 		db = "";
 		userName = "";
 		pw = "";
-		filmList = new ArrayList<String>();
+		filmList = new ArrayList<Film>();
 		actors = new ArrayList<String>();
+		categories = new ArrayList<String>();
 
 		try{
 			Connection conn = DriverManager.getConnection();
-			String sqlReq = "SELECT * FROM Films;";
+			String reqFilms = "SELECT * FROM Films;";
 			Statement stm = conn.createStatement();
 			ResultSet res = stm.executeQuery(sqlReq);
 
+			//Getting films from db
 			while (res.next()){
-				//Get db informations
+				try {
+					filmID = Integer.parseInt(res.getString("filmID"));
+				}
+				catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+				title = res.getString("title");
+				synopsis = res.getString("synopsis");
+				directorFirstName = res.getString("directorFirstName");
+				directorLastName = res.getString("directorLastName");
+				restrictedAge = res.getString("restrictedAge");
+				//Actors extraction
+				String reqt = "SELECT actorFirstName, actorLastName FROM FilmsActors F INNER JOIN Actors A ON F.actorID = A.actorID WHERE filmID = "+filmID;
+				ResultSet restm = stm.executeQuery(reqt);
+				while (restm.next()){
+					actors.add(restm.getString("actorFirstName") + "," + restm.getString("actorLastName"));
+				}
+				//Categories extraction
+				reqt = "SELECT catName FROM FilmsCategories F INNER JOIN Categories C ON F.categorieID = C.categorieID WHERE filmID = "+filmID;
+				restm = stm.executeQuery(reqt);
+				while (restm.next()){
+					categories.add(restm.getString("catName"));
+				}
+				//Adding film object to filmList
+				filmList.add(new Film(title, synopsis, actors, directorFirstName, directorLastName, restrictedAge, categories));
 			}
+
 		}
 		catch(SQLException e){
-			System.out.println(e.getSQLState());
+			e.printStackTrace();
 		}
 	}
 
