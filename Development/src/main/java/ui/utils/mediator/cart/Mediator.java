@@ -21,7 +21,7 @@ public interface Mediator {
     boolean addToCart(Film film, String supportType);
     
     /**
-     * Remove a film from the cart
+     * Remove a film from the cart.
      * @author MathysC
      *
      * @param from the Component used.
