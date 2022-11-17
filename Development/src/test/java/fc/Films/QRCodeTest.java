@@ -9,7 +9,7 @@ import com.google.zxing.WriterException;
 
 class QRCodeTest {
 
-	/* Create an instance of a BluRay for test BluRay class */
+	/* Create an instance of a QRcode for test QRcode class */
 	protected QRCode qrcode = new QRCode();
 	
 	@Test
