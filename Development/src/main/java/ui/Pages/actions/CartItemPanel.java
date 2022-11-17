@@ -1,10 +1,10 @@
 package ui.Pages.actions;
 
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.ResourceBundle;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,43 +16,54 @@ import ui.Colors.ColorTheme;
 import ui.Colors.Dark;
 import ui.Colors.Light;
 
+/**
+ * Class that represents a film in the Cart. 
+ * @author MathysC
+ *
+ */
 @SuppressWarnings("serial")
 public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
 
-    protected JLabel poster = new JLabel();
-    protected JPanel filmOptions = new JPanel();
-    protected JLabel filmTitle = new JLabel();
-    protected JLabel rentType = new JLabel();
-    protected JButton informationButton = new JButton();
-    protected JButton removeButton = new JButton();
+    private JLabel poster = new JLabel(); // Poster on the left.
+    private JPanel cartOptions = new JPanel(); // Options on the right
+    private JLabel titleLabel = new JLabel(); // Title on the top right.
+    private JPanel bottomPanel = new JPanel(); // Buttons on the bottom right.
+    private JLabel supportLabel = new JLabel();
+    private JButton moreButton = new JButton();
+    private JButton removeButton = new JButton();
 
-    public CartItemPanel(Film film, String rent) {
-        this.setLayout(new FlowLayout());
-        filmOptions.setLayout(new BoxLayout(filmOptions, BoxLayout.Y_AXIS));
-
+    /**
+     * Constructor of {@code CartItemPanel}. Create the GUI
+     * @author MathysC
+     *
+     * @param film the checked film.
+     * @param supportType How the film is wanted. 
+     */
+    public CartItemPanel(Film film, String supportType) {
+        this.setLayout(new GridLayout(0,2));
+        this.setBorder(Decorations.getDefaultBorder());
+        cartOptions.setLayout(new BorderLayout());
+        
         /* Poster */
         // poster.setIcon(film.getIcon()); // TODO #8 getter of the film Icon
         poster.setIcon(Decorations.getImg(Decorations.IMG_FILM.toString()));
         this.add(poster);
-
-        /*Options */
-        // title
-        filmTitle.setText(film.getTitle());
-        filmOptions.add(filmTitle);
-
-        // rent type
-        rentType.setText(rent);
-        filmOptions.add(rentType);
-
-        // information Button
-        informationButton.setText("Information");
-        filmOptions.add(informationButton);
-
-        // remove Button
-        removeButton.setText("remove");
-        filmOptions.add(removeButton);
-
-        this.add(filmOptions);
+        
+        /* Cart Options */
+        // Same size as the poster.
+        cartOptions.setPreferredSize(poster.getPreferredSize());        
+        
+        titleLabel.setText(film.getTitle());
+        cartOptions.add(titleLabel,BorderLayout.NORTH);
+        
+        bottomPanel.setLayout(new GridLayout(3,0));
+        supportLabel.setText(supportType);
+        bottomPanel.add(supportLabel);
+        bottomPanel.add(moreButton);
+        bottomPanel.add(removeButton);
+        
+        cartOptions.add(bottomPanel, BorderLayout.SOUTH);
+        this.add(cartOptions);
     }
 
     @Override
@@ -64,18 +75,21 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
         this.poster.setBackground(this.poster.getParent().getBackground());
 
         // Options
-        this.filmOptions.setBackground(this.filmOptions.getParent().getBackground());
+        this.cartOptions.setBackground(this.cartOptions.getParent().getBackground());
 
         // Film title
-        this.filmTitle.setForeground(Light.BLACK.getColor());
-
+        this.titleLabel.setForeground(Light.BLACK.getColor());
+        
+        // Bottom Panel
+        this.bottomPanel.setBackground(this.bottomPanel.getParent().getBackground());
+        
         // Rent type
-        this.rentType.setForeground(Light.BLACK.getColor());
+        this.supportLabel.setForeground(Light.BLACK.getColor());
 
         // Information Button
-        this.informationButton.setBackground(Light.BLUE.getColor());
-        this.informationButton.setForeground(Light.WHITE.getColor());
-        this.informationButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+        this.moreButton.setBackground(Light.BLUE.getColor());
+        this.moreButton.setForeground(Light.WHITE.getColor());
+        this.moreButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 
         // Remove Button
         this.removeButton.setBackground(Light.BLUE.getColor());
@@ -92,18 +106,20 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
         this.poster.setBackground(this.poster.getParent().getBackground());
 
         // Options JPanel
-        this.filmOptions.setBackground(this.filmOptions.getParent().getBackground());
+        this.cartOptions.setBackground(this.cartOptions.getParent().getBackground());
 
         // Film title Label
-        this.filmTitle.setForeground(Dark.FOREGROUND.getColor());
+        this.titleLabel.setForeground(Dark.FOREGROUND.getColor());
 
+        // Bottom Panel
+        this.bottomPanel.setBackground(this.bottomPanel.getParent().getBackground());
         // Rent type Label
-        this.rentType.setForeground(Dark.FOREGROUND.getColor());
+        this.supportLabel.setForeground(Dark.FOREGROUND.getColor());
 
         // Information Button
-        this.informationButton.setBackground(Dark.BLUE.getColor());
-        this.informationButton.setForeground(Dark.FOREGROUND.getColor());
-        this.informationButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+        this.moreButton.setBackground(Dark.BLUE.getColor());
+        this.moreButton.setForeground(Dark.FOREGROUND.getColor());
+        this.moreButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 
         // Remove Button
         this.removeButton.setBackground(Dark.BLUE.getColor());
@@ -113,7 +129,7 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
 
     @Override
     public void setLanguage(ResourceBundle rb) {
-        this.informationButton.setText(rb.getString("checkout_info"));
+        this.moreButton.setText(rb.getString("checkout_info"));
         this.removeButton.setText(rb.getString("checkout_remove"));
     }
 
