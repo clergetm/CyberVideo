@@ -1,44 +1,56 @@
 package fc.Films;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class BluRayTest {
 
+	/* Create Film attributes */
+	private final double price = 20;
+	private final StatesBluRay state = StatesBluRay.AVAILABLE;
+	
+	/* Create an instance of a BluRay for test BluRay class */
+	protected BluRay bluRay = new BluRay(price, state);
+	
+	
 	@Test
 	void testGetType() {
-		fail("Not yet implemented"); // TODO
+		Assertions.assertEquals("BluRay", bluRay.getType());
+	    Assertions.assertNotEquals("QRCode", bluRay.getType());
 	}
 
 	@Test
 	void testGetTariff() {
-		fail("Not yet implemented"); // TODO
+	    Assertions.assertEquals(5, bluRay.getTariff());
 	}
 
 	@Test
 	void testIsAvailable() {
-		fail("Not yet implemented"); // TODO
+		Assertions.assertTrue(bluRay.isAvailable());
 	}
 
 	@Test
 	void testBluRay() {
-		fail("Not yet implemented"); // TODO
+		Assertions.assertEquals(price, bluRay.getPurchasePrice());
+		Assertions.assertEquals(state, StatesBluRay.AVAILABLE);	
 	}
 
 	@Test
 	void testGetPurchasePrice() {
-		fail("Not yet implemented"); // TODO
+		Assertions.assertEquals(price, bluRay.getPurchasePrice());
 	}
 
 	@Test
 	void testGetState() {
-		fail("Not yet implemented"); // TODO
+		Assertions.assertEquals(state, bluRay.getState());
 	}
 
 	@Test
 	void testSetState() {
-		fail("Not yet implemented"); // TODO
-	}
+		bluRay.setState(StatesBluRay.RENTED);
+		Assertions.assertEquals(StatesBluRay.RENTED, bluRay.getState());
+		Assertions.assertNotEquals(StatesBluRay.AVAILABLE, bluRay.getState());
+		bluRay.setState(StatesBluRay.AVAILABLE);
 
+	}
 }
