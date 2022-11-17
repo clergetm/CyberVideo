@@ -12,10 +12,10 @@ import fc.Films.StatesBluRay;
 
 public class AL2000 {
 
-	private final EPT ept;
-	private final Distributor ditributor;
-	private final Bank bank;
-	private final Printer printer;
+	private final EPT ept = new EPT();
+	private final Distributor ditributor = new Distributor();
+	private final Bank bank = new Bank();
+	private final Printer printer = new Printer();
 	private Client client;
 	
 	/**
@@ -23,12 +23,13 @@ public class AL2000 {
 	 * @author MathysC
 	 *
 	 */
-	public AL2000(Client client) {
-		this.client=client;
+	public AL2000() {
 	}
 	
 	public Card getCard() {
-		return client.getCreditCard();
+		// TODO
+		//return client.getCreditCard();
+		return null;
 	}
 	
 	public Printer getPrinter() {

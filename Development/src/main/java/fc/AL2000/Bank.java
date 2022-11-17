@@ -12,9 +12,11 @@ public class Bank {
 	 * @param deposit the amount of the deposit
 	 * @return true if the card has the amount of the film
 	 */
-	public boolean checkAmount(CreditCard card, double deposit) {
-		
-		return true;
-	}
+	
+	// TODO
+//	public boolean checkAmount(CreditCard card, double deposit) {
+//		
+//		return ;
+//	}
 
 }
