@@ -25,7 +25,7 @@ public class CheckoutPanel extends JPanel implements Multilingual, ColorTheme {
 	protected JPanel checkoutManager = new JPanel(new GridLayout(0,3));
 	protected JButton checkoutButton = new JButton();
 
-	private HashMap<Film, FilmInCartPanel> cart = new HashMap<>();
+	private HashMap<Film, CartItemPanel> cart = new HashMap<>();
 	
 	public CheckoutPanel() {
 		this.setLayout(new BorderLayout());
@@ -47,7 +47,7 @@ public class CheckoutPanel extends JPanel implements Multilingual, ColorTheme {
 	 * @return The complete JPanel of this film.
 	 */
 	public void addToCart(Film film, String rent) {
-		FilmInCartPanel filmCheckedOut = new FilmInCartPanel(film, rent);
+		CartItemPanel filmCheckedOut = new CartItemPanel(film, rent);
 //		this.checkoutManager.addFilm(filmCheckedOut); // TODO#29 addFilm to manager
 		this.cart.put(film, filmCheckedOut);
 	}
@@ -61,7 +61,7 @@ public class CheckoutPanel extends JPanel implements Multilingual, ColorTheme {
 		// Checkout Manager
 		this.checkoutManager.setBackground(this.checkoutManager.getParent().getBackground());
 		// CheckedOutFilmPanel from cart
-		for(FilmInCartPanel fp : cart.values())
+		for(CartItemPanel fp : cart.values())
 			fp.setLight();
 		
 		// Checkout Button
@@ -80,7 +80,7 @@ public class CheckoutPanel extends JPanel implements Multilingual, ColorTheme {
 		this.checkoutManager.setBackground(this.checkoutManager.getParent().getBackground());
 		
 		// CheckedOutFilmPanel from cart
-		for(FilmInCartPanel fp : cart.values())
+		for(CartItemPanel fp : cart.values())
 			fp.setDark();		
 		
 		// Checkout Button
@@ -92,7 +92,7 @@ public class CheckoutPanel extends JPanel implements Multilingual, ColorTheme {
 	@Override
 	public void setLanguage(ResourceBundle rb) {
 		checkoutButton.setText(rb.getString("checkout_button"));
-		for(FilmInCartPanel fp : cart.values())
+		for(CartItemPanel fp : cart.values())
 			fp.setLanguage(rb);	
 	}
 }

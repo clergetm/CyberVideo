@@ -17,7 +17,7 @@ import ui.Colors.Dark;
 import ui.Colors.Light;
 
 @SuppressWarnings("serial")
-public class FilmInCartPanel extends JPanel implements Multilingual, ColorTheme {
+public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
 
     protected JLabel poster = new JLabel();
     protected JPanel filmOptions = new JPanel();
@@ -26,7 +26,7 @@ public class FilmInCartPanel extends JPanel implements Multilingual, ColorTheme 
     protected JButton informationButton = new JButton();
     protected JButton removeButton = new JButton();
 
-    public FilmInCartPanel(Film film, String rent) {
+    public CartItemPanel(Film film, String rent) {
         this.setLayout(new FlowLayout());
         filmOptions.setLayout(new BoxLayout(filmOptions, BoxLayout.Y_AXIS));
 
