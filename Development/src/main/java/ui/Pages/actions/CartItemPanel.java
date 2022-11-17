@@ -15,6 +15,7 @@ import ui.Bundles.Multilingual;
 import ui.Colors.ColorTheme;
 import ui.Colors.Dark;
 import ui.Colors.Light;
+import ui.utils.mediator.cart.components.RemoveButton;
 
 /**
  * Class that represents a film in the Cart. 
@@ -30,7 +31,7 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
     private JPanel bottomPanel = new JPanel(); // Buttons on the bottom right.
     private JLabel supportLabel = new JLabel();
     private JButton moreButton = new JButton();
-    private JButton removeButton = new JButton();
+    private RemoveButton removeButton = new RemoveButton();
 
     /**
      * Constructor of {@code CartItemPanel}. Create the GUI
@@ -64,6 +65,16 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
         
         cartOptions.add(bottomPanel, BorderLayout.SOUTH);
         this.add(cartOptions);
+    }
+
+    /**
+     * 
+     * @author MathysC
+     *
+     * @return the removeButton
+     */
+    public RemoveButton getRemoveButton() {
+	return removeButton;
     }
 
     @Override
