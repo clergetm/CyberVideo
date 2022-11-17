@@ -1,28 +1,35 @@
 package fc.Films;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.IOException;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import com.google.zxing.WriterException;
 
 class QRCodeTest {
 
+	/* Create an instance of a BluRay for test BluRay class */
+	protected QRCode qrcode = new QRCode();
+	
 	@Test
 	void testGetType() {
-		fail("Not yet implemented"); // TODO
-	}
+		Assertions.assertEquals("QRCode", qrcode.getType());
+	    Assertions.assertNotEquals("BluRay", qrcode.getType());
+    }
 
 	@Test
 	void testGetTariff() {
-		fail("Not yet implemented"); // TODO
+		Assertions.assertEquals(4, qrcode.getTariff());
 	}
 
 	@Test
 	void testIsAvailable() {
-		fail("Not yet implemented"); // TODO
+		Assertions.assertTrue(qrcode.isAvailable());
 	}
 
 	@Test
-	void testGenerateQRCode() {
-		fail("Not yet implemented"); // TODO
+	void testGenerateQRCode() throws WriterException, IOException {
+		Assertions.assertEquals("https://www.cybervideo/location/qrcode.com", qrcode.generateQRCode());
 	}
 }

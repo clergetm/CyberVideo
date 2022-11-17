@@ -20,6 +20,9 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
  *
  */
 public class QRCode extends Support {
+	
+	public QRCode() {
+	}
 
 	@Override
 	public String getType() {
