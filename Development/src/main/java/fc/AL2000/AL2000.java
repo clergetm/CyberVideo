@@ -16,8 +16,8 @@ public class AL2000 {
 	private final Distributor ditributor = new Distributor();
 	private final Bank bank = new Bank();
 	private final Printer printer = new Printer();
-	private Client client;
-	
+	private Client connectedClient;
+
 	/**
 	 * Constructor of {@code AL2000}
 	 * @author MathysC
@@ -46,5 +46,13 @@ public class AL2000 {
 	
 	public Distributor getDistributor() {
 		return ditributor;
+	}
+	
+	public Client getConnectedClient() {
+		return connectedClient;
+	}
+
+	public void setConnectedClient(Client connectedClient) {
+		this.connectedClient = connectedClient;
 	}
 }
