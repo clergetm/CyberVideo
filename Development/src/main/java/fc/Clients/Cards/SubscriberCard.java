@@ -31,6 +31,10 @@ public class SubscriberCard extends Card{
     public void setAgeRestriction(AgeRestriction newRestriction){
         restriction = newRestriction;
     }
+    
+    public AgeRestriction getAgeRestriction(){
+    	return restriction;
+    }
 
     public void addForbiddenCategorie(Categories cat){
         forbiddenCategories.add(cat);
