@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 import ui.Decorations;
 import ui.FilmManager;
@@ -29,7 +30,6 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
 
 	/* Components */
     protected JLabel sugLabel = new JLabel();
-    private JPanel panelForLabel = new JPanel(new FlowLayout());
     protected JScrollPane filmsPane;
     private FilmManager manager;
 
@@ -44,9 +44,9 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
         this.setLayout(new BorderLayout());
 
         // Label
-        panelForLabel.add(sugLabel);
         sugLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
-        this.add(panelForLabel, BorderLayout.NORTH);
+        sugLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(sugLabel, BorderLayout.NORTH);
 
         // JScrollPane
         manager = new FilmManager(new GridLayout(0, 4), 100);
@@ -76,7 +76,6 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
         
         // Suggestion Label.
 		this.sugLabel.setForeground(Light.BLACK.getColor());
-		this.panelForLabel.setBackground(Light.BG.getColor());
 		
 		// Film ScrollPane.
 		this.filmsPane.setBackground(Light.BG.getColor());
@@ -93,7 +92,6 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
 		
         // Suggestion Label.
 		this.sugLabel.setForeground(Dark.FOREGROUND.getColor());
-		this.panelForLabel.setBackground(Dark.BG.getColor());
 		
 		// Film ScrollPane.
 		this.filmsPane.setBackground(Dark.BG.getColor());
