@@ -14,11 +14,11 @@ import javax.swing.JPanel;
 
 import fc.Clients.Client;
 import fc.Films.Film;
-import ui.Decorations;
-import ui.bundles.Multilingual;
-import ui.colors.ColorTheme;
-import ui.colors.Dark;
-import ui.colors.Light;
+import ui.utils.Decorations;
+import ui.utils.bundles.Multilingual;
+import ui.utils.colors.ColorTheme;
+import ui.utils.colors.Dark;
+import ui.utils.colors.Light;
 import ui.utils.mediator.cart.Mediator;
 import ui.utils.mediator.cart.components.Component;
 import ui.utils.mediator.cart.components.RemoveButton;

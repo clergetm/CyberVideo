@@ -12,12 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import ui.Decorations;
 import ui.FilmManager;
-import ui.bundles.Multilingual;
-import ui.colors.ColorTheme;
-import ui.colors.Dark;
-import ui.colors.Light;
+import ui.utils.Decorations;
+import ui.utils.bundles.Multilingual;
+import ui.utils.colors.ColorTheme;
+import ui.utils.colors.Dark;
+import ui.utils.colors.Light;
 
 /**
  * Instantiate a list of suggested films displayed on Welcome Page.

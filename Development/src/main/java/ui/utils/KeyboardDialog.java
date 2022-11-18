@@ -1,4 +1,4 @@
-package ui;
+package ui.utils;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,10 +16,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ui.bundles.Multilingual;
-import ui.colors.ColorTheme;
-import ui.colors.Dark;
-import ui.colors.Light;
+import ui.utils.bundles.Multilingual;
+import ui.utils.colors.ColorTheme;
+import ui.utils.colors.Dark;
+import ui.utils.colors.Light;
 
 /**
  * Class that implement a Virtual Keyboard that the client can use to type in TextFields.

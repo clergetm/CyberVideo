@@ -1,6 +1,6 @@
 package ui.mainframe;
 
-import ui.Decorations;
+import ui.utils.Decorations;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

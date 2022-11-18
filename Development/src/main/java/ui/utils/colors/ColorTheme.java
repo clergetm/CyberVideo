@@ -1,4 +1,4 @@
-package ui.colors;
+package ui.utils.colors;
 
 
 /**

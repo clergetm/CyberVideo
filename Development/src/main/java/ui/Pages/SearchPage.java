@@ -17,12 +17,12 @@ import javax.swing.ScrollPaneConstants;
 
 import fc.Films.Categories;
 import fc.Films.Film;
-import ui.Decorations;
+import ui.utils.Decorations;
 import ui.FilmManager;
-import ui.bundles.Multilingual;
-import ui.colors.ColorTheme;
-import ui.colors.Dark;
-import ui.colors.Light;
+import ui.utils.bundles.Multilingual;
+import ui.utils.colors.ColorTheme;
+import ui.utils.colors.Dark;
+import ui.utils.colors.Light;
 
 @SuppressWarnings("serial")
 public class SearchPage extends JPanel implements Multilingual, ColorTheme {
