@@ -18,10 +18,9 @@ import javax.swing.border.EmptyBorder;
  *
  */
 enum PATH {
-	RESOURCES_PATH("src/main/resources/"),
-	IMG(RESOURCES_PATH+"images/"),
-	ICO(RESOURCES_PATH +"icons/"),
-	SND(RESOURCES_PATH + "sounds/");
+	IMG("/images/"),
+	ICO("/icons/"),
+	SND("/sounds/");
 	
 	private String path;
 	
@@ -70,19 +69,14 @@ enum FORMAT {
 public enum Decorations {
 	
     /* Images */
-	IMG_BUTTON("Test_Button"),
-	IMG_FILM("Test_Film"),
+    IMG_BUTTON("Test_Button"),
+    IMG_FILM("Test_Film"),
   
-	/* Fonts */
-	FONT_BASIC("Helvetica"),
-	FONT_PLACEHOLDER("Monospaced"),
+    /* Fonts */
+    FONT_BASIC("Helvetica"),
+    FONT_PLACEHOLDER("Monospaced");
 
-    /* Sounds */
-    SND_DING(PATH.SND + "Ding" + FORMAT.SND),
-    SND_BELL(PATH.SND + "Bell" + FORMAT.SND),
-    SND_STORERING(PATH.SND + "StoreRing" + FORMAT.SND);
-
-   private String decoration;
+    private String decoration;
 
     Decorations(String o) {
         this.decoration = o;
@@ -100,7 +94,7 @@ public enum Decorations {
      * @return ImageIcon Icon from named image.
      */
     public static ImageIcon getImg(String name) {
-        return new ImageIcon(PATH.IMG + name + FORMAT.IMG);
+        return new ImageIcon(getImgPath(name));
     }
 
     /**
@@ -112,7 +106,7 @@ public enum Decorations {
     public static Image getIco(String name) {
 		try {
 	    	BufferedImage image = new BufferedImage(FORMAT.sizeICO(), FORMAT.sizeICO(), BufferedImage.TYPE_INT_RGB);
-	    	File file = new File(PATH.ICO + name + FORMAT.ICO);
+	    	File file = new File(getIcoPath(name));
 	    	
 			image = ImageIO.read(file);
 			return image;
@@ -154,4 +148,37 @@ public enum Decorations {
         else
             return null;
     }
+    
+    /**
+     * 
+     * @author MathysC
+     *
+     * @param name the name of the file
+     * @return the path of an icon. 
+     */
+    public static String getIcoPath(String name) {
+	return Decorations.class.getResource(PATH.ICO + name + FORMAT.ICO).getPath();
+    }
+    
+    /**
+     * 
+     * @author MathysC
+     *
+     * @param name the name of the file
+     * @return the path of an image. 
+     */
+    public static String getImgPath(String name) {
+	return Decorations.class.getResource(PATH.IMG + name + FORMAT.IMG).getPath();
+    }
+    
+    /**
+     * 
+     * @author MathysC
+     *
+     * @param name the name of the file
+     * @return the path of a sound file. 
+     */
+    public static String getSndPath(String name) {
+	return Decorations.class.getResource(PATH.SND + name + FORMAT.SND).getPath();
+    } 
 }

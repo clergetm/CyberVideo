@@ -37,6 +37,10 @@ import javax.sound.sampled.SourceDataLine;
 public class Interaction implements ActionListener {
 
     private MainFrame mainFrame;
+    /* Sounds */
+    public static final String SND_DING = "Ding";
+    public static final String SND_BELL = "Bell";
+    public static final String SND_STORERING = "StoreRing";
 
     /**
      * Constructor of Interaction.
@@ -90,7 +94,7 @@ public class Interaction implements ActionListener {
 
             // Handle askForHelp button from the TopBarPanel.
         case TopBarPanel.ACTION_HELP:
-            playSound(Decorations.SND_STORERING.toString());
+            playSound(Decorations.getSndPath(SND_STORERING));
             break;
 
             // Handle Color Switch Button from the TopBarPanel.
@@ -118,7 +122,6 @@ public class Interaction implements ActionListener {
      * @see https://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
      */
     private void playSound(String path) {
-
         // Create a thread and immediately start it.
         new Thread(new Runnable() {
 
