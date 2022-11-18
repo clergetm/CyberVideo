@@ -8,6 +8,7 @@ import ui.Colors.Light;
 import ui.Pages.Welcome.WelcomePage;
 
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
@@ -55,6 +56,10 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
         fc = new AL2000();
         
         // Set options.
+        this.setUndecorated(true);
+        this.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.setResizable(false);
         this.setIconImage(Decorations.getIco(ICO_APP));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());

@@ -45,12 +45,12 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
     protected KeyboardDialog keyboard = new KeyboardDialog();
 
     /*Options*/
-    private final int maxW = 400, W = (int)(maxW * 0.9),
+    private final int maxW = 350, W = (int)(maxW * 0.9),
         HTextField = 50, HButton = 75;
 
     // Size of rigid areas placed between JComponent to create gaps.
-    private final Dimension SMALLRIGID = new Dimension(25, 25);
-    private final Dimension BIGRIGID = new Dimension(75, 75);
+    private final Dimension SMALLRIGID = Decorations.sizeConverter(new Dimension(25, 25));
+    private final Dimension BIGRIGID = Decorations.sizeConverter(new Dimension(75, 75));
 
     /**
      * Constructor of {@code LoginPanel} 
@@ -193,9 +193,9 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
      */
     private void setComponent(JComponent component, int W, int H, float alignment) {
         component.setAlignmentX(alignment);
-        component.setMinimumSize(new Dimension(W, H));
-        component.setPreferredSize(new Dimension(W, H));
-        component.setMaximumSize(new Dimension(W, H));
+        component.setMinimumSize(Decorations.sizeConverter(new Dimension(W, H)));
+        component.setPreferredSize(Decorations.sizeConverter(new Dimension(W, H)));
+        component.setMaximumSize(Decorations.sizeConverter(new Dimension(W, H)));
     }
 
     /**
