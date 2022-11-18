@@ -18,9 +18,9 @@ public interface Multilingual {
     };
 
     // Path to Bundles
-    String PREFIX_BUNDLE = "ui/Bundles/",
-        FR_BUNDLE = PREFIX_BUNDLE + "bundle_fr",
-        EN_BUNDLE = PREFIX_BUNDLE + "bundle_en";
+    String PREFIX_BUNDLE = "bundles/";
+    String FR_BUNDLE = PREFIX_BUNDLE + "bundle_fr";
+    String EN_BUNDLE = PREFIX_BUNDLE + "bundle_en";
 
     /**
      * Getter of the English Bundle.
