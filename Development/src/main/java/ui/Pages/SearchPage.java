@@ -8,13 +8,13 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ResourceBundle;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import fc.Films.AgeRestriction;
 import fc.Films.Categories;
 import fc.Films.Film;
 import ui.Decorations;
@@ -62,6 +62,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    categoriesManager = new JPanel(new GridLayout(0, 1));
 	    categoriesPane = new JScrollPane(categoriesManager, 
 		    ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	    categoriesPane.setBorder(BorderFactory.createEmptyBorder());
 	    for(Categories c: Categories.values()) {
 		JButton button = new JButton(c.toString());
 		button.setPreferredSize(new Dimension(200, 50));
@@ -71,31 +72,31 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    
 	    this.add(categoriesPane, BorderLayout.WEST);
 	    
+	    /* Center */
+	    JPanel centerPanel = new JPanel(new GridLayout(2,0));
+	    centerPanel.setOpaque(false);
 	    // Results
 	    resultsManager = new FilmManager(new FlowLayout(FlowLayout.LEFT), 100);
 	    resultsPane = new JScrollPane(resultsManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	    resultsPane.setBorder(BorderFactory.createEmptyBorder());
 	    resultsLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
 	    resultsPanel.add(resultsLabel, BorderLayout.NORTH);
 	    resultsPanel.add(resultsPane, BorderLayout.CENTER);
-	    mainPanel.add(resultsPanel, BorderLayout.NORTH);
+	    centerPanel.add(resultsPanel);
 	    
 	    // Most rented films
 	    mostRentedManager = new FilmManager(new FlowLayout(FlowLayout.LEFT), 100);
 	    mostRentedPane = new JScrollPane(mostRentedManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	    mostRentedPane.setBorder(BorderFactory.createEmptyBorder());
 	    mostRentedLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
 	    mostRentedPanel.add(mostRentedLabel, BorderLayout.NORTH);
 	    mostRentedPanel.add(mostRentedPane, BorderLayout.CENTER);
-	    mainPanel.add(mostRentedPanel, BorderLayout.SOUTH);
+	    centerPanel.add(mostRentedPanel);
 	    
+	    mainPanel.add(centerPanel, BorderLayout.CENTER);
 	    this.add(mainPanel,BorderLayout.CENTER);
-	    
-	    // TODO #29 Remove after completing implementation
-	    Film film = new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});
-	    this.addResult(film);
-	    mostRentedManager.addFilm(film);
-
 	}
 	
 	public void addResult(Film film) { 

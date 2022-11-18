@@ -51,6 +51,7 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
         // JScrollPane
         manager = new FilmManager(new GridLayout(0, 4), 100);
         filmsPane = new JScrollPane(manager, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	filmsPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(filmsPane, BorderLayout.CENTER);
     }
 
@@ -80,7 +81,6 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
 		// Film ScrollPane.
 		this.filmsPane.setBackground(Light.BG.getColor());
 		this.filmsPane.getVerticalScrollBar().setBackground(Light.BG.getColor());
-		this.filmsPane.setBorder(BorderFactory.createEmptyBorder());
 		
 		// Films manager.
 		this.manager.setLight();
