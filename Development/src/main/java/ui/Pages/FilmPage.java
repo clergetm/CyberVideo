@@ -14,11 +14,12 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.xml.transform.Templates;
 
 import fc.Films.Film;
 import ui.FilmPanel;
 import ui.Colors.ColorTheme;
+import ui.Colors.Dark;
+import ui.Colors.Light;
 
 public class FilmPage extends JPanel implements ColorTheme {
     private JPanel filmInfo = new JPanel();
@@ -28,23 +29,34 @@ public class FilmPage extends JPanel implements ColorTheme {
     private FilmPanel filmPoster; 
     private String actorsTest ;
   
-    JLabel movieName, synopsis, directors, actors;
-    JTextArea synopsisText, directorsText, actorsText;
+    JLabel movieName = new JLabel();
+    JLabel synopsis = new JLabel();
+    JLabel directors = new JLabel();
+    JLabel actors = new JLabel();
+    JTextArea synopsisText = new JTextArea(50,50);
+    JTextArea directorsText = new JTextArea(50,50);
+    JTextArea actorsText = new JTextArea(50,50);
+
+
+
     public FilmPage(){
-	JPanel tempFilmPoster = new JPanel();
-	tempFilmPoster.setLayout(new BoxLayout(tempFilmPoster,BoxLayout.Y_AXIS));
-	tempFilmPoster.setOpaque(false);
-        this.filmPoster = new FilmPanel(this.film, 200);
+
+	    JPanel tempFilmPoster = new JPanel();
+	    tempFilmPoster.setLayout(new BoxLayout(tempFilmPoster,BoxLayout.Y_AXIS));
+	    tempFilmPoster.setOpaque(false);
+
+        this.filmPoster = new FilmPanel(this.film, 200,false,null);
         
         tempFilmPoster.add( Box.createVerticalGlue());
         tempFilmPoster.add(filmPoster);
         tempFilmPoster.add( Box.createVerticalGlue());
-        
+        this.setBackground(Color.CYAN);
         this.setLayout(new BorderLayout());
 
        //Creating a container to place the actual JPanel filmInfo
        filmInfoContainer.setLayout(new FlowLayout(FlowLayout.LEFT,0,30));
-        
+       filmInfoContainer.setOpaque(false);
+       filmInfo.setOpaque(false);
 
        //Creating the filmInfo JPanel
        //Setting Layout and size 
@@ -79,7 +91,8 @@ public class FilmPage extends JPanel implements ColorTheme {
   
     //Function to set up the different text areas of the JPanel
     public void setTextArea(JTextArea a,JPanel j,String s){
-        a = new JTextArea(s,50,50);
+       // a = new JTextArea(s,50,50);
+        a.setText(s);
         a.setSize(100,100);
         a.setEditable(false);
         a.setOpaque(false);
@@ -94,7 +107,7 @@ public class FilmPage extends JPanel implements ColorTheme {
 
     //Function to set up the different JLabels of the JPanel
     public void setTitle(JLabel b, String title,JPanel j,int fontSize){
-        b = new JLabel(title);
+        b.setText(title);
         b.setAlignmentX(Component.LEFT_ALIGNMENT);
         b.setFont(new Font("Verdana", Font.PLAIN, fontSize));
         j.add(b);
@@ -103,13 +116,38 @@ public class FilmPage extends JPanel implements ColorTheme {
 
     @Override
     public void setLight() {
-	this.filmPoster.setLight();
+	    this.filmPoster.setLight();
+        // This JPanel
+        this.setBackground(Light.BG.getColor());
+        //JLabel movieName, synopsis, directors, actors;
+        this.movieName.setForeground(Light.BLACK.getColor());
+        this.synopsis.setForeground(Light.BLACK.getColor());
+        this.directors.setForeground(Light.BLACK.getColor());
+        this.actors.setForeground(Light.BLACK.getColor());
+
+        //JTextAreas
+        this.synopsisText.setForeground(Light.BLACK.getColor());
+        this.directorsText.setForeground(Light.BLACK.getColor());
+        this.actorsText.setForeground(Light.BLACK.getColor());
+
     }
 
 
     @Override
     public void setDark() {
-	this.filmPoster.setDark();
+	    this.filmPoster.setDark();
+        // This JPanel
+        this.setBackground(Dark.BG.getColor());
+        //JLabel movieName, synopsis, directors, actors;
+        this.movieName.setForeground(Dark.FOREGROUND.getColor());
+        this.synopsis.setForeground(Dark.FOREGROUND.getColor());
+        this.directors.setForeground(Dark.FOREGROUND.getColor());
+        this.actors.setForeground(Dark.FOREGROUND.getColor());
+
+        //JTextAreas
+        this.synopsisText.setForeground(Dark.FOREGROUND.getColor());
+        this.directorsText.setForeground(Dark.FOREGROUND.getColor());
+        this.actorsText.setForeground(Dark.FOREGROUND.getColor());
 	
     }
 

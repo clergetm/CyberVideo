@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
  *
  */
 enum PATH {
-	RESOURCES_PATH("src/main/resources/"),
+	RESOURCES_PATH("./Development/src/main/resources/"),
 	IMG(RESOURCES_PATH+"images/"),
 	ICO(RESOURCES_PATH +"icons/"),
 	SND(RESOURCES_PATH + "sounds/");
@@ -113,7 +113,7 @@ public enum Decorations {
 		try {
 	    	BufferedImage image = new BufferedImage(FORMAT.sizeICO(), FORMAT.sizeICO(), BufferedImage.TYPE_INT_RGB);
 	    	File file = new File(PATH.ICO + name + FORMAT.ICO);
-	    	
+	    	System.out.println(System.getProperty("user.dir"));
 			image = ImageIO.read(file);
 			return image;
 		} catch (IOException e) {
