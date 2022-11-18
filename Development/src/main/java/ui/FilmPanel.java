@@ -75,7 +75,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 
 		this.add(mainPanel);
 		this.setPanelScale(percent);
-		this.update();
+//		this.update();
 
 	}
 
@@ -101,10 +101,10 @@ public class FilmPanel extends JPanel implements ColorTheme {
 	 * 
 	 * @author MathysC
 	 */
-	public void update() {
-		this.setQRCodeAvailable(this.film.isQRAvailable());
-		this.setBluRayAvailable(this.film.isBRAvailable());
-	}
+//	public void update() {
+//		this.setQRCodeAvailable(this.film.isQRAvailable());
+//		this.setBluRayAvailable(this.film.isBRAvailable());
+//	}
 
 	/**
 	 * 
