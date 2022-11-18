@@ -43,6 +43,10 @@ public class SubscriberCard extends Card{
     public void removeForbiddenCategorie(Categories cat){
         forbiddenCategories.remove(cat);
     }
+    
+    public ArrayList<Categories> getForbiddenCategories(){
+        return forbiddenCategories;
+    }
 
     public void removeAllForbiddenCategories(){
         forbiddenCategories.clear();
