@@ -6,9 +6,9 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 
 import fc.Films.Film;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
 
 /**
  *

@@ -1,4 +1,4 @@
-package ui.Pages.Welcome;
+package ui.pages.welcome;
 
 import java.awt.BorderLayout;
 
@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 
 import javax.swing.JPanel;
 
-import ui.Bundles.Multilingual;
-import ui.Colors.ColorTheme;
+import ui.bundles.Multilingual;
+import ui.colors.ColorTheme;
 
 /**
  * Welcome page that show the login panel and suggestions panel.

@@ -1,4 +1,4 @@
-package ui.Pages.Welcome;
+package ui.pages.welcome;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -21,10 +21,10 @@ import javax.swing.border.EmptyBorder;
 
 import ui.Decorations;
 import ui.KeyboardDialog;
-import ui.Bundles.Multilingual;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import ui.bundles.Multilingual;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
 
 /**
  * LoginPanel is part of the WelcomePage.

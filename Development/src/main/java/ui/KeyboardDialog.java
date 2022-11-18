@@ -16,10 +16,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ui.Bundles.Multilingual;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import ui.bundles.Multilingual;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
 
 /**
  * Class that implement a Virtual Keyboard that the client can use to type in TextFields.

@@ -1,4 +1,4 @@
-package ui.Pages.actions;
+package ui.pages.actions;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -11,10 +11,10 @@ import javax.swing.JPanel;
 
 import fc.Films.Film;
 import ui.Decorations;
-import ui.Bundles.Multilingual;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import ui.bundles.Multilingual;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
 import ui.utils.mediator.cart.components.RemoveButton;
 
 /**

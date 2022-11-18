@@ -1,12 +1,12 @@
-package ui.MainFrame;
+package ui.mainframe;
 
 import ui.Decorations;
-import ui.Bundles.Multilingual;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
-import ui.Pages.Welcome.WelcomePage;
-import ui.Pages.actions.ActionPanel;
+import ui.bundles.Multilingual;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
+import ui.pages.actions.ActionPanel;
+import ui.pages.welcome.WelcomePage;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;

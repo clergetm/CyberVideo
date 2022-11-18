@@ -1,4 +1,4 @@
-package ui.MainFrame;
+package ui.mainframe;
 
 import ui.Decorations;
 

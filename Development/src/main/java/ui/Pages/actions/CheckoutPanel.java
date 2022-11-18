@@ -1,4 +1,4 @@
-package ui.Pages.actions;
+package ui.pages.actions;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -15,10 +15,10 @@ import javax.swing.JPanel;
 import fc.Clients.Client;
 import fc.Films.Film;
 import ui.Decorations;
-import ui.Bundles.Multilingual;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import ui.bundles.Multilingual;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
 import ui.utils.mediator.cart.Mediator;
 import ui.utils.mediator.cart.components.Component;
 import ui.utils.mediator.cart.components.RemoveButton;
@@ -26,10 +26,10 @@ import ui.utils.mediator.cart.components.RemoveButton;
 /**
  * This class implements the whole GUI cart and the button to rent films in the cart.
  * @author MathysC
- * @see ui.Pages.actions.CartItemPanel
+ * @see ui.pages.actions.CartItemPanel
  * @see ui.utils.mediator.cart.Mediator
- * @see ui.Bundles.Multilingual
- * @see ui.Colors.ColorTheme
+ * @see ui.bundles.Multilingual
+ * @see ui.colors.ColorTheme
  */
 @SuppressWarnings("serial")
 public class CheckoutPanel extends JPanel implements Mediator, Multilingual, ColorTheme {

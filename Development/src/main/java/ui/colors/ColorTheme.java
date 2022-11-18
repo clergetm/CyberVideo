@@ -1,4 +1,4 @@
-package ui.Colors;
+package ui.colors;
 
 
 /**

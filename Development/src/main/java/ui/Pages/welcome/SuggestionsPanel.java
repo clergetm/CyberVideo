@@ -1,4 +1,4 @@
-package ui.Pages.Welcome;
+package ui.pages.welcome;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -14,10 +14,10 @@ import javax.swing.SwingConstants;
 
 import ui.Decorations;
 import ui.FilmManager;
-import ui.Bundles.Multilingual;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import ui.bundles.Multilingual;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
 
 /**
  * Instantiate a list of suggested films displayed on Welcome Page.

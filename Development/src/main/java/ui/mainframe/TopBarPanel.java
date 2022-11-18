@@ -1,4 +1,4 @@
-package ui.MainFrame;
+package ui.mainframe;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ui.Decorations;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;

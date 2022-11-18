@@ -1,4 +1,4 @@
-package ui.Pages.actions;
+package ui.pages.actions;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -15,12 +15,12 @@ import fc.Films.AgeRestriction;
 import fc.Films.Categories;
 import fc.Films.Film;
 import ui.Decorations;
-import ui.Bundles.Multilingual;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
-import ui.MainFrame.MainFrame;
-import ui.Pages.SearchPage;
+import ui.bundles.Multilingual;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
+import ui.mainframe.MainFrame;
+import ui.pages.SearchPage;
 
 @SuppressWarnings("serial")
 public class ActionPanel extends JPanel implements Multilingual, ColorTheme {

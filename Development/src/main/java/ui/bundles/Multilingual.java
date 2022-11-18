@@ -1,4 +1,4 @@
-package ui.Bundles;
+package ui.bundles;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

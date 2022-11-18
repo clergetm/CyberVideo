@@ -1,4 +1,4 @@
-package ui.Pages;
+package ui.pages;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -19,10 +19,10 @@ import fc.Films.Categories;
 import fc.Films.Film;
 import ui.Decorations;
 import ui.FilmManager;
-import ui.Bundles.Multilingual;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import ui.bundles.Multilingual;
+import ui.colors.ColorTheme;
+import ui.colors.Dark;
+import ui.colors.Light;
 
 @SuppressWarnings("serial")
 public class SearchPage extends JPanel implements Multilingual, ColorTheme {
