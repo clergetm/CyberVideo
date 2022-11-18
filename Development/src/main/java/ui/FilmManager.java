@@ -11,7 +11,6 @@ import ui.Colors.Dark;
 import ui.Colors.Light;
 
 /**
- * TODO: Implement use of Film class from fc package.
  *
  * @author MathysC
  *

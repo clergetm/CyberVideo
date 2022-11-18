@@ -12,7 +12,7 @@ import java.awt.Color;
 public enum Dark {
 
 	BG(40,42,44),
-	FOREGROUNG(248, 248, 242),
+	FOREGROUND(248, 248, 242),
 	PURPLE(86, 71, 90),
 	BLUE(98, 114, 164),
 	PINK(189, 147, 249);

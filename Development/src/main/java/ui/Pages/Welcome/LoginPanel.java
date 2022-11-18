@@ -75,37 +75,37 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         tfID.setColumns(25);
 
         tfID.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) { /* Unused. */ }
-			
-			@Override
-			public void mousePressed(MouseEvent e) { /* Unused. */ }
-			
-			@Override
-			public void mouseExited(MouseEvent e) { /* Unused. */ }
-			
-			@Override
-			public void mouseEntered(MouseEvent e) { /* Unused. */ }
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				// if text is default value
-				if (tfID.getText().equals(placeholderID)) {
-					resetDefaultPlaceholder(tfID);
-				}
-				// Get new text
-				String prompt = keyboard.showKeyboardDialog(keyboardTitleID, tfID);
-				
-				// If empty prompt
-                if (prompt.equals("")) {
-                	setDefaultPlaceholder(tfID, placeholderID);
-                } else { 
-                	tfID.setText(prompt);
+
+            @Override
+            public void mouseReleased(MouseEvent e) { /* Unused. */ }
+
+            @Override
+            public void mousePressed(MouseEvent e) { /* Unused. */ }
+
+            @Override
+            public void mouseExited(MouseEvent e) { /* Unused. */ }
+
+            @Override
+            public void mouseEntered(MouseEvent e) { /* Unused. */ }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                // if text is default value
+                if (tfID.getText().equals(placeholderID)) {
+                    resetDefaultPlaceholder(tfID);
                 }
-			}
-		});
+                // Get new text
+                String prompt = keyboard.showKeyboardDialog(keyboardTitleID, tfID);
+
+                // If empty prompt
+                if (prompt.equals("")) {
+                    setDefaultPlaceholder(tfID, placeholderID);
+                } else {
+                    tfID.setText(prompt);
+                }
+            }
+        });
 
         this.add(tfID);
 
@@ -116,45 +116,45 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         tfPassword.setColumns(25);
         tfPassword.setEchoChar((char) 0);
 
-        
+
         tfPassword.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) { /* Unused. */ }
-			
-			@Override
-			public void mousePressed(MouseEvent e) { /* Unused. */ }
-			
-			@Override
-			public void mouseExited(MouseEvent e) { /* Unused. */ }
-			
-			@Override
-			public void mouseEntered(MouseEvent e) { /* Unused. */ }
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// If nothing has been written. Remove the PlaceHolder.
+
+            @Override
+            public void mouseReleased(MouseEvent e) { /* Unused. */ }
+
+            @Override
+            public void mousePressed(MouseEvent e) { /* Unused. */ }
+
+            @Override
+            public void mouseExited(MouseEvent e) { /* Unused. */ }
+
+            @Override
+            public void mouseEntered(MouseEvent e) { /* Unused. */ }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // If nothing has been written. Remove the PlaceHolder.
                 if (Arrays.equals(tfPassword.getPassword(), placeholderPassword.toCharArray())) {
                     resetDefaultPlaceholder(tfPassword);
                 }
 
                 // Show what’s written.
-                tfPassword.setEchoChar((char) 0); 
-                
+                tfPassword.setEchoChar((char) 0);
+
                 // Get new prompt
                 String prompt = keyboard.showKeyboardDialog(keyboardTitlePassword, tfPassword);
-                
+
                 // If empty prompt
-                if (prompt.equals("")) { 
-                	// Set to default
-                	setDefaultPlaceholder(tfPassword, placeholderPassword);
+                if (prompt.equals("")) {
+                    // Set to default
+                    setDefaultPlaceholder(tfPassword, placeholderPassword);
                 } else {
-                	// Hide what’s written.
-                    tfPassword.setEchoChar('*'); 
+                    // Hide what’s written.
+                    tfPassword.setEchoChar('*');
                     tfPassword.setText(prompt);
                 }
-			}
-		});
+            }
+        });
 
         this.add(tfPassword);
 
@@ -248,13 +248,13 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         placeholderPassword = rb.getString("login_pw_placeholder");
 
         // connection JButton
-        connection.setText(rb.getString("login_connection"));
+        connection.setText(rb.getString("login_in"));
 
         // createAccount JButton
-        createAccount.setText(rb.getString("login_createAccount"));
+        createAccount.setText(rb.getString("login_up"));
 
         // continue Without an Account JButton
-        continueWithoutConn.setText(rb.getString("login_continueWithoutConnection"));
+        continueWithoutConn.setText(rb.getString("login_without"));
 
         // KeyboardDialog
         keyboardTitleID = rb.getString("login_id_vk_frameName");
@@ -262,81 +262,80 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         keyboard.setLanguage(rb);
     }
 
-	@Override
-	public void setLight() {
-		// This JPanel
+    @Override
+    public void setLight() {
+        // This JPanel
         this.setBackground(Light.WHITE.getColor());
         this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
-      
+
         // Label
-		this.loginPanelLabel.setForeground(Light.BLACK.getColor());
-		
-		// ID TextField
-		this.tfID.setBackground(Light.REVERSE_BG.getColor());
-		this.tfID.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
-		this.tfID.setForeground(Light.BLACK.getColor());
-		
-		// Password TextField
-		this.tfPassword.setBackground(Light.REVERSE_BG.getColor());
-		this.tfPassword.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
-		this.tfPassword.setForeground(Light.BLACK.getColor());
-		
-		// Connection Button
-		this.connection.setBackground(Light.BLUE.getColor());
-		this.connection.setForeground(Light.WHITE.getColor());
-		this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
-		
-		// CreateAccount Button
-		this.createAccount.setBackground(Light.BLUE.getColor());
-		this.createAccount.setForeground(Light.WHITE.getColor());
-		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
-		
-		// ContinueWithoutConn Button
-		this.continueWithoutConn.setBackground(Light.REVERSE_BG.getColor());
-		this.continueWithoutConn.setForeground(Light.REVERSE_FG.getColor());
-		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));		
-		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
-		
-		// KeyboardDialog
-		this.keyboard.setLight();
-	}
+        this.loginPanelLabel.setForeground(Light.BLACK.getColor());
+        // ID TextField
+        this.tfID.setBackground(Light.REVERSE_BG.getColor());
+        this.tfID.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+        this.tfID.setForeground(Light.BLACK.getColor());
 
-	@Override
-	public void setDark() {
-		// This JPanel
-		this.setBackground(Dark.BG.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUNG.getColor()));
-		
-		// Label
-        this.loginPanelLabel.setForeground(Dark.FOREGROUNG.getColor());
-        
-		// Id TextField
+        // Password TextField
+        this.tfPassword.setBackground(Light.REVERSE_BG.getColor());
+        this.tfPassword.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+        this.tfPassword.setForeground(Light.BLACK.getColor());
+
+        // Connection Button
+        this.connection.setBackground(Light.BLUE.getColor());
+        this.connection.setForeground(Light.WHITE.getColor());
+        this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+
+        // CreateAccount Button
+        this.createAccount.setBackground(Light.BLUE.getColor());
+        this.createAccount.setForeground(Light.WHITE.getColor());
+        this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+
+        // ContinueWithoutConn Button
+        this.continueWithoutConn.setBackground(Light.REVERSE_BG.getColor());
+        this.continueWithoutConn.setForeground(Light.REVERSE_FG.getColor());
+        this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+        this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+
+        // KeyboardDialog
+        this.keyboard.setLight();
+    }
+
+    @Override
+    public void setDark() {
+	// This JPanel
+        this.setBackground(Dark.BG.getColor());
+        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUND.getColor()));
+
+        // Label
+        this.loginPanelLabel.setForeground(Dark.FOREGROUND.getColor());
+
+        // Id TextField
         this.tfID.setBackground(Dark.PURPLE.getColor());
-        this.tfID.setForeground(Dark.FOREGROUNG.getColor());
-		this.tfID.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+        this.tfID.setForeground(Dark.FOREGROUND.getColor());
+        this.tfID.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
 
-		// Password TextField
+        // Password TextField
         this.tfPassword.setBackground(Dark.PURPLE.getColor());
-        this.tfPassword.setForeground(Dark.FOREGROUNG.getColor());
-		this.tfPassword.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
-        
-		// Connection Button
-		this.connection.setBackground(Dark.BLUE.getColor());
-		this.connection.setForeground(Dark.FOREGROUNG.getColor());
-		this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
-		
-		// CreateAccount Button
-		this.createAccount.setBackground(Dark.BLUE.getColor());
-		this.createAccount.setForeground(Dark.FOREGROUNG.getColor());
-		this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
-		
-		// ContinueWithoutConn Button
-		this.continueWithoutConn.setBackground(Dark.PURPLE.getColor());
-		this.continueWithoutConn.setForeground(Dark.FOREGROUNG.getColor());
-		this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));	
-		this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
-		
-		// KeyboardDialog
-		this.keyboard.setDark();
-	}
+        this.tfPassword.setForeground(Dark.FOREGROUND.getColor());
+        this.tfPassword.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+
+        // Connection Button
+        this.connection.setBackground(Dark.BLUE.getColor());
+        this.connection.setForeground(Dark.FOREGROUND.getColor());
+        this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+
+        // CreateAccount Button
+        this.createAccount.setBackground(Dark.BLUE.getColor());
+        this.createAccount.setForeground(Dark.FOREGROUND.getColor());
+        this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+
+        // ContinueWithoutConn Button
+        this.continueWithoutConn.setBackground(Dark.PURPLE.getColor());
+        this.continueWithoutConn.setForeground(Dark.FOREGROUND.getColor());
+        this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+        this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+
+        // KeyboardDialog
+        this.keyboard.setDark();
+    }
 }

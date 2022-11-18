@@ -1,7 +1,6 @@
 package ui.Pages.Welcome;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -11,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 import ui.Decorations;
 import ui.FilmManager;
@@ -29,7 +29,6 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
 
 	/* Components */
     protected JLabel sugLabel = new JLabel();
-    private JPanel panelForLabel = new JPanel(new FlowLayout());
     protected JScrollPane filmsPane;
     private FilmManager manager;
 
@@ -44,13 +43,14 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
         this.setLayout(new BorderLayout());
 
         // Label
-        panelForLabel.add(sugLabel);
         sugLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
-        this.add(panelForLabel, BorderLayout.NORTH);
+        sugLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(sugLabel, BorderLayout.NORTH);
 
         // JScrollPane
         manager = new FilmManager(new GridLayout(0, 4), 100);
         filmsPane = new JScrollPane(manager, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	filmsPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(filmsPane, BorderLayout.CENTER);
     }
 
@@ -75,12 +75,10 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
         
         // Suggestion Label.
 		this.sugLabel.setForeground(Light.BLACK.getColor());
-		this.panelForLabel.setBackground(Light.BG.getColor());
 		
 		// Film ScrollPane.
 		this.filmsPane.setBackground(Light.BG.getColor());
 		this.filmsPane.getVerticalScrollBar().setBackground(Light.BG.getColor());
-		this.filmsPane.setBorder(BorderFactory.createEmptyBorder());
 		
 		// Films manager.
 		this.manager.setLight();
@@ -92,8 +90,7 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
 		this.setBackground(Dark.BG.getColor());
 		
         // Suggestion Label.
-		this.sugLabel.setForeground(Dark.FOREGROUNG.getColor());
-		this.panelForLabel.setBackground(Dark.BG.getColor());
+		this.sugLabel.setForeground(Dark.FOREGROUND.getColor());
 		
 		// Film ScrollPane.
 		this.filmsPane.setBackground(Dark.BG.getColor());

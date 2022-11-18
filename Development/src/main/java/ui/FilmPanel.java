@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import fc.Films.Film;
 import ui.Colors.ColorTheme;
@@ -26,7 +27,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 
 	/* Components */
 	protected JLabel poster = new JLabel();
-	private JPanel mainPanel = new JPanel(new BorderLayout()), panelforPoster = new JPanel(new FlowLayout());
+	private JPanel mainPanel = new JPanel(new BorderLayout());
 	protected JPanel availability = new JPanel(new FlowLayout());
 	protected JButton qrcode = new JButton(), bluray = new JButton();
 
@@ -40,7 +41,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 			witdhPoster = 100, heightPoster = 150;
 
 	/* FC */
-	private ImageIcon posterImg = Decorations.getImg("Test_Film"); // TODO
+	private ImageIcon posterImg = Decorations.getImg(Decorations.IMG_FILM.toString()); // TODO #8
 	private Film film;
 
 	/**
@@ -57,9 +58,10 @@ public class FilmPanel extends JPanel implements ColorTheme {
 		this.setLayout(new FlowLayout());
 
 		// Set Poster.
-		// TODO: Add action from click on the poster to the Information of the Film
-		panelforPoster.add(poster);
-		mainPanel.add(panelforPoster, BorderLayout.CENTER);
+		// TODO #40 Add action from click on the poster to the Information of the Film
+		poster.setHorizontalAlignment(SwingConstants.CENTER);
+		poster.setOpaque(false);
+		mainPanel.add(poster, BorderLayout.CENTER);
 		poster.setIcon(posterImg);
 
 		// Set Buttons.
@@ -96,7 +98,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 	}
 
 	/**
-	 * TODO: Update Poster
+	 * TODO #8 Update Poster (not sure if useful)
 	 * Update Panel with {@code this.film} data.
 	 * 
 	 * @author MathysC
@@ -148,9 +150,6 @@ public class FilmPanel extends JPanel implements ColorTheme {
 		this.setBackground(Light.BG.getColor());
 		this.mainPanel.setBackground(mainPanel.getParent().getBackground());
 
-		// Poster
-		this.panelforPoster.setBackground(panelforPoster.getParent().getBackground());
-
 		// Buttons Panel
 		this.availability.setBackground(availability.getParent().getBackground());
 
@@ -171,20 +170,17 @@ public class FilmPanel extends JPanel implements ColorTheme {
 		this.setBackground(Dark.BG.getColor());
 		this.mainPanel.setBackground(mainPanel.getParent().getBackground());
 
-		// Poster
-		this.panelforPoster.setBackground(panelforPoster.getParent().getBackground());
-
 		// Buttons Panel
 		this.availability.setBackground(availability.getParent().getBackground());
 
 		// QR Code Button
 		this.qrcode.setBackground(Dark.BLUE.getColor());
-		this.qrcode.setForeground(Dark.FOREGROUNG.getColor());
+		this.qrcode.setForeground(Dark.FOREGROUND.getColor());
 		this.qrcode.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 
 		// Blu Ray Button
 		this.bluray.setBackground(Dark.BLUE.getColor());
-		this.bluray.setForeground(Dark.FOREGROUNG.getColor());
+		this.bluray.setForeground(Dark.FOREGROUND.getColor());
 		this.bluray.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 	}
 }

@@ -37,7 +37,11 @@ import javax.sound.sampled.SourceDataLine;
 public class Interaction implements ActionListener {
 
     private MainFrame mainFrame;
-    
+    /* Sounds */
+    public static final String SND_DING = "Ding";
+    public static final String SND_BELL = "Bell";
+    public static final String SND_STORERING = "StoreRing";
+
     /**
      * Constructor of Interaction.
      * @author MathysC
@@ -49,47 +53,59 @@ public class Interaction implements ActionListener {
 
         /* Listeners */
         mainFrame.topBarPanel.languageSwitch.addActionListener(this);
-        mainFrame.topBarPanel.askForHelp.addActionListener(this);
+        mainFrame.topBarPanel.askForHelpButton.addActionListener(this);
         mainFrame.topBarPanel.colorSwitch.addActionListener(this);
-}
+        mainFrame.topBarPanel.searchButton.addActionListener(this);
+        mainFrame.actionPanel.getUndoButton().addActionListener(this);
+        mainFrame.actionPanel.getRedoButton().addActionListener(this);
+        mainFrame.actionPanel.getConnectionButton().addActionListener(this);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
+            // Handle Search Button from the TopBarPanel.
+        case TopBarPanel.ACTION_SEARCH:
+            // Go to Search Page
+            mainFrame.changeCurrentPage(MainFrame.ID_RESULT_PAGE);
+            mainFrame.topBarPanel.searchButton.setActionCommand(TopBarPanel.ACTION_WELCOME);
+            break;
 
-        // Handle Language Switch Button from the TopBarPanel.
+        case TopBarPanel.ACTION_WELCOME:
+            // Go to Welcome Page
+            mainFrame.changeCurrentPage(MainFrame.ID_WELCOME_PAGE);
+            mainFrame.topBarPanel.searchButton.setActionCommand(TopBarPanel.ACTION_SEARCH);
+            break;
+            
+            // Handle Language Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_EN:
-        	// Change from English to French
+            // Change from English to French
             mainFrame.setLanguage(mainFrame.getRbFR());
             mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
             mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_FR);
             break;
+            
         case TopBarPanel.ACTION_FR:
-        	// Change from French to English
-        	mainFrame.setLanguage(mainFrame.getRbEN());
+            // Change from French to English
+            mainFrame.setLanguage(mainFrame.getRbEN());
             mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
             mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_EN);
             break;
-            
-        // Handle askForHelp button from the TopBarPanel.
+
+            // Handle askForHelp button from the TopBarPanel.
         case TopBarPanel.ACTION_HELP:
-            playSound(Decorations.SND_STORERING.toString());
+            playSound(Decorations.getSndPath(SND_STORERING));
+            break;
+
+            // Handle Color Switch Button from the TopBarPanel.
+        case TopBarPanel.ACTION_LIGHT:
+            // Change from Light to Dark theme.
+            mainFrame.setDark();
             break;
             
-        // Handle Color Switch Button from the TopBarPanel.
-        case TopBarPanel.ACTION_LIGHT:
-        	// Change from Light to Dark theme.
-        	mainFrame.setDark();
-        	mainFrame.topBarPanel.colorSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_DARK));
-            mainFrame.topBarPanel.colorSwitch.setActionCommand(TopBarPanel.ACTION_DARK);
-        	mainFrame.topBarPanel.askForHelp.setIcon(Decorations.getImg(TopBarPanel.IMG_QUESTION_DARK));
-        	break;
         case TopBarPanel.ACTION_DARK:
-        	// Change from Dark to Light theme.
-        	mainFrame.setLight();
-        	mainFrame.topBarPanel.colorSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_LIGHT));
-            mainFrame.topBarPanel.colorSwitch.setActionCommand(TopBarPanel.ACTION_LIGHT);
-            mainFrame.topBarPanel.askForHelp.setIcon(Decorations.getImg(TopBarPanel.IMG_QUESTION_LIGHT));
+            // Change from Dark to Light theme.
+            mainFrame.setLight();
             break;
         default:
             throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());
@@ -106,7 +122,6 @@ public class Interaction implements ActionListener {
      * @see https://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
      */
     private void playSound(String path) {
-
         // Create a thread and immediately start it.
         new Thread(new Runnable() {
 

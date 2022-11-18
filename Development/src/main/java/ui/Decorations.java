@@ -38,11 +38,10 @@ enum SCREEN {
  *
  */
 enum PATH {
-	RESOURCES_PATH("resources/"),
-	IMG(RESOURCES_PATH+"images/"),
-	ICO(RESOURCES_PATH +"icons/"),
-	SND(RESOURCES_PATH + "sounds/");
-
+	IMG("/images/"),
+	ICO("/icons/"),
+	SND("/sounds/");
+	
 	private String path;
 
 	PATH(String path) {
@@ -84,46 +83,39 @@ enum FORMAT {
 /**
  * Enumerations of all parameters used.
  * 
- * TODO: Find a better way to represent this ugly code.
- * 
  * @author MathysC
  * 
  */
 public enum Decorations {
+	
+    /* Images */
+    IMG_BUTTON("Test_Button"),
+    IMG_FILM("Test_Film"),
+  
+    /* Fonts */
+    FONT_BASIC("Helvetica"),
+    FONT_PLACEHOLDER("Monospaced");
 
-	/* Images */
-	IMG_BUTTON("Test_Button"),
+    private String decoration;
 
-	/* Fonts */
-	FONT_BASIC("Helvetica"),
-	FONT_PLACEHOLDER("Monospaced"),
-
-	/* Sounds */
-	SND_DING(PATH.SND + "Ding" + FORMAT.SND),
-	SND_BELL(PATH.SND + "Bell" + FORMAT.SND),
-	SND_STORERING(PATH.SND + "StoreRing" + FORMAT.SND);
-
-	/* Sizes */
-	private String decoration;
-
-	Decorations(String o) {
-		this.decoration = o;
-	}
-
-	@Override
-	public String toString() {
-		return decoration;
-	}
-
-	/**
-	 * Get named Image
-	 * @author MathysC
-	 *
-	 * @return ImageIcon Icon from named image.
-	 */
-	public static ImageIcon getImg(String name) {
-		return new ImageIcon(PATH.IMG + name + FORMAT.IMG);
-	}
+    Decorations(String o) {
+        this.decoration = o;
+    }
+    
+    @Override
+    public String toString() {
+    	return decoration;
+    }
+    
+    /**
+     * Get named Image
+     * @author MathysC
+     *
+     * @return ImageIcon Icon from named image.
+     */
+    public static ImageIcon getImg(String name) {
+        return new ImageIcon(getImgPath(name));
+    }
 
 	/**
 	 * Get named Icon.
@@ -133,44 +125,84 @@ public enum Decorations {
 	 */
 	public static Image getIco(String name) {
 		try {
-			BufferedImage image = new BufferedImage(FORMAT.sizeICO(), FORMAT.sizeICO(), BufferedImage.TYPE_INT_RGB);
-			File file = new File(PATH.ICO + name + FORMAT.ICO);
-
+	    	BufferedImage image = new BufferedImage(FORMAT.sizeICO(), FORMAT.sizeICO(), BufferedImage.TYPE_INT_RGB);
+	    	File file = new File(getIcoPath(name));
+	    	
 			image = ImageIO.read(file);
 			return image;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
-	}
+    	return null;
+    }
+    
+    /**
+     * Get the default Border
+     * @author MathysC
+     *
+     * @return EmptyBorder a border used as a margin.
+     */
+    public static EmptyBorder getDefaultBorder() {
+            return new EmptyBorder(10, 10, 10, 10);
+    }
+    
+    /**
+     * @author MathysC
+     *
+     * @return Dimension the default Button dimension.
+     */
+    public static Dimension getDefaultButtonDimension() {
+    	return new Dimension(100, 100);
+    }
+    /**
+     * Get the enumerated Font
+     * @author MathysC
+     *
+     * @param style The style of the font.
+     * @param size	The size of the font.
+     * @return Font if the enumerated element name’s start with "FONT_";
+     */
+    public Font getFont(int style, int size) {
+        if (this.name().startsWith("FONT_"))
+            return new Font(this.decoration,style,size);
+        else
+            return null;
+    }
+    
+    /**
+     * 
+     * @author MathysC
+     *
+     * @param name the name of the file
+     * @return the path of an icon. 
+     */
+    public static String getIcoPath(String name) {
+	return Decorations.class.getResource(PATH.ICO + name + FORMAT.ICO).getPath();
+    }
+    
+    /**
+     * 
+     * @author MathysC
+     *
+     * @param name the name of the file
+     * @return the path of an image. 
+     */
+    public static String getImgPath(String name) {
+	return Decorations.class.getResource(PATH.IMG + name + FORMAT.IMG).getPath();
+    }
+    
+    /**
+     * 
+     * @author MathysC
+     *
+     * @param name the name of the file
+     * @return the path of a sound file. 
+     */
+    public static String getSndPath(String name) {
+	return Decorations.class.getResource(PATH.SND + name + FORMAT.SND).getPath();
+    } 
 
-	/**
-	 * Get the default Border
-	 * @author MathysC
-	 *
-	 * @return EmptyBorder a border used as a margin.
-	 */
-	public static EmptyBorder getDefaultBorder() {
-		return new EmptyBorder(10, 10, 10, 10);
-	}
-
-	/**
-	 * Get the enumerated Font
-	 * @author MathysC
-	 *
-	 * @param style The style of the font.
-	 * @param size	The size of the font.
-	 * @return Font if the enumerated element name’s start with "FONT_";
-	 */
-	public Font getFont(int style, int size) {
-		if (this.name().startsWith("FONT_"))
-			return new Font(this.decoration,style,size);
-		else
-			return null;
-	}
-
-	/**
+		/**
 	 * Convert dimensions with the size of screen, based on a fixed size screen
 	 * @author Clarisse
 	 * 

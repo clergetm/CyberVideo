@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -90,7 +91,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
         keysPanel.add(specialPanel);
         this.add(keysPanel, BorderLayout.CENTER);
 
-        // TODO: Find a way to put the component Vertically.
+        // TODO #41 Find a way to put the component Vertically.
         actionsPanel = getActionKeys();
         this.add(actionsPanel, BorderLayout.EAST);
        
@@ -162,7 +163,8 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
             SPACE_ACT,
         };
 
-        JPanel actions = new JPanel();
+        JPanel actions = new JPanel(new GridLayout(3, 0));
+        actions.setBorder(Decorations.getDefaultBorder());
         for (int index = 0; index < actionCommands.length; index++) {
             this.actionButtons[index].setText(multilingualLabels[index]);
             this.actionButtons[index].setActionCommand(actionCommands[index]);
@@ -276,7 +278,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
 			panel.setBackground(Dark.BG.getColor());
 			for(Component key : ((JPanel) panel).getComponents()) {
 				key.setBackground(Dark.BLUE.getColor());
-				key.setForeground(Dark.FOREGROUNG.getColor());
+				key.setForeground(Dark.FOREGROUND.getColor());
 			}
 		}
 		
@@ -285,15 +287,15 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
 		
 		// Validate Button.
 		this.valButton.setBackground(new Color(127, 176, 105));
-		this.valButton.setForeground(Dark.FOREGROUNG.getColor());
+		this.valButton.setForeground(Dark.FOREGROUND.getColor());
 
 		// Back Space Button.
 		this.bspaceButton.setBackground(new Color(211, 97, 53));
-		this.bspaceButton.setForeground(Dark.FOREGROUNG.getColor());
+		this.bspaceButton.setForeground(Dark.FOREGROUND.getColor());
 		
 		// Space Button.
 		this.spaceButton.setBackground(Dark.PURPLE.getColor());
-		this.spaceButton.setForeground(Dark.FOREGROUNG.getColor());	
+		this.spaceButton.setForeground(Dark.FOREGROUND.getColor());	
 	}
 
 }
