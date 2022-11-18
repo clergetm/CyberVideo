@@ -4,18 +4,23 @@ import java.awt.FlowLayout;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Component;
 import java.awt.Color;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.xml.transform.Templates;
 
 import fc.Films.Film;
 import ui.FilmPanel;
+import ui.Colors.ColorTheme;
 
-public class FilmPage extends JPanel {
+public class FilmPage extends JPanel implements ColorTheme {
     private JPanel filmInfo = new JPanel();
     private JPanel filmInfoContainer = new JPanel();
     private String[] l = {"Acteur1","acteur2"};
@@ -26,7 +31,15 @@ public class FilmPage extends JPanel {
     JLabel movieName, synopsis, directors, actors;
     JTextArea synopsisText, directorsText, actorsText;
     public FilmPage(){
+	JPanel tempFilmPoster = new JPanel();
+	tempFilmPoster.setLayout(new BoxLayout(tempFilmPoster,BoxLayout.Y_AXIS));
+	tempFilmPoster.setOpaque(false);
         this.filmPoster = new FilmPanel(this.film, 200);
+        
+        tempFilmPoster.add( Box.createVerticalGlue());
+        tempFilmPoster.add(filmPoster);
+        tempFilmPoster.add( Box.createVerticalGlue());
+        
         this.setLayout(new BorderLayout());
 
        //Creating a container to place the actual JPanel filmInfo
@@ -35,7 +48,7 @@ public class FilmPage extends JPanel {
 
        //Creating the filmInfo JPanel
        //Setting Layout and size 
-        filmInfo.setLayout(new java.awt.GridLayout( 0,1 ));
+        filmInfo.setLayout(new GridLayout( 0,1 ));
         filmInfo.setPreferredSize(new Dimension(500, 500));
         filmInfo.setMaximumSize(new Dimension(500, 500));
 
@@ -59,7 +72,7 @@ public class FilmPage extends JPanel {
         //Adding elements to Jpanels
         filmInfoContainer.add(filmInfo);
         this.add(filmInfoContainer, BorderLayout.CENTER);
-        this.add(filmPoster, BorderLayout.WEST);
+        this.add(tempFilmPoster, BorderLayout.WEST);
         
     }   
    
@@ -85,6 +98,19 @@ public class FilmPage extends JPanel {
         b.setAlignmentX(Component.LEFT_ALIGNMENT);
         b.setFont(new Font("Verdana", Font.PLAIN, fontSize));
         j.add(b);
+    }
+
+
+    @Override
+    public void setLight() {
+	this.filmPoster.setLight();
+    }
+
+
+    @Override
+    public void setDark() {
+	this.filmPoster.setDark();
+	
     }
 
 }
