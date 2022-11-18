@@ -1,4 +1,4 @@
-package fc.Clients;
+package fc.clients;
 
 import java.util.Date;
 

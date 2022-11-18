@@ -1,10 +1,10 @@
-package fc.Clients.Cards;
+package fc.clients.cards;
 
 import java.util.ArrayList;
 
 import fc.Rental;
-import fc.Films.AgeRestriction;
-import fc.Films.Categories;
+import fc.films.AgeRestriction;
+import fc.films.Categories;
 
 public class SubscriberCard extends Card{
     private double balance;

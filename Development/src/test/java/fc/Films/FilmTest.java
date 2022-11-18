@@ -6,6 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import fc.LifecycleLoggerTest;
+import fc.films.AgeRestriction;
+import fc.films.BluRay;
+import fc.films.Categories;
+import fc.films.Film;
+import fc.films.QRCode;
+import fc.films.StatesBluRay;
+import fc.films.Support;
 
 class FilmTest implements LifecycleLoggerTest{
 

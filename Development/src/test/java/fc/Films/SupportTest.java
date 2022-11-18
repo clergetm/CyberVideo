@@ -3,6 +3,11 @@ package fc.Films;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import fc.films.BluRay;
+import fc.films.QRCode;
+import fc.films.StatesBluRay;
+import fc.films.Support;
+
 class SupportTest {
 	
 	/* Create instances of a Support for test Support class */

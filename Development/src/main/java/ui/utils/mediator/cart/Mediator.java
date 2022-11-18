@@ -1,6 +1,6 @@
 package ui.utils.mediator.cart;
 
-import fc.Films.Film;
+import fc.films.Film;
 import ui.utils.mediator.cart.components.Component;
 
 /**

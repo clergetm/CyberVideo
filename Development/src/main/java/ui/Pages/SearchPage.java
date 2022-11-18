@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import fc.Films.Categories;
-import fc.Films.Film;
+import fc.films.Categories;
+import fc.films.Film;
 import ui.utils.Decorations;
 import ui.FilmManager;
 import ui.utils.bundles.Multilingual;

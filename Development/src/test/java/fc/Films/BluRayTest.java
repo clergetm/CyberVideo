@@ -3,6 +3,9 @@ package fc.Films;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import fc.films.BluRay;
+import fc.films.StatesBluRay;
+
 class BluRayTest {
 
 	/* Create Film attributes */

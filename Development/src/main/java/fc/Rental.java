@@ -3,8 +3,8 @@ package fc;
 import java.util.Calendar;
 import java.util.Date;
 
-import fc.Clients.Cards.Card;
-import fc.Films.Film;
+import fc.clients.cards.Card;
+import fc.films.Film;
 
 public class Rental {
     private Date startingDate;

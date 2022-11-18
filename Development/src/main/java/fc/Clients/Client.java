@@ -1,9 +1,9 @@
-package fc.Clients;
+package fc.clients;
 
 import java.util.ArrayList;
 
-import fc.Films.BluRay;
-import fc.Films.Film;
+import fc.films.BluRay;
+import fc.films.Film;
 
 public abstract class Client {
 //    protected CreditCard credCard;

@@ -11,9 +11,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import fc.Films.AgeRestriction;
-import fc.Films.Categories;
-import fc.Films.Film;
+import fc.films.AgeRestriction;
+import fc.films.Categories;
+import fc.films.Film;
 import ui.utils.Decorations;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;

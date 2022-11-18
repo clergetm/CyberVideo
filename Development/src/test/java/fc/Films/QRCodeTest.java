@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import com.google.zxing.WriterException;
 
+import fc.films.QRCode;
+
 class QRCodeTest {
 
 	/* Create an instance of a QRcode for test QRcode class */
