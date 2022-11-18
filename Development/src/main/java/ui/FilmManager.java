@@ -71,7 +71,7 @@ public class FilmManager extends JPanel implements ColorTheme {
         if (!this.films.containsKey(film))
             return false;
        
-        this.films.get(film).update();
+//        this.films.get(film).update();
         return true;
     }
 

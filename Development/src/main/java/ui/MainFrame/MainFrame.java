@@ -19,7 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import fc.AL2000;
+import fc.AL2000.AL2000;
 import fc.Films.Film;
 
 /**
