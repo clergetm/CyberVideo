@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -162,7 +163,8 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
             SPACE_ACT,
         };
 
-        JPanel actions = new JPanel();
+        JPanel actions = new JPanel(new GridLayout(3, 0));
+        actions.setBorder(Decorations.getDefaultBorder());
         for (int index = 0; index < actionCommands.length; index++) {
             this.actionButtons[index].setText(multilingualLabels[index]);
             this.actionButtons[index].setActionCommand(actionCommands[index]);
