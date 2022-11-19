@@ -81,7 +81,20 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
      *
      */
     public ActionPanel() {
-        this.setLayout(new BorderLayout());
+	this.createGUI();
+        /*Initialize subPanel map*/
+        subActionsPanel.put(MainFrame.ID_RESULT_PAGE, searchPage);
+        subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
+        current_subAction = MainFrame.ID_RESULT_PAGE;
+
+        // TODO #29 REMOVE AFTER TEST
+        //		Film film = new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});
+        //		this.checkoutPanel.addToCart(new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES}), "1");
+
+    }
+
+    private void createGUI() {
+	this.setLayout(new BorderLayout());
         actionCenterPanel.setOpaque(false);
         topPanel.setOpaque(false);
         searchPanel.setOpaque(false);
@@ -124,16 +137,6 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 
         this.add(actionCenterPanel, BorderLayout.CENTER);
         this.add(checkoutPanel, BorderLayout.EAST);
-
-        /*Initialize subPanel map*/
-        subActionsPanel.put(MainFrame.ID_RESULT_PAGE, searchPage);
-        subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
-        current_subAction = MainFrame.ID_RESULT_PAGE;
-
-        // TODO #29 REMOVE AFTER TEST
-        //		Film film = new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});
-        //		this.checkoutPanel.addToCart(new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES}), "1");
-
     }
 
     /**
