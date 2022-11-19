@@ -1,6 +1,7 @@
 package ui.pages.actions;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.HashMap;
@@ -59,7 +60,8 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 
     /*Action pages */
     private HashMap < Integer, JPanel > subActionsPanel = new HashMap < > ();
-    protected JPanel filmPage = new JPanel(); //TODO #39 change JPanel when FilmPage added
+//  TODO #39 change JPanel when FilmPage added
+    protected JPanel filmPage = new JPanel(); 
     protected SearchPage searchPage = new SearchPage();
     private int current_subAction;
     /*Action actions*/
@@ -74,7 +76,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 
     /* Checkout Part */
     protected CheckoutPanel checkoutPanel = new CheckoutPanel();
-
+    
     /**
      * Constructor of ActionPanel, represent the Cart, and several Command buttons.
      * @author MathysC
@@ -87,9 +89,9 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
         current_subAction = MainFrame.ID_RESULT_PAGE;
 
-        // TODO #29 REMOVE AFTER TEST
-        //		Film film = new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});
-        //		this.checkoutPanel.addToCart(new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES}), "1");
+//         TODO #29 REMOVE AFTER TEST
+//         Film film = new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});
+//         this.checkoutPanel.addToCart(new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES}), "1");
 
     }
 
@@ -102,13 +104,20 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 
         /* Search Panel */
         // Search TextField
-        // TODO #29 Add MouseListener
-        // TODO #29 Add KeyboardDialog
+//         TODO #29 Add MouseListener
+//         TODO #29 Add KeyboardDialog
         tfSearch.setColumns(30);
         searchPanel.add(tfSearch);
 
         // Filter ComboxBox
-        // TODO #29 Correct Size and Color Combobox
+//         TODO #29 Correct Size and Color Combobox
+        filterCBox.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+        
+        /* This itemListener is implemented in order to remove the focus
+         * from the combobox. Because with the focus on the selected Item: 
+         * the foreground is black and we need it to stay white at any time.
+         */
+        filterCBox.addItemListener(e -> ((Component)e.getSource()).getParent().requestFocus());
         searchPanel.add(filterCBox);
 
         topPanel.add(searchPanel, BorderLayout.WEST);
@@ -116,19 +125,21 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         /* Command Panel */
         // Undo Button
         undoButton.setActionCommand(ACTION_UNDO);
-        undoButton.setContentAreaFilled(false); // transparent
+        undoButton.setContentAreaFilled(false); // Transparent
         undoButton.setBorderPainted(false); // without border
         commandPanel.add(undoButton);
 
         // Redo Button
         redoButton.setActionCommand(ACTION_REDO);
-        redoButton.setContentAreaFilled(false); // transparent
+        redoButton.setContentAreaFilled(false); // Transparent
         redoButton.setBorderPainted(false); // without border
         commandPanel.add(redoButton);
 
         // Connection Button
-        //		connectionButton.setActionCommand(ACTION_UNDO); // TODO #39
+//      TODO #39
+//      connectionButton.setActionCommand(); 
         connectionButton.setPreferredSize(Decorations.getDefaultButtonDimension());
+        connectionButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
         commandPanel.add(connectionButton);
 
         topPanel.add(commandPanel, BorderLayout.EAST);
@@ -155,17 +166,17 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
     public void setLight() {
         // Panels
         this.setBackground(Light.BG.getColor());
-
-        // Checkout
-        this.checkoutPanel.setLight();
+        
+        filterCBox.setBackground(Light.BLUE.getColor());
+        filterCBox.setForeground(Light.WHITE.getColor());
 
         // Buttons
         undoButton.setIcon(Decorations.getImg(IMG_UNDO_LIGHT));
         redoButton.setIcon(Decorations.getImg(IMG_REDO_LIGHT));
         connectionButton.setBackground(Light.BLUE.getColor());
         connectionButton.setForeground(Light.WHITE.getColor());
-        connectionButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 
+        checkoutPanel.setLight();
         searchPage.setLight();
     }
 
@@ -173,25 +184,23 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
     public void setDark() {
 	//Panels
         this.setBackground(Dark.BG.getColor());
-
-        // Checkout
-        this.checkoutPanel.setDark();
+        
+        filterCBox.setBackground(Dark.BLUE.getColor());
+        filterCBox.setForeground(Dark.FOREGROUND.getColor());
         // Buttons
         undoButton.setIcon(Decorations.getImg(IMG_UNDO_DARK));
         redoButton.setIcon(Decorations.getImg(IMG_REDO_DARK));
         connectionButton.setBackground(Dark.BLUE.getColor());
         connectionButton.setForeground(Dark.FOREGROUND.getColor());
-        connectionButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 
+        checkoutPanel.setDark();
         searchPage.setDark();
     }
 
     @Override
     public void setLanguage(ResourceBundle rb) {
-        this.checkoutPanel.setLanguage(rb);
-
         connectionButton.setText(rb.getString("login_in"));
-
-        this.searchPage.setLanguage(rb);
+        checkoutPanel.setLanguage(rb);
+        searchPage.setLanguage(rb);
     }
 }
