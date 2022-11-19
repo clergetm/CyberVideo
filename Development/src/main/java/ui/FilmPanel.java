@@ -10,15 +10,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
-//import org.w3c.dom.events.MouseEvent;
-
-import fc.Films.Film;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
-import ui.MainFrame.MainFrame;
-
+import fc.films.Film;
+import ui.utils.colors.ColorTheme;
+import ui.utils.colors.Dark;
+import ui.utils.colors.Light;
+import ui.utils.Decorations;
 /**
  * Graphic Implementation of a Film.
  * 
@@ -30,7 +28,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 
 	/* Components */
 	protected JLabel poster = new JLabel();
-	private JPanel mainPanel = new JPanel(new BorderLayout()), panelforPoster = new JPanel(new FlowLayout());
+	private JPanel mainPanel = new JPanel(new BorderLayout());
 	protected JPanel availability = new JPanel(new FlowLayout());
 	protected JButton qrcode = new JButton(), bluray = new JButton();
 	
@@ -66,8 +64,9 @@ public class FilmPanel extends JPanel implements ColorTheme {
 
 		// Set Poster.
 		// TODO #40 Add action from click on the poster to the Information of the Film
-		panelforPoster.add(poster);
-		mainPanel.add(panelforPoster, BorderLayout.CENTER);
+		poster.setHorizontalAlignment(SwingConstants.CENTER);
+		poster.setOpaque(false);
+		mainPanel.add(poster, BorderLayout.CENTER);
 		poster.setIcon(posterImg);
 		if(clickable){
 			poster.addMouseListener(new MouseAdapter(){
@@ -93,7 +92,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 
 		this.add(mainPanel);
 		this.setPanelScale(percent);
-		this.update();
+//		this.update();
 
 	}
 
@@ -119,10 +118,10 @@ public class FilmPanel extends JPanel implements ColorTheme {
 	 * 
 	 * @author MathysC
 	 */
-	public void update() {
-		this.setQRCodeAvailable(this.film.isQRAvailable());
-		this.setBluRayAvailable(this.film.isBRAvailable());
-	}
+//	public void update() {
+//		this.setQRCodeAvailable(this.film.isQRAvailable());
+//		this.setBluRayAvailable(this.film.isBRAvailable());
+//	}
 
 	/**
 	 * 
@@ -166,9 +165,6 @@ public class FilmPanel extends JPanel implements ColorTheme {
 		this.setBackground(Light.BG.getColor());
 		this.mainPanel.setBackground(mainPanel.getParent().getBackground());
 
-		// Poster
-		this.panelforPoster.setBackground(panelforPoster.getParent().getBackground());
-
 		// Buttons Panel
 		this.availability.setBackground(availability.getParent().getBackground());
 
@@ -188,9 +184,6 @@ public class FilmPanel extends JPanel implements ColorTheme {
 		// JPanel
 		this.setBackground(Dark.BG.getColor());
 		this.mainPanel.setBackground(mainPanel.getParent().getBackground());
-
-		// Poster
-		this.panelforPoster.setBackground(panelforPoster.getParent().getBackground());
 
 		// Buttons Panel
 		this.availability.setBackground(availability.getParent().getBackground());

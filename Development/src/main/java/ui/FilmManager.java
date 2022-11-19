@@ -5,10 +5,10 @@ import java.util.HashMap;
 
 import javax.swing.JPanel;
 
-import fc.Films.Film;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import fc.films.Film;
+import ui.utils.colors.ColorTheme;
+import ui.utils.colors.Dark;
+import ui.utils.colors.Light;
 
 /**
  *
@@ -71,7 +71,7 @@ public class FilmManager extends JPanel implements ColorTheme {
         if (!this.films.containsKey(film))
             return false;
        
-        this.films.get(film).update();
+//        this.films.get(film).update();
         return true;
     }
 

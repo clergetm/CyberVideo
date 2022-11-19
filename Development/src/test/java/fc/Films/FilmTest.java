@@ -1,13 +1,21 @@
 package fc.Films;
 
-import java.io.File;
+import java.time.Year;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import fc.LifecycleLoggerTest;
+import fc.films.AgeRestriction;
+import fc.films.BluRay;
+import fc.films.Categories;
+import fc.films.Film;
+import fc.films.QRCode;
+import fc.films.StatesBluRay;
+import fc.films.Support;
 
-class FilmTest implements LifecycleLoggerTest {
+class FilmTest implements LifecycleLoggerTest{
+
 	
 	/* Create Film attributes */
 	private final String title = "The Matrix",
@@ -20,121 +28,64 @@ class FilmTest implements LifecycleLoggerTest {
 	private final String[] actors = {"Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"};
 	private final AgeRestriction restriction = AgeRestriction.EVERYONE;
 	private final Categories[] categories = {Categories.ACTION, Categories.DRAMAS};
+	private final Year year = Year.of(1999);
+	private final Support[] supports = {new BluRay(22.5, StatesBluRay.RENTED), new QRCode(), new BluRay(22.50, StatesBluRay.AVAILABLE)};
 	
 	/* Create an instance of a Film for test Film class */
-	protected Film film = new Film(title, synopsis, actors, director_fname, director_lname, restriction, categories);
+	protected Film film = new Film(title, synopsis, actors, director_fname, director_lname, year, categories, restriction, supports);
 	
-	/**
-	 * Check the constructor of Film
-	 */
+	
 	@Test
 	void testFilm() {
-		Assertions.assertEquals(title, film.title, "film.title test passed");
-		Assertions.assertEquals(synopsis, film.synopsis, "film.synopsis test passed");
-		Assertions.assertEquals(actors, film.getActors(), "film.getActors() test passed");
-		Assertions.assertEquals(director_fname, film.FNameDirector, "film.FNameDirector test passed");
-		Assertions.assertEquals(director_lname, film.LNameDirector, "film.LNameDirector test passed");
-		Assertions.assertEquals(categories, film.getCategories(), "film.getCategories() test passed");
-		Assertions.assertEquals(restriction, film.restriction, "film.restriction test passed");
+		Assertions.assertEquals(title, film.getTitle());
+		Assertions.assertEquals(synopsis, film.getSynopsis());
+		Assertions.assertEquals(actors, film.getActors());
+		Assertions.assertEquals(director_fname, film.getNamesDirector().substring(0, film.getNamesDirector().indexOf(" ")));
+		Assertions.assertEquals(director_lname, film.getNamesDirector().substring(film.getNamesDirector().indexOf(" ")+1));
+		Assertions.assertEquals(year, film.getYear());
+		Assertions.assertEquals(categories, film.getCategories());
+		Assertions.assertEquals(restriction, film.getRestriction());
+		Assertions.assertEquals(supports, film.getSupportsType());
 	}
 
-	/**
-	 * Check getType()
-	 */
-	@Test
-	void testGetType() {
-		Assertions.assertEquals("QRCode", film.getType(), "film.getType() test passed");
-	}
-
-	/**
-	 * Check getTitle()
-	 */
 	@Test
 	void testGetTitle() {
 		Assertions.assertEquals(title, film.getTitle());
 	}
 
-	/**
-	 * Check getSynopsis()
-	 */
 	@Test
 	void testGetSynopsis() {
 		Assertions.assertEquals(synopsis, film.getSynopsis());
 	}
 
-	/**
-	 * Check getActors()
-	 */
 	@Test
 	void testGetActors() {
 		Assertions.assertEquals(actors, film.getActors());
 	}
 
-	/**
-	 * Check getNamesDirector()
-	 */
 	@Test
 	void testGetNamesDirector() {
 		Assertions.assertEquals(director_fname+" "+director_lname, film.getNamesDirector());
 	}
 
-	/**
-	 * Check getRestriction()
-	 */
 	@Test
-	void testGetRestriction() {
-		Assertions.assertEquals(restriction, film.getRestriction());
+	void testGetYear() {
+		Assertions.assertEquals(year, film.getYear());
 	}
 
-	/**
-	 * Check getCategories()
-	 */
 	@Test
 	void testGetCategories() {
 		Assertions.assertEquals(categories, film.getCategories());
 	}
-	
-	/**
-	 * Test Generation of the QRCode.
-	 * @author MathysC
-	 *
-	 */
-	@Test
-	void testGenerateQRCode() {		
-		File f = new File("QRCode.png");
 
-		try {
-			// Check if not exist a QRCode.png
-			Assertions.assertFalse(f.exists());
-			
-			// Check the link and generate the QRCode.png
-			String link = "https://www.cybervideo/location/"+title+".com";
-			Assertions.assertEquals(link, film.generateQRCode(), "film.generateQRCode test passed");
-			
-			// Check is the file QRCode.png exist and if is a file
-			Assertions.assertTrue(f.exists());
-			Assertions.assertTrue(f.isFile());
-		}
-		finally {
-			// Delete the file for the other tests
-			f.delete();
-		}
+	@Test
+	final void testGetRestriction() {
+		Assertions.assertEquals(restriction, film.getRestriction());
 	}
 
 	@Test
-	void testSetQRAvailable() {
-		boolean state = true;
-		film.setQRAvailable(state);
-		Assertions.assertEquals(state, film.QRAvailable);
+	void testGetSupportsType() {
+		Assertions.assertEquals(supports, film.getSupportsType());
 	}
 
-	@Test
-	void testIsQRAvailable() {
-		Assertions.assertEquals(film.QRAvailable, film.isQRAvailable());
-	}
-	
-	@Test
-	void testIsBRAvailable() {
-		Assertions.assertFalse(film.isBRAvailable());
-	}
 }
