@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -137,14 +139,26 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         // Filter ComboxBox
         filterCBox.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
         
-        /* This itemListener is implemented in order to remove the focus
+        /**
+         *  This itemListener is implemented in order to remove the focus
          * from the combobox. Because with the focus on the selected Item: 
          * the foreground is black and we need it to stay white at any time.
+         * @author MathysC
          */
         filterCBox.addItemListener(e -> ((Component)e.getSource()).getParent().requestFocus());
         searchPanel.add(filterCBox);
 
-        topPanel.add(searchPanel, BorderLayout.WEST);
+        /**
+         * This is not the best way to center both Jcomponents...
+         * But i couldn’t find the right way to do it.
+         */
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        leftPanel.setOpaque(false);
+        leftPanel.add(Box.createVerticalGlue());
+        leftPanel.add(searchPanel);
+        leftPanel.add(Box.createVerticalGlue());
+        topPanel.add(leftPanel, BorderLayout.WEST);
 
         /* Command Panel */
         // Undo Button
