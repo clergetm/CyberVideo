@@ -2,11 +2,15 @@ package ui.pages.actions;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -16,6 +20,7 @@ import fc.films.AgeRestriction;
 import fc.films.Categories;
 import fc.films.Film;
 import ui.utils.Decorations;
+import ui.utils.KeyboardDialog;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
@@ -40,11 +45,13 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
     /* Top Panel Components */
     protected JPanel searchPanel = new JPanel(new FlowLayout());
     protected JTextField tfSearch = new JTextField();
-    protected JComboBox < String > filterCBox = new JComboBox < > (boxItems);
+    private String placeholder = "";
+    protected JComboBox <String> filterCBox = new JComboBox <> (boxItems);
     protected JPanel commandPanel = new JPanel(new FlowLayout());
     protected JButton undoButton = new JButton();
     protected JButton redoButton = new JButton();
     protected JButton connectionButton = new JButton();
+    private KeyboardDialog keyboard = new KeyboardDialog();
 
     public JButton getUndoButton() {
         return undoButton;
@@ -104,13 +111,30 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 
         /* Search Panel */
         // Search TextField
-//         TODO #29 Add MouseListener
-//         TODO #29 Add KeyboardDialog
-        tfSearch.setColumns(30);
+        tfSearch.setColumns(25);
+        tfSearch.setPreferredSize(Decorations.sizeConverter(new Dimension(500, 40)));
+        tfSearch.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+        	// if text is default value
+        	if (tfSearch.getText().equals(placeholder)) {
+        	    Decorations.resetDefaultPlaceholder(tfSearch);
+        	}
+        	// Get new text
+        	String prompt = keyboard.showKeyboardDialog(placeholder, tfSearch);
+ 
+        	// If empty prompt
+        	if (prompt.equals("")) {
+        	    Decorations.setDefaultPlaceholder(tfSearch, placeholder);
+        	} else {
+        	    tfSearch.setText(prompt);
+        	}
+            }
+        });
+        
         searchPanel.add(tfSearch);
 
         // Filter ComboxBox
-//         TODO #29 Correct Size and Color Combobox
         filterCBox.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
         
         /* This itemListener is implemented in order to remove the focus
@@ -167,6 +191,10 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         // Panels
         this.setBackground(Light.BG.getColor());
         
+        tfSearch.setBackground(Light.REVERSE_BG.getColor());
+        tfSearch.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+        tfSearch.setForeground(Light.BLACK.getColor());        
+        
         filterCBox.setBackground(Light.BLUE.getColor());
         filterCBox.setForeground(Light.WHITE.getColor());
 
@@ -175,7 +203,8 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         redoButton.setIcon(Decorations.getImg(IMG_REDO_LIGHT));
         connectionButton.setBackground(Light.BLUE.getColor());
         connectionButton.setForeground(Light.WHITE.getColor());
-
+        
+        keyboard.setLight();
         checkoutPanel.setLight();
         searchPage.setLight();
     }
@@ -185,14 +214,20 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 	//Panels
         this.setBackground(Dark.BG.getColor());
         
+        tfSearch.setBackground(Dark.PURPLE.getColor());
+        tfSearch.setForeground(Dark.FOREGROUND.getColor());
+        tfSearch.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+        
         filterCBox.setBackground(Dark.BLUE.getColor());
         filterCBox.setForeground(Dark.FOREGROUND.getColor());
+        
         // Buttons
         undoButton.setIcon(Decorations.getImg(IMG_UNDO_DARK));
         redoButton.setIcon(Decorations.getImg(IMG_REDO_DARK));
         connectionButton.setBackground(Dark.BLUE.getColor());
         connectionButton.setForeground(Dark.FOREGROUND.getColor());
 
+        keyboard.setDark();
         checkoutPanel.setDark();
         searchPage.setDark();
     }
@@ -200,6 +235,14 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
     @Override
     public void setLanguage(ResourceBundle rb) {
         connectionButton.setText(rb.getString("login_in"));
+
+        // If the field wasn’t change. Change the placeholder
+        if (tfSearch.getText().equals(placeholder))
+            Decorations.setDefaultPlaceholder(tfSearch, rb.getString("action_search"));
+
+        // And change the String value for condition in FocusListener.        
+        placeholder = rb.getString("action_search");
+
         checkoutPanel.setLanguage(rb);
         searchPage.setLanguage(rb);
     }
