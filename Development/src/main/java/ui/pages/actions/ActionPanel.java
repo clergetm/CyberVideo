@@ -18,9 +18,6 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import fc.films.AgeRestriction;
-import fc.films.Categories;
-import fc.films.Film;
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
 import ui.utils.bundles.Multilingual;
@@ -97,11 +94,6 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         subActionsPanel.put(MainFrame.ID_RESULT_PAGE, searchPage);
         subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
         current_subAction = MainFrame.ID_RESULT_PAGE;
-
-//         TODO #29 REMOVE AFTER TEST
-//         Film film = new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES});
-//         this.checkoutPanel.addToCart(new Film("toto", "toto tutu tata", new String[]{"JM COCO","PE SOSO"}, "DIDI", "DODO", AgeRestriction.MINUS12, new Categories[] {Categories.DRAMAS, Categories.COMEDIES}), "1");
-
     }
 
     private void createGUI() {
