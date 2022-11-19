@@ -42,6 +42,7 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	protected JLabel banner = new JLabel();
 	protected WelcomePage welcomePage = new WelcomePage();
 	protected ActionPanel actionPanel = new ActionPanel();
+	protected FilmPage filmPage = new FilmPage();
 	
 	/* Pages */
 	protected HashMap<Integer, JPanel> pages = new HashMap<>();
@@ -102,6 +103,7 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 		/*Initialize pages map*/
 		this.pages.put(ID_WELCOME_PAGE, welcomePage);
 		this.pages.put(ID_RESULT_PAGE, actionPanel);
+		this.pages.put(ID_FILM_PAGE,filmPage);
 	}
 	
 	public void changeCurrentPage(int id) {
@@ -138,6 +140,8 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 		
 		// Action Panel
 		this.actionPanel.setLight();
+
+		this.filmPage.setLight();
 	}
 
 	@Override
@@ -157,6 +161,8 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 		
 		// Action Panel
 		this.actionPanel.setDark();
+
+		this.filmPage.setDark();
 	}
 	
 	/**

@@ -4,7 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -30,6 +31,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 	private JPanel mainPanel = new JPanel(new BorderLayout());
 	protected JPanel availability = new JPanel(new FlowLayout());
 	protected JButton qrcode = new JButton(), bluray = new JButton();
+	
 
 	/* Actions */
 	public static final String RENTBR = "RENT_BLU-RAY";
@@ -50,12 +52,15 @@ public class FilmPanel extends JPanel implements ColorTheme {
 	 * 
 	 * @author MathysC
 	 */
-	public FilmPanel(Film f, double percent) {
+	public FilmPanel(Film f, double percent, boolean clickable,MainFrame m ){
 		// Film
 		this.film = f;
 
 		// JPanel Options
 		this.setLayout(new FlowLayout());
+
+		//MainFrame
+		
 
 		// Set Poster.
 		// TODO #40 Add action from click on the poster to the Information of the Film
@@ -63,6 +68,16 @@ public class FilmPanel extends JPanel implements ColorTheme {
 		poster.setOpaque(false);
 		mainPanel.add(poster, BorderLayout.CENTER);
 		poster.setIcon(posterImg);
+		if(clickable){
+			poster.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e ){
+					System.out.println("TOUCHED ! ");
+					
+				}
+			});
+		}
+		
 
 		// Set Buttons.
 		qrcode = new JButton("QRCode");
