@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -202,15 +203,38 @@ public enum Decorations {
 	return Decorations.class.getResource(PATH.SND + name + FORMAT.SND).getPath();
     } 
 
-		/**
-	 * Convert dimensions with the size of screen, based on a fixed size screen
-	 * @author Clarisse
-	 * 
-	 * @param dim the dimension of an object to be resize
-	 * @return the dimension based on the current screen size
-	 */
-	public static Dimension sizeConverter(Dimension dim) {
-		return new Dimension((dim.width*SCREEN.CURENT_WIDTH.getLength())/SCREEN.WIDTH.getLength(),
-				(dim.height*SCREEN.CURENT_HEIGHT.getLength())/SCREEN.HEIGHT.getLength());
-	}
+    /**
+     * Convert dimensions with the size of screen, based on a fixed size screen
+     * @author Clarisse
+     * 
+     * @param dim the dimension of an object to be resize
+     * @return the dimension based on the current screen size
+     */
+    public static Dimension sizeConverter(Dimension dim) {
+	return new Dimension((dim.width*SCREEN.CURENT_WIDTH.getLength())/SCREEN.WIDTH.getLength(),
+		(dim.height*SCREEN.CURENT_HEIGHT.getLength())/SCREEN.HEIGHT.getLength());
+    }
+    
+    /**
+     * Set the placeholder of a JTextField.
+     * @author MathysC
+     *
+     * @param tf The JTextField component to set.
+     * @param prompt The text to put as a placeholder.
+     */
+    public static void setDefaultPlaceholder(JTextField tf, String prompt) {
+        tf.setFont(Decorations.FONT_PLACEHOLDER.getFont(Font.PLAIN, 16));
+        tf.setText(prompt);
+    }
+    
+    /**
+     * Remove the placeholder of a JTextField.
+     * @author MathysC
+     *
+     * @param tf The JTextField to unset.
+     */
+    public static void resetDefaultPlaceholder(JTextField tf) {
+        tf.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 16));
+        tf.setText("");
+    }
 }

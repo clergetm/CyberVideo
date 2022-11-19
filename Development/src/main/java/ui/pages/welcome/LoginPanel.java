@@ -93,14 +93,14 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
 
                 // if text is default value
                 if (tfID.getText().equals(placeholderID)) {
-                    resetDefaultPlaceholder(tfID);
+                    Decorations.resetDefaultPlaceholder(tfID);
                 }
                 // Get new text
                 String prompt = keyboard.showKeyboardDialog(keyboardTitleID, tfID);
 
                 // If empty prompt
                 if (prompt.equals("")) {
-                    setDefaultPlaceholder(tfID, placeholderID);
+                    Decorations.setDefaultPlaceholder(tfID, placeholderID);
                 } else {
                     tfID.setText(prompt);
                 }
@@ -135,7 +135,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
             public void mouseClicked(MouseEvent e) {
                 // If nothing has been written. Remove the PlaceHolder.
                 if (Arrays.equals(tfPassword.getPassword(), placeholderPassword.toCharArray())) {
-                    resetDefaultPlaceholder(tfPassword);
+                    Decorations.resetDefaultPlaceholder(tfPassword);
                 }
 
                 // Show what’s written.
@@ -147,7 +147,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
                 // If empty prompt
                 if (prompt.equals("")) {
                     // Set to default
-                    setDefaultPlaceholder(tfPassword, placeholderPassword);
+                    Decorations.setDefaultPlaceholder(tfPassword, placeholderPassword);
                 } else {
                     // Hide what’s written.
                     tfPassword.setEchoChar('*');
@@ -199,29 +199,6 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
     }
 
     /**
-     * Set the placeholder of a JTextField.
-     * @author MathysC
-     *
-     * @param tf The JTextField component to set.
-     * @param prompt The text to put as a placeholder.
-     */
-    private void setDefaultPlaceholder(JTextField tf, String prompt) {
-        tf.setFont(Decorations.FONT_PLACEHOLDER.getFont(Font.PLAIN, 16));
-        tf.setText(prompt);
-    }
-
-    /**
-     * Remove the placeholder of a JTextField.
-     * @author MathysC
-     *
-     * @param tf The JTextField to unset.
-     */
-    private void resetDefaultPlaceholder(JTextField tf) {
-        tf.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 16));
-        tf.setText("");
-    }
-
-    /**
      * {@inheritDoc}
      * @author MathysC
      *
@@ -235,7 +212,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         // ID JTextField
         // If the field wasn’t change. Change the placeholder
         if (tfID.getText().equals(placeholderID))
-            setDefaultPlaceholder(tfID, rb.getString("login_id_placeholder"));
+            Decorations.setDefaultPlaceholder(tfID, rb.getString("login_id_placeholder"));
 
         // And change the String value for condition in FocusListener.
         placeholderID = rb.getString("login_id_placeholder");
@@ -243,7 +220,7 @@ class LoginPanel extends JPanel implements Multilingual, ColorTheme {
         // Password JPasswordField
         // If the field wasn’t change. Change the placeholder
         if (Arrays.equals(tfPassword.getPassword(), placeholderPassword.toCharArray()))
-            setDefaultPlaceholder(tfPassword, rb.getString("login_pw_placeholder"));
+            Decorations.setDefaultPlaceholder(tfPassword, rb.getString("login_pw_placeholder"));
         // And change the String value for condition in FocusListener.
         placeholderPassword = rb.getString("login_pw_placeholder");
 
