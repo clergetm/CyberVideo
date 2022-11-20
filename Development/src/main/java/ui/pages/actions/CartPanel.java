@@ -32,7 +32,7 @@ import ui.utils.mediator.cart.components.RemoveButton;
  * @see ui.colors.ColorTheme
  */
 @SuppressWarnings("serial")
-public class CheckoutPanel extends JPanel implements CartMediator, Multilingual, ColorTheme {
+public class CartPanel extends JPanel implements CartMediator, Multilingual, ColorTheme {
     private Client client;
     private HashMap<Film, CartItemPanel> cart = new HashMap<>();
    
@@ -45,7 +45,7 @@ public class CheckoutPanel extends JPanel implements CartMediator, Multilingual,
      *
      * @param client the current connected client
      */
-    public CheckoutPanel(Client client) {
+    public CartPanel(Client client) {
 	this.client = client;
 	this.createGUI();
     }
@@ -56,7 +56,7 @@ public class CheckoutPanel extends JPanel implements CartMediator, Multilingual,
      * @author MathysC
      *
      */
-    public CheckoutPanel() {
+    public CartPanel() {
 	this.createGUI();
     }
     
