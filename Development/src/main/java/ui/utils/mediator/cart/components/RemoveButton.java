@@ -13,7 +13,7 @@ import ui.utils.mediator.cart.CartMediator;
  *
  */
 @SuppressWarnings("serial")
-public class RemoveButton extends JButton implements Component{
+public class RemoveButton extends JButton implements CartComponent{
     private CartMediator cartMediator;
     
     @Override

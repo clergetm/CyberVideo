@@ -20,7 +20,7 @@ import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.utils.mediator.cart.CartMediator;
-import ui.utils.mediator.cart.components.Component;
+import ui.utils.mediator.cart.components.CartComponent;
 import ui.utils.mediator.cart.components.RemoveButton;
 
 /**
@@ -121,7 +121,7 @@ public class CheckoutPanel extends JPanel implements CartMediator, Multilingual,
      * @see io.utils.mediator.cart.components.RemoveButton
      */
     @Override
-    public void removeFromCart(Component from) {
+    public void removeFromCart(CartComponent from) {
 	// TODO Remove from client cart
 	// Remove from GUI cart
 	RemoveButton button = (RemoveButton) from;

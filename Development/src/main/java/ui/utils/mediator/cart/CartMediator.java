@@ -1,12 +1,12 @@
 package ui.utils.mediator.cart;
 
 import fc.films.Film;
-import ui.utils.mediator.cart.components.Component;
+import ui.utils.mediator.cart.components.CartComponent;
 
 /**
  * Mediator Interface to encapsulate all cart related objects.
  * @author MathysC
- * @see ui.utils.mediator.cart.components.Component
+ * @see ui.utils.mediator.cart.components.CartComponent
  */
 public interface CartMediator {
     
@@ -26,7 +26,7 @@ public interface CartMediator {
      *
      * @param from the Component used.
      */
-    void removeFromCart(Component from);
+    void removeFromCart(CartComponent from);
     
     /**
      * Remove all films from the cart.

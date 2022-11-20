@@ -7,7 +7,7 @@ import ui.utils.mediator.cart.CartMediator;
  * @author MathysC
  * @see ui.utils.mediator.cart.CartMediator
  */
-public interface Component {
+public interface CartComponent {
 
     /**
      * 
