@@ -116,7 +116,7 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme {
     public void setLanguage(ResourceBundle rb) {
 	checkoutButton.setText(rb.getString("checkout_button"));
 	for(Component fp : this.itemPanel.getComponents()) {
-	    ((CartItemPanel)fp).setLight();
+	    ((CartItemPanel)fp).setLanguage(rb);
 	}
     }
 }
