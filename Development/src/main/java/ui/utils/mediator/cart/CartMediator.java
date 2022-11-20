@@ -1,6 +1,8 @@
 package ui.utils.mediator.cart;
 
+import fc.clients.Client;
 import fc.films.Film;
+import ui.pages.actions.CartPanel;
 import ui.utils.mediator.cart.components.CartComponent;
 
 /**
@@ -34,4 +36,8 @@ public interface CartMediator {
      *
      */
     void clearCart();
+    
+    void registerClient(Client client);
+    
+    void registerCartPanel(CartPanel cartPanel);
 }
