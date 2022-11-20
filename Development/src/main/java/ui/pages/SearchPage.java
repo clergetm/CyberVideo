@@ -18,11 +18,12 @@ import javax.swing.ScrollPaneConstants;
 import fc.films.Categories;
 import fc.films.Film;
 import ui.utils.Decorations;
-import ui.FilmManager;
+import ui.managers.FilmManager;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.factory.filmpanel.factories.FilmCartPanel;
 
 @SuppressWarnings("serial")
 public class SearchPage extends JPanel implements Multilingual, ColorTheme {
@@ -94,13 +95,13 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    mostRentedPanel.add(mostRentedLabel, BorderLayout.NORTH);
 	    mostRentedPanel.add(mostRentedPane, BorderLayout.CENTER);
 	    centerPanel.add(mostRentedPanel);
-	    
+
 	    mainPanel.add(centerPanel, BorderLayout.CENTER);
 	    this.add(mainPanel,BorderLayout.CENTER);
 	}
 	
 	public void addResult(Film film) { 
-	    resultsManager.addFilm(film);
+	    resultsManager.addFilm(new FilmCartPanel(film));
 	    countResults++;
 	    this.updateCountResults();
 	}
