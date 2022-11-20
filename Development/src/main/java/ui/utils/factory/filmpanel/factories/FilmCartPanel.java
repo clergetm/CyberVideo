@@ -19,7 +19,7 @@ public class FilmCartPanel extends FilmPanel {
 
     @Override
     protected FilmPanelButton createButton(String supportType) {
-	CartButton button = new CartButton();
+	CartButton button = new CartButton(this.getFilm(), supportType);
 	button.setText(supportType);
 	button.setName(supportType);
 	button.setFont(font);
