@@ -19,8 +19,9 @@ public class ConcreteCartMediator implements CartMediator {
 //	if (this.cart.size() >= this.client.getSizeCart()) return false;
 	//TODO Add to client cart
 //	this.client.addToCart(film);
-	
 	// Add to GUI cart
+	
+//	FIXME the CartItemPanel created doesn’t have setLight/setDark and Language 
 	CartItemPanel item = new CartItemPanel(film, supportType);
 	item.getRemoveButton().setMediator(this);
 	item.getRemoveButton().setIndex(cart.size());

@@ -7,14 +7,12 @@ import ui.utils.factory.filmpanel.products.RentButton;
 /**
  * Factory to create FilmRentPanel.
  * @author MathysC
- *
  */
 @SuppressWarnings("serial")
 public class FilmRentPanel extends FilmPanel {
 
-    protected FilmRentPanel(Film film) {
+    public FilmRentPanel(Film film) {
 	super(film);
-	// TODO Auto-generated constructor stub
     }
 
     @Override

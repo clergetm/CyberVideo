@@ -17,8 +17,6 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
-import ui.utils.mediator.cart.CartMediator;
-import ui.utils.mediator.cart.components.CartComponent;
 
 /**
  * This class implements the whole GUI cart and the button to rent films in the cart.
@@ -31,7 +29,8 @@ import ui.utils.mediator.cart.components.CartComponent;
 @SuppressWarnings("serial")
 public class CartPanel extends JPanel implements Multilingual, ColorTheme {
     private JPanel itemPanel = new JPanel();
-    private JButton checkoutButton = new JButton(); // TODO Action of checkoutButton
+//  TODO Action of checkoutButton
+    private JButton checkoutButton = new JButton();
     
     /**
      * Default Constructor of {@code CheckoutPanel}.
@@ -44,9 +43,8 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme {
     }
     
     /**
-     * Create and connect all used {@code swing JComponents.
+     * Create CartPanel Interface.
      * @author MathysC
-     *
      */
     private void createGUI() {
 	this.setLayout(new BorderLayout());
@@ -54,23 +52,39 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme {
 	itemPanel.setLayout(new GridLayout(3,0));
 	this.add(itemPanel, BorderLayout.NORTH);
 	
-	JPanel tempPanel = new JPanel();
-	tempPanel.setOpaque(false);
+	checkoutButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));	
 	checkoutButton.setPreferredSize(new Dimension(200, 75));
-	tempPanel.add(checkoutButton);
-	this.add(tempPanel, BorderLayout.SOUTH);
+	this.add(checkoutButton, BorderLayout.SOUTH);
     }
     
+    /**
+     * Add a CartItemPanel to the Panel.
+     * @author MathysC
+     *
+     * @param item the CartItemPanel to add.
+     */
     public void addToCart(CartItemPanel item) {
 	this.itemPanel.add(item);
-    }
-    
-    public void removeFromCart(CartItemPanel item) {
-	itemPanel.remove(item);
 	this.revalidate();
 	this.repaint();
     }
-
+    
+    /**
+     * Remove a CartItemPanel from the Panel.
+     * @author MathysC
+     *
+     * @param item the CartItemPanel to remove.
+     */
+    public void removeFromCart(CartItemPanel item) {
+	this.itemPanel.remove(item);
+	this.revalidate();
+	this.repaint();
+    }
+    
+    /**
+     * Clear the items panel.
+     * @author MathysC
+     */
     public void clearCart() {
 	this.itemPanel.removeAll();
 	this.revalidate();
@@ -86,12 +100,11 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme {
 	this.itemPanel.setBackground(this.itemPanel.getParent().getBackground());
 	// cartItems from cart
 	for(Component fp : this.itemPanel.getComponents()) {
-	    ((CartItemPanel)fp).setLight();
+	    ((ColorTheme)fp).setLight();
 	}
 	// Checkout Button
 	this.checkoutButton.setBackground(Light.BLUE.getColor());
 	this.checkoutButton.setForeground(Light.WHITE.getColor());
-	this.checkoutButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));		
     }
 
     @Override
@@ -103,20 +116,20 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme {
 	this.itemPanel.setBackground(this.itemPanel.getParent().getBackground());
 	// CheckedOutFilmPanel from cart
 	for(Component fp : this.itemPanel.getComponents()) {
-	    ((CartItemPanel)fp).setLight();
+	    ((ColorTheme)fp).setLight();
 	}
 	
 	// Checkout Button
 	this.checkoutButton.setBackground(Dark.BLUE.getColor());
 	this.checkoutButton.setForeground(Dark.FOREGROUND.getColor());
-	this.checkoutButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));	
     }
 
     @Override
     public void setLanguage(ResourceBundle rb) {
 	checkoutButton.setText(rb.getString("checkout_button"));
 	for(Component fp : this.itemPanel.getComponents()) {
-	    ((CartItemPanel)fp).setLanguage(rb);
+	    ((Multilingual)fp).setLanguage(rb);
 	}
     }
+    
 }

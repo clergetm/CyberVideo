@@ -14,10 +14,9 @@ import ui.utils.colors.Light;
 import ui.utils.mediator.cart.CartMediator;
 
 /**
- * Concrete component implementation 
+ * Concrete CartComponent implementation 
  * for removing a film from the cart by a click of this button.
  * @author MathysC
- *
  */
 @SuppressWarnings("serial")
 public class RemoveButton extends JButton implements CartComponent, ColorTheme, Multilingual{
@@ -27,7 +26,6 @@ public class RemoveButton extends JButton implements CartComponent, ColorTheme, 
     /**
      * Constructor of RemoveButton.
      * @author MathysC
-     *
      */
     public RemoveButton() {
         this.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
@@ -48,22 +46,21 @@ public class RemoveButton extends JButton implements CartComponent, ColorTheme, 
     public void setIndex(int index) {
 	this.index = index;
     }
-
-    @Override
-    public void setMediator(CartMediator cartMediator) {
-	this.cartMediator = cartMediator;
-    }
     
     /**
      * Call the mediator in order to remove a film from the cart.
      * @author MathysC
-     *
      */
     @Override
     protected void fireActionPerformed(ActionEvent actionEvent) {
 	cartMediator.removeFromCart(index);
     }
-
+    
+    @Override
+    public void setMediator(CartMediator cartMediator) {
+	this.cartMediator = cartMediator;
+    }
+    
     @Override
     public void setLanguage(ResourceBundle rb) {
         this.setText(rb.getString("checkout_remove"));
@@ -80,4 +77,5 @@ public class RemoveButton extends JButton implements CartComponent, ColorTheme, 
         this.setBackground(Dark.BLUE.getColor());
         this.setForeground(Dark.FOREGROUND.getColor());	
     }
+    
 }

@@ -25,7 +25,6 @@ import ui.utils.factory.filmpanel.products.FilmPanelButton;
  *  - A poster.
  *  - Buttons related to film supports.
  * @author MathysC
- *
  */
 @SuppressWarnings("serial")
 public abstract class FilmPanel extends JPanel implements ColorTheme {
@@ -59,7 +58,6 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
     /**
      * Create the GUI of the FilmPanel.
      * @author MathysC
-     *
      */
     private void createGUI() {
 	this.setLayout(new FlowLayout());
@@ -91,7 +89,7 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 	     * if we have at least one type of support available: the button is enabled.
 	     */
 	    // if this support is available and the button is not already enabled
-	    if(support.isAvailable() && !buttonMap.get(supportType).isEnabled()) {
+	    if(support.isAvailable() && !(buttonMap.get(supportType)).isEnabled()) {
 		buttonMap.get(supportType).setEnabled(true);
 	    }
 	}
@@ -100,8 +98,7 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 	this.add(mainPanel);
     }
     
-    /**
-     * 
+    /** 
      * @author MathysC
      *
      * @param supportType the type of the support.
@@ -110,7 +107,6 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
     protected abstract FilmPanelButton createButton(String supportType);
     
     /**
-     * 
      * @author MathysC
      *
      * @param percent the percent to scale the panel to.
@@ -149,15 +145,12 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 
     @Override
     public void setLight() {
-	for(FilmPanelButton button : buttonMap.values()) {
-	    button.setLight();
-	}
+	buttonMap.forEach((k, v) -> v.setLight());
     }
 
     @Override
     public void setDark() {
-	for(FilmPanelButton button : buttonMap.values()) {
-	    button.setDark();
-	}	
+	buttonMap.forEach((k, v) -> v.setDark());
     }
+    
 }

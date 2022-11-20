@@ -10,10 +10,9 @@ import ui.utils.mediator.cart.CartMediator;
 public interface CartComponent {
 
     /**
-     * 
      * @author MathysC
-     *
      * @param cartMediator The mediator to set
      */
     void setMediator(CartMediator cartMediator);
+    
 }
