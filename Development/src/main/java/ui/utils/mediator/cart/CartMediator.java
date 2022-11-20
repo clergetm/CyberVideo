@@ -8,7 +8,7 @@ import ui.utils.mediator.cart.components.Component;
  * @author MathysC
  * @see ui.utils.mediator.cart.components.Component
  */
-public interface Mediator {
+public interface CartMediator {
     
     /**
      * Add a film to the cart.

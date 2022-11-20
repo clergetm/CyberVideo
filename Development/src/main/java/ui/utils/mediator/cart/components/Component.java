@@ -1,11 +1,11 @@
 package ui.utils.mediator.cart.components;
 
-import ui.utils.mediator.cart.Mediator;
+import ui.utils.mediator.cart.CartMediator;
 
 /**
  * Component interface to represent a cart related object.
  * @author MathysC
- * @see ui.utils.mediator.cart.Mediator
+ * @see ui.utils.mediator.cart.CartMediator
  */
 public interface Component {
 
@@ -13,9 +13,9 @@ public interface Component {
      * 
      * @author MathysC
      *
-     * @param mediator The mediator to set
+     * @param cartMediator The mediator to set
      */
-    void setMediator(Mediator mediator);
+    void setMediator(CartMediator cartMediator);
     
     /**
      * 

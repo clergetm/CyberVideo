@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 
-import ui.utils.mediator.cart.Mediator;
+import ui.utils.mediator.cart.CartMediator;
 
 /**
  * Concrete component implementation 
@@ -14,11 +14,11 @@ import ui.utils.mediator.cart.Mediator;
  */
 @SuppressWarnings("serial")
 public class RemoveButton extends JButton implements Component{
-    private Mediator mediator;
+    private CartMediator cartMediator;
     
     @Override
-    public void setMediator(Mediator mediator) {
-	this.mediator = mediator;
+    public void setMediator(CartMediator cartMediator) {
+	this.cartMediator = cartMediator;
     }
     
     /**
@@ -28,7 +28,7 @@ public class RemoveButton extends JButton implements Component{
      */
     @Override
     protected void fireActionPerformed(ActionEvent actionEvent) {
-	mediator.removeFromCart(this);
+	cartMediator.removeFromCart(this);
     }
 
     @Override

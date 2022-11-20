@@ -19,7 +19,7 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
-import ui.utils.mediator.cart.Mediator;
+import ui.utils.mediator.cart.CartMediator;
 import ui.utils.mediator.cart.components.Component;
 import ui.utils.mediator.cart.components.RemoveButton;
 
@@ -27,12 +27,12 @@ import ui.utils.mediator.cart.components.RemoveButton;
  * This class implements the whole GUI cart and the button to rent films in the cart.
  * @author MathysC
  * @see ui.pages.actions.CartItemPanel
- * @see ui.utils.mediator.cart.Mediator
+ * @see ui.utils.mediator.cart.CartMediator
  * @see ui.bundles.Multilingual
  * @see ui.colors.ColorTheme
  */
 @SuppressWarnings("serial")
-public class CheckoutPanel extends JPanel implements Mediator, Multilingual, ColorTheme {
+public class CheckoutPanel extends JPanel implements CartMediator, Multilingual, ColorTheme {
     private Client client;
     private HashMap<Film, CartItemPanel> cart = new HashMap<>();
    
