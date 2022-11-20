@@ -15,10 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import fc.films.Film;
-import ui.FilmPanel;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.factory.filmpanel.factories.FilmRentPanel;
 
 
 @SuppressWarnings("serial")
@@ -26,7 +26,7 @@ public class FilmPage extends JPanel implements ColorTheme {
     private JPanel filmInfo = new JPanel();
     private JPanel filmInfoContainer = new JPanel();
     private Film film;
-    private FilmPanel filmPoster; 
+    private FilmRentPanel filmPoster; 
     private String actorsTest ;
   
     JLabel movieName = new JLabel();

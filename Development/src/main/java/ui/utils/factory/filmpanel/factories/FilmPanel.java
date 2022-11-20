@@ -132,6 +132,14 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 	}
     }
 
+    /**
+     * @author MathysC
+     * @return the film
+     */
+    public Film getFilm() {
+	return film;
+    }
+
     @Override
     public void setLight() {
 	for(FilmPanelButton button : buttonMap.values()) {
