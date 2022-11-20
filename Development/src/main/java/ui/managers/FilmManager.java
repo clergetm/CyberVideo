@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import fc.films.Film;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
@@ -16,10 +17,10 @@ import ui.utils.factory.filmpanel.factories.FilmPanel;
  *
  */
 @SuppressWarnings("serial")
-public class FilmManager extends JPanel implements ColorTheme{
+public abstract class FilmManager extends JPanel implements ColorTheme{
     
-    private ArrayList<FilmPanel> films = new ArrayList<>();
-    private double percent; // Scale of FilmPanels
+    protected ArrayList<FilmPanel> films = new ArrayList<>();
+    protected double percent; // Scale of FilmPanels
     
     /**
      * Constructor of FilmManager
@@ -28,7 +29,7 @@ public class FilmManager extends JPanel implements ColorTheme{
      * @param layout the layout to set.
      * @param percent the scale used for FilmPanels.
      */
-    public FilmManager(LayoutManager layout, double percent) {
+    protected FilmManager(LayoutManager layout, double percent) {
 	this.setLayout(layout);
 	this.percent = percent;
     }
@@ -36,13 +37,9 @@ public class FilmManager extends JPanel implements ColorTheme{
     /**
      * Add FilmPanel to the Manager.
      * @author MathysC
-     * @param filmPanel The FilmPanel to add.
+     * @param film the film to add
      */
-    public void addFilm(FilmPanel filmPanel) {
-	filmPanel.setScale(percent);
-	this.films.add(filmPanel);
-	this.add(filmPanel);
-    }
+    public abstract void addFilm(Film film);
     
     /**
      * Clear the manager. Empty the list, remove FilmPanels.
