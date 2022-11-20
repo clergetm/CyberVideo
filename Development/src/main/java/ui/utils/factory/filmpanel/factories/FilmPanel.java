@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import fc.films.Film;
 import fc.films.Support;
@@ -30,9 +31,10 @@ import ui.utils.factory.filmpanel.products.FilmPanelButton;
 public abstract class FilmPanel extends JPanel implements ColorTheme {
     protected Film film;
 
+    private JPanel mainPanel;
     private JLabel poster;
     private ImageIcon posterImage;
-
+    
     protected JPanel buttonPanel;
     protected HashMap<String, FilmPanelButton> buttonMap = new HashMap<>();
 
@@ -60,12 +62,16 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
      *
      */
     private void createGUI() {
-	this.setLayout(new BorderLayout());
+	this.setLayout(new FlowLayout());
 	this.setOpaque(false);
+	
+	mainPanel = new JPanel(new BorderLayout());
+	mainPanel.setOpaque(false);
 	
 	poster = new JLabel();
 	poster.setOpaque(false);
-	this.add(poster, BorderLayout.CENTER);
+	poster.setHorizontalAlignment(SwingConstants.CENTER);
+	mainPanel.add(poster, BorderLayout.CENTER);
 	
 	// Buttons
 	buttonPanel = new JPanel(new FlowLayout());
@@ -90,7 +96,8 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 	    }
 	}
 	
-	this.add(buttonPanel, BorderLayout.SOUTH);
+	mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+	this.add(mainPanel);
     }
     
     /**

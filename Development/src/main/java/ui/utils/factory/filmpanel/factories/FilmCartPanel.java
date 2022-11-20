@@ -12,7 +12,7 @@ import ui.utils.factory.filmpanel.products.FilmPanelButton;
 @SuppressWarnings("serial")
 public class FilmCartPanel extends FilmPanel {
 
-    protected FilmCartPanel(Film film) {
+    public FilmCartPanel(Film film) {
 	super(film);
 	// TODO Auto-generated constructor stub
     }
