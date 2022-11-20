@@ -52,18 +52,6 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
     protected JButton connectionButton = new JButton();
     private KeyboardDialog keyboard = new KeyboardDialog();
 
-    public JButton getUndoButton() {
-        return undoButton;
-    }
-
-    public JButton getRedoButton() {
-        return redoButton;
-    }
-
-    public JButton getConnectionButton() {
-        return connectionButton;
-    }
-
     /*Action pages */
     private HashMap < Integer, JPanel > subActionsPanel = new HashMap < > ();
 //  TODO #39 change JPanel when FilmPage added
@@ -80,8 +68,8 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
     public static final String IMG_REDO_LIGHT = "redoLight";
     public static final String IMG_REDO_DARK = "redoDark";
 
-    /* Checkout Part */
-    protected CheckoutPanel checkoutPanel = new CheckoutPanel();
+    /* Cart Part */
+    protected CartPanel cartPanel = new CartPanel();
     
     /**
      * Constructor of ActionPanel, represent the Cart, and several Command buttons.
@@ -177,7 +165,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         actionCenterPanel.add(topPanel, BorderLayout.NORTH);
 
         this.add(actionCenterPanel, BorderLayout.CENTER);
-        this.add(checkoutPanel, BorderLayout.EAST);
+        this.add(cartPanel, BorderLayout.EAST);
     }
 
     /**
@@ -192,6 +180,18 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         current_subAction = id;
     }
 
+    public JButton getUndoButton() {
+        return undoButton;
+    }
+
+    public JButton getRedoButton() {
+        return redoButton;
+    }
+
+    public JButton getConnectionButton() {
+        return connectionButton;
+    }
+    
     @Override
     public void setLight() {
         // Panels
@@ -211,7 +211,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         connectionButton.setForeground(Light.WHITE.getColor());
         
         keyboard.setLight();
-        checkoutPanel.setLight();
+        cartPanel.setLight();
         searchPage.setLight();
     }
 
@@ -234,7 +234,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         connectionButton.setForeground(Dark.FOREGROUND.getColor());
 
         keyboard.setDark();
-        checkoutPanel.setDark();
+        cartPanel.setDark();
         searchPage.setDark();
     }
 
@@ -249,7 +249,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         // And change the String value for condition in FocusListener.        
         placeholder = rb.getString("action_search");
 
-        checkoutPanel.setLanguage(rb);
+        cartPanel.setLanguage(rb);
         searchPage.setLanguage(rb);
     }
 }

@@ -18,14 +18,16 @@ import javax.swing.ScrollPaneConstants;
 import fc.films.Categories;
 import fc.films.Film;
 import ui.utils.Decorations;
-import ui.FilmManager;
+import ui.managers.CartFilmManager;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.mediator.cart.CartMediator;
+import ui.utils.mediator.cart.components.CartComponent;
 
 @SuppressWarnings("serial")
-public class SearchPage extends JPanel implements Multilingual, ColorTheme {
+public class SearchPage extends JPanel implements Multilingual, ColorTheme, CartComponent {
 
     	protected JPanel mainPanel = new JPanel(new BorderLayout());
     	
@@ -33,20 +35,22 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
     	protected JPanel resultsPanel = new JPanel(new BorderLayout());
 	protected JLabel resultsLabel = new JLabel();
     	protected JScrollPane resultsPane;
-    	private FilmManager resultsManager;
+    	private CartFilmManager resultsManager;
     	private int countResults = 0;
     	
     	/* Most rented films */
     	protected JPanel mostRentedPanel = new JPanel(new BorderLayout());
     	protected JLabel mostRentedLabel = new JLabel();
     	protected JScrollPane mostRentedPane;
-    	private FilmManager mostRentedManager;
+    	private CartFilmManager mostRentedManager;
     	
     	/* Categories */
     	protected JScrollPane categoriesPane;
     	private JPanel categoriesManager;
-
     	
+    	/* Mediator */
+        private CartMediator cartMediator;
+
     	/**
     	 * 
     	 * @author MathysC
@@ -76,7 +80,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    JPanel centerPanel = new JPanel(new GridLayout(2,0));
 	    centerPanel.setOpaque(false);
 	    // Results
-	    resultsManager = new FilmManager(new FlowLayout(FlowLayout.LEFT), 100);
+	    resultsManager = new CartFilmManager(new FlowLayout(FlowLayout.LEFT), 100);	    
 	    resultsPane = new JScrollPane(resultsManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    resultsPane.setBorder(BorderFactory.createEmptyBorder());
@@ -86,7 +90,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    centerPanel.add(resultsPanel);
 	    
 	    // Most rented films
-	    mostRentedManager = new FilmManager(new FlowLayout(FlowLayout.LEFT), 100);
+	    mostRentedManager = new CartFilmManager(new FlowLayout(FlowLayout.LEFT), 100);
 	    mostRentedPane = new JScrollPane(mostRentedManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    mostRentedPane.setBorder(BorderFactory.createEmptyBorder());
@@ -94,7 +98,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    mostRentedPanel.add(mostRentedLabel, BorderLayout.NORTH);
 	    mostRentedPanel.add(mostRentedPane, BorderLayout.CENTER);
 	    centerPanel.add(mostRentedPanel);
-	    
+
 	    mainPanel.add(centerPanel, BorderLayout.CENTER);
 	    this.add(mainPanel,BorderLayout.CENTER);
 	}
@@ -147,8 +151,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 		button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 	    }
 	}
-	
-	
+		
 	@Override
 	public void setLanguage(ResourceBundle rb) {
 		resultsLabel.setText(rb.getString("result_title"));
@@ -156,4 +159,10 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 		mostRentedLabel.setText(rb.getString("result_most_rented"));
 	}
 
+	@Override
+	public void setMediator(CartMediator cartMediator) {
+	    this.cartMediator = cartMediator;   
+	    resultsManager.setMediator(this.cartMediator);
+	    mostRentedManager.setMediator(this.cartMediator);
+	}
 }
