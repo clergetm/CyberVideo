@@ -1,6 +1,5 @@
 package ui.utils.factory.filmpanel.products;
 
-import javax.swing.JButton;
 
 /**
  * Concrete FilmPanelButton implementation to directly rent a Film.
@@ -8,6 +7,6 @@ import javax.swing.JButton;
  *
  */
 @SuppressWarnings("serial")
-public class RentButton extends JButton implements FilmPanelButton {
+public class RentButton extends FilmPanelButton {
 
 }
