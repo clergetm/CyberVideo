@@ -30,10 +30,4 @@ public class RemoveButton extends JButton implements CartComponent{
     protected void fireActionPerformed(ActionEvent actionEvent) {
 	cartMediator.removeFromCart(this);
     }
-
-    @Override
-    public String getComponentName() {
-	return "RemoveButton";
-    }
-
 }

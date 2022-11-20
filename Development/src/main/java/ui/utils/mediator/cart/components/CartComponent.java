@@ -16,12 +16,4 @@ public interface CartComponent {
      * @param cartMediator The mediator to set
      */
     void setMediator(CartMediator cartMediator);
-    
-    /**
-     * 
-     * @author MathysC
-     *
-     * @return the name of the component.
-     */
-    String getComponentName();
 }

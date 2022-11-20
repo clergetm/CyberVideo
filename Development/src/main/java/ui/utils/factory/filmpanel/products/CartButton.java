@@ -44,8 +44,4 @@ public class CartButton extends FilmPanelButton implements CartComponent {
 	this.cartMediator.addToCart(this.film, this.supportType);
     }
 
-    @Override
-    public String getComponentName() {
-	return "CartButton";
-    }
 }
