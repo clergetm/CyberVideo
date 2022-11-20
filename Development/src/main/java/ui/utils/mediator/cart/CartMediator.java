@@ -28,7 +28,7 @@ public interface CartMediator {
      *
      * @param from the Component used.
      */
-    void removeFromCart(CartComponent from);
+    void removeFromCart(int index);
     
     /**
      * Remove all films from the cart.

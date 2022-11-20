@@ -22,6 +22,7 @@ import ui.utils.mediator.cart.CartMediator;
 @SuppressWarnings("serial")
 public class RemoveButton extends JButton implements CartComponent, ColorTheme, Multilingual{
     private CartMediator cartMediator;
+    private int index;
     
     /**
      * Constructor of RemoveButton.
@@ -32,19 +33,35 @@ public class RemoveButton extends JButton implements CartComponent, ColorTheme, 
         this.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
     }
     
+    /**
+     * @author MathysC
+     * @return the index
+     */
+    public int getIndex() {
+	return index;
+    }
+
+    /**
+     * @author MathysC
+     * @param index the index to set
+     */
+    public void setIndex(int index) {
+	this.index = index;
+    }
+
     @Override
     public void setMediator(CartMediator cartMediator) {
 	this.cartMediator = cartMediator;
     }
     
     /**
-     * 
+     * Call the mediator in order to remove a film from the cart.
      * @author MathysC
      *
      */
     @Override
     protected void fireActionPerformed(ActionEvent actionEvent) {
-	cartMediator.removeFromCart(this);
+	cartMediator.removeFromCart(index);
     }
 
     @Override

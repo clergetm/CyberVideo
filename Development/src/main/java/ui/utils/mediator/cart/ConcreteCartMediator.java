@@ -1,17 +1,15 @@
 package ui.utils.mediator.cart;
 
-import java.util.HashMap;
-import java.util.Map.Entry;
+import java.util.LinkedHashMap;
 
 import fc.clients.Client;
 import fc.films.Film;
 import ui.pages.actions.CartItemPanel;
 import ui.pages.actions.CartPanel;
-import ui.utils.mediator.cart.components.CartComponent;
-import ui.utils.mediator.cart.components.RemoveButton;
+
 
 public class ConcreteCartMediator implements CartMediator {
-    private HashMap<Film, CartItemPanel> cart = new HashMap<>();
+    private LinkedHashMap<Film, CartItemPanel> cart = new LinkedHashMap<>();
 //    private Client client; TODO Implement client
     private CartPanel cartPanel;
     
@@ -25,6 +23,7 @@ public class ConcreteCartMediator implements CartMediator {
 	// Add to GUI cart
 	CartItemPanel item = new CartItemPanel(film, supportType);
 	item.getRemoveButton().setMediator(this);
+	item.getRemoveButton().setIndex(cart.size());
 	this.cartPanel.addToCart(item);
 	
 	// Add to Mediator cart
@@ -42,20 +41,32 @@ public class ConcreteCartMediator implements CartMediator {
      * @see io.utils.mediator.cart.components.RemoveButton
      */
     @Override
-    public void removeFromCart(CartComponent from) {
+    public void removeFromCart(int index) {
+	// Get key and value
+	Film film = (Film) cart.keySet().toArray()[index];
+	CartItemPanel panel = cart.get(film);
+
+	// Change indexes
+	int newIndex = index;
+	/**
+	 * Decrement the CartItemPanel's RemoveButton indexes after the current INDEX (thus: index+1)
+	 *
+	 * And we modify these indexes before actually deleting the Entry<>.
+	 * HashMap indexes and those used in RemoveButtons are not linked.
+	 *
+	 * If we delete the entry and THEN we modify the index. We are going to face an issue.
+	 */
+	for(int idx = index+1; idx<cart.size(); idx++ ) {
+	    cart.get(cart.keySet().toArray()[idx]).getRemoveButton().setIndex(newIndex);
+	    newIndex++;
+	}
 	
-	RemoveButton button = (RemoveButton) from;
-	for(Entry<Film, CartItemPanel> entry : cart.entrySet()) {
-	    if((entry.getValue().getRemoveButton()).equals(button)) {
-		// TODO: Remove from client cart
-		// this.client.removeFromCart(entry.getKey());
-		// Remove from GUI cart
-		this.cartPanel.removeFromCart(entry.getValue());
-		// Remove from Mediator cart
-		cart.remove(entry.getKey());
-		return;
-	    }
-	}	
+//	 TODO: Remove from client cart
+//	 this.client.removeFromCart(film);
+	// Remove from GUI cart
+	this.cartPanel.removeFromCart(panel);
+	// Remove from Mediator cart
+	cart.remove(film);
     }
 
     @Override
