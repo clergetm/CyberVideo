@@ -17,6 +17,7 @@ import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.utils.Decorations;
+
 /**
  * Graphic Implementation of a Film.
  * 
@@ -52,7 +53,7 @@ public class FilmPanel extends JPanel implements ColorTheme {
 	 * 
 	 * @author MathysC
 	 */
-	public FilmPanel(Film f, double percent, boolean clickable,MainFrame m ){
+	public FilmPanel(Film f, double percent, boolean clickable){
 		// Film
 		this.film = f;
 
@@ -73,7 +74,6 @@ public class FilmPanel extends JPanel implements ColorTheme {
 				@Override
 				public void mouseClicked(MouseEvent e ){
 					System.out.println("TOUCHED ! ");
-					
 				}
 			});
 		}

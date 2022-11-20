@@ -1,11 +1,10 @@
-package ui.Pages;
+package ui.pages;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.Component;
 import java.awt.Color;
 
@@ -15,17 +14,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import fc.Films.Film;
+import fc.films.Film;
 import ui.FilmPanel;
-import ui.Colors.ColorTheme;
-import ui.Colors.Dark;
-import ui.Colors.Light;
+import ui.utils.colors.ColorTheme;
+import ui.utils.colors.Dark;
+import ui.utils.colors.Light;
 
+
+@SuppressWarnings("serial")
 public class FilmPage extends JPanel implements ColorTheme {
     private JPanel filmInfo = new JPanel();
     private JPanel filmInfoContainer = new JPanel();
-    private String[] l = {"Acteur1","acteur2"};
-    private Film film = new Film("HELLO", "LOREM IPSUM", l , "DIR1", "DIR2", null, null);
+    private Film film;
     private FilmPanel filmPoster; 
     private String actorsTest ;
   
@@ -45,7 +45,7 @@ public class FilmPage extends JPanel implements ColorTheme {
 	    tempFilmPoster.setLayout(new BoxLayout(tempFilmPoster,BoxLayout.Y_AXIS));
 	    tempFilmPoster.setOpaque(false);
 
-        this.filmPoster = new FilmPanel(this.film, 200,false,null);
+        this.filmPoster = new FilmPanel(this.film, 200, false);
         
         tempFilmPoster.add( Box.createVerticalGlue());
         tempFilmPoster.add(filmPoster);

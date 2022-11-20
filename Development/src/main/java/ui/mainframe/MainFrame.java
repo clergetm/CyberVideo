@@ -5,6 +5,7 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.pages.FilmPage;
 import ui.pages.actions.ActionPanel;
 import ui.pages.welcome.WelcomePage;
 
@@ -20,7 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import fc.al2000.AL2000;
-import fc.films.Film;
 
 /**
  * @author MathysC
@@ -66,11 +66,7 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 
 		// Initialize FC before the GUI (atleast this.setLanguage and this.setLight functions)
 		fc = new AL2000();
-		// TODO #38 Change TestHydrate function
-		// for(int i = 0; i <1; i++)
-		// 	for(Film f : this.fc.TESTHYDRATE())
-		// 		this.welcomePage.suggestions().getFilmManager().addFilm(f);
-		
+
 		// Set Icon
 		this.setIconImage(Decorations.getIco(ICO_APP));
 		
