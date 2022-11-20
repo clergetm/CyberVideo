@@ -60,6 +60,8 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
         bottomPanel.setLayout(new GridLayout(3,0));
         supportLabel.setText(supportType);
         bottomPanel.add(supportLabel);
+        
+        moreButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
         bottomPanel.add(moreButton);
         bottomPanel.add(removeButton);
         
@@ -100,12 +102,8 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
         // Information Button
         this.moreButton.setBackground(Light.BLUE.getColor());
         this.moreButton.setForeground(Light.WHITE.getColor());
-        this.moreButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 
-        // Remove Button
-        this.removeButton.setBackground(Light.BLUE.getColor());
-        this.removeButton.setForeground(Light.WHITE.getColor());
-        this.removeButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+        this.removeButton.setLight();
     }
 
     @Override
@@ -130,18 +128,14 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
         // Information Button
         this.moreButton.setBackground(Dark.BLUE.getColor());
         this.moreButton.setForeground(Dark.FOREGROUND.getColor());
-        this.moreButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 
-        // Remove Button
-        this.removeButton.setBackground(Dark.BLUE.getColor());
-        this.removeButton.setForeground(Dark.FOREGROUND.getColor());
-        this.removeButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+        this.removeButton.setDark();
     }
 
     @Override
     public void setLanguage(ResourceBundle rb) {
         this.moreButton.setText(rb.getString("checkout_info"));
-        this.removeButton.setText(rb.getString("checkout_remove"));
+        this.removeButton.setLanguage(rb);
     }
 
 }
