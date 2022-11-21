@@ -84,6 +84,22 @@ public abstract class Film {
 
 	/**
 	 * 
+	 * @return the first name of the director of the film :
+	 */
+	public String getFNDirector() {
+		return FNameDirector;
+	}
+
+	/**
+	 * 
+	 * @return the last name of the director of the film :
+	 */
+	public String getLNDirector() {
+		return LNameDirector;
+	}
+
+	/**
+	 * 
 	 * @return the age restriction of the film
 	 */
 	public AgeRestriction getRestriction() {
