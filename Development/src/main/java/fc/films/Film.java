@@ -109,7 +109,7 @@ public class Film {
 	 * 
 	 * @return the list of the different supports
 	 */
-	public Support[] getSupportsType() {
+	public Support[] getSupports() {
 		return this.supports;
 	}
 }

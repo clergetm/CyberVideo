@@ -45,7 +45,7 @@ class FilmTest implements LifecycleLoggerTest{
 		Assertions.assertEquals(year, film.getYear());
 		Assertions.assertEquals(categories, film.getCategories());
 		Assertions.assertEquals(restriction, film.getRestriction());
-		Assertions.assertEquals(supports, film.getSupportsType());
+		Assertions.assertEquals(supports, film.getSupports());
 	}
 
 	@Test
@@ -85,7 +85,7 @@ class FilmTest implements LifecycleLoggerTest{
 
 	@Test
 	void testGetSupportsType() {
-		Assertions.assertEquals(supports, film.getSupportsType());
+		Assertions.assertEquals(supports, film.getSupports());
 	}
 
 }

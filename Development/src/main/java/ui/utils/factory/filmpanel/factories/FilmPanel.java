@@ -79,7 +79,7 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 	 * We are adding a button for each support that this film has. 
 	 * Whether available or not.
 	 */
-	for(Support support : film.getSupportsType()) {
+	for(Support support : film.getSupports()) {
 	    String supportType = support.getType();
 	    buttonMap.computeIfAbsent(supportType, b -> createButton(supportType));
 
