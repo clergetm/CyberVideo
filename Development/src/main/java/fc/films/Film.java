@@ -78,6 +78,22 @@ public class Film {
 	public String getNamesDirector() {
 		return directorFname+" "+directorLname;
 	}
+
+	/**
+	 * 
+	 * @return the first name of the director of the film :
+	 */
+	public String getFNDirector() {
+		return directorFname;
+	}
+
+	/**
+	 * 
+	 * @return the last name of the director of the film :
+	 */
+	public String getLNDirector() {
+		return directorLname;
+	}
 	
 	/**
 	 * 
