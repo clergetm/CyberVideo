@@ -1,4 +1,4 @@
-package ui.utils.mediator.cart.components;
+package ui.pages.actions;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,6 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
-import ui.utils.mediator.cart.CartMediator;
 
 /**
  * Concrete CartComponent implementation 
@@ -19,8 +18,7 @@ import ui.utils.mediator.cart.CartMediator;
  * @author MathysC
  */
 @SuppressWarnings("serial")
-public class RemoveButton extends JButton implements CartComponent, ColorTheme, Multilingual{
-    private CartMediator cartMediator;
+public class RemoveButton extends JButton implements ColorTheme, Multilingual{
     private int index;
     
     /**
@@ -45,20 +43,6 @@ public class RemoveButton extends JButton implements CartComponent, ColorTheme, 
      */
     public void setIndex(int index) {
 	this.index = index;
-    }
-    
-    /**
-     * Call the mediator in order to remove a film from the cart.
-     * @author MathysC
-     */
-    @Override
-    protected void fireActionPerformed(ActionEvent actionEvent) {
-	cartMediator.removeFromCart(index);
-    }
-    
-    @Override
-    public void setMediator(CartMediator cartMediator) {
-	this.cartMediator = cartMediator;
     }
     
     @Override

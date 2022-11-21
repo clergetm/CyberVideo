@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.Year;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -18,6 +19,13 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import fc.films.AgeRestriction;
+import fc.films.BluRay;
+import fc.films.Categories;
+import fc.films.Film;
+import fc.films.QRCode;
+import fc.films.StatesBluRay;
+import fc.films.Support;
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
 import ui.utils.bundles.Multilingual;
@@ -70,18 +78,43 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 
     /* Cart Part */
     protected CartPanel cartPanel = new CartPanel();
-    
+
     /**
      * Constructor of ActionPanel, represent the Cart, and several Command buttons.
      * @author MathysC
      *
      */
     public ActionPanel() {
+//      TODO implement Client
+//	public ActionPanel(Client client){
 	this.createGUI();
-        /*Initialize subPanel map*/
+        /* Initialize subPanel map */
         subActionsPanel.put(MainFrame.ID_RESULT_PAGE, searchPage);
         subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
         current_subAction = MainFrame.ID_RESULT_PAGE;
+        
+	/* Create Film attributes */
+	final String title = "The Matrix",
+			synopsis = "Thomas A. Anderson is a man living two lives. "
+					+ "By day he is an average computer programmer and by night "
+					+ "a hacker known as Neo. Neo has always questioned his reality,"
+					+ " but the truth is far beyond his imagination...",
+			director_lname = "Wachowski",
+			director_fname = "Lana";
+	final String[] actors = {"Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"};
+	final AgeRestriction restriction = AgeRestriction.EVERYONE;
+	final Categories[] categories = {Categories.ACTION, Categories.DRAMAS};
+	final Year year = Year.of(1999);
+	final Support[] supports = {new BluRay(22.5, StatesBluRay.RENTED), new QRCode(), new BluRay(22.50, StatesBluRay.AVAILABLE)};
+	
+	/* Create an instance of a Film for test Film class */
+	Film film = new Film(title+"1", synopsis, actors, director_fname, director_lname, year, categories, restriction, supports);
+	Film film2 = new Film(title+"2", synopsis, actors, director_fname, director_lname, year, categories, restriction, supports);
+	Film film3 = new Film(title+"3", synopsis, actors, director_fname, director_lname, year, categories, restriction, supports);
+	this.searchPage.addResult(film);
+	this.searchPage.addResult(film2);
+	this.searchPage.addResult(film3);
+	
     }
 
     private void createGUI() {

@@ -15,7 +15,6 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
-import ui.utils.mediator.cart.components.RemoveButton;
 
 /**
  * Class that represents a film in the Cart. 

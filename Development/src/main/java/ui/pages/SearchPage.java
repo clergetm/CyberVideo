@@ -23,11 +23,9 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
-import ui.utils.mediator.cart.CartMediator;
-import ui.utils.mediator.cart.components.CartComponent;
 
 @SuppressWarnings("serial")
-public class SearchPage extends JPanel implements Multilingual, ColorTheme, CartComponent {
+public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 
     	protected JPanel mainPanel = new JPanel(new BorderLayout());
     	
@@ -47,9 +45,6 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme, Cart
     	/* Categories */
     	protected JScrollPane categoriesPane;
     	private JPanel categoriesManager;
-    	
-    	/* Mediator */
-        private CartMediator cartMediator;
 
     	/**
     	 * 
@@ -157,12 +152,5 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme, Cart
 		resultsLabel.setText(rb.getString("result_title"));
 		this.updateCountResults();
 		mostRentedLabel.setText(rb.getString("result_most_rented"));
-	}
-
-	@Override
-	public void setMediator(CartMediator cartMediator) {
-	    this.cartMediator = cartMediator;   
-	    resultsManager.setMediator(this.cartMediator);
-	    mostRentedManager.setMediator(this.cartMediator);
 	}
 }
