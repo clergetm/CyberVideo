@@ -1,8 +1,8 @@
 package bd.DAO_Classes;
 
-import fc.Films.AgeRestriction;
-import fc.Films.Categories;
-import fc.Films.Film;
+import fc.films.AgeRestriction;
+import fc.films.Categories;
+import fc.films.Film;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +34,8 @@ public class FilmsDAO<Film> extends DAO<Film>{
                     actors.add(resultActorName.getString("actorName"));
                 }
 
+                int year = result.getInt("year");
+
                 String FNDirector = result.getString("directorFirstName");
 
 			    String LNDirector = result.getString("directorLastName");
@@ -46,7 +48,7 @@ public class FilmsDAO<Film> extends DAO<Film>{
                 }
 
 
-                Film film = new Film(title,synopsis,actors,FNDirector,LNDirector,restriction,categories);
+                Film film = new Film(title,synopsis,actors,year,FNDirector,LNDirector,restriction,categories);
             }
             
         }

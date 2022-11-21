@@ -21,6 +21,7 @@ DROP TABLE Films;
 CREATE TABLE Films(
     filmID INTEGER,
     title VARCHAR(50),
+    year INTEGER,
     synopsis CLOB,
     directorFirstName VARCHAR(30),
     directorLastName VARCHAR(30),

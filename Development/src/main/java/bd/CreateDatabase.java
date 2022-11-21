@@ -7,9 +7,6 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.Scanner;
 
-import bd.DAO_Classes.FilmsDAO;
-import bd.DAO_Classes.MainDAO;
-
 
 //Run with this command : java -classpath projectpath\CyberVideo\Development\src\main\java\bd\ojdbc11.jar CreateDatabase.java
 
@@ -73,7 +70,7 @@ public class CreateDatabase
 
       //------------------------INSERTING VALUES AND DISPLAY TABLE TEST WITH THE DATABASE CREATED------------------------//
       System.out.println("\t\tINSERTING VALUES AND DISPLAY TABLE TEST WITH THE DATABASE CREATED\n");
-      stmt.executeUpdate("INSERT INTO Films Values(10,'Les dents de la mer','Histoire de requins...','Steven','Spielberg','M16')");
+      stmt.executeUpdate("INSERT INTO Films Values(10,'Les dents de la mer',1975,'Histoire de requins...','Steven','Spielberg','M16')");
       displayTable(stmt, "SELECT * FROM Films");
       //-----------------------------------------------END TEST----------------------------------------------------------//
 

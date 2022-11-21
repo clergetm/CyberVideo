@@ -1,8 +1,8 @@
 package bd.DAO_Classes;
 
-import fc.Films.BluRay;
-import fc.Films.Film;
-import fc.Films.StatesBluRay;
+import fc.films.BluRay;
+import fc.films.Film;
+import fc.films.StatesBluRay;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
