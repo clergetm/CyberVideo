@@ -1,0 +1,25 @@
+package fc.films;
+
+public enum Categories {
+	ACTION,
+	ANIME,
+	BLOCKBUSTERS,
+	COMEDIES,
+	DRAMAS,
+	HORROR,
+	THRILLERS,
+	MYSTERY,
+	NATURE,
+	SUSPENSE,
+	SPACE,
+	ZOMBIE,
+	SCIFY,
+	ROMANTIC,
+	HISTORY,
+	HEIST,
+	GOTHIC,
+	EPIC,
+	ESCAPE,
+	CRIME,
+	CREATURE;
+}
