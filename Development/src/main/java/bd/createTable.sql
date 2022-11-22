@@ -9,13 +9,13 @@ DROP TABLE CreditCards;
 DROP TABLE SubscriberCards;
 DROP TABLE Rentals;
 DROP TABLE SupportCards;
+DROP TABLE BluRays;
+DROP TABLE QRCodes;
 DROP TABLE SupportFilms;
 DROP TABLE FilmsActors;
 DROP TABLE FilmsCategories;
 DROP TABLE Categories;
 DROP TABLE Actors;
-DROP TABLE BluRays;
-DROP TABLE QRCodes;
 DROP TABLE Films;
 
 CREATE TABLE Films(
@@ -27,23 +27,6 @@ CREATE TABLE Films(
     directorLastName VARCHAR(30),
     restrictedAge CHAR(3) CHECK (restrictedAge IN ('M10', 'M12', 'M16', 'M18', 'ALL') ),
     CONSTRAINT filmID_pk PRIMARY KEY (filmID)
-);
-
-CREATE TABLE QRCodes(
-    QRCodeID INTEGER,
-    filmID INTEGER,
-    link VARCHAR(255),
-    CONSTRAINT QRCodeID_pk PRIMARY KEY (QRCodeID),
-    CONSTRAINT filmID_QRcodes_fk FOREIGN KEY (filmID) REFERENCES Films(filmID)
-);
-
-CREATE TABLE BluRays(
-    blurayID INTEGER,
-    filmID INTEGER,
-    price FLOAT(3),
-    state VARCHAR(9) CHECK (state IN ('AVAILABLE' ,'RENTED', 'DAMAGED', 'STOLEN') ),
-    CONSTRAINT blurayID_pk PRIMARY KEY (blurayID),
-    CONSTRAINT filmID_BluRays_fk FOREIGN KEY (filmID) REFERENCES Films(FilmID)
 );
 
 CREATE TABLE Actors(
@@ -85,6 +68,23 @@ CREATE TABLE SupportFilms(
     typeFilm CHAR(2) CHECK (typeFilm IN ('QR', 'BR')),
     CONSTRAINT supportFilmID_pk PRIMARY KEY (supportFilmID),
     CONSTRAINT filmID_support_fk FOREIGN KEY (filmID) REFERENCES Films(filmID)
+);
+
+CREATE TABLE QRCodes(
+    QRCodeID INTEGER,
+    supportfilmID INTEGER,
+    link VARCHAR(255),
+    CONSTRAINT QRCodeID_pk PRIMARY KEY (QRCodeID),
+    CONSTRAINT filmID_QRcodes_fk FOREIGN KEY (supportfilmID) REFERENCES SupportFilms(supportfilmID)
+);
+
+CREATE TABLE BluRays(
+    blurayID INTEGER,
+    supportfilmID INTEGER,
+    price FLOAT(3),
+    state VARCHAR(9) CHECK (state IN ('AVAILABLE' ,'RENTED', 'DAMAGED', 'STOLEN') ),
+    CONSTRAINT blurayID_pk PRIMARY KEY (blurayID),
+    CONSTRAINT filmID_BluRays_fk FOREIGN KEY (supportfilmID) REFERENCES SupportFilms(supportfilmID)
 );
 
 CREATE TABLE SupportCards(

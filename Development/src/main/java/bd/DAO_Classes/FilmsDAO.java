@@ -3,6 +3,8 @@ package bd.DAO_Classes;
 import fc.films.AgeRestriction;
 import fc.films.Categories;
 import fc.films.Film;
+import fc.films.Support;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,8 +25,9 @@ public class FilmsDAO<Film> extends DAO<Film>{
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Films JOIN FilmCategories WHERE filmID ="+id);
             ResultSet resultActorName = this.connect.createStatement().executeQuery("SELECT CONCAT(actorFirstName,' ',actorLastName) AS actorName FROM FilmsActors NATURAL JOIN Actors WHERE filmID ="+id);
             ResultSet resultCatName = this.connect.createStatement().executeQuery("SELECT catName FROM FilmsCategories NATURAL JOIN Categories WHERE filmID ="+id);
+            ResultSet resultSuppID = this.connect.createStatement().executeQuery("SELECT supportFilmID FROM SupportFilms WHERE filmID="+id);
 
-            if(result.first() && resultActorName.first() && resultCatName.first()){
+            if(result.first() && resultActorName.first() && resultCatName.first() && resultSuppID.first()){
                 String title = result.getString("title");
 
                 String synopsis = result.getString("synopsis");
@@ -42,13 +45,18 @@ public class FilmsDAO<Film> extends DAO<Film>{
 
                 AgeRestriction restriction = AgeRestriction.valueOf(result.getString("restrictedAge"));
 
-                ArrayList<String> categories = new ArrayList<String>();
+                ArrayList<Categories> categories = new ArrayList<Categories>();
                 while(resultActorName.next()){
-                    categories.add(resultCatName.getString("actorName"));
+                    categories.add(Categories.valueOf(resultCatName.getString("catName")));
                 }
 
+                /*ArrayList<Integer> supports = new ArrayList<Integer>();
+                while(resultActorName.next()){
+                    supports.add(resultSuppID.getInt("supportFilmID"));
+                }*/
 
-                Film film = new Film(title,synopsis,actors,year,FNDirector,LNDirector,restriction,categories);
+
+                Film film = new Film(title,synopsis,actors,year,FNDirector,LNDirector,restriction,categories,supports);
             }
             
         }
