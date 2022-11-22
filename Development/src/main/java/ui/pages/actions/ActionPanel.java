@@ -33,6 +33,7 @@ import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.mainframe.MainFrame;
+import ui.pages.FilmPage;
 import ui.pages.SearchPage;
 import ui.pages.cart.CartPanel;
 
@@ -64,7 +65,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
     /*Action pages */
     private HashMap < Integer, JPanel > subActionsPanel = new HashMap < > ();
 //  TODO #39 change JPanel when FilmPage added
-    protected JPanel filmPage = new JPanel(); 
+    protected FilmPage filmPage = new FilmPage(); 
     protected SearchPage searchPage = new SearchPage();
     private int current_subAction;
     /*Action actions*/
@@ -226,6 +227,27 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         return connectionButton;
     }
     
+    /**
+     * @return the cartPanel
+     */
+    public CartPanel getCartPanel() {
+	return cartPanel;
+    }
+
+    /**
+     * @return the searchPage
+     */
+    public SearchPage getSearchPage() {
+	return searchPage;
+    }
+
+    /**
+     * @return the filmPage
+     */
+    public FilmPage getFilmPage() {
+	return filmPage;
+    }
+
     @Override
     public void setLight() {
         // Panels
