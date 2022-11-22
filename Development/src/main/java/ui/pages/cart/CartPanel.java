@@ -12,7 +12,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import ui.pages.actions.CartItemPanel;
 import ui.utils.Decorations;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
@@ -22,7 +21,7 @@ import ui.utils.colors.Light;
 /**
  * This class implements the whole GUI cart and the button to rent films in the cart.
  * @author MathysC
- * @see ui.pages.actions.CartItemPanel
+ * @see ui.pages.cart.CartItemPanel
  * @see ui.utils.mediator.cart.CartMediator
  * @see ui.bundles.Multilingual
  * @see ui.colors.ColorTheme

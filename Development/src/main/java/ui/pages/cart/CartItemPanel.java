@@ -1,4 +1,4 @@
-package ui.pages.actions;
+package ui.pages.cart;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
