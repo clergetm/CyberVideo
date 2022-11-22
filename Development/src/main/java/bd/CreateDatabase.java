@@ -32,10 +32,12 @@ public class CreateDatabase
       File creditAfter20RentalsTrigger = new File("testTrigger/test_trigger_credit_after_20_rentals.sql");
       File max1YearHistoric = new File("testTrigger/test_trigger_max_1_year_historic.sql");
       File max1YearRentals = new File("testTrigger/test_trigger_max_1_year_rentals.sql");
+      File stolenAfter30Days = new File("testTrigger/test_trigger_stolen.sql");
       File deleteTablesTrigger1 = new File("testTrigger/deleteTablesTrigger1.sql");
       File deleteTablesTrigger2 = new File("testTrigger/deleteTablesTrigger2.sql");
       File deleteTablesTrigger3 = new File("testTrigger/deleteTablesTrigger3.sql");
       File deleteTablesTrigger4 = new File("testTrigger/deleteTablesTrigger4.sql");
+      File deleteTablesTrigger5 = new File("testTrigger/deleteTablesTrigger5.sql");
 
       //Loading the JDBC Driver class
       Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -66,6 +68,7 @@ public class CreateDatabase
       stmt.executeUpdate("CREATE OR REPLACE TRIGGER credit_after_20_rentals BEFORE INSERT ON Rentals FOR EACH ROW DECLARE nbRented INTEGER; BEGIN SELECT COUNT(*) INTO nbRented FROM Rentals WHERE supportCardID = :new.supportCardID; IF(nbRented >= 19) THEN UPDATE SubscriberCards SET balance = balance + 10 WHERE supportCardID = :new.supportCardID; END IF; END;");
       stmt.executeUpdate("CREATE OR REPLACE TRIGGER max_1_year_historic AFTER UPDATE ON HistoricCreditCards BEGIN DELETE FROM HistoricCreditCards WHERE (SYSDATE-actionDate) > 365; END;");
       stmt.executeUpdate("CREATE OR REPLACE TRIGGER max_1_year_location AFTER UPDATE ON Rentals BEGIN DELETE FROM Rentals WHERE (SYSDATE - beginDate) > 365; END;");
+      stmt.executeUpdate("CREATE OR REPLACE TRIGGER stolen_after_30_days AFTER UPDATE ON Rentals BEGIN UPDATE Blurays SET state = 'STOLEN' WHERE blurayID IN (SELECT blurayID FROM Blurays NATURAL JOIN Rentals WHERE (SYSDATE - beginDate) > 30); END;");
       System.out.println("\tTriggers created\n");
 
       //------------------------INSERTING VALUES AND DISPLAY TABLE TEST WITH THE DATABASE CREATED------------------------//
@@ -96,6 +99,11 @@ public class CreateDatabase
       executeSqlScript(conn,max1YearRentals);
       displayTable(stmt, "SELECT * FROM Rentals");
       executeSqlScript(conn,deleteTablesTrigger4);
+
+      System.out.println("\t\tStolen after 30 days TEST\n");
+      executeSqlScript(conn,stolenAfter30Days);
+      displayTable(stmt, "SELECT * FROM Rentals NATURAL JOIN Blurays");
+      executeSqlScript(conn,deleteTablesTrigger5);
       //-------------------------------END TRIGGERS TEST----------------------------//
 
       System.out.println("Database successfully created...");
