@@ -17,7 +17,7 @@ import ui.utils.factory.filmpanel.factories.FilmRentPanel;
  * @see ui.FilmEvents.FilmsEvent
  */
 public class FilmManager {
-
+    private static FilmManager instance = null;
     private Map<Film, PanelsEntry> films;
     private CartManager cartManager;
     
@@ -26,9 +26,16 @@ public class FilmManager {
      * @author MathysC
      *
      */
-    public FilmManager() {
+    private FilmManager() {
 	this.films = new HashMap<>();
 	this.cartManager = new CartManager();
+    }
+    
+    public static FilmManager getInstance() {
+	if(instance == null) {
+	    instance = new FilmManager();
+	} 
+	return instance;
     }
     
     /**
@@ -50,8 +57,7 @@ public class FilmManager {
 //	    entries.getRentPanel().getButtonMap().forEach((k,b) -> b.addActionListener(rentManager));
 	    successfullyAdded = true;
 	}
-	
-	
+
 	return successfullyAdded;
     }
     
