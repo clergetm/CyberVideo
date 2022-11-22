@@ -29,11 +29,18 @@ public class FilmPage extends JPanel implements ColorTheme {
 
 	private JPanel infoPanel; // Info on right : all the text
 	private JPanel posterPanel;
+	
+	private JLabel titleLabel;
+	private JLabel actorsLabel;
+	private JLabel synopsisLabel;
+	private JLabel directorLabel;
 
 	public FilmPage() {
 		// Initialisaiton des attributs d'instances 
 		infoPanel= new JPanel();
 		posterPanel = new JPanel();
+		
+
 
 		setLayout(new BorderLayout());
 
@@ -56,6 +63,7 @@ public class FilmPage extends JPanel implements ColorTheme {
 
 		FilmCartPanel filmCart = new FilmCartPanel(film);
 
+		createGUI();
 		showFilm(filmCart);
 
 	}
@@ -65,21 +73,21 @@ public class FilmPage extends JPanel implements ColorTheme {
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
 
-		JLabel titleLabel = new JLabel("TITRE");
+		titleLabel = new JLabel("TITRE");
 		titleLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
 		infoPanel.add(titleLabel);
 
-		JLabel acteursLabel = new JLabel("Acteurs");
-		acteursLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
-		infoPanel.add(acteursLabel);
+		actorsLabel = new JLabel("Acteurs");
+		actorsLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
+		infoPanel.add(actorsLabel);
 
-		JLabel synopsisLabel = new JLabel("Synopsis");
+		synopsisLabel = new JLabel("Synopsis");
 		synopsisLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
 		infoPanel.add(synopsisLabel);
 
-		JLabel directeurLabel = new JLabel("Directeur");
-		directeurLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
-		infoPanel.add(directeurLabel);
+		directorLabel = new JLabel("Directeur");
+		directorLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
+		infoPanel.add(directorLabel);
 
 		this.add(infoPanel, BorderLayout.CENTER);	
 	}
@@ -90,12 +98,11 @@ public class FilmPage extends JPanel implements ColorTheme {
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
 
-		JLabel titleLabel = new JLabel(film.getTitle());
+		titleLabel.setText(film.getTitle());
 		titleLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
 		infoPanel.add(titleLabel);
 
 		// Informations for the synopsis
-		JLabel synopsisLabel = new JLabel("Synopsis");
 		synopsisLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
 		infoPanel.add(synopsisLabel);
 		JTextArea synopsisText = new JTextArea(1,5);
@@ -107,7 +114,6 @@ public class FilmPage extends JPanel implements ColorTheme {
 		infoPanel.add(synopsisText);
 
 		// Informations for actors
-		JLabel actorsLabel = new JLabel("Actors");
 		actorsLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
 		infoPanel.add(actorsLabel);
 		JTextArea actorsText = new JTextArea(1,2);
@@ -117,7 +123,6 @@ public class FilmPage extends JPanel implements ColorTheme {
 		infoPanel.add(actorsText);
 
 		// Information for the director
-		JLabel directorLabel = new JLabel("Director");
 		directorLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
 		infoPanel.add(directorLabel);
 		JTextArea directorsText = new JTextArea(1,1);
