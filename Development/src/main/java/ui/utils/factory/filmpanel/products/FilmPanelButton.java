@@ -32,6 +32,20 @@ public abstract class FilmPanelButton extends JButton implements ColorTheme {
 	this.setFont(buttonFont);
 	this.setEnabled(false); // Disabled by default.
     }
+    /**
+     * @return the film
+     */
+    public Film getFilm() {
+	return film;
+    }
+
+    /**
+     * @return the supportType
+     */
+    public String getSupportType() {
+	return supportType;
+    }
+
     @Override
     public void setLight() {
 	this.setBackground(Light.BLUE.getColor());
