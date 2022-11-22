@@ -5,12 +5,13 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
-import ui.pages.FilmPage;
+import ui.managers.FilmManager;
 import ui.pages.actions.ActionPanel;
 import ui.pages.welcome.WelcomePage;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
+import java.time.Year;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -21,6 +22,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import fc.al2000.AL2000;
+import fc.films.AgeRestriction;
+import fc.films.BluRay;
+import fc.films.Categories;
+import fc.films.Film;
+import fc.films.QRCode;
+import fc.films.StatesBluRay;
+import fc.films.Support;
 
 /**
  * @author MathysC
@@ -49,9 +57,12 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	public static final int ID_WELCOME_PAGE = 0;
 	public static final int ID_RESULT_PAGE = 1;
 	public static final int ID_FILM_PAGE = 2;
-	
+
 	/* FC */
 	private AL2000 fc;
+	
+	/* Films */
+	private FilmManager filmManager; 
 	
 	/**
 	 * Constructor of Main.
@@ -62,19 +73,34 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	 */
 	public MainFrame() {
 	    super("AL2000");
+	    
+	    /*Initialize Components */
+	    topBarPanel = new TopBarPanel();
+	    banner = new JLabel();
+	    welcomePage = new WelcomePage();
+	    actionPanel = new ActionPanel();
+	    
+	    /* Initialize pages map */
+	    this.pages = new HashMap<>();
+	    this.pages.put(ID_WELCOME_PAGE, welcomePage);
+	    this.pages.put(ID_RESULT_PAGE, actionPanel);
+	    
+	    // ! Initialize FC before the GUI (atleast this.setLanguage and this.setLight functions)
+	    this.fc = new AL2000();
+	    
+	    this.filmManager = FilmManager.getInstance();   
 
-	    // Initialize FC before the GUI (atleast this.setLanguage and this.setLight functions)
-	    fc = new AL2000();
-
-
+//	    TODO add Film from fc in filmManager
+	   
+	    this.filmManager.getCartManager().register(this.actionPanel.getCartPanel());
+//	    TODO register client in CartManager
+	    
+	    /* Initialize GUI */
 	    this.createGUI();
 	    this.setLanguage(this.getRbEN());
 	    this.setLight();
-
-	    /*Initialize pages map*/
-	    pages = new HashMap<>();
-	    this.pages.put(ID_WELCOME_PAGE, welcomePage);
-	    this.pages.put(ID_RESULT_PAGE, actionPanel);
+	    new Interaction(this);    
+	    
 	}
 	
 	/**
@@ -83,12 +109,6 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	 *
 	 */
 	private void createGUI() {
-	    
-	    /*Initialize Components */
-	    topBarPanel = new TopBarPanel();
-	    banner = new JLabel();
-	    welcomePage = new WelcomePage();
-	    actionPanel = new ActionPanel();
 	    
 	    // Set Icon
 	    this.setIconImage(Decorations.getIco(ICO_APP));
@@ -113,9 +133,7 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	    this.add(welcomePage, BorderLayout.CENTER);
 	    this.currentPage = ID_WELCOME_PAGE;
 
-	    this.pack();
-	    new Interaction(this);
-	    
+	    this.pack();    
 	}
 	
 	/**
@@ -231,5 +249,5 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	public ActionPanel getActionPanel() {
 	    return actionPanel;
 	}
-
+	
 }
