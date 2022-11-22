@@ -1,6 +1,7 @@
 package ui.utils.factory.filmpanel.products;
 
 import fc.films.Film;
+import ui.managers.FilmsEvent;
 
 /**
  * Concrete FilmPanelButton implementation to add a film to the cart.
@@ -20,7 +21,7 @@ public class CartButton extends FilmPanelButton {
      */
     public CartButton(Film film, String supportType) {
 	super(film, supportType);
-	// TODO Specific action
+	this.setActionCommand(FilmsEvent.ADDTOCART.toString());
     }
 
 }
