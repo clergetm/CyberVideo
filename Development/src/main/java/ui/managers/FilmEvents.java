@@ -5,13 +5,13 @@ package ui.managers;
  * @author MathysC
  *
  */
-public enum FilmsEvent {
+public enum FilmEvents {
     ADDTOCART,		// Add a Film to the cart.
     REMOVEFROMCART,	// Remove a Film from the cart.
     RENT;		// Rent a Film.
     
-    public static FilmsEvent getFromName(String name) {
-	for(FilmsEvent event : FilmsEvent.values()) {
+    public static FilmEvents getFromName(String name) {
+	for(FilmEvents event : FilmEvents.values()) {
 	    if(event.toString().equals(name)) {
 		return event;
 	    }

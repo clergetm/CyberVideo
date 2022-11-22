@@ -1,7 +1,7 @@
 package ui.utils.observe.cart;
 
 import fc.films.Film;
-import ui.managers.FilmsEvent;
+import ui.managers.FilmEvents;
 
 /**
  * Common Interface for Observable cart related object.
@@ -33,5 +33,5 @@ public interface IObservable {
      * @param film The film related to this change.
      * @param supportType The supportType related to this Film.
      */
-    void notifyObservers(FilmsEvent event, Film film, String supportType);
+    void notifyObservers(FilmEvents event, Film film, String supportType);
 }
