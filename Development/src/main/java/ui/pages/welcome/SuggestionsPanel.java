@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import ui.managers.FilmManager;
-import ui.managers.RentFilmManager;
+import ui.managers.FilmRentManagerPanel;
 import ui.utils.Decorations;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
@@ -49,7 +49,7 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
         this.add(sugLabel, BorderLayout.NORTH);
 
         // JScrollPane
-        manager = new RentFilmManager(new GridLayout(0, 4), 100);
+        manager = new FilmRentManagerPanel(new GridLayout(0, 4), 100);
         filmsPane = new JScrollPane(manager, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	filmsPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(filmsPane, BorderLayout.CENTER);

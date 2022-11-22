@@ -6,9 +6,9 @@ import fc.films.Film;
 import ui.utils.factory.filmpanel.factories.FilmRentPanel;
 
 @SuppressWarnings("serial")
-public class RentFilmManager extends FilmManager {
+public class FilmRentManagerPanel extends FilmManager {
 
-    public RentFilmManager(LayoutManager layout, double percent) {
+    public FilmRentManagerPanel(LayoutManager layout, double percent) {
 	super(layout, percent);
     }
 
