@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,7 +36,7 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
     private ImageIcon posterImage;
     
     protected JPanel buttonPanel;
-    protected HashMap<String, FilmPanelButton> buttonMap = new HashMap<>();
+    private Map<String, FilmPanelButton> buttonMap = new HashMap<>();
 
     private Dimension dimButton = Decorations.sizeConverter(new Dimension(85, 25));
     private Dimension dimPoster = Decorations.sizeConverter(new Dimension(100, 150));
@@ -141,6 +142,14 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
      */
     public Film getFilm() {
 	return film;
+    }
+
+    /**
+     * @author MathysC
+     * @return the buttonMap
+     */
+    public Map<String, FilmPanelButton> getButtonMap() {
+	return buttonMap;
     }
 
     @Override
