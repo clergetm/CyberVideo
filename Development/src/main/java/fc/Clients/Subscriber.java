@@ -6,8 +6,10 @@ public class Subscriber {
     private String firstName;
     private String lastName;
     private Date birthDate;
+    private Login login;
 
-    public Subscriber(String firstName, String lastName, Date birthDate){
+    public Subscriber(String firstName, String lastName, Date birthDate, String login, String password){
+        login = new Login(login, password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -45,5 +47,5 @@ public class Subscriber {
 
     public void askCard(){}
 
-//    public Login getLogin(){ return null;}
+    public Login getLogin(){ return login;}
 }
