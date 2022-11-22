@@ -13,17 +13,17 @@ public interface ICartObservable {
      * Add an observer.
      * @author MathysC
      *
-     * @param observer The observer to register.
+     * @param cartObserver The observer to register.
      */
-    void register(IObserver observer);
+    void register(ICartObserver cartObserver);
     
     /**
      * Remove an observer.
      * @author MathysC
      *
-     * @param observer The observer to unregister.
+     * @param cartObserver The observer to unregister.
      */
-    void unregister(IObserver observer);
+    void unregister(ICartObserver cartObserver);
     
     /**
      * Notify observers of any change depending on the Event

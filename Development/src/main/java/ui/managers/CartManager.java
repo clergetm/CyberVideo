@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import fc.films.Film;
 import ui.utils.factory.filmpanel.products.CartButton;
 import ui.utils.observe.cart.ICartObservable;
-import ui.utils.observe.cart.IObserver;
+import ui.utils.observe.cart.ICartObserver;
 
 public class CartManager implements ICartObservable, ActionListener{
  
-    private ArrayList<IObserver> observers;
+    private ArrayList<ICartObserver> cartObservers;
     
     /**
      * Default constructor of {@code CartManager}.
      * @author MathysC
      */
     public CartManager() {
-	this.observers = new ArrayList<>();
+	this.cartObservers = new ArrayList<>();
     }
     
     @Override
@@ -46,14 +46,14 @@ public class CartManager implements ICartObservable, ActionListener{
     }
 
     @Override
-    public void register(IObserver observer) {
-	this.observers.add(observer);
+    public void register(ICartObserver cartObserver) {
+	this.cartObservers.add(cartObserver);
 	
     }
 
     @Override
-    public void unregister(IObserver observer) {
-	this.observers.remove(observer);
+    public void unregister(ICartObserver cartObserver) {
+	this.cartObservers.remove(cartObserver);
 	
     }
 
@@ -61,10 +61,10 @@ public class CartManager implements ICartObservable, ActionListener{
     public void notifyObservers(FilmEvents event, Film film, String supportType) {
 	switch (event) {
 	case ADDTOCART:
-	    this.observers.forEach(o -> o.addToCart(film, supportType));
+	    this.cartObservers.forEach(o -> o.addToCart(film, supportType));
 	    break;
 	case REMOVEFROMCART:
-	    this.observers.forEach(o -> o.removeFromCart(film, supportType));
+	    this.cartObservers.forEach(o -> o.removeFromCart(film, supportType));
 	    break;
 	default:
 	    throw new IllegalArgumentException("Unexpected value: " + event);

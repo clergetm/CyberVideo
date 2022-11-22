@@ -18,7 +18,7 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
-import ui.utils.observe.cart.IObserver;
+import ui.utils.observe.cart.ICartObserver;
 
 /**
  * This class implements the whole GUI cart and the button to rent films in the cart.
@@ -29,7 +29,7 @@ import ui.utils.observe.cart.IObserver;
  * @see ui.colors.ColorTheme
  */
 @SuppressWarnings("serial")
-public class CartPanel extends JPanel implements Multilingual, ColorTheme, IObserver{
+public class CartPanel extends JPanel implements Multilingual, ColorTheme, ICartObserver{
     private JPanel itemPanel = new JPanel();
 //  TODO Action of checkoutButton
     private JButton checkoutButton = new JButton();

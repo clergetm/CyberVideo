@@ -6,7 +6,7 @@ import fc.films.Film;
  * Common interface for an Observer, cart related, object.
  * @author MathysC
  */
-public interface IObserver {
+public interface ICartObserver {
 
     /**
      * 
