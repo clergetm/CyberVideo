@@ -1,7 +1,11 @@
 package ui.utils.factory.filmpanel.products;
 
+import java.awt.Font;
+
 import javax.swing.JButton;
 
+import fc.films.Film;
+import ui.utils.Decorations;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
@@ -12,7 +16,22 @@ import ui.utils.colors.Light;
  */
 @SuppressWarnings("serial")
 public abstract class FilmPanelButton extends JButton implements ColorTheme {
+    private Film film;
+    private String supportType;
     
+//    FIXME Refactor in FONT ENUM
+    private Font buttonFont = Decorations.FONT_BASIC.getFont(Font.BOLD, 12);
+//    FIXME TOO
+    public Font getButtonFont() {
+	return this.buttonFont;
+    }
+    
+    protected FilmPanelButton(Film film, String supportType) {
+	this.setText(supportType);
+	this.setName(supportType);
+	this.setFont(buttonFont);
+	this.setEnabled(false); // Disabled by default.
+    }
     @Override
     public void setLight() {
 	this.setBackground(Light.BLUE.getColor());

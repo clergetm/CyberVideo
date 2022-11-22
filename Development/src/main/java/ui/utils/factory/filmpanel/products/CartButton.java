@@ -9,8 +9,7 @@ import fc.films.Film;
  */
 @SuppressWarnings("serial")
 public class CartButton extends FilmPanelButton {
-    private Film film;
-    private String supportType;
+
     
     /**
      * Constructor of CartButton
@@ -20,8 +19,8 @@ public class CartButton extends FilmPanelButton {
      * @param supportType the way film is supported. (e.g. Blu-Ray, QR Code)
      */
     public CartButton(Film film, String supportType) {
-	this.film = film;
-	this.supportType = supportType;
+	super(film, supportType);
+	// TODO Specific action
     }
 
 }

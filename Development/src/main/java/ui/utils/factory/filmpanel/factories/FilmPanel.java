@@ -40,7 +40,6 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 
     private Dimension dimButton = Decorations.sizeConverter(new Dimension(85, 25));
     private Dimension dimPoster = Decorations.sizeConverter(new Dimension(100, 150));
-    protected Font font = Decorations.FONT_BASIC.getFont(Font.BOLD, 12);
     
     /**
      * Constructor of FilmPanel
@@ -124,11 +123,14 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 			(int) (percent * dimPoster.getHeight() / base),
 			java.awt.Image.SCALE_SMOOTH)));
 	
-	// Scale the font
-	Font derivedfont = font.deriveFont((float) (percent * font.getSize() / base));
+
 	
 	// Scale the buttons
 	for(JButton button : buttonMap.values()) {
+	    // Scale the font
+	    // FIXME use Enum font
+	    Font tempFont = ((FilmPanelButton) button).getButtonFont();
+	    Font derivedfont = tempFont.deriveFont((float) (percent * tempFont.getSize() / base));
 	    button.setSize(
 		    (int) (percent * dimButton.getWidth() / base),
 		    (int) (percent * dimButton.getHeight() / base));
