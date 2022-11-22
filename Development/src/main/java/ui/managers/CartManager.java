@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import fc.films.Film;
 import ui.utils.factory.filmpanel.products.CartButton;
-import ui.utils.observe.cart.IObservable;
+import ui.utils.observe.cart.ICartObservable;
 import ui.utils.observe.cart.IObserver;
 
-public class CartManager implements IObservable, ActionListener{
+public class CartManager implements ICartObservable, ActionListener{
  
     private ArrayList<IObserver> observers;
     

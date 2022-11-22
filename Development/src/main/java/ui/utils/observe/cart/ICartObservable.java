@@ -7,7 +7,7 @@ import ui.managers.FilmEvents;
  * Common Interface for Observable cart related object.
  * @author MathysC
  */
-public interface IObservable {
+public interface ICartObservable {
 
     /**
      * Add an observer.
