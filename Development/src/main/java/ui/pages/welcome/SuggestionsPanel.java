@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import ui.managers.FilmManager;
+import ui.managers.FilmManagerPanel;
 import ui.managers.FilmRentManagerPanel;
 import ui.utils.Decorations;
 import ui.utils.bundles.Multilingual;
@@ -31,7 +31,7 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
 	/* Components */
     protected JLabel sugLabel = new JLabel();
     protected JScrollPane filmsPane;
-    private FilmManager manager;
+    private FilmManagerPanel manager;
 
     /**
      * Constructor of {@code SuggestionsPanel} 
@@ -61,7 +61,7 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
      *
      * @return FilmManager
      */
-    public FilmManager getFilmManager() { return this.manager; }
+    public FilmManagerPanel getFilmManager() { return this.manager; }
     
     @Override
     public void setLanguage(ResourceBundle rb) {

@@ -17,7 +17,7 @@ import ui.utils.factory.filmpanel.factories.FilmPanel;
  *
  */
 @SuppressWarnings("serial")
-public abstract class FilmManager extends JPanel implements ColorTheme{
+public abstract class FilmManagerPanel extends JPanel implements ColorTheme{
     
     protected ArrayList<FilmPanel> films = new ArrayList<>();
     protected double percent; // Scale of FilmPanels
@@ -29,7 +29,7 @@ public abstract class FilmManager extends JPanel implements ColorTheme{
      * @param layout the layout to set.
      * @param percent the scale used for FilmPanels.
      */
-    protected FilmManager(LayoutManager layout, double percent) {
+    protected FilmManagerPanel(LayoutManager layout, double percent) {
 	this.setLayout(layout);
 	this.percent = percent;
     }
