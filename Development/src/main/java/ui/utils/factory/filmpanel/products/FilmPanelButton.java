@@ -27,10 +27,13 @@ public abstract class FilmPanelButton extends JButton implements ColorTheme {
     }
     
     protected FilmPanelButton(Film film, String supportType) {
+	this.film = film;
+	this.supportType = supportType;
 	this.setText(supportType);
 	this.setName(supportType);
 	this.setFont(buttonFont);
 	this.setEnabled(false); // Disabled by default.
+
     }
     /**
      * @return the film
