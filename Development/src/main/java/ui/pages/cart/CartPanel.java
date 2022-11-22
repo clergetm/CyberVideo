@@ -12,11 +12,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import fc.films.Film;
 import ui.utils.Decorations;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.observe.cart.IObserver;
 
 /**
  * This class implements the whole GUI cart and the button to rent films in the cart.
@@ -27,7 +29,7 @@ import ui.utils.colors.Light;
  * @see ui.colors.ColorTheme
  */
 @SuppressWarnings("serial")
-public class CartPanel extends JPanel implements Multilingual, ColorTheme {
+public class CartPanel extends JPanel implements Multilingual, ColorTheme, IObserver{
     private JPanel itemPanel = new JPanel();
 //  TODO Action of checkoutButton
     private JButton checkoutButton = new JButton();
@@ -130,6 +132,18 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme {
 	for(Component fp : this.itemPanel.getComponents()) {
 	    ((Multilingual)fp).setLanguage(rb);
 	}
+    }
+
+    @Override
+    public void addToCart(Film film, String supportType) {
+	this.addToCart(new CartItemPanel(film, supportType));
+	
+    }
+
+    @Override
+    public void removeFromCart(Film film, String supportType) {
+	// TODO Auto-generated method stub
+	// TODO Retrouver le bon cartItemPanel
     }
     
 }
