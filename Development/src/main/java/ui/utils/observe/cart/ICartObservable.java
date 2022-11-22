@@ -29,7 +29,7 @@ public interface ICartObservable {
      * Notify observers of any change depending on the Event
      * @author MathysC
      *
-     * @param event The type of event (ADD or REMOVE).
+     * @param event The type of event (e.g. ADDTOCART).
      * @param film The film related to this change.
      * @param supportType The supportType related to this Film.
      */
