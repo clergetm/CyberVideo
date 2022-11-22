@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import fc.films.Film;
+import ui.managers.FilmEvents;
 import ui.utils.Decorations;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
@@ -135,15 +136,18 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme, ICart
     }
 
     @Override
-    public void addToCart(Film film, String supportType) {
-	this.addToCart(new CartItemPanel(film, supportType));
+    public void update(FilmEvents event, Film film, String supportType) {
+	switch(event) {
+	case ADDTOCART:
+	    this.addToCart(new CartItemPanel(film, supportType));
+	    break;
+	case REMOVEFROMCART:
+	    // TODO Retrouver le bon cartItemPanel
+	    break;
+	default:
+	    break;
+	}
 	
-    }
-
-    @Override
-    public void removeFromCart(Film film, String supportType) {
-	// TODO Auto-generated method stub
-	// TODO Retrouver le bon cartItemPanel
     }
     
 }

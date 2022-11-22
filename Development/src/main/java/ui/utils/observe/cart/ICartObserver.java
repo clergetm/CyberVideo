@@ -1,28 +1,23 @@
 package ui.utils.observe.cart;
 
 import fc.films.Film;
+import ui.managers.FilmEvents;
 
 /**
  * Common interface for an Observer, cart related, object.
  * @author MathysC
+ * @see ui.utils.observe.cart.ICartObservable
+ * @see ui.managers.FilmEvents
  */
 public interface ICartObserver {
-
+  
     /**
      * 
      * @author MathysC
      *
-     * @param film The Film to add to the cart.
+     * @param event The type of event (e.g. ADDTOCART).
+     * @param film The film related to this change.
      * @param supportType The supportType related to the Film.
      */
-    void addToCart(Film film, String supportType);
-    
-    /**
-     * 
-     * @author MathysC
-     *
-     * @param film The Film to remove fromthe cart.
-     * @param supportType The supportType related to the Film.
-     */
-    void removeFromCart(Film film, String supportType);
+    void update(FilmEvents event, Film film, String supportType);
 }

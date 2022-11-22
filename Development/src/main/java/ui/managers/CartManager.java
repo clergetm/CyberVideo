@@ -59,16 +59,7 @@ public class CartManager implements ICartObservable, ActionListener{
 
     @Override
     public void notifyObservers(FilmEvents event, Film film, String supportType) {
-	switch (event) {
-	case ADDTOCART:
-	    this.cartObservers.forEach(o -> o.addToCart(film, supportType));
-	    break;
-	case REMOVEFROMCART:
-	    this.cartObservers.forEach(o -> o.removeFromCart(film, supportType));
-	    break;
-	default:
-	    throw new IllegalArgumentException("Unexpected value: " + event);
-	}
+	this.cartObservers.forEach(o -> o.update(event, film, supportType));
 	
     }
 
