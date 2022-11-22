@@ -6,9 +6,9 @@ import fc.films.Film;
 import ui.utils.factory.filmpanel.factories.FilmCartPanel;
 
 @SuppressWarnings("serial")
-public class CartFilmManager extends FilmManager {
+public class FilmCartManagerPanel extends FilmManager {
     
-    public CartFilmManager(LayoutManager layout, double percent) {
+    public FilmCartManagerPanel(LayoutManager layout, double percent) {
 	super(layout, percent);
     }
     

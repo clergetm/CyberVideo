@@ -18,7 +18,7 @@ import javax.swing.ScrollPaneConstants;
 import fc.films.Categories;
 import fc.films.Film;
 import ui.utils.Decorations;
-import ui.managers.CartFilmManager;
+import ui.managers.FilmCartManagerPanel;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
@@ -33,14 +33,14 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
     	protected JPanel resultsPanel = new JPanel(new BorderLayout());
 	protected JLabel resultsLabel = new JLabel();
     	protected JScrollPane resultsPane;
-    	private CartFilmManager resultsManager;
+    	private FilmCartManagerPanel resultsManager;
     	private int countResults = 0;
     	
     	/* Most rented films */
     	protected JPanel mostRentedPanel = new JPanel(new BorderLayout());
     	protected JLabel mostRentedLabel = new JLabel();
     	protected JScrollPane mostRentedPane;
-    	private CartFilmManager mostRentedManager;
+    	private FilmCartManagerPanel mostRentedManager;
     	
     	/* Categories */
     	protected JScrollPane categoriesPane;
@@ -75,7 +75,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    JPanel centerPanel = new JPanel(new GridLayout(2,0));
 	    centerPanel.setOpaque(false);
 	    // Results
-	    resultsManager = new CartFilmManager(new FlowLayout(FlowLayout.LEFT), 100);	    
+	    resultsManager = new FilmCartManagerPanel(new FlowLayout(FlowLayout.LEFT), 100);	    
 	    resultsPane = new JScrollPane(resultsManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    resultsPane.setBorder(BorderFactory.createEmptyBorder());
@@ -85,7 +85,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    centerPanel.add(resultsPanel);
 	    
 	    // Most rented films
-	    mostRentedManager = new CartFilmManager(new FlowLayout(FlowLayout.LEFT), 100);
+	    mostRentedManager = new FilmCartManagerPanel(new FlowLayout(FlowLayout.LEFT), 100);
 	    mostRentedPane = new JScrollPane(mostRentedManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    mostRentedPane.setBorder(BorderFactory.createEmptyBorder());
