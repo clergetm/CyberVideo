@@ -30,7 +30,7 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
     private JPanel bottomPanel = new JPanel(); // Buttons on the bottom right.
     private JLabel supportLabel = new JLabel();
     private JButton moreButton = new JButton();
-    private RemoveButton removeButton = new RemoveButton();
+    private JButton removeButton = new JButton();
 
     /**
      * Constructor of {@code CartItemPanel}. Create the GUI
@@ -68,16 +68,6 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
         this.add(cartOptions);
     }
 
-    /**
-     * 
-     * @author MathysC
-     *
-     * @return the removeButton
-     */
-    public RemoveButton getRemoveButton() {
-	return removeButton;
-    }
-
     @Override
     public void setLight() {
 	// This JPanel
@@ -102,7 +92,9 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
         this.moreButton.setBackground(Light.BLUE.getColor());
         this.moreButton.setForeground(Light.WHITE.getColor());
 
-        this.removeButton.setLight();
+        // Remove Button
+        this.removeButton.setBackground(Light.BLUE.getColor());
+        this.removeButton.setForeground(Light.WHITE.getColor());
     }
 
     @Override
@@ -128,13 +120,15 @@ public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
         this.moreButton.setBackground(Dark.BLUE.getColor());
         this.moreButton.setForeground(Dark.FOREGROUND.getColor());
 
-        this.removeButton.setDark();
+        // Remove Button
+        this.removeButton.setBackground(Dark.BLUE.getColor());
+        this.removeButton.setForeground(Dark.FOREGROUND.getColor());
     }
 
     @Override
     public void setLanguage(ResourceBundle rb) {
         this.moreButton.setText(rb.getString("checkout_info"));
-        this.removeButton.setLanguage(rb);
+        this.removeButton.setText(rb.getString("checkout_remove"));
     }
 
 }
