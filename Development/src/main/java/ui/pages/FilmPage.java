@@ -2,9 +2,11 @@ package ui.pages;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.time.Year;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,25 +37,25 @@ public class FilmPage extends JPanel implements ColorTheme {
 
 		setLayout(new BorderLayout());
 
-		
+
 		String title = "The Matrix",
 				synopsis = "Thomas A. Anderson is a man living two lives. "
 						+ "By day he is an average computer programmer and by night "
 						+ "a hacker known as Neo. Neo has always questioned his reality,"
 						+ " but the truth is far beyond his imagination...",
-				director_lname = "Wachowski",
-				director_fname = "Lana";
+						director_lname = "Wachowski",
+						director_fname = "Lana";
 		String[] actors = {"Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"};
 		AgeRestriction restriction = AgeRestriction.EVERYONE;
 		Categories[] categories = {Categories.ACTION, Categories.DRAMAS};
 		Year year = Year.of(1999);
 		Support[] supports = {new BluRay(22.5, StatesBluRay.RENTED), new QRCode(), new BluRay(22.50, StatesBluRay.AVAILABLE)};
-		
+
 		/* Create an instance of a Film for test Film class */
 		Film film = new Film(title, synopsis, actors, director_fname, director_lname, year, categories, restriction, supports);
-		
+
 		FilmCartPanel filmCart = new FilmCartPanel(film);
-		
+
 		showFilm(filmCart);
 
 	}
@@ -92,39 +94,48 @@ public class FilmPage extends JPanel implements ColorTheme {
 		titleLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
 		infoPanel.add(titleLabel);
 
-		// Informations for actors
-		JLabel actorsLabel = new JLabel("Actors");
-		actorsLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
-		infoPanel.add(actorsLabel);
-		JTextArea actorsText = new JTextArea(25,25);
-		actorsText.setText(film.getActors().toString());
-		actorsText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
-		actorsText.setOpaque(false);
-		infoPanel.add(actorsText);
-
 		// Informations for the synopsis
 		JLabel synopsisLabel = new JLabel("Synopsis");
 		synopsisLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
 		infoPanel.add(synopsisLabel);
-		JTextArea synopsisText = new JTextArea(50,50);
+		JTextArea synopsisText = new JTextArea(1,5);
 		synopsisText.setText(film.getSynopsis());
+		synopsisText.setLineWrap(true);
+		synopsisText.setWrapStyleWord(true);
 		synopsisText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
 		synopsisText.setOpaque(false);
 		infoPanel.add(synopsisText);
+
+		// Informations for actors
+		JLabel actorsLabel = new JLabel("Actors");
+		actorsLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
+		infoPanel.add(actorsLabel);
+		JTextArea actorsText = new JTextArea(1,2);
+		actorsText.setText(film.toStringActors());
+		actorsText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
+		actorsText.setOpaque(false);
+		infoPanel.add(actorsText);
 
 		// Information for the director
 		JLabel directorLabel = new JLabel("Director");
 		directorLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
 		infoPanel.add(directorLabel);
-		JTextArea directorsText = new JTextArea(50,50);
+		JTextArea directorsText = new JTextArea(1,1);
 		directorsText.setText(film.getNamesDirector());
 		directorsText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
 		directorsText.setOpaque(false);
 		infoPanel.add(directorsText);
-		
-		
-		
 
+
+		FilmCartPanel filmCartPanel = new FilmCartPanel(film);
+		filmCartPanel.setScale(200);
+		posterPanel.setLayout(new BoxLayout(posterPanel,BoxLayout.Y_AXIS));
+		posterPanel.add(Box.createVerticalGlue());
+		posterPanel.add(filmCartPanel);
+		posterPanel.add(Box.createVerticalGlue());
+
+		
+		this.add(posterPanel, BorderLayout.WEST);
 		this.add(infoPanel, BorderLayout.CENTER);	
 	}
 
