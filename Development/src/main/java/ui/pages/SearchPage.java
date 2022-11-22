@@ -17,12 +17,14 @@ import javax.swing.ScrollPaneConstants;
 
 import fc.films.Categories;
 import fc.films.Film;
-import ui.managers.panels.FilmCartManagerPanel;
+import ui.managers.FilmManager;
+import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.factory.filmpanel.factories.FilmCartPanel;
 
 @SuppressWarnings("serial")
 public class SearchPage extends JPanel implements Multilingual, ColorTheme {
@@ -33,19 +35,21 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
     	protected JPanel resultsPanel = new JPanel(new BorderLayout());
 	protected JLabel resultsLabel = new JLabel();
     	protected JScrollPane resultsPane;
-    	private FilmCartManagerPanel resultsManager;
+    	private FilmManagerPanel resultsManager;
     	private int countResults = 0;
     	
     	/* Most rented films */
     	protected JPanel mostRentedPanel = new JPanel(new BorderLayout());
     	protected JLabel mostRentedLabel = new JLabel();
     	protected JScrollPane mostRentedPane;
-    	private FilmCartManagerPanel mostRentedManager;
+    	private FilmManagerPanel mostRentedManager;
     	
     	/* Categories */
     	protected JScrollPane categoriesPane;
     	private JPanel categoriesManager;
-
+    	
+    	/* Film Manager */
+    	private FilmManager filmManager;
     	/**
     	 * 
     	 * @author MathysC
@@ -75,7 +79,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    JPanel centerPanel = new JPanel(new GridLayout(2,0));
 	    centerPanel.setOpaque(false);
 	    // Results
-	    resultsManager = new FilmCartManagerPanel(new FlowLayout(FlowLayout.LEFT), 100);	    
+	    resultsManager = new FilmManagerPanel(new FlowLayout(FlowLayout.LEFT), 100);	    
 	    resultsPane = new JScrollPane(resultsManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    resultsPane.setBorder(BorderFactory.createEmptyBorder());
@@ -85,7 +89,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 	    centerPanel.add(resultsPanel);
 	    
 	    // Most rented films
-	    mostRentedManager = new FilmCartManagerPanel(new FlowLayout(FlowLayout.LEFT), 100);
+	    mostRentedManager = new FilmManagerPanel(new FlowLayout(FlowLayout.LEFT), 100);
 	    mostRentedPane = new JScrollPane(mostRentedManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    mostRentedPane.setBorder(BorderFactory.createEmptyBorder());
@@ -96,13 +100,20 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme {
 
 	    mainPanel.add(centerPanel, BorderLayout.CENTER);
 	    this.add(mainPanel,BorderLayout.CENTER);
+	    
+	    this.filmManager = FilmManager.getInstance();
 	}
 	
 	public void addResult(Film film) { 
-	    resultsManager.addFilm(film);
-	    countResults++;
-	    this.updateCountResults();
+	    FilmCartPanel panel = this.filmManager.getFilmCartPanel(film);
+	    if(panel != null) {
+		this.resultsManager.addPanel(panel);
+		countResults++;
+        	this.updateCountResults();
+	    }
+	    
 	}
+	
 	/**
 	 * update the JLabel of results Found
 	 * @author MathysC
