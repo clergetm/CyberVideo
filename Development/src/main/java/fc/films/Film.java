@@ -1,6 +1,7 @@
 package fc.films;
 
 import java.time.Year;
+import java.util.Arrays;
 
 /**
  * Film is an abstract class that can implements the bluray class and the QRcode class
@@ -112,4 +113,12 @@ public class Film {
 	public Support[] getSupports() {
 		return this.supports;
 	}
+
+	public String toStringActors() {
+		String tempActors = "";
+		for(int i=0;i<actors.length-2;i++) {
+			tempActors=tempActors+actors[i]+", ";
+		}
+		return tempActors+actors[actors.length-1]+".";
+	}	
 }
