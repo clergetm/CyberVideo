@@ -34,6 +34,7 @@ import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.mainframe.MainFrame;
 import ui.pages.SearchPage;
+import ui.pages.cart.CartPanel;
 
 @SuppressWarnings("serial")
 public class ActionPanel extends JPanel implements Multilingual, ColorTheme {

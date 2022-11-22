@@ -1,4 +1,4 @@
-package ui.pages.actions;
+package ui.pages.cart;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import ui.pages.actions.CartItemPanel;
 import ui.utils.Decorations;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
