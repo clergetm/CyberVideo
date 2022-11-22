@@ -13,9 +13,14 @@ import ui.utils.factory.filmpanel.factories.FilmCartPanel;
 import ui.utils.factory.filmpanel.factories.FilmPanel;
 
 /**
- *
+ * {@code JPanel} added to {@code JScrollPane} where {@code FilmPanel} need to be displayed.
  * @author MathysC
- *
+ * @see ui.utils.factory.filmpanel.factories.FilmPanel
+ * @see ui.utils.factory.filmpanel.factories.FilmCartPanel
+ * @see ui.utils.factory.filmpanel.factories.FilmRentPanel
+ * @see ui.utils.factory.filmpanel.products.FilmPanelButton
+ * @see ui.utils.factory.filmpanel.products.CartButton
+ * @see ui.utils.factory.filmpanel.products.RentButton
  */
 @SuppressWarnings("serial")
 public class FilmManagerPanel extends JPanel implements ColorTheme{

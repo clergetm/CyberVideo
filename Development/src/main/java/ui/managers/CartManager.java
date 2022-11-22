@@ -9,6 +9,12 @@ import ui.utils.factory.filmpanel.products.CartButton;
 import ui.utils.observe.cart.ICartObservable;
 import ui.utils.observe.cart.ICartObserver;
 
+/**
+ * Concrete implementation of Cart Observer.
+ * @author MathysC
+ * @see ui.utils.observe.cart.ICartObservable
+ * @see ui.managers.FilmEvents
+ */
 public class CartManager implements ICartObservable, ActionListener{
  
     private ArrayList<ICartObserver> cartObservers;

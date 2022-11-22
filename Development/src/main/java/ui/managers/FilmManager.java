@@ -31,6 +31,12 @@ public class FilmManager {
 	this.cartManager = new CartManager();
     }
     
+    /**
+     * Implementation of a Lazy Singleton.
+     * @author MathysC
+     *
+     * @return return the only instance of {@code FilmManager}
+     */
     public static FilmManager getInstance() {
 	if(instance == null) {
 	    instance = new FilmManager();
@@ -49,9 +55,13 @@ public class FilmManager {
 	boolean successfullyAdded;
 	PanelsEntry entries = new PanelsEntry(film);
 	
+	/*
+	 * Put in the map only if the film is not already in.
+	 */
 	if(this.films.putIfAbsent(film, entries) != null) {
 	    successfullyAdded = false;
 	} else {
+	    // Add all needed listener
 	    entries.getCartPanel().getButtonMap().forEach((k,b) -> b.addActionListener(cartManager));
 //	    TODO create rentManager
 //	    entries.getRentPanel().getButtonMap().forEach((k,b) -> b.addActionListener(rentManager));
