@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import ui.managers.FilmManagerPanel;
-import ui.managers.FilmRentManagerPanel;
+import ui.managers.panels.FilmManagerPanel;
+import ui.managers.panels.FilmRentManagerPanel;
 import ui.utils.Decorations;
 import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;

@@ -1,4 +1,4 @@
-package ui.managers;
+package ui.managers.panels;
 
 import java.awt.LayoutManager;
 import java.util.ArrayList;
