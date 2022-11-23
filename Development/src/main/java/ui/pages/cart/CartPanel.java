@@ -19,13 +19,13 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
-import ui.utils.observe.cart.ICartObserver;
+import ui.utils.observer.cart.ICartObserver;
 
 /**
  * This class implements the whole GUI cart and the button to rent films in the cart.
  * @author MathysC
  * @see ui.pages.cart.CartItemPanel
- * @see ui.utils.mediator.cart.CartMediator
+ * @see ui.utils.observer.cart.ICartObserver
  * @see ui.bundles.Multilingual
  * @see ui.colors.ColorTheme
  */

@@ -1,4 +1,4 @@
-package ui.utils.observe.cart;
+package ui.utils.observer.cart;
 
 import fc.films.Film;
 import ui.managers.FilmEvents;
@@ -6,7 +6,7 @@ import ui.managers.FilmEvents;
 /**
  * Common Interface for Observable cart related object.
  * @author MathysC
- * @see ui.utils.observe.cart.ICartObserver
+ * @see ui.utils.observer.cart.ICartObserver
  * @see ui.managers.FilmsEvents
  */
 public interface ICartObservable {
