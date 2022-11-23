@@ -6,16 +6,17 @@ import javax.swing.JButton;
 
 import fc.films.Film;
 import ui.utils.Decorations;
-import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
 
 /**
  * Common Interface for Film Panel Buttons.
  * @author MathysC
  */
 @SuppressWarnings("serial")
-public abstract class FilmPanelButton extends JButton implements ColorTheme {
+public abstract class FilmPanelButton extends JButton implements IColorThemeObserver {
     private Film film;
     private String supportType;
     
@@ -48,17 +49,21 @@ public abstract class FilmPanelButton extends JButton implements ColorTheme {
     public String getSupportType() {
 	return supportType;
     }
-
+   
     @Override
-    public void setLight() {
-	this.setBackground(Light.BLUE.getColor());
-	this.setForeground(Light.WHITE.getColor());
+    public void setColorTheme(ColorThemes colorTheme) {
+	switch(colorTheme) {
+	case LIGHTTHEME:
+	    this.setBackground(Light.BLUE.getColor());
+	    this.setForeground(Light.WHITE.getColor());
+	    break;
+	case DARKTHEME:
+	    this.setBackground(Dark.BLUE.getColor());
+	    this.setForeground(Dark.FOREGROUND.getColor());
+	    break;
+	default:
+	    break;
+	}
+	
     }
-
-    @Override
-    public void setDark() {
-	this.setBackground(Dark.BLUE.getColor());
-	this.setForeground(Dark.FOREGROUND.getColor());
-    }
-    
 }

@@ -19,10 +19,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import ui.managers.UIManager;
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
-import ui.utils.colors.ColorTheme;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
@@ -34,7 +34,7 @@ import ui.utils.observer.multilingual.IMultilingualObserver;
  *
  */
 @SuppressWarnings("serial")
-class LoginPanel extends JPanel implements IMultilingualObserver, ColorTheme {
+class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver {
 
     private String placeholderID = "", placeholderPassword = "", keyboardTitleID = "", keyboardTitlePassword = "";
 
@@ -239,75 +239,80 @@ class LoginPanel extends JPanel implements IMultilingualObserver, ColorTheme {
     }
 
     @Override
-    public void setLight() {
-        // This JPanel
-        this.setBackground(Light.WHITE.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
+    public void setColorTheme(ColorThemes colorTheme) {
+	switch(colorTheme) {
+	    case LIGHTTHEME:
+		// This JPanel
+	        this.setBackground(Light.WHITE.getColor());
+	        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
 
-        // Label
-        this.loginPanelLabel.setForeground(Light.BLACK.getColor());
-        // ID TextField
-        this.tfID.setBackground(Light.REVERSE_BG.getColor());
-        this.tfID.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
-        this.tfID.setForeground(Light.BLACK.getColor());
+	        // Label
+	        this.loginPanelLabel.setForeground(Light.BLACK.getColor());
+	        // ID TextField
+	        this.tfID.setBackground(Light.REVERSE_BG.getColor());
+	        this.tfID.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+	        this.tfID.setForeground(Light.BLACK.getColor());
 
-        // Password TextField
-        this.tfPassword.setBackground(Light.REVERSE_BG.getColor());
-        this.tfPassword.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
-        this.tfPassword.setForeground(Light.BLACK.getColor());
+	        // Password TextField
+	        this.tfPassword.setBackground(Light.REVERSE_BG.getColor());
+	        this.tfPassword.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+	        this.tfPassword.setForeground(Light.BLACK.getColor());
 
-        // Connection Button
-        this.connection.setBackground(Light.BLUE.getColor());
-        this.connection.setForeground(Light.WHITE.getColor());
-        this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+	        // Connection Button
+	        this.connection.setBackground(Light.BLUE.getColor());
+	        this.connection.setForeground(Light.WHITE.getColor());
+	        this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 
-        // CreateAccount Button
-        this.createAccount.setBackground(Light.BLUE.getColor());
-        this.createAccount.setForeground(Light.WHITE.getColor());
-        this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+	        // CreateAccount Button
+	        this.createAccount.setBackground(Light.BLUE.getColor());
+	        this.createAccount.setForeground(Light.WHITE.getColor());
+	        this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
 
-        // ContinueWithoutConn Button
-        this.continueWithoutConn.setBackground(Light.REVERSE_BG.getColor());
-        this.continueWithoutConn.setForeground(Light.REVERSE_FG.getColor());
-        this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
-        this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+	        // ContinueWithoutConn Button
+	        this.continueWithoutConn.setBackground(Light.REVERSE_BG.getColor());
+	        this.continueWithoutConn.setForeground(Light.REVERSE_FG.getColor());
+	        this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+	        this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
 
-    }
+		break;
+	    case DARKTHEME:
+		// This JPanel
+	        this.setBackground(Dark.BG.getColor());
+	        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUND.getColor()));
 
-    @Override
-    public void setDark() {
-	// This JPanel
-        this.setBackground(Dark.BG.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUND.getColor()));
+	        // Label
+	        this.loginPanelLabel.setForeground(Dark.FOREGROUND.getColor());
 
-        // Label
-        this.loginPanelLabel.setForeground(Dark.FOREGROUND.getColor());
+	        // Id TextField
+	        this.tfID.setBackground(Dark.PURPLE.getColor());
+	        this.tfID.setForeground(Dark.FOREGROUND.getColor());
+	        this.tfID.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
 
-        // Id TextField
-        this.tfID.setBackground(Dark.PURPLE.getColor());
-        this.tfID.setForeground(Dark.FOREGROUND.getColor());
-        this.tfID.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+	        // Password TextField
+	        this.tfPassword.setBackground(Dark.PURPLE.getColor());
+	        this.tfPassword.setForeground(Dark.FOREGROUND.getColor());
+	        this.tfPassword.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
 
-        // Password TextField
-        this.tfPassword.setBackground(Dark.PURPLE.getColor());
-        this.tfPassword.setForeground(Dark.FOREGROUND.getColor());
-        this.tfPassword.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+	        // Connection Button
+	        this.connection.setBackground(Dark.BLUE.getColor());
+	        this.connection.setForeground(Dark.FOREGROUND.getColor());
+	        this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 
-        // Connection Button
-        this.connection.setBackground(Dark.BLUE.getColor());
-        this.connection.setForeground(Dark.FOREGROUND.getColor());
-        this.connection.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+	        // CreateAccount Button
+	        this.createAccount.setBackground(Dark.BLUE.getColor());
+	        this.createAccount.setForeground(Dark.FOREGROUND.getColor());
+	        this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
 
-        // CreateAccount Button
-        this.createAccount.setBackground(Dark.BLUE.getColor());
-        this.createAccount.setForeground(Dark.FOREGROUND.getColor());
-        this.createAccount.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+	        // ContinueWithoutConn Button
+	        this.continueWithoutConn.setBackground(Dark.PURPLE.getColor());
+	        this.continueWithoutConn.setForeground(Dark.FOREGROUND.getColor());
+	        this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
+	        this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
 
-        // ContinueWithoutConn Button
-        this.continueWithoutConn.setBackground(Dark.PURPLE.getColor());
-        this.continueWithoutConn.setForeground(Dark.FOREGROUND.getColor());
-        this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
-        this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
-
+		break;
+	    default:
+		break;
+	    }
+	
     }
 }

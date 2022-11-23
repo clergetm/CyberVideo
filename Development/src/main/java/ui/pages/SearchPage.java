@@ -21,14 +21,15 @@ import ui.managers.FilmManager;
 import ui.managers.GUIManager;
 import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
-import ui.utils.colors.ColorTheme;
 import ui.utils.factory.filmpanel.factories.FilmCartPanel;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
 
 @SuppressWarnings("serial")
-public class SearchPage extends JPanel implements IMultilingualObserver, ColorTheme {
+public class SearchPage extends JPanel implements IMultilingualObserver, IColorThemeObserver {
 
     	protected JPanel mainPanel = new JPanel(new BorderLayout());
     	
@@ -104,6 +105,8 @@ public class SearchPage extends JPanel implements IMultilingualObserver, ColorTh
 	    
 	    this.filmManager = FilmManager.getInstance();
 
+	    GUIManager.getInstance().registerColorTheme(mostRentedManager);
+	    GUIManager.getInstance().registerColorTheme(resultsManager);
 	}
 	
 	public void addResult(Film film) { 
@@ -128,42 +131,43 @@ public class SearchPage extends JPanel implements IMultilingualObserver, ColorTh
 	    resultsLabel.setText(text);
 	}
 	
-	@Override
-	public void setLight() {
-	    mainPanel.setBackground(Light.BG.getColor());
-	    resultsLabel.setForeground(Light.REVERSE_FG.getColor());
-	    mostRentedLabel.setForeground(Light.REVERSE_FG.getColor());
-	    
-	    resultsManager.setLight();
-	    mostRentedManager.setLight();
-	    for(Component c: categoriesManager.getComponents()) {
-		JButton button = (JButton)c;
-		button.setBackground(Light.BLUE.getColor());
-		button.setForeground(Light.WHITE.getColor());
-		button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
-	    }
-	}
-
-	@Override
-	public void setDark() {
-	    mainPanel.setBackground(Dark.BG.getColor());
-	    resultsLabel.setForeground(Dark.FOREGROUND.getColor());
-	    mostRentedLabel.setForeground(Dark.FOREGROUND.getColor());	
-	    
-	    resultsManager.setDark();
-	    mostRentedManager.setDark();
-	    for(Component c: categoriesManager.getComponents()) {
-		JButton button = (JButton)c;
-		button.setBackground(Dark.BLUE.getColor());
-		button.setForeground(Dark.FOREGROUND.getColor());
-		button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
-	    }
-	}
-		
+	
 	@Override
 	public void setLanguage(ResourceBundle rb) {
 		resultsLabel.setText(rb.getString("result_title"));
 		this.updateCountResults();
 		mostRentedLabel.setText(rb.getString("result_most_rented"));
+	}
+
+	@Override
+	public void setColorTheme(ColorThemes colorTheme) {
+	    switch(colorTheme) {
+	    case LIGHTTHEME:
+		mainPanel.setBackground(Light.BG.getColor());
+		    resultsLabel.setForeground(Light.REVERSE_FG.getColor());
+		    mostRentedLabel.setForeground(Light.REVERSE_FG.getColor());
+
+		    for(Component c: categoriesManager.getComponents()) {
+			JButton button = (JButton)c;
+			button.setBackground(Light.BLUE.getColor());
+			button.setForeground(Light.WHITE.getColor());
+			button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+		    }
+		break;
+	    case DARKTHEME:
+		mainPanel.setBackground(Dark.BG.getColor());
+		    resultsLabel.setForeground(Dark.FOREGROUND.getColor());
+		    mostRentedLabel.setForeground(Dark.FOREGROUND.getColor());	
+
+		    for(Component c: categoriesManager.getComponents()) {
+			JButton button = (JButton)c;
+			button.setBackground(Dark.BLUE.getColor());
+			button.setForeground(Dark.FOREGROUND.getColor());
+			button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+		    }
+		break;
+	    default:
+		break;
+	    }	    
 	}
 }

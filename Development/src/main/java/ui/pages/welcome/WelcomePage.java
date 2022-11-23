@@ -4,15 +4,15 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
-import ui.utils.colors.ColorTheme;
-
 /**
  * Welcome page that show the login panel and suggestions panel.
+ * We keep this 
  * @author MathysC
- *
+ * @see ui.pages.welcome.SuggestionsPanel
+ * @see ui.pages.welcome.LoginPanel
  */
 @SuppressWarnings("serial")
-public class WelcomePage extends JPanel implements ColorTheme {
+public class WelcomePage extends JPanel {
 
     /* Components */
     protected SuggestionsPanel suggestionsPanel = new SuggestionsPanel();
@@ -46,15 +46,4 @@ public class WelcomePage extends JPanel implements ColorTheme {
      */
     public LoginPanel getLoginPanel() { return this.loginPanel; }
 
-    @Override
-    public void setLight() {
-	this.suggestionsPanel.setLight();
-	this.loginPanel.setLight();
-    }
-
-    @Override
-    public void setDark() {
-	this.suggestionsPanel.setDark();
-	this.loginPanel.setDark();
-    }
 }

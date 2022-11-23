@@ -1,7 +1,6 @@
 package ui.pages.cart;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -16,8 +15,9 @@ import fc.films.Film;
 import ui.managers.FilmEvents;
 import ui.managers.GUIManager;
 import ui.utils.Decorations;
-import ui.utils.colors.ColorTheme;
 import ui.utils.observer.cart.ICartObserver;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
@@ -31,7 +31,7 @@ import ui.utils.observer.multilingual.IMultilingualObserver;
  * @see ui.colors.ColorTheme
  */
 @SuppressWarnings("serial")
-public class CartPanel extends JPanel implements IMultilingualObserver, ColorTheme, ICartObserver{
+public class CartPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver, ICartObserver{
     private JPanel itemPanel = new JPanel();
 //  TODO Action of checkoutButton
     private JButton checkoutButton = new JButton();
@@ -72,7 +72,8 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	this.revalidate();
 	this.repaint();
 	GUIManager.getInstance().registerMultilingual(item);
-	GUIManager.getInstance().refreshMultilingual();
+	GUIManager.getInstance().registerColorTheme(item);
+	GUIManager.getInstance().refreshUI();
     }
     
     /**
@@ -86,6 +87,7 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	this.revalidate();
 	this.repaint();
 	GUIManager.getInstance().unregisterMultilingual(item);
+	GUIManager.getInstance().unregisterColorTheme(item);
 
     }
     
@@ -97,39 +99,6 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	this.itemPanel.removeAll();
 	this.revalidate();
 	this.repaint();
-    }
-    
-    @Override
-    public void setLight() {
-	// This Panel
-	this.setBackground(Light.BG.getColor());
-	this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
-	// Checkout Manager
-	this.itemPanel.setBackground(this.itemPanel.getParent().getBackground());
-	// cartItems from cart
-	for(Component fp : this.itemPanel.getComponents()) {
-	    ((ColorTheme)fp).setLight();
-	}
-	// Checkout Button
-	this.checkoutButton.setBackground(Light.BLUE.getColor());
-	this.checkoutButton.setForeground(Light.WHITE.getColor());
-    }
-
-    @Override
-    public void setDark() {
-	// This Panel
-	this.setBackground(Dark.BG.getColor());
-	this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUND.getColor()));
-	// Checkout Manager
-	this.itemPanel.setBackground(this.itemPanel.getParent().getBackground());
-	// CheckedOutFilmPanel from cart
-	for(Component fp : this.itemPanel.getComponents()) {
-	    ((ColorTheme)fp).setLight();
-	}
-	
-	// Checkout Button
-	this.checkoutButton.setBackground(Dark.BLUE.getColor());
-	this.checkoutButton.setForeground(Dark.FOREGROUND.getColor());
     }
 
     @Override
@@ -149,6 +118,38 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	default:
 	    break;
 	}
+	
+    }
+
+    @Override
+    public void setColorTheme(ColorThemes colorTheme) {
+	switch(colorTheme) {
+	    case LIGHTTHEME:
+		// This Panel
+		this.setBackground(Light.BG.getColor());
+		this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
+		// Checkout Manager
+		this.itemPanel.setBackground(this.itemPanel.getParent().getBackground());
+		
+		// Checkout Button
+		this.checkoutButton.setBackground(Light.BLUE.getColor());
+		this.checkoutButton.setForeground(Light.WHITE.getColor());
+		
+		break;
+	    case DARKTHEME:
+		// This Panel
+		this.setBackground(Dark.BG.getColor());
+		this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUND.getColor()));
+		// Checkout Manager
+		this.itemPanel.setBackground(this.itemPanel.getParent().getBackground());
+
+		// Checkout Button
+		this.checkoutButton.setBackground(Dark.BLUE.getColor());
+		this.checkoutButton.setForeground(Dark.FOREGROUND.getColor());
+		break;
+	    default:
+		break;
+	    }
 	
     }
     

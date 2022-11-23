@@ -16,7 +16,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ui.utils.colors.ColorTheme;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
@@ -27,7 +28,7 @@ import ui.utils.observer.multilingual.IMultilingualObserver;
  *
  */
 @SuppressWarnings("serial")
-public class KeyboardDialog extends JDialog implements ActionListener, IMultilingualObserver, ColorTheme {
+public class KeyboardDialog extends JDialog implements ActionListener, IMultilingualObserver, IColorThemeObserver {
 
 
     private String entry = ""; // text of the TextField.
@@ -246,7 +247,9 @@ public class KeyboardDialog extends JDialog implements ActionListener, IMultilin
     }
 
 	@Override
-	public void setLight() {
+	public void setColorTheme(ColorThemes colorTheme) {
+	    switch(colorTheme) {
+	    case LIGHTTHEME:
 		// This Dialog.
 		this.setBackground(Light.BG.getColor());
 
@@ -272,11 +275,9 @@ public class KeyboardDialog extends JDialog implements ActionListener, IMultilin
 		
 		// Space Button.
 		this.spaceButton.setBackground(Light.WHITE.getColor());
-		this.spaceButton.setForeground(Light.REVERSE_FG.getColor());	
-	}
-
-	@Override
-	public void setDark() {
+		this.spaceButton.setForeground(Light.REVERSE_FG.getColor());
+		break;
+	    case DARKTHEME:
 		// This Dialog.
 		this.setBackground(Dark.BG.getColor());
 
@@ -302,7 +303,13 @@ public class KeyboardDialog extends JDialog implements ActionListener, IMultilin
 		
 		// Space Button.
 		this.spaceButton.setBackground(Dark.PURPLE.getColor());
-		this.spaceButton.setForeground(Dark.FOREGROUND.getColor());	
+		this.spaceButton.setForeground(Dark.FOREGROUND.getColor());
+		break;
+	    default:
+		break;
+	    }
+	    
+	    
 	}
 
 }

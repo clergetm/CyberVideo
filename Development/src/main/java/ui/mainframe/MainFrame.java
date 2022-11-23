@@ -2,7 +2,8 @@ package ui.mainframe;
 
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
-import ui.utils.colors.ColorTheme;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.managers.FilmManager;
@@ -35,7 +36,7 @@ import fc.films.Support;
  * Main Class of AL2000. Initialize the machine Interface.
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame implements ColorTheme {
+public class MainFrame extends JFrame implements IColorThemeObserver {
 
 	/* Icon */
 	public static final String ICO_APP = "App";
@@ -64,8 +65,8 @@ public class MainFrame extends JFrame implements ColorTheme {
 	/* Films */
 	private FilmManager filmManager; 
 	
-	/* Languages */
-	private GUIManager langManager;
+	/* Languages and Color Themes */
+	private GUIManager guiManager;
 	
 	/**
 	 * Constructor of Main.
@@ -101,19 +102,32 @@ public class MainFrame extends JFrame implements ColorTheme {
 	    
 	    /* Initialize GUI */
 	    this.createGUI();
-	    this.setLight();
 	       
 	    /* Languages */
-	    this.langManager = GUIManager.getInstance();
-	    this.langManager.registerMultilingual(this.welcomePage.getSuggestionsPanel());
-	    this.langManager.registerMultilingual(this.welcomePage.getLoginPanel());
-	    this.langManager.registerMultilingual(this.actionPanel);
-	    this.langManager.registerMultilingual(this.actionPanel.getCartPanel());
-	    this.langManager.registerMultilingual(this.actionPanel.getSearchPage());
-	    this.langManager.registerMultilingual(this.actionPanel.getFilmPage());
-	    this.langManager.registerMultilingual(KeyboardDialog.getInstance());
-	    this.langManager.refreshMultilingual();
+	    this.guiManager = GUIManager.getInstance();
+	    this.guiManager.registerMultilingual(this.welcomePage.getSuggestionsPanel());
+	    this.guiManager.registerMultilingual(this.welcomePage.getLoginPanel());
+	    this.guiManager.registerMultilingual(this.actionPanel);
+	    this.guiManager.registerMultilingual(this.actionPanel.getCartPanel());
+	    this.guiManager.registerMultilingual(this.actionPanel.getSearchPage());
+	    this.guiManager.registerMultilingual(this.actionPanel.getFilmPage());
+	    this.guiManager.registerMultilingual(KeyboardDialog.getInstance());
+
+	    /*Color Themes*/
+	    this.guiManager.registerColorTheme(this);
+	    this.guiManager.registerColorTheme(topBarPanel);
+	    this.guiManager.registerColorTheme(this.welcomePage.getSuggestionsPanel());
+	    this.guiManager.registerColorTheme(this.welcomePage.getSuggestionsPanel());
+	    this.guiManager.registerColorTheme(this.welcomePage.getLoginPanel());
+	    this.guiManager.registerColorTheme(this.actionPanel);
+	    this.guiManager.registerColorTheme(this.actionPanel.getCartPanel());
+	    this.guiManager.registerColorTheme(this.actionPanel.getSearchPage());
+	    this.guiManager.registerColorTheme(this.actionPanel.getFilmPage());
+	    this.guiManager.registerColorTheme(KeyboardDialog.getInstance());
+	    
+	    
 	    /* Interaction */
+	    this.guiManager.refreshUI();
 	    new Interaction(this);    
 	    
 	    
@@ -195,40 +209,26 @@ public class MainFrame extends JFrame implements ColorTheme {
 	}
 	
 	@Override
-	public void setLight() {
-	    // This JFrame
-	    this.setBackground(Light.BG.getColor());
+	public void setColorTheme(ColorThemes colorTheme) {
+	    switch(colorTheme) {
+	    case LIGHTTHEME:
+		// This JFrame
+		this.setBackground(Light.BG.getColor());
 
-	    // Banner
-	    banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Light.BG.getColor()));
+		// Banner
+		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Light.BG.getColor()));
 
-	    // Top Bar
-	    this.topBarPanel.setLight();
+		break;
+	    case DARKTHEME:
+		// This JFrame
+		this.setBackground(Dark.BG.getColor());
+		// Banner
+		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Dark.BG.getColor()));
 
-	    // Welcome Page
-	    this.welcomePage.setLight();
-
-	    // Action Panel
-	    this.actionPanel.setLight();
-
-	}
-
-	@Override
-	public void setDark() {
-	    // This JFrame
-	    this.setBackground(Dark.BG.getColor());
-
-	    // Banner
-	    banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Dark.BG.getColor()));
-
-	    // Top Bar
-	    this.topBarPanel.setDark();
-
-	    // Welcome Page
-	    this.welcomePage.setDark();
-
-	    // Action Panel
-	    this.actionPanel.setDark();
+		break;
+	    default:
+		break;
+	    }
 	    
 	}
 	

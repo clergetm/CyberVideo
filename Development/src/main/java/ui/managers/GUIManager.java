@@ -135,6 +135,7 @@ public class GUIManager implements IMultilingualObservable, IColorThemeObservabl
 
     @Override
     public void notifyColorThemeObservers(ColorThemes color) {
+	this.setCurrentColorTheme(color);
 	this.colorthemes.forEach(o -> o.setColorTheme(color));
 	
     }

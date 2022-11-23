@@ -15,8 +15,8 @@ import javax.swing.SwingConstants;
 
 import fc.films.Film;
 import fc.films.Support;
+import ui.managers.GUIManager;
 import ui.utils.Decorations;
-import ui.utils.colors.ColorTheme;
 import ui.utils.factory.filmpanel.products.FilmPanelButton;
 
 /**
@@ -28,7 +28,7 @@ import ui.utils.factory.filmpanel.products.FilmPanelButton;
  * @author MathysC
  */
 @SuppressWarnings("serial")
-public abstract class FilmPanel extends JPanel implements ColorTheme {
+public abstract class FilmPanel extends JPanel {
     protected Film film;
 
     private JPanel mainPanel;
@@ -81,7 +81,12 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 	 */
 	for(Support support : film.getSupports()) {
 	    String supportType = support.getType();
-	    buttonMap.computeIfAbsent(supportType, b -> createButton(supportType));
+	    FilmPanelButton button = createButton(supportType);
+	    
+	    // If successfully added, add the button to the GUIManager
+	    if(buttonMap.putIfAbsent(supportType, button) == null) {
+		GUIManager.getInstance().registerColorTheme(button);
+	    }
 
 	    /**
 	     * If the support is available, set the button available.
@@ -153,15 +158,4 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
     public Map<String, FilmPanelButton> getButtonMap() {
 	return buttonMap;
     }
-
-    @Override
-    public void setLight() {
-	buttonMap.forEach((k, v) -> v.setLight());
-    }
-
-    @Override
-    public void setDark() {
-	buttonMap.forEach((k, v) -> v.setDark());
-    }
-    
 }

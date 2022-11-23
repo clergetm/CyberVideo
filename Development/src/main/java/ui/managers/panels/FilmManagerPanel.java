@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import fc.films.Film;
-import ui.utils.colors.ColorTheme;
-import ui.utils.factory.filmpanel.factories.FilmCartPanel;
+import ui.managers.GUIManager;
 import ui.utils.factory.filmpanel.factories.FilmPanel;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 
@@ -23,7 +23,7 @@ import ui.utils.observer.colortheme.palettes.Light;
  * @see ui.utils.factory.filmpanel.products.RentButton
  */
 @SuppressWarnings("serial")
-public class FilmManagerPanel extends JPanel implements ColorTheme{
+public class FilmManagerPanel extends JPanel implements IColorThemeObserver{
     
     protected ArrayList<FilmPanel> films = new ArrayList<>();
     protected double percent; // Scale of FilmPanels
@@ -57,22 +57,29 @@ public class FilmManagerPanel extends JPanel implements ColorTheme{
      *
      */
     public void clear() {
-	this.films.forEach(this::remove);
+	this.films.forEach(f -> {
+	    f.getButtonMap().forEach((k,v) -> GUIManager.getInstance().unregisterColorTheme(v));
+	    this.remove(f);
+	});
 	this.films.clear();
 	this.revalidate();
 	this.repaint();
     }
     
     @Override
-    public void setLight() {
-	this.setBackground(Light.BG.getColor());
-	this.films.forEach(FilmPanel::setLight);
-    }
-
-    @Override
-    public void setDark() {
-	this.setBackground(Dark.BG.getColor());
-	this.films.forEach(FilmPanel::setDark);
+    public void setColorTheme(ColorThemes colorTheme) {
+	switch(colorTheme) {
+	    case LIGHTTHEME:
+		this.setBackground(Light.BG.getColor());
+		break;
+	    case DARKTHEME:
+		this.setBackground(Dark.BG.getColor());
+		break;
+	    default:
+		break;
+	    }
+	    
+	
     }
     
 }

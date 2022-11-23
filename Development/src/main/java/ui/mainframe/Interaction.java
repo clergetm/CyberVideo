@@ -2,6 +2,7 @@ package ui.mainframe;
 
 import ui.managers.GUIManager;
 import ui.utils.Decorations;
+import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.multilingual.Languages;
 
 import java.awt.event.ActionEvent;
@@ -102,12 +103,12 @@ public class Interaction implements ActionListener {
             // Handle Color Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_LIGHT:
             // Change from Light to Dark theme.
-            mainFrame.setDark();
+            GUIManager.getInstance().notifyColorThemeObservers(ColorThemes.DARKTHEME);
             break;
             
         case TopBarPanel.ACTION_DARK:
             // Change from Dark to Light theme.
-            mainFrame.setLight();
+            GUIManager.getInstance().notifyColorThemeObservers(ColorThemes.LIGHTTHEME);
             break;
         default:
             throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());

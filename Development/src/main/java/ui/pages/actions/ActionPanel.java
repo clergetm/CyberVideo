@@ -20,18 +20,18 @@ import javax.swing.JTextField;
 
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
-import ui.utils.colors.ColorTheme;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
 import ui.mainframe.MainFrame;
-import ui.managers.GUIManager;
 import ui.pages.FilmPage;
 import ui.pages.SearchPage;
 import ui.pages.cart.CartPanel;
 
 @SuppressWarnings("serial")
-public class ActionPanel extends JPanel implements IMultilingualObserver, ColorTheme {
+public class ActionPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver {
 
     /* Search Items */
     public static final String[] boxItems = {
@@ -218,50 +218,6 @@ public class ActionPanel extends JPanel implements IMultilingualObserver, ColorT
     }
 
     @Override
-    public void setLight() {
-        // Panels
-        this.setBackground(Light.BG.getColor());
-        
-        tfSearch.setBackground(Light.REVERSE_BG.getColor());
-        tfSearch.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
-        tfSearch.setForeground(Light.BLACK.getColor());        
-        
-        filterCBox.setBackground(Light.BLUE.getColor());
-        filterCBox.setForeground(Light.WHITE.getColor());
-
-        // Buttons
-        undoButton.setIcon(Decorations.getImg(IMG_UNDO_LIGHT));
-        redoButton.setIcon(Decorations.getImg(IMG_REDO_LIGHT));
-        connectionButton.setBackground(Light.BLUE.getColor());
-        connectionButton.setForeground(Light.WHITE.getColor());
-        
-        cartPanel.setLight();
-        searchPage.setLight();
-    }
-
-    @Override
-    public void setDark() {
-	//Panels
-        this.setBackground(Dark.BG.getColor());
-        
-        tfSearch.setBackground(Dark.PURPLE.getColor());
-        tfSearch.setForeground(Dark.FOREGROUND.getColor());
-        tfSearch.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
-        
-        filterCBox.setBackground(Dark.BLUE.getColor());
-        filterCBox.setForeground(Dark.FOREGROUND.getColor());
-        
-        // Buttons
-        undoButton.setIcon(Decorations.getImg(IMG_UNDO_DARK));
-        redoButton.setIcon(Decorations.getImg(IMG_REDO_DARK));
-        connectionButton.setBackground(Dark.BLUE.getColor());
-        connectionButton.setForeground(Dark.FOREGROUND.getColor());
-
-        cartPanel.setDark();
-        searchPage.setDark();
-    }
-
-    @Override
     public void setLanguage(ResourceBundle rb) {
         connectionButton.setText(rb.getString("login_in"));
 
@@ -271,5 +227,49 @@ public class ActionPanel extends JPanel implements IMultilingualObserver, ColorT
 
         // And change the String value for condition in FocusListener.        
         placeholder = rb.getString("action_search");
+    }
+
+    @Override
+    public void setColorTheme(ColorThemes colorTheme) {
+	switch(colorTheme) {
+	    case LIGHTTHEME:
+	        // Panels
+	        this.setBackground(Light.BG.getColor());
+	        
+	        tfSearch.setBackground(Light.REVERSE_BG.getColor());
+	        tfSearch.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+	        tfSearch.setForeground(Light.BLACK.getColor());        
+	        
+	        filterCBox.setBackground(Light.BLUE.getColor());
+	        filterCBox.setForeground(Light.WHITE.getColor());
+
+	        // Buttons
+	        undoButton.setIcon(Decorations.getImg(IMG_UNDO_LIGHT));
+	        redoButton.setIcon(Decorations.getImg(IMG_REDO_LIGHT));
+	        connectionButton.setBackground(Light.BLUE.getColor());
+	        connectionButton.setForeground(Light.WHITE.getColor());
+	        
+		break;
+	    case DARKTHEME:
+		//Panels
+	        this.setBackground(Dark.BG.getColor());
+	        
+	        tfSearch.setBackground(Dark.PURPLE.getColor());
+	        tfSearch.setForeground(Dark.FOREGROUND.getColor());
+	        tfSearch.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+	        
+	        filterCBox.setBackground(Dark.BLUE.getColor());
+	        filterCBox.setForeground(Dark.FOREGROUND.getColor());
+	        
+	        // Buttons
+	        undoButton.setIcon(Decorations.getImg(IMG_UNDO_DARK));
+	        redoButton.setIcon(Decorations.getImg(IMG_REDO_DARK));
+	        connectionButton.setBackground(Dark.BLUE.getColor());
+	        connectionButton.setForeground(Dark.FOREGROUND.getColor());
+
+		break;
+	    default:
+		break;
+	    }	
     }
 }

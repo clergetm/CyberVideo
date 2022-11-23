@@ -11,7 +11,8 @@ import javax.swing.JPanel;
 
 import fc.films.Film;
 import ui.utils.Decorations;
-import ui.utils.colors.ColorTheme;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
@@ -22,7 +23,7 @@ import ui.utils.observer.multilingual.IMultilingualObserver;
  *
  */
 @SuppressWarnings("serial")
-public class CartItemPanel extends JPanel implements IMultilingualObserver, ColorTheme {
+public class CartItemPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver {
 
     private JLabel poster = new JLabel(); // Poster on the left.
     private JPanel cartOptions = new JPanel(); // Options on the right
@@ -69,66 +70,71 @@ public class CartItemPanel extends JPanel implements IMultilingualObserver, Colo
     }
 
     @Override
-    public void setLight() {
-	// This JPanel
-        this.setBackground(this.getParent().getBackground());
-
-        // poster
-        this.poster.setBackground(this.poster.getParent().getBackground());
-
-        // Options
-        this.cartOptions.setBackground(this.cartOptions.getParent().getBackground());
-
-        // Film title
-        this.titleLabel.setForeground(Light.BLACK.getColor());
-        
-        // Bottom Panel
-        this.bottomPanel.setBackground(this.bottomPanel.getParent().getBackground());
-        
-        // Rent type
-        this.supportLabel.setForeground(Light.BLACK.getColor());
-
-        // Information Button
-        this.moreButton.setBackground(Light.BLUE.getColor());
-        this.moreButton.setForeground(Light.WHITE.getColor());
-
-        // Remove Button
-        this.removeButton.setBackground(Light.BLUE.getColor());
-        this.removeButton.setForeground(Light.WHITE.getColor());
-    }
-
-    @Override
-    public void setDark() {
-        // This JPanel
-        this.setBackground(this.getParent().getBackground());
-
-        // poster Label
-        this.poster.setBackground(this.poster.getParent().getBackground());
-
-        // Options JPanel
-        this.cartOptions.setBackground(this.cartOptions.getParent().getBackground());
-
-        // Film title Label
-        this.titleLabel.setForeground(Dark.FOREGROUND.getColor());
-
-        // Bottom Panel
-        this.bottomPanel.setBackground(this.bottomPanel.getParent().getBackground());
-        // Rent type Label
-        this.supportLabel.setForeground(Dark.FOREGROUND.getColor());
-
-        // Information Button
-        this.moreButton.setBackground(Dark.BLUE.getColor());
-        this.moreButton.setForeground(Dark.FOREGROUND.getColor());
-
-        // Remove Button
-        this.removeButton.setBackground(Dark.BLUE.getColor());
-        this.removeButton.setForeground(Dark.FOREGROUND.getColor());
-    }
-
-    @Override
     public void setLanguage(ResourceBundle rb) {
         this.moreButton.setText(rb.getString("checkout_info"));
         this.removeButton.setText(rb.getString("checkout_remove"));
+    }
+
+    @Override
+    public void setColorTheme(ColorThemes colorTheme) {
+	switch(colorTheme) {
+	    case LIGHTTHEME:
+		// This JPanel
+	        this.setBackground(this.getParent().getBackground());
+
+	        // poster
+	        this.poster.setBackground(this.poster.getParent().getBackground());
+
+	        // Options
+	        this.cartOptions.setBackground(this.cartOptions.getParent().getBackground());
+
+	        // Film title
+	        this.titleLabel.setForeground(Light.BLACK.getColor());
+	        
+	        // Bottom Panel
+	        this.bottomPanel.setBackground(this.bottomPanel.getParent().getBackground());
+	        
+	        // Rent type
+	        this.supportLabel.setForeground(Light.BLACK.getColor());
+
+	        // Information Button
+	        this.moreButton.setBackground(Light.BLUE.getColor());
+	        this.moreButton.setForeground(Light.WHITE.getColor());
+
+	        // Remove Button
+	        this.removeButton.setBackground(Light.BLUE.getColor());
+	        this.removeButton.setForeground(Light.WHITE.getColor());
+		break;
+	    case DARKTHEME:
+		// This JPanel
+	        this.setBackground(this.getParent().getBackground());
+
+	        // poster Label
+	        this.poster.setBackground(this.poster.getParent().getBackground());
+
+	        // Options JPanel
+	        this.cartOptions.setBackground(this.cartOptions.getParent().getBackground());
+
+	        // Film title Label
+	        this.titleLabel.setForeground(Dark.FOREGROUND.getColor());
+
+	        // Bottom Panel
+	        this.bottomPanel.setBackground(this.bottomPanel.getParent().getBackground());
+	        // Rent type Label
+	        this.supportLabel.setForeground(Dark.FOREGROUND.getColor());
+
+	        // Information Button
+	        this.moreButton.setBackground(Dark.BLUE.getColor());
+	        this.moreButton.setForeground(Dark.FOREGROUND.getColor());
+
+	        // Remove Button
+	        this.removeButton.setBackground(Dark.BLUE.getColor());
+	        this.removeButton.setForeground(Dark.FOREGROUND.getColor());
+		break;
+	    default:
+		break;
+	    }
+	
     }
 
 }

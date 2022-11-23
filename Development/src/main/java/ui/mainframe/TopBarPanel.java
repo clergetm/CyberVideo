@@ -8,7 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ui.utils.Decorations;
-import ui.utils.colors.ColorTheme;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 
@@ -25,7 +26,7 @@ import javax.swing.JButton;
  *
  */
 @SuppressWarnings("serial")
-public class TopBarPanel extends JPanel implements ColorTheme {
+public class TopBarPanel extends JPanel implements IColorThemeObserver {
 
     /* Components */
     protected JLabel logo = new JLabel();
@@ -114,34 +115,40 @@ public class TopBarPanel extends JPanel implements ColorTheme {
     }
 
 	@Override
-	public void setLight() {
+	public void setColorTheme(ColorThemes colorTheme) {
+	    switch(colorTheme) {
+	    case LIGHTTHEME:
 		// This Panel
 		this.setBackground(Light.BG.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Light.BLACK.getColor()));
+		this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Light.BLACK.getColor()));
 
 		// Options Panel
 		this.options.setBackground(Light.BG.getColor());
 
 		// Buttons
-    	colorSwitch.setIcon(Decorations.getImg(IMG_LIGHT));
-        colorSwitch.setActionCommand(ACTION_LIGHT);
-        askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_LIGHT));
-        searchButton.setIcon(Decorations.getImg(IMG_SEARCH_LIGHT));
-	}
-
-	@Override
-	public void setDark() {
+		colorSwitch.setIcon(Decorations.getImg(IMG_LIGHT));
+		colorSwitch.setActionCommand(ACTION_LIGHT);
+		askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_LIGHT));
+		searchButton.setIcon(Decorations.getImg(IMG_SEARCH_LIGHT));
+		break;
+		
+	    case DARKTHEME:
 		// This Panel
 		this.setBackground(Dark.BG.getColor());
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Dark.FOREGROUND.getColor()));
+		this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Dark.FOREGROUND.getColor()));
 
 		// Options Panel
 		this.options.setBackground(Dark.BG.getColor());
 		
 		// Buttons
-    	colorSwitch.setIcon(Decorations.getImg(IMG_DARK));
-        colorSwitch.setActionCommand(ACTION_DARK);
-    	askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_DARK));
-        searchButton.setIcon(Decorations.getImg(IMG_SEARCH_DARK));
+		colorSwitch.setIcon(Decorations.getImg(IMG_DARK));
+		colorSwitch.setActionCommand(ACTION_DARK);
+		askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_DARK));
+		searchButton.setIcon(Decorations.getImg(IMG_SEARCH_DARK));
+		break;
+	    default:
+		break;
+	    }
+	    
 	}
 }
