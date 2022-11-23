@@ -17,8 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
 
 /**

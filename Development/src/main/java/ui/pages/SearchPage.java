@@ -18,14 +18,14 @@ import javax.swing.ScrollPaneConstants;
 import fc.films.Categories;
 import fc.films.Film;
 import ui.managers.FilmManager;
+import ui.managers.UIManager;
 import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
 import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
 import ui.utils.factory.filmpanel.factories.FilmCartPanel;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
-import ui.utils.observer.multilingual.MultilingualManager;
 
 @SuppressWarnings("serial")
 public class SearchPage extends JPanel implements IMultilingualObserver, ColorTheme {

@@ -14,13 +14,13 @@ import javax.swing.JPanel;
 
 import fc.films.Film;
 import ui.managers.FilmEvents;
+import ui.managers.UIManager;
 import ui.utils.Decorations;
 import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
 import ui.utils.observer.cart.ICartObserver;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
-import ui.utils.observer.multilingual.MultilingualManager;
 
 /**
  * This class implements the whole GUI cart and the button to rent films in the cart.
@@ -71,8 +71,8 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	this.itemPanel.add(item);
 	this.revalidate();
 	this.repaint();
-	MultilingualManager.getInstance().register(item);
-	MultilingualManager.getInstance().refresh();
+	UIManager.getInstance().register(item);
+	UIManager.getInstance().refreshMultilingual();
     }
     
     /**
@@ -85,7 +85,7 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	this.itemPanel.remove(item);
 	this.revalidate();
 	this.repaint();
-	MultilingualManager.getInstance().unregister(item);
+	UIManager.getInstance().unregister(item);
 
     }
     

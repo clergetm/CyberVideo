@@ -15,8 +15,8 @@ import javax.swing.SwingConstants;
 import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
 import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
 
 /**

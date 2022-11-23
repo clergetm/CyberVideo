@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 
 import fc.films.Film;
 import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
 import ui.utils.factory.filmpanel.factories.FilmCartPanel;
 import ui.utils.factory.filmpanel.factories.FilmPanel;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
 
 /**
  * {@code JPanel} added to {@code JScrollPane} where {@code FilmPanel} need to be displayed.

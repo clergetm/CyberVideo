@@ -1,8 +1,8 @@
 package ui.mainframe;
 
+import ui.managers.UIManager;
 import ui.utils.Decorations;
 import ui.utils.observer.multilingual.Languages;
-import ui.utils.observer.multilingual.MultilingualManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -82,14 +82,14 @@ public class Interaction implements ActionListener {
             // Handle Language Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_EN:
             // Change from English to French
-            MultilingualManager.getInstance().notifyObservers(Languages.FRENCH);
+            UIManager.getInstance().notifyObservers(Languages.FRENCH);
             mainFrame.getTopBarPanel().languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
             mainFrame.getTopBarPanel().languageSwitch.setActionCommand(TopBarPanel.ACTION_FR);
             break;
             
         case TopBarPanel.ACTION_FR:
             // Change from French to English
-            MultilingualManager.getInstance().notifyObservers(Languages.ENGLISH);
+            UIManager.getInstance().notifyObservers(Languages.ENGLISH);
             mainFrame.getTopBarPanel().languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
             mainFrame.getTopBarPanel().languageSwitch.setActionCommand(TopBarPanel.ACTION_EN);
             break;

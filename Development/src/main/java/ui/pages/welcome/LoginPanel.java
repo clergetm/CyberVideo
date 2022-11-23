@@ -19,13 +19,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import ui.managers.UIManager;
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
 import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
-import ui.utils.observer.multilingual.MultilingualManager;
 
 /**
  * LoginPanel is part of the WelcomePage.
