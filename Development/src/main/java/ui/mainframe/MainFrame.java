@@ -6,7 +6,7 @@ import ui.utils.colors.ColorTheme;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.managers.FilmManager;
-import ui.managers.UIManager;
+import ui.managers.GUIManager;
 import ui.pages.actions.ActionPanel;
 import ui.pages.welcome.WelcomePage;
 
@@ -65,7 +65,7 @@ public class MainFrame extends JFrame implements ColorTheme {
 	private FilmManager filmManager; 
 	
 	/* Languages */
-	private UIManager langManager;
+	private GUIManager langManager;
 	
 	/**
 	 * Constructor of Main.
@@ -104,7 +104,7 @@ public class MainFrame extends JFrame implements ColorTheme {
 	    this.setLight();
 	       
 	    /* Languages */
-	    this.langManager = UIManager.getInstance();
+	    this.langManager = GUIManager.getInstance();
 	    this.langManager.registerMultilingual(this.welcomePage.getSuggestionsPanel());
 	    this.langManager.registerMultilingual(this.welcomePage.getLoginPanel());
 	    this.langManager.registerMultilingual(this.actionPanel);

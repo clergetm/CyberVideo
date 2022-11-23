@@ -25,7 +25,7 @@ import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
 import ui.mainframe.MainFrame;
-import ui.managers.UIManager;
+import ui.managers.GUIManager;
 import ui.pages.FilmPage;
 import ui.pages.SearchPage;
 import ui.pages.cart.CartPanel;

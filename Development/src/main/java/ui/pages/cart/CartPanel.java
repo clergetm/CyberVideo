@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import fc.films.Film;
 import ui.managers.FilmEvents;
-import ui.managers.UIManager;
+import ui.managers.GUIManager;
 import ui.utils.Decorations;
 import ui.utils.colors.ColorTheme;
 import ui.utils.observer.cart.ICartObserver;
@@ -71,8 +71,8 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	this.itemPanel.add(item);
 	this.revalidate();
 	this.repaint();
-	UIManager.getInstance().registerMultilingual(item);
-	UIManager.getInstance().refreshMultilingual();
+	GUIManager.getInstance().registerMultilingual(item);
+	GUIManager.getInstance().refreshMultilingual();
     }
     
     /**
@@ -85,7 +85,7 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	this.itemPanel.remove(item);
 	this.revalidate();
 	this.repaint();
-	UIManager.getInstance().unregisterMultilingual(item);
+	GUIManager.getInstance().unregisterMultilingual(item);
 
     }
     

@@ -18,7 +18,7 @@ import javax.swing.ScrollPaneConstants;
 import fc.films.Categories;
 import fc.films.Film;
 import ui.managers.FilmManager;
-import ui.managers.UIManager;
+import ui.managers.GUIManager;
 import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
 import ui.utils.colors.ColorTheme;

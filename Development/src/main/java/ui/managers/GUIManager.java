@@ -16,20 +16,20 @@ import ui.utils.observer.multilingual.Languages;
  * @see ui.utils.observer.multilingual.IMultilingualObserver
  * @see ui.utils.observer.multilingual.Languages
  */
-public class UIManager implements IMultilingualObservable, IColorThemeObservable {
+public class GUIManager implements IMultilingualObservable, IColorThemeObservable {
     private ArrayList<IMultilingualObserver> multilinguals;
     private ArrayList<IColorThemeObserver> colorthemes;
     private Languages currentLang;
     private ColorThemes currentColorTheme;
     
-    private static UIManager instance = null;
+    private static GUIManager instance = null;
     /**
      * Default constructor of {@code MultilingualManager}.
      * Set the default language to ENGLISH.
      * @author MathysC
      *
      */
-    private UIManager() {
+    private GUIManager() {
 	this.multilinguals = new ArrayList<>();
 	this.colorthemes = new ArrayList<>();
 	
@@ -40,9 +40,9 @@ public class UIManager implements IMultilingualObservable, IColorThemeObservable
 	this.currentColorTheme = ColorThemes.LIGHTTHEME;
     }
     
-    public static UIManager getInstance() {
+    public static GUIManager getInstance() {
 	if(instance == null) {
-	    instance = new UIManager();
+	    instance = new GUIManager();
 	}
 	
 	return instance;
