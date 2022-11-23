@@ -81,13 +81,13 @@ public abstract class FilmPanel extends JPanel {
 	 */
 	for(Support support : film.getSupports()) {
 	    String supportType = support.getType();
-	    FilmPanelButton button = createButton(supportType);
 	    
 	    // If successfully added, add the button to the GUIManager
-	    if(buttonMap.putIfAbsent(supportType, button) == null) {
+	    if(!buttonMap.containsKey(supportType)) {
+		FilmPanelButton button = createButton(supportType);
+		buttonMap.put(supportType, button);
 		GUIManager.getInstance().registerColorTheme(button);
 	    }
-
 	    /**
 	     * If the support is available, set the button available.
 	     * We do it this way because: 
