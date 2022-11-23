@@ -14,10 +14,10 @@ import javax.swing.SwingConstants;
 
 import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
-import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 
 /**
  * Instantiate a list of suggested films displayed on Welcome Page.
@@ -25,7 +25,7 @@ import ui.utils.colors.Light;
  *
  */
 @SuppressWarnings("serial")
-public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
+public class SuggestionsPanel extends JPanel implements IMultilingualObserver, ColorTheme {
 
 	/* Components */
     protected JLabel sugLabel = new JLabel();
@@ -68,36 +68,36 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
 
     }
 
-	@Override
-	public void setLight() {
-		// This JPanel.
-        this.setBackground(Light.BG.getColor());
+    @Override
+    public void setLight() {
+	// This JPanel.
+	this.setBackground(Light.BG.getColor());
         
         // Suggestion Label.
-		this.sugLabel.setForeground(Light.BLACK.getColor());
-		
-		// Film ScrollPane.
-		this.filmsPane.setBackground(Light.BG.getColor());
-		this.filmsPane.getVerticalScrollBar().setBackground(Light.BG.getColor());
-		
-		// Films manager.
-		this.manager.setLight();
-	}
+	this.sugLabel.setForeground(Light.BLACK.getColor());
+	
+	// Film ScrollPane.
+	this.filmsPane.setBackground(Light.BG.getColor());
+	this.filmsPane.getVerticalScrollBar().setBackground(Light.BG.getColor());
+	
+	// Films manager.
+	this.manager.setLight();
+    }
 
-	@Override
-	public void setDark() {
-		// This JPanel.
-		this.setBackground(Dark.BG.getColor());
-		
-        // Suggestion Label.
-		this.sugLabel.setForeground(Dark.FOREGROUND.getColor());
-		
-		// Film ScrollPane.
-		this.filmsPane.setBackground(Dark.BG.getColor());
-		this.filmsPane.getVerticalScrollBar().setBackground(Dark.BG.getColor());
-		
-		// Films manager.
-		this.manager.setDark();
-	}
+    @Override
+    public void setDark() {
+	// This JPanel.
+	this.setBackground(Dark.BG.getColor());
+	
+	// Suggestion Label.
+	this.sugLabel.setForeground(Dark.FOREGROUND.getColor());
+	
+	// Film ScrollPane.
+	this.filmsPane.setBackground(Dark.BG.getColor());
+	this.filmsPane.getVerticalScrollBar().setBackground(Dark.BG.getColor());
+	
+	// Films manager.
+	this.manager.setDark();
+    }
 
 }

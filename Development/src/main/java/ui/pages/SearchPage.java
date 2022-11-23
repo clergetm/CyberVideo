@@ -25,9 +25,10 @@ import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.utils.factory.filmpanel.factories.FilmCartPanel;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 
 @SuppressWarnings("serial")
-public class SearchPage extends JPanel implements Multilingual, ColorTheme {
+public class SearchPage extends JPanel implements IMultilingualObserver, ColorTheme {
 
     	protected JPanel mainPanel = new JPanel(new BorderLayout());
     	

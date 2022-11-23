@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
 import java.awt.Component;
 import java.awt.Color;
 
@@ -19,10 +20,11 @@ import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.utils.factory.filmpanel.factories.FilmRentPanel;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 
 
 @SuppressWarnings("serial")
-public class FilmPage extends JPanel implements ColorTheme {
+public class FilmPage extends JPanel implements IMultilingualObserver, ColorTheme{
     private JPanel filmInfo = new JPanel();
     private JPanel filmInfoContainer = new JPanel();
     private Film film;
@@ -149,6 +151,13 @@ public class FilmPage extends JPanel implements ColorTheme {
 //        this.directorsText.setForeground(Dark.FOREGROUND.getColor());
 //        this.actorsText.setForeground(Dark.FOREGROUND.getColor());
 //	
+    }
+
+
+    @Override
+    public void setLanguage(ResourceBundle rb) {
+	// TODO Auto-generated method stub
+	
     }
 
 }

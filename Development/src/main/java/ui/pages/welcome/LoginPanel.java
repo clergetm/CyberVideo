@@ -21,10 +21,10 @@ import javax.swing.border.EmptyBorder;
 
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
-import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 
 /**
  * LoginPanel is part of the WelcomePage.
@@ -33,7 +33,7 @@ import ui.utils.colors.Light;
  *
  */
 @SuppressWarnings("serial")
-class LoginPanel extends JPanel implements Multilingual, ColorTheme {
+class LoginPanel extends JPanel implements IMultilingualObserver, ColorTheme {
 
     private String placeholderID = "", placeholderPassword = "", keyboardTitleID = "", keyboardTitlePassword = "";
 

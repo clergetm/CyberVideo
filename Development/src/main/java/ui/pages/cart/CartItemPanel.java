@@ -15,6 +15,7 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 
 /**
  * Class that represents a film in the Cart. 
@@ -22,7 +23,7 @@ import ui.utils.colors.Light;
  *
  */
 @SuppressWarnings("serial")
-public class CartItemPanel extends JPanel implements Multilingual, ColorTheme {
+public class CartItemPanel extends JPanel implements IMultilingualObserver, ColorTheme {
 
     private JLabel poster = new JLabel(); // Poster on the left.
     private JPanel cartOptions = new JPanel(); // Options on the right

@@ -15,7 +15,7 @@ import ui.utils.colors.ColorTheme;
  *
  */
 @SuppressWarnings("serial")
-public class WelcomePage extends JPanel implements Multilingual, ColorTheme {
+public class WelcomePage extends JPanel implements ColorTheme {
 
     /* Components */
     protected SuggestionsPanel suggestionsPanel = new SuggestionsPanel();
@@ -39,7 +39,7 @@ public class WelcomePage extends JPanel implements Multilingual, ColorTheme {
      *
      * @return SuggestionsPanel
      */
-    public SuggestionsPanel suggestions() { return this.suggestionsPanel; }
+    public SuggestionsPanel getSuggestionsPanel() { return this.suggestionsPanel; }
     
     /** 
      * Getter of loginPanel
@@ -47,28 +47,17 @@ public class WelcomePage extends JPanel implements Multilingual, ColorTheme {
      *
      * @return LoginPanel
      */
-    public LoginPanel login() { return this.loginPanel; }
-    
-    /**
-     * Set the language of the two panels.
-     * @author MathysC
-     *
-     */
+    public LoginPanel getLoginPanel() { return this.loginPanel; }
+
     @Override
-    public void setLanguage(ResourceBundle rb) {
-        this.suggestionsPanel.setLanguage(rb);
-        this.loginPanel.setLanguage(rb);
+    public void setLight() {
+	this.suggestionsPanel.setLight();
+	this.loginPanel.setLight();
     }
 
-	@Override
-	public void setLight() {
-		this.suggestionsPanel.setLight();
-		this.loginPanel.setLight();
-	}
-
-	@Override
-	public void setDark() {
-		this.suggestionsPanel.setDark();
-		this.loginPanel.setDark();
-	}
+    @Override
+    public void setDark() {
+	this.suggestionsPanel.setDark();
+	this.loginPanel.setDark();
+    }
 }

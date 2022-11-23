@@ -20,6 +20,8 @@ import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.utils.observer.cart.ICartObserver;
+import ui.utils.observer.multilingual.IMultilingualObserver;
+import ui.utils.observer.multilingual.MultilingualManager;
 
 /**
  * This class implements the whole GUI cart and the button to rent films in the cart.
@@ -30,7 +32,7 @@ import ui.utils.observer.cart.ICartObserver;
  * @see ui.colors.ColorTheme
  */
 @SuppressWarnings("serial")
-public class CartPanel extends JPanel implements Multilingual, ColorTheme, ICartObserver{
+public class CartPanel extends JPanel implements IMultilingualObserver, ColorTheme, ICartObserver{
     private JPanel itemPanel = new JPanel();
 //  TODO Action of checkoutButton
     private JButton checkoutButton = new JButton();
@@ -70,6 +72,8 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme, ICart
 	this.itemPanel.add(item);
 	this.revalidate();
 	this.repaint();
+	MultilingualManager.getInstance().register(item);
+	MultilingualManager.getInstance().refresh();
     }
     
     /**
@@ -82,6 +86,8 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme, ICart
 	this.itemPanel.remove(item);
 	this.revalidate();
 	this.repaint();
+	MultilingualManager.getInstance().unregister(item);
+
     }
     
     /**
@@ -130,9 +136,6 @@ public class CartPanel extends JPanel implements Multilingual, ColorTheme, ICart
     @Override
     public void setLanguage(ResourceBundle rb) {
 	checkoutButton.setText(rb.getString("checkout_button"));
-	for(Component fp : this.itemPanel.getComponents()) {
-	    ((Multilingual)fp).setLanguage(rb);
-	}
     }
 
     @Override

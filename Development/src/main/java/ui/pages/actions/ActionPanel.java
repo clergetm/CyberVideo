@@ -32,13 +32,14 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 import ui.mainframe.MainFrame;
 import ui.pages.FilmPage;
 import ui.pages.SearchPage;
 import ui.pages.cart.CartPanel;
 
 @SuppressWarnings("serial")
-public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
+public class ActionPanel extends JPanel implements IMultilingualObserver, ColorTheme {
 
     /* Search Items */
     public static final String[] boxItems = {
@@ -282,8 +283,5 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 
         // And change the String value for condition in FocusListener.        
         placeholder = rb.getString("action_search");
-
-        cartPanel.setLanguage(rb);
-        searchPage.setLanguage(rb);
     }
 }
