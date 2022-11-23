@@ -5,6 +5,7 @@ import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.observer.multilingual.MultilingualManager;
 import ui.managers.FilmManager;
 import ui.pages.actions.ActionPanel;
 import ui.pages.welcome.WelcomePage;
@@ -35,7 +36,7 @@ import fc.films.Support;
  * Main Class of AL2000. Initialize the machine Interface.
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame implements Multilingual, ColorTheme {
+public class MainFrame extends JFrame implements ColorTheme {
 
 	/* Icon */
 	public static final String ICO_APP = "App";
@@ -64,6 +65,8 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	/* Films */
 	private FilmManager filmManager; 
 	
+	/* Languages */
+	private MultilingualManager langManager;
 	/**
 	 * Constructor of Main.
 	 * Initialize the AL2000 Functional Core.
@@ -95,10 +98,23 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	    this.filmManager.getCartManager().register(this.actionPanel.getCartPanel());
 //	    TODO register client in CartManager
 	    
+	    
 	    /* Initialize GUI */
 	    this.createGUI();
-	    this.setLanguage(this.getRbEN());
 	    this.setLight();
+	    
+	    
+	    /* Languages */
+	    this.langManager = MultilingualManager.getInstance();
+	    this.langManager.register(this.welcomePage.getSuggestionsPanel());
+	    this.langManager.register(this.welcomePage.getLoginPanel());
+	    this.langManager.register(this.actionPanel);
+	    this.langManager.register(this.actionPanel.getCartPanel());
+	    this.langManager.register(this.actionPanel.getSearchPage());
+	    this.langManager.register(this.actionPanel.getFilmPage());
+	    
+	    this.langManager.refresh();
+	    /* Interaction */
 	    new Interaction(this);    
 	    
 	}
@@ -193,20 +209,6 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	    // Action Panel
 	    this.actionPanel.setDark();
 	    
-	}
-	
-	/**
-	 * Change all Main and Main’s Child text.
-	 * @author MathysC
-	 * @param rb the choosen language bundle.
-	 */
-	@Override
-	public void setLanguage(ResourceBundle rb) {
-	    // Set all multilingual child.
-	    this.welcomePage.setLanguage(rb);
-
-	    // Action Panel
-	    this.actionPanel.setLanguage(rb);
 	}
 	
 	/**
