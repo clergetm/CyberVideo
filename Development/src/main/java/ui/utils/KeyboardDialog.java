@@ -16,10 +16,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 
 /**
  * Class that implement a Virtual Keyboard that the client can use to type in TextFields.
@@ -27,11 +27,10 @@ import ui.utils.colors.Light;
  *
  */
 @SuppressWarnings("serial")
-public class KeyboardDialog extends JDialog implements ActionListener, Multilingual, ColorTheme {
+public class KeyboardDialog extends JDialog implements ActionListener, IMultilingualObserver, ColorTheme {
 
 
     private String entry = ""; // text of the TextField.
-    private static String[] multilingualLabels = {}; //  labels of action depend on Multilingual.
 
     /* Characters */
     // Alphabet in lower and upper cases.
@@ -65,19 +64,20 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
 	/*Icon */
 		ICO_KEYBOARD = "Keyboard";
 	
-	/**
+    private static KeyboardDialog instance;
+    
+    /**
      * Constructor of {@code VirtualKeyboard} 
      * Set JDialog options and add Components.
      * @author MathysC
      *
      */
-    public KeyboardDialog() {
+    private KeyboardDialog() {
         // Set Options.
         super(null, Dialog.ModalityType.APPLICATION_MODAL);
         this.setIconImage(Decorations.getIco(ICO_KEYBOARD));
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setLanguage(this.getRbEN());
         this.setLocation(10, 400);
 
         // Add Components.
@@ -98,6 +98,13 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
         this.pack();
     }
 
+    public static KeyboardDialog getInstance() {
+	if(instance == null) {
+	    instance = new KeyboardDialog();
+	}
+	
+	return instance;
+    }
     /**
      * Implements the lowercase alphabet.
      * Method implemented for better readability.
@@ -166,7 +173,6 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
         JPanel actions = new JPanel(new GridLayout(3, 0));
         actions.setBorder(Decorations.getDefaultBorder());
         for (int index = 0; index < actionCommands.length; index++) {
-            this.actionButtons[index].setText(multilingualLabels[index]);
             this.actionButtons[index].setActionCommand(actionCommands[index]);
             this.actionButtons[index].addActionListener(this);
             actions.add(this.actionButtons[index]);
@@ -192,12 +198,13 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
      * @param linked The JTextField linked to this KeyboardDialog.
      * @return The written entry.
      */
-    public String showKeyboardDialog(String title, JTextField linked) {
-        this.setTitle(title);
-        this.textField = linked;
-        this.entry = linked.getText();
-        this.setVisible(true);
-        return getEntry();
+    public static String showKeyboardDialog(String title, JTextField linked) {
+        KeyboardDialog keyboard = getInstance();
+        keyboard.setTitle(title);
+        keyboard.textField = linked;
+        keyboard.entry = linked.getText();
+        keyboard.setVisible(true);
+        return keyboard.getEntry();
     }
 
     @Override
@@ -232,8 +239,8 @@ public class KeyboardDialog extends JDialog implements ActionListener, Multiling
      */
     @Override
     public void setLanguage(ResourceBundle rb) {
-        KeyboardDialog.multilingualLabels = rb.getString("VK_ActionsKeys").split(" ");
-        for (int index = 0; index < multilingualLabels.length - 1; index++) {
+	String[] multilingualLabels = rb.getString("VK_ActionsKeys").split(" ");
+        for (int index = 0; index < multilingualLabels.length; index++) {
             this.actionButtons[index].setText(multilingualLabels[index]);
         }
     }
