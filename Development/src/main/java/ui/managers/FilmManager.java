@@ -65,6 +65,10 @@ public class FilmManager {
 	    entries.getCartPanel().getButtonMap().forEach((k,b) -> b.addActionListener(cartManager));
 //	    TODO create rentManager
 //	    entries.getRentPanel().getButtonMap().forEach((k,b) -> b.addActionListener(rentManager));
+	    
+		
+	    // After adding all necessary button. Refresh the GUI
+	    GUIManager.getInstance().refreshColorTheme();
 	    successfullyAdded = true;
 	}
 
