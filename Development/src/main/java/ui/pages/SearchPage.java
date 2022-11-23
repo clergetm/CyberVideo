@@ -17,17 +17,19 @@ import javax.swing.ScrollPaneConstants;
 
 import fc.films.Categories;
 import fc.films.Film;
+import ui.managers.FilmManager;
+import ui.managers.GUIManager;
+import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
-import ui.managers.CartFilmManager;
-import ui.utils.bundles.Multilingual;
-import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
-import ui.utils.mediator.cart.CartMediator;
-import ui.utils.mediator.cart.components.CartComponent;
+import ui.utils.factory.filmpanel.factories.FilmCartPanel;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 
 @SuppressWarnings("serial")
-public class SearchPage extends JPanel implements Multilingual, ColorTheme, CartComponent {
+public class SearchPage extends JPanel implements IMultilingualObserver, IColorThemeObserver {
 
     	protected JPanel mainPanel = new JPanel(new BorderLayout());
     	
@@ -35,22 +37,21 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme, Cart
     	protected JPanel resultsPanel = new JPanel(new BorderLayout());
 	protected JLabel resultsLabel = new JLabel();
     	protected JScrollPane resultsPane;
-    	private CartFilmManager resultsManager;
+    	private FilmManagerPanel resultsManager;
     	private int countResults = 0;
     	
     	/* Most rented films */
     	protected JPanel mostRentedPanel = new JPanel(new BorderLayout());
     	protected JLabel mostRentedLabel = new JLabel();
     	protected JScrollPane mostRentedPane;
-    	private CartFilmManager mostRentedManager;
+    	private FilmManagerPanel mostRentedManager;
     	
     	/* Categories */
     	protected JScrollPane categoriesPane;
     	private JPanel categoriesManager;
     	
-    	/* Mediator */
-        private CartMediator cartMediator;
-
+    	/* Film Manager */
+    	private FilmManager filmManager;
     	/**
     	 * 
     	 * @author MathysC
@@ -80,7 +81,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme, Cart
 	    JPanel centerPanel = new JPanel(new GridLayout(2,0));
 	    centerPanel.setOpaque(false);
 	    // Results
-	    resultsManager = new CartFilmManager(new FlowLayout(FlowLayout.LEFT), 100);	    
+	    resultsManager = new FilmManagerPanel(new FlowLayout(FlowLayout.LEFT), 100);	    
 	    resultsPane = new JScrollPane(resultsManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    resultsPane.setBorder(BorderFactory.createEmptyBorder());
@@ -90,7 +91,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme, Cart
 	    centerPanel.add(resultsPanel);
 	    
 	    // Most rented films
-	    mostRentedManager = new CartFilmManager(new FlowLayout(FlowLayout.LEFT), 100);
+	    mostRentedManager = new FilmManagerPanel(new FlowLayout(FlowLayout.LEFT), 100);
 	    mostRentedPane = new JScrollPane(mostRentedManager, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    mostRentedPane.setBorder(BorderFactory.createEmptyBorder());
@@ -101,13 +102,23 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme, Cart
 
 	    mainPanel.add(centerPanel, BorderLayout.CENTER);
 	    this.add(mainPanel,BorderLayout.CENTER);
+	    
+	    this.filmManager = FilmManager.getInstance();
+
+	    GUIManager.getInstance().registerColorTheme(mostRentedManager);
+	    GUIManager.getInstance().registerColorTheme(resultsManager);
 	}
 	
 	public void addResult(Film film) { 
-	    resultsManager.addFilm(film);
-	    countResults++;
-	    this.updateCountResults();
+	    FilmCartPanel panel = this.filmManager.getFilmCartPanel(film);
+	    if(panel != null) {
+		this.resultsManager.addPanel(panel);
+		countResults++;
+        	this.updateCountResults();
+	    }
+	    
 	}
+	
 	/**
 	 * update the JLabel of results Found
 	 * @author MathysC
@@ -120,38 +131,7 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme, Cart
 	    resultsLabel.setText(text);
 	}
 	
-	@Override
-	public void setLight() {
-	    mainPanel.setBackground(Light.BG.getColor());
-	    resultsLabel.setForeground(Light.REVERSE_FG.getColor());
-	    mostRentedLabel.setForeground(Light.REVERSE_FG.getColor());
-	    
-	    resultsManager.setLight();
-	    mostRentedManager.setLight();
-	    for(Component c: categoriesManager.getComponents()) {
-		JButton button = (JButton)c;
-		button.setBackground(Light.BLUE.getColor());
-		button.setForeground(Light.WHITE.getColor());
-		button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
-	    }
-	}
-
-	@Override
-	public void setDark() {
-	    mainPanel.setBackground(Dark.BG.getColor());
-	    resultsLabel.setForeground(Dark.FOREGROUND.getColor());
-	    mostRentedLabel.setForeground(Dark.FOREGROUND.getColor());	
-	    
-	    resultsManager.setDark();
-	    mostRentedManager.setDark();
-	    for(Component c: categoriesManager.getComponents()) {
-		JButton button = (JButton)c;
-		button.setBackground(Dark.BLUE.getColor());
-		button.setForeground(Dark.FOREGROUND.getColor());
-		button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
-	    }
-	}
-		
+	
 	@Override
 	public void setLanguage(ResourceBundle rb) {
 		resultsLabel.setText(rb.getString("result_title"));
@@ -160,9 +140,34 @@ public class SearchPage extends JPanel implements Multilingual, ColorTheme, Cart
 	}
 
 	@Override
-	public void setMediator(CartMediator cartMediator) {
-	    this.cartMediator = cartMediator;   
-	    resultsManager.setMediator(this.cartMediator);
-	    mostRentedManager.setMediator(this.cartMediator);
+	public void setColorTheme(ColorThemes colorTheme) {
+	    switch(colorTheme) {
+	    case LIGHTTHEME:
+		mainPanel.setBackground(Light.BG.getColor());
+		    resultsLabel.setForeground(Light.REVERSE_FG.getColor());
+		    mostRentedLabel.setForeground(Light.REVERSE_FG.getColor());
+
+		    for(Component c: categoriesManager.getComponents()) {
+			JButton button = (JButton)c;
+			button.setBackground(Light.BLUE.getColor());
+			button.setForeground(Light.WHITE.getColor());
+			button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+		    }
+		break;
+	    case DARKTHEME:
+		mainPanel.setBackground(Dark.BG.getColor());
+		    resultsLabel.setForeground(Dark.FOREGROUND.getColor());
+		    mostRentedLabel.setForeground(Dark.FOREGROUND.getColor());	
+
+		    for(Component c: categoriesManager.getComponents()) {
+			JButton button = (JButton)c;
+			button.setBackground(Dark.BLUE.getColor());
+			button.setForeground(Dark.FOREGROUND.getColor());
+			button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
+		    }
+		break;
+	    default:
+		break;
+	    }	    
 	}
 }

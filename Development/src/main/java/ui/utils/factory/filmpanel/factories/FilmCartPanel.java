@@ -2,9 +2,6 @@ package ui.utils.factory.filmpanel.factories;
 
 import fc.films.Film;
 import ui.utils.factory.filmpanel.products.CartButton;
-import ui.utils.factory.filmpanel.products.FilmPanelButton;
-import ui.utils.mediator.cart.CartMediator;
-import ui.utils.mediator.cart.components.CartComponent;
 
 /**
  * Factory to create FilmCartPanel.
@@ -12,8 +9,7 @@ import ui.utils.mediator.cart.components.CartComponent;
  *
  */
 @SuppressWarnings("serial")
-public class FilmCartPanel extends FilmPanel implements CartComponent {
-    private CartMediator cartMediator;
+public class FilmCartPanel extends FilmPanel {
 
     public FilmCartPanel(Film film) {
 	super(film);
@@ -23,21 +19,10 @@ public class FilmCartPanel extends FilmPanel implements CartComponent {
     @Override
     protected CartButton createButton(String supportType) {
 	CartButton button = new CartButton(this.getFilm(), supportType);
-	button.setText(supportType);
-	button.setName(supportType);
-	button.setFont(font);
-	button.setEnabled(false); // Disabled by default.
+
 	
 	this.buttonPanel.add(button); // Add to the panel 
 	return button;
     }
-
-    @Override
-    public void setMediator(CartMediator cartMediator) {
-	this.cartMediator = cartMediator;
-	for(FilmPanelButton button : buttonMap.values()) {
-	    ((CartButton)button).setMediator(cartMediator);
-	}
-    }
-
+    
 }

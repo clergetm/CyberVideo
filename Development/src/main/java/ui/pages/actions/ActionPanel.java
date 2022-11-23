@@ -20,15 +20,18 @@ import javax.swing.JTextField;
 
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
-import ui.utils.bundles.Multilingual;
-import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 import ui.mainframe.MainFrame;
+import ui.pages.FilmPage;
 import ui.pages.SearchPage;
+import ui.pages.cart.CartPanel;
 
 @SuppressWarnings("serial")
-public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
+public class ActionPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver {
 
     /* Search Items */
     public static final String[] boxItems = {
@@ -50,12 +53,11 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
     protected JButton undoButton = new JButton();
     protected JButton redoButton = new JButton();
     protected JButton connectionButton = new JButton();
-    private KeyboardDialog keyboard = new KeyboardDialog();
 
     /*Action pages */
     private HashMap < Integer, JPanel > subActionsPanel = new HashMap < > ();
 //  TODO #39 change JPanel when FilmPage added
-    protected JPanel filmPage = new JPanel(); 
+    protected FilmPage filmPage = new FilmPage(); 
     protected SearchPage searchPage = new SearchPage();
     private int current_subAction;
     /*Action actions*/
@@ -70,19 +72,21 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 
     /* Cart Part */
     protected CartPanel cartPanel = new CartPanel();
-    
+
     /**
      * Constructor of ActionPanel, represent the Cart, and several Command buttons.
      * @author MathysC
      *
      */
     public ActionPanel() {
+//      TODO implement Client
+//	public ActionPanel(Client client){
 	this.createGUI();
-        /*Initialize subPanel map*/
+        /* Initialize subPanel map */
         subActionsPanel.put(MainFrame.ID_RESULT_PAGE, searchPage);
         subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
         current_subAction = MainFrame.ID_RESULT_PAGE;
-    }
+   }
 
     private void createGUI() {
 	this.setLayout(new BorderLayout());
@@ -103,7 +107,7 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         	    Decorations.resetDefaultPlaceholder(tfSearch);
         	}
         	// Get new text
-        	String prompt = keyboard.showKeyboardDialog(placeholder, tfSearch);
+        	String prompt = KeyboardDialog.showKeyboardDialog(placeholder, tfSearch);
  
         	// If empty prompt
         	if (prompt.equals("")) {
@@ -192,50 +196,25 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
         return connectionButton;
     }
     
-    @Override
-    public void setLight() {
-        // Panels
-        this.setBackground(Light.BG.getColor());
-        
-        tfSearch.setBackground(Light.REVERSE_BG.getColor());
-        tfSearch.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
-        tfSearch.setForeground(Light.BLACK.getColor());        
-        
-        filterCBox.setBackground(Light.BLUE.getColor());
-        filterCBox.setForeground(Light.WHITE.getColor());
-
-        // Buttons
-        undoButton.setIcon(Decorations.getImg(IMG_UNDO_LIGHT));
-        redoButton.setIcon(Decorations.getImg(IMG_REDO_LIGHT));
-        connectionButton.setBackground(Light.BLUE.getColor());
-        connectionButton.setForeground(Light.WHITE.getColor());
-        
-        keyboard.setLight();
-        cartPanel.setLight();
-        searchPage.setLight();
+    /**
+     * @return the cartPanel
+     */
+    public CartPanel getCartPanel() {
+	return cartPanel;
     }
 
-    @Override
-    public void setDark() {
-	//Panels
-        this.setBackground(Dark.BG.getColor());
-        
-        tfSearch.setBackground(Dark.PURPLE.getColor());
-        tfSearch.setForeground(Dark.FOREGROUND.getColor());
-        tfSearch.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
-        
-        filterCBox.setBackground(Dark.BLUE.getColor());
-        filterCBox.setForeground(Dark.FOREGROUND.getColor());
-        
-        // Buttons
-        undoButton.setIcon(Decorations.getImg(IMG_UNDO_DARK));
-        redoButton.setIcon(Decorations.getImg(IMG_REDO_DARK));
-        connectionButton.setBackground(Dark.BLUE.getColor());
-        connectionButton.setForeground(Dark.FOREGROUND.getColor());
+    /**
+     * @return the searchPage
+     */
+    public SearchPage getSearchPage() {
+	return searchPage;
+    }
 
-        keyboard.setDark();
-        cartPanel.setDark();
-        searchPage.setDark();
+    /**
+     * @return the filmPage
+     */
+    public FilmPage getFilmPage() {
+	return filmPage;
     }
 
     @Override
@@ -248,8 +227,49 @@ public class ActionPanel extends JPanel implements Multilingual, ColorTheme {
 
         // And change the String value for condition in FocusListener.        
         placeholder = rb.getString("action_search");
+    }
 
-        cartPanel.setLanguage(rb);
-        searchPage.setLanguage(rb);
+    @Override
+    public void setColorTheme(ColorThemes colorTheme) {
+	switch(colorTheme) {
+	    case LIGHTTHEME:
+	        // Panels
+	        this.setBackground(Light.BG.getColor());
+	        
+	        tfSearch.setBackground(Light.REVERSE_BG.getColor());
+	        tfSearch.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
+	        tfSearch.setForeground(Light.BLACK.getColor());        
+	        
+	        filterCBox.setBackground(Light.BLUE.getColor());
+	        filterCBox.setForeground(Light.WHITE.getColor());
+
+	        // Buttons
+	        undoButton.setIcon(Decorations.getImg(IMG_UNDO_LIGHT));
+	        redoButton.setIcon(Decorations.getImg(IMG_REDO_LIGHT));
+	        connectionButton.setBackground(Light.BLUE.getColor());
+	        connectionButton.setForeground(Light.WHITE.getColor());
+	        
+		break;
+	    case DARKTHEME:
+		//Panels
+	        this.setBackground(Dark.BG.getColor());
+	        
+	        tfSearch.setBackground(Dark.PURPLE.getColor());
+	        tfSearch.setForeground(Dark.FOREGROUND.getColor());
+	        tfSearch.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
+	        
+	        filterCBox.setBackground(Dark.BLUE.getColor());
+	        filterCBox.setForeground(Dark.FOREGROUND.getColor());
+	        
+	        // Buttons
+	        undoButton.setIcon(Decorations.getImg(IMG_UNDO_DARK));
+	        redoButton.setIcon(Decorations.getImg(IMG_REDO_DARK));
+	        connectionButton.setBackground(Dark.BLUE.getColor());
+	        connectionButton.setForeground(Dark.FOREGROUND.getColor());
+
+		break;
+	    default:
+		break;
+	    }	
     }
 }

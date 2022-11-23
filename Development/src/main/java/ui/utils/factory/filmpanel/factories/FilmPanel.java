@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,8 +15,8 @@ import javax.swing.SwingConstants;
 
 import fc.films.Film;
 import fc.films.Support;
+import ui.managers.GUIManager;
 import ui.utils.Decorations;
-import ui.utils.colors.ColorTheme;
 import ui.utils.factory.filmpanel.products.FilmPanelButton;
 
 /**
@@ -27,7 +28,7 @@ import ui.utils.factory.filmpanel.products.FilmPanelButton;
  * @author MathysC
  */
 @SuppressWarnings("serial")
-public abstract class FilmPanel extends JPanel implements ColorTheme {
+public abstract class FilmPanel extends JPanel {
     protected Film film;
 
     private JPanel mainPanel;
@@ -35,11 +36,10 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
     private ImageIcon posterImage;
     
     protected JPanel buttonPanel;
-    protected HashMap<String, FilmPanelButton> buttonMap = new HashMap<>();
+    private Map<String, FilmPanelButton> buttonMap = new HashMap<>();
 
     private Dimension dimButton = Decorations.sizeConverter(new Dimension(85, 25));
     private Dimension dimPoster = Decorations.sizeConverter(new Dimension(100, 150));
-    protected Font font = Decorations.FONT_BASIC.getFont(Font.BOLD, 12);
     
     /**
      * Constructor of FilmPanel
@@ -81,8 +81,13 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 	 */
 	for(Support support : film.getSupports()) {
 	    String supportType = support.getType();
-	    buttonMap.computeIfAbsent(supportType, b -> createButton(supportType));
-
+	    
+	    // If successfully added, add the button to the GUIManager
+	    if(!buttonMap.containsKey(supportType)) {
+		FilmPanelButton button = createButton(supportType);
+		buttonMap.put(supportType, button);
+		GUIManager.getInstance().registerColorTheme(button);
+	    }
 	    /**
 	     * If the support is available, set the button available.
 	     * We do it this way because: 
@@ -123,11 +128,14 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 			(int) (percent * dimPoster.getHeight() / base),
 			java.awt.Image.SCALE_SMOOTH)));
 	
-	// Scale the font
-	Font derivedfont = font.deriveFont((float) (percent * font.getSize() / base));
+
 	
 	// Scale the buttons
 	for(JButton button : buttonMap.values()) {
+	    // Scale the font
+	    // FIXME use Enum font
+	    Font tempFont = ((FilmPanelButton) button).getButtonFont();
+	    Font derivedfont = tempFont.deriveFont((float) (percent * tempFont.getSize() / base));
 	    button.setSize(
 		    (int) (percent * dimButton.getWidth() / base),
 		    (int) (percent * dimButton.getHeight() / base));
@@ -143,14 +151,11 @@ public abstract class FilmPanel extends JPanel implements ColorTheme {
 	return film;
     }
 
-    @Override
-    public void setLight() {
-	buttonMap.forEach((k, v) -> v.setLight());
+    /**
+     * @author MathysC
+     * @return the buttonMap
+     */
+    public Map<String, FilmPanelButton> getButtonMap() {
+	return buttonMap;
     }
-
-    @Override
-    public void setDark() {
-	buttonMap.forEach((k, v) -> v.setDark());
-    }
-    
 }

@@ -2,20 +2,17 @@ package ui.pages.welcome;
 
 import java.awt.BorderLayout;
 
-import java.util.ResourceBundle;
-
 import javax.swing.JPanel;
-
-import ui.utils.bundles.Multilingual;
-import ui.utils.colors.ColorTheme;
 
 /**
  * Welcome page that show the login panel and suggestions panel.
+ * We keep this 
  * @author MathysC
- *
+ * @see ui.pages.welcome.SuggestionsPanel
+ * @see ui.pages.welcome.LoginPanel
  */
 @SuppressWarnings("serial")
-public class WelcomePage extends JPanel implements Multilingual, ColorTheme {
+public class WelcomePage extends JPanel {
 
     /* Components */
     protected SuggestionsPanel suggestionsPanel = new SuggestionsPanel();
@@ -39,7 +36,7 @@ public class WelcomePage extends JPanel implements Multilingual, ColorTheme {
      *
      * @return SuggestionsPanel
      */
-    public SuggestionsPanel suggestions() { return this.suggestionsPanel; }
+    public SuggestionsPanel getSuggestionsPanel() { return this.suggestionsPanel; }
     
     /** 
      * Getter of loginPanel
@@ -47,28 +44,6 @@ public class WelcomePage extends JPanel implements Multilingual, ColorTheme {
      *
      * @return LoginPanel
      */
-    public LoginPanel login() { return this.loginPanel; }
-    
-    /**
-     * Set the language of the two panels.
-     * @author MathysC
-     *
-     */
-    @Override
-    public void setLanguage(ResourceBundle rb) {
-        this.suggestionsPanel.setLanguage(rb);
-        this.loginPanel.setLanguage(rb);
-    }
+    public LoginPanel getLoginPanel() { return this.loginPanel; }
 
-	@Override
-	public void setLight() {
-		this.suggestionsPanel.setLight();
-		this.loginPanel.setLight();
-	}
-
-	@Override
-	public void setDark() {
-		this.suggestionsPanel.setDark();
-		this.loginPanel.setDark();
-	}
 }

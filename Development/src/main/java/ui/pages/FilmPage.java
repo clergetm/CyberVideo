@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
 import java.awt.Component;
 import java.awt.Color;
 
@@ -15,14 +16,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import fc.films.Film;
-import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
 import ui.utils.factory.filmpanel.factories.FilmRentPanel;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 
 
 @SuppressWarnings("serial")
-public class FilmPage extends JPanel implements ColorTheme {
+public class FilmPage extends JPanel implements IMultilingualObserver, IColorThemeObserver{
     private JPanel filmInfo = new JPanel();
     private JPanel filmInfoContainer = new JPanel();
     private Film film;
@@ -113,42 +116,23 @@ public class FilmPage extends JPanel implements ColorTheme {
         j.add(b);
     }
 
-
     @Override
-    public void setLight() {
-//	    this.filmPoster.setLight();
-//        // This JPanel
-//        this.setBackground(Light.BG.getColor());
-//        //JLabel movieName, synopsis, directors, actors;
-//        this.movieName.setForeground(Light.BLACK.getColor());
-//        this.synopsis.setForeground(Light.BLACK.getColor());
-//        this.directors.setForeground(Light.BLACK.getColor());
-//        this.actors.setForeground(Light.BLACK.getColor());
-//
-//        //JTextAreas
-//        this.synopsisText.setForeground(Light.BLACK.getColor());
-//        this.directorsText.setForeground(Light.BLACK.getColor());
-//        this.actorsText.setForeground(Light.BLACK.getColor());
-
+    public void setLanguage(ResourceBundle rb) {
+	// TODO Auto-generated method stub
+	
     }
 
 
     @Override
-    public void setDark() {
-//	    this.filmPoster.setDark();
-//        // This JPanel
-//        this.setBackground(Dark.BG.getColor());
-//        //JLabel movieName, synopsis, directors, actors;
-//        this.movieName.setForeground(Dark.FOREGROUND.getColor());
-//        this.synopsis.setForeground(Dark.FOREGROUND.getColor());
-//        this.directors.setForeground(Dark.FOREGROUND.getColor());
-//        this.actors.setForeground(Dark.FOREGROUND.getColor());
-//
-//        //JTextAreas
-//        this.synopsisText.setForeground(Dark.FOREGROUND.getColor());
-//        this.directorsText.setForeground(Dark.FOREGROUND.getColor());
-//        this.actorsText.setForeground(Dark.FOREGROUND.getColor());
-//	
+    public void setColorTheme(ColorThemes colorTheme) {
+	    switch(colorTheme) {
+	    case LIGHTTHEME:
+		break;
+	    case DARKTHEME:
+		break;
+	    default:
+		break;
+	    }	
     }
 
 }

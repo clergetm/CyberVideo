@@ -1,10 +1,7 @@
 package ui.utils.factory.filmpanel.products;
 
-import java.awt.event.ActionEvent;
-
 import fc.films.Film;
-import ui.utils.mediator.cart.CartMediator;
-import ui.utils.mediator.cart.components.CartComponent;
+import ui.managers.FilmEvents;
 
 /**
  * Concrete FilmPanelButton implementation to add a film to the cart.
@@ -12,10 +9,8 @@ import ui.utils.mediator.cart.components.CartComponent;
  *
  */
 @SuppressWarnings("serial")
-public class CartButton extends FilmPanelButton implements CartComponent {
-    private CartMediator cartMediator;
-    private Film film;
-    private String supportType;
+public class CartButton extends FilmPanelButton {
+
     
     /**
      * Constructor of CartButton
@@ -25,23 +20,8 @@ public class CartButton extends FilmPanelButton implements CartComponent {
      * @param supportType the way film is supported. (e.g. Blu-Ray, QR Code)
      */
     public CartButton(Film film, String supportType) {
-	this.film = film;
-	this.supportType = supportType;
-    }
-    
-    @Override
-    public void setMediator(CartMediator cartMediator) {
-	this.cartMediator = cartMediator;
-    }
-
-    /**
-     * When this button is clicked, The mediator is used in order to add a film to the cart.
-     * @author MathysC
-     *
-     */
-    @Override
-    protected void fireActionPerformed(ActionEvent actionEvent) {
-	this.cartMediator.addToCart(this.film, this.supportType);
+	super(film, supportType);
+	this.setActionCommand(FilmEvents.ADDTOCART.toString());
     }
 
 }

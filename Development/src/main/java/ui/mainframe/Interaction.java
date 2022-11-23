@@ -1,6 +1,9 @@
 package ui.mainframe;
 
+import ui.managers.GUIManager;
 import ui.utils.Decorations;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.multilingual.Languages;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,13 +55,13 @@ public class Interaction implements ActionListener {
         this.mainFrame = m;
 
         /* Listeners */
-        mainFrame.topBarPanel.languageSwitch.addActionListener(this);
-        mainFrame.topBarPanel.askForHelpButton.addActionListener(this);
-        mainFrame.topBarPanel.colorSwitch.addActionListener(this);
-        mainFrame.topBarPanel.searchButton.addActionListener(this);
-        mainFrame.actionPanel.getUndoButton().addActionListener(this);
-        mainFrame.actionPanel.getRedoButton().addActionListener(this);
-        mainFrame.actionPanel.getConnectionButton().addActionListener(this);
+        mainFrame.getTopBarPanel().languageSwitch.addActionListener(this);
+        mainFrame.getTopBarPanel().askForHelpButton.addActionListener(this);
+        mainFrame.getTopBarPanel().colorSwitch.addActionListener(this);
+        mainFrame.getTopBarPanel().searchButton.addActionListener(this);
+        mainFrame.getActionPanel().getUndoButton().addActionListener(this);
+        mainFrame.getActionPanel().getRedoButton().addActionListener(this);
+        mainFrame.getActionPanel().getConnectionButton().addActionListener(this);
     }
 
     @Override
@@ -68,28 +71,28 @@ public class Interaction implements ActionListener {
         case TopBarPanel.ACTION_SEARCH:
             // Go to Search Page
             mainFrame.changeCurrentPage(MainFrame.ID_RESULT_PAGE);
-            mainFrame.topBarPanel.searchButton.setActionCommand(TopBarPanel.ACTION_WELCOME);
+            mainFrame.getTopBarPanel().searchButton.setActionCommand(TopBarPanel.ACTION_WELCOME);
             break;
 
         case TopBarPanel.ACTION_WELCOME:
             // Go to Welcome Page
             mainFrame.changeCurrentPage(MainFrame.ID_WELCOME_PAGE);
-            mainFrame.topBarPanel.searchButton.setActionCommand(TopBarPanel.ACTION_SEARCH);
+            mainFrame.getTopBarPanel().searchButton.setActionCommand(TopBarPanel.ACTION_SEARCH);
             break;
             
             // Handle Language Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_EN:
             // Change from English to French
-            mainFrame.setLanguage(mainFrame.getRbFR());
-            mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
-            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_FR);
+            GUIManager.getInstance().notifyMultilingualObservers(Languages.FRENCH);
+            mainFrame.getTopBarPanel().languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
+            mainFrame.getTopBarPanel().languageSwitch.setActionCommand(TopBarPanel.ACTION_FR);
             break;
             
         case TopBarPanel.ACTION_FR:
             // Change from French to English
-            mainFrame.setLanguage(mainFrame.getRbEN());
-            mainFrame.topBarPanel.languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
-            mainFrame.topBarPanel.languageSwitch.setActionCommand(TopBarPanel.ACTION_EN);
+            GUIManager.getInstance().notifyMultilingualObservers(Languages.ENGLISH);
+            mainFrame.getTopBarPanel().languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
+            mainFrame.getTopBarPanel().languageSwitch.setActionCommand(TopBarPanel.ACTION_EN);
             break;
 
             // Handle askForHelp button from the TopBarPanel.
@@ -100,12 +103,12 @@ public class Interaction implements ActionListener {
             // Handle Color Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_LIGHT:
             // Change from Light to Dark theme.
-            mainFrame.setDark();
+            GUIManager.getInstance().notifyColorThemeObservers(ColorThemes.DARKTHEME);
             break;
             
         case TopBarPanel.ACTION_DARK:
             // Change from Dark to Light theme.
-            mainFrame.setLight();
+            GUIManager.getInstance().notifyColorThemeObservers(ColorThemes.LIGHTTHEME);
             break;
         default:
             throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());
@@ -123,37 +126,31 @@ public class Interaction implements ActionListener {
      */
     private void playSound(String path) {
         // Create a thread and immediately start it.
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    // Get audio file and format.
-                    AudioInputStream audio = AudioSystem.getAudioInputStream(new File(path));
-                    AudioFormat audioFormat = audio.getFormat();
-                    DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
-
-                    // Play the sound until it’s done.
-                    SourceDataLine sourceDataline = (SourceDataLine) AudioSystem.getLine(info);
-                    sourceDataline.open(audioFormat);
-                    sourceDataline.start();
-                    int nBytesRead = 0;
-                    byte[] abData = new byte[128000];
-                    while (nBytesRead != -1) {
-                        nBytesRead = audio.read(abData, 0, abData.length);
-                        if (nBytesRead >= 0)
-                            sourceDataline.write(abData, 0, nBytesRead);
-                    }
-
-                    // Stop the sound when it’s done.
-                    sourceDataline.drain();
-                    sourceDataline.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
+        new Thread(() -> {
+            try {
+                // Get audio file and format.
+                AudioInputStream audio = AudioSystem.getAudioInputStream(new File(path));
+                AudioFormat audioFormat = audio.getFormat();
+                DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+                // Play the sound until it’s done.
+                SourceDataLine sourceDataline = (SourceDataLine) AudioSystem.getLine(info);
+                sourceDataline.open(audioFormat);
+                sourceDataline.start();
+                int nBytesRead = 0;
+                byte[] abData = new byte[128000];
+                while (nBytesRead != -1) {
+                    nBytesRead = audio.read(abData, 0, abData.length);
+                    if (nBytesRead >= 0)
+                        sourceDataline.write(abData, 0, nBytesRead);
                 }
-
+                // Stop the sound when it’s done.
+                sourceDataline.drain();
+                sourceDataline.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }).start();
+
     }
 
 }

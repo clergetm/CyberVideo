@@ -1,26 +1,26 @@
-package ui.utils.colors;
+package ui.utils.observer.colortheme.palettes;
 
 import java.awt.Color;
 
 /**
- * Dark Palette of color inspired by Dracula
+ * Light color palette.
  * 
  * @author MathysC
  *
- * @see https://draculatheme.com/contribute
  */
-public enum Dark {
-
-	BG(40,42,44),
-	FOREGROUND(248, 248, 242),
-	PURPLE(86, 71, 90),
-	BLUE(98, 114, 164),
-	PINK(189, 147, 249);
+public enum Light {
+	BG(238, 239, 240),
+	REVERSE_FG(47, 83, 170),	// Foreground Blue used on white buttons.
+	REVERSE_BG(255, 255, 255),	// Background White used on white buttons.
+	BLACK(0, 0 ,0),
+	BLUE(47, 63, 170),
+	WHITE(245, 246, 243);
+	
 	
 	
 	private int[] rgb;
 	
-	Dark(int r, int g, int b) {
+	Light(int r, int g, int b) {
 		this.rgb = new int[]{r, g, b};
 	}
 	
@@ -32,7 +32,6 @@ public enum Dark {
 	 */
 	public Color getColor() {
 		return new Color(this.r(), this.g(), this.b());
-		
 	}
 	
 	/**

@@ -1,18 +1,20 @@
 package ui.mainframe;
 
 import ui.utils.Decorations;
-import ui.utils.bundles.Multilingual;
-import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
-import ui.pages.FilmPage;
+import ui.utils.KeyboardDialog;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
+import ui.managers.FilmManager;
+import ui.managers.GUIManager;
 import ui.pages.actions.ActionPanel;
 import ui.pages.welcome.WelcomePage;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
+import java.time.Year;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -21,13 +23,20 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import fc.al2000.AL2000;
+import fc.films.AgeRestriction;
+import fc.films.BluRay;
+import fc.films.Categories;
+import fc.films.Film;
+import fc.films.QRCode;
+import fc.films.StatesBluRay;
+import fc.films.Support;
 
 /**
  * @author MathysC
  * Main Class of AL2000. Initialize the machine Interface.
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame implements Multilingual, ColorTheme {
+public class MainFrame extends JFrame implements IColorThemeObserver {
 
 	/* Icon */
 	public static final String ICO_APP = "App";
@@ -38,21 +47,26 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	public static final String IMG_BANNER_DESERT = "BannerDESERT";
 	
 	/* Components */
-	protected TopBarPanel topBarPanel = new TopBarPanel();
-	protected JLabel banner = new JLabel();
-	protected WelcomePage welcomePage = new WelcomePage();
-	protected ActionPanel actionPanel = new ActionPanel();
-	protected FilmPage filmPage = new FilmPage();
+	private TopBarPanel topBarPanel;
+	private JLabel banner;
+	private WelcomePage welcomePage;
+	private ActionPanel actionPanel;
 	
 	/* Pages */
-	protected HashMap<Integer, JPanel> pages = new HashMap<>();
+	private HashMap<Integer, JPanel> pages;
+	private int currentPage;
 	public static final int ID_WELCOME_PAGE = 0;
 	public static final int ID_RESULT_PAGE = 1;
 	public static final int ID_FILM_PAGE = 2;
-	private int current_page;
-	
+
 	/* FC */
 	private AL2000 fc;
+	
+	/* Films */
+	private FilmManager filmManager; 
+	
+	/* Languages and Color Themes */
+	private GUIManager guiManager;
 	
 	/**
 	 * Constructor of Main.
@@ -62,117 +76,160 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	 *
 	 */
 	public MainFrame() {
-		super("AL2000");
+	    super("AL2000");
+	    
+	    /*Initialize Components */
+	    topBarPanel = new TopBarPanel();
+	    banner = new JLabel();
+	    welcomePage = new WelcomePage();
+	    actionPanel = new ActionPanel();
+	    
+	    /* Initialize pages map */
+	    this.pages = new HashMap<>();
+	    this.pages.put(ID_WELCOME_PAGE, welcomePage);
+	    this.pages.put(ID_RESULT_PAGE, actionPanel);
+	    
+	    // ! Initialize FC before the GUI (atleast this.setLanguage and this.setLight functions)
+	    this.fc = new AL2000();
+	    
+	    this.filmManager = FilmManager.getInstance();   
 
-		// Initialize FC before the GUI (atleast this.setLanguage and this.setLight functions)
-		fc = new AL2000();
+//	    TODO add Film from fc in filmManager
+	   
+	    this.filmManager.getCartManager().register(this.actionPanel.getCartPanel());
+//	    TODO register client in CartManager
+	    
+	    
+	    /* Initialize GUI */
+	    this.createGUI();
+	       
+	    /* Languages */
+	    this.guiManager = GUIManager.getInstance();
+	    this.guiManager.registerMultilingual(this.welcomePage.getSuggestionsPanel());
+	    this.guiManager.registerMultilingual(this.welcomePage.getLoginPanel());
+	    this.guiManager.registerMultilingual(this.actionPanel);
+	    this.guiManager.registerMultilingual(this.actionPanel.getCartPanel());
+	    this.guiManager.registerMultilingual(this.actionPanel.getSearchPage());
+	    this.guiManager.registerMultilingual(this.actionPanel.getFilmPage());
+	    this.guiManager.registerMultilingual(KeyboardDialog.getInstance());
 
-		// Set Icon
-		this.setIconImage(Decorations.getIco(ICO_APP));
+	    /*Color Themes*/
+	    this.guiManager.registerColorTheme(this);
+	    this.guiManager.registerColorTheme(topBarPanel);
+	    this.guiManager.registerColorTheme(this.welcomePage.getSuggestionsPanel());
+	    this.guiManager.registerColorTheme(this.welcomePage.getSuggestionsPanel());
+	    this.guiManager.registerColorTheme(this.welcomePage.getLoginPanel());
+	    this.guiManager.registerColorTheme(this.actionPanel);
+	    this.guiManager.registerColorTheme(this.actionPanel.getCartPanel());
+	    this.guiManager.registerColorTheme(this.actionPanel.getSearchPage());
+	    this.guiManager.registerColorTheme(this.actionPanel.getFilmPage());
+	    this.guiManager.registerColorTheme(KeyboardDialog.getInstance());
+	    
+	    
+	    /* Interaction */
+	    this.guiManager.refreshUI();
+	    new Interaction(this);    
+	    
+	    
+	    
+		/* Create Film attributes */
+	    final String title = "The Matrix",
+		    synopsis = "Thomas A. Anderson is a man living two lives. "
+						+ "By day he is an average computer programmer and by night "
+						+ "a hacker known as Neo. Neo has always questioned his reality,"
+						+ " but the truth is far beyond his imagination...",
+				director_lname = "Wachowski",
+				director_fname = "Lana";
+	    final String[] actors = {"Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"};
+	    final AgeRestriction restriction = AgeRestriction.EVERYONE;
+	    final Categories[] categories = {Categories.ACTION, Categories.DRAMAS};
+	    final Year year = Year.of(1999);
+	    final Support[] supports = {new BluRay(22.5, StatesBluRay.RENTED), new QRCode(), new BluRay(22.50, StatesBluRay.AVAILABLE)};
 		
-		// Put the Frame on Full Screen
-		this.setUndecorated(true);
-		this.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
-		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		this.setResizable(false);
+	    /* Create an instance of a Film for test Film class */
+	    Film film = new Film(title, synopsis, actors, director_fname, director_lname, year, categories, restriction, supports);
 		
-		this.setLayout(new BorderLayout());
-		new Interaction(this);
-		
-		// Add the Top Bar.
-		this.add(this.topBarPanel, BorderLayout.NORTH);
-
-		// Add a banner.
-		banner = new JLabel(Decorations.getImg(IMG_BANNER_DESERT));
-		this.add(banner, BorderLayout.WEST);
-
-		// Add the welcome page.
-		this.add(welcomePage, BorderLayout.CENTER);
-		this.current_page = ID_WELCOME_PAGE;
-		
-
-		this.setLanguage(this.getRbEN());
-		this.setLight();
-
-		this.pack();
-
-		/*Initialize pages map*/
-		this.pages.put(ID_WELCOME_PAGE, welcomePage);
-		this.pages.put(ID_RESULT_PAGE, actionPanel);
-		this.pages.put(ID_FILM_PAGE,filmPage);
-	}
-	
-	public void changeCurrentPage(int id) {
-		
-
-		this.remove(this.pages.get(current_page));
-		this.revalidate();
-		this.repaint();
-		
-		this.add(this.pages.get(id), BorderLayout.CENTER);
-		this.current_page = id;
-
-		if(id != ID_WELCOME_PAGE) {
-			this.actionPanel.changeCurrentActionPage(id);
-		}
-		
-		this.pack();
-	}
-	
-	@Override
-	public void setLight() {
-		// This JFrame
-		this.setBackground(Light.BG.getColor());
-		
-		// Banner
-		banner.setBackground(Light.BG.getColor());
-		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Light.BG.getColor()));
-		
-		// Top Bar
-		this.topBarPanel.setLight();
-		
-		// Welcome Page
-		this.welcomePage.setLight();
-		
-		// Action Panel
-		this.actionPanel.setLight();
-
-		this.filmPage.setLight();
-	}
-
-	@Override
-	public void setDark() {
-		// This JFrame
-		this.setBackground(Dark.BG.getColor());
-		
-		// Banner
-		banner.setBackground(Dark.BG.getColor());
-		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Dark.BG.getColor()));
-		
-		// Top Bar
-		this.topBarPanel.setDark();
-		
-		// Welcome Page
-		this.welcomePage.setDark();
-		
-		// Action Panel
-		this.actionPanel.setDark();
-
-		this.filmPage.setDark();
+	    
+	    this.filmManager.addFilm(film);
+	    this.actionPanel.getSearchPage().addResult(film);
 	}
 	
 	/**
-	 * Change all Main and Main’s Child text.
+	 * Create and set all GUI Components.
 	 * @author MathysC
-	 * @param rb the choosen language bundle.
+	 *
 	 */
-	@Override
-	public void setLanguage(ResourceBundle rb) {
-		// Set all multilingual child.
-		this.welcomePage.setLanguage(rb);
+	private void createGUI() {
+	    
+	    // Set Icon
+	    this.setIconImage(Decorations.getIco(ICO_APP));
 		
-		// Action Panel
-		this.actionPanel.setLanguage(rb);
+	    // Put the Frame on Full Screen
+	    this.setUndecorated(true);
+	    this.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
+	    this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+	    this.setResizable(false);
+
+	    this.setLayout(new BorderLayout());
+
+	    // Add the Top Bar.
+	    this.add(this.topBarPanel, BorderLayout.NORTH);
+
+	    // Add a banner.
+	    banner = new JLabel(Decorations.getImg(IMG_BANNER_DESERT));
+	    banner.setOpaque(false);
+	    this.add(banner, BorderLayout.WEST);
+
+	    // Add the welcome page.
+	    this.add(welcomePage, BorderLayout.CENTER);
+	    this.currentPage = ID_WELCOME_PAGE;
+
+	    this.pack();    
+	}
+	
+	/**
+	 * Change the current displayed Page
+	 * @author MathysC
+	 *
+	 * @param id The id number of the page to display.
+	 */
+	public void changeCurrentPage(int id) {
+	    this.remove(this.pages.get(currentPage));
+	    this.revalidate();
+	    this.repaint();
+
+	    this.add(this.pages.get(id), BorderLayout.CENTER);
+	    this.currentPage = id;
+
+	    if(id != ID_WELCOME_PAGE) {
+		this.actionPanel.changeCurrentActionPage(id);
+	    }
+
+	    this.pack();
+	}
+	
+	@Override
+	public void setColorTheme(ColorThemes colorTheme) {
+	    switch(colorTheme) {
+	    case LIGHTTHEME:
+		// This JFrame
+		this.setBackground(Light.BG.getColor());
+
+		// Banner
+		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Light.BG.getColor()));
+
+		break;
+	    case DARKTHEME:
+		// This JFrame
+		this.setBackground(Dark.BG.getColor());
+		// Banner
+		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Dark.BG.getColor()));
+
+		break;
+	    default:
+		break;
+	    }
+	    
 	}
 	
 	/**
@@ -181,8 +238,8 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	 * 
 	 */
 	public void start() {
-		this.setVisible(true);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	    this.setVisible(true);
+	    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	/**
@@ -192,10 +249,28 @@ public class MainFrame extends JFrame implements Multilingual, ColorTheme {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				new MainFrame().start();
-			}
-		});
+	    SwingUtilities.invokeLater(() -> new MainFrame().start());    
 	}
+
+	/**
+	 * @return the topBarPanel
+	 */
+	public TopBarPanel getTopBarPanel() {
+	    return topBarPanel;
+	}
+
+	/**
+	 * @return the welcomePage
+	 */
+	public WelcomePage getWelcomePage() {
+	    return welcomePage;
+	}
+
+	/**
+	 * @return the actionPanel
+	 */
+	public ActionPanel getActionPanel() {
+	    return actionPanel;
+	}
+	
 }

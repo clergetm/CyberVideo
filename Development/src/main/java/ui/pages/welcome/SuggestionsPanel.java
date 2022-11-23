@@ -12,13 +12,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import ui.managers.FilmManager;
-import ui.managers.RentFilmManager;
+import ui.managers.GUIManager;
+import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
-import ui.utils.bundles.Multilingual;
-import ui.utils.colors.ColorTheme;
-import ui.utils.colors.Dark;
-import ui.utils.colors.Light;
+import ui.utils.observer.colortheme.ColorThemes;
+import ui.utils.observer.colortheme.IColorThemeObserver;
+import ui.utils.observer.colortheme.palettes.Dark;
+import ui.utils.observer.colortheme.palettes.Light;
+import ui.utils.observer.multilingual.IMultilingualObserver;
 
 /**
  * Instantiate a list of suggested films displayed on Welcome Page.
@@ -26,12 +27,12 @@ import ui.utils.colors.Light;
  *
  */
 @SuppressWarnings("serial")
-public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme {
+public class SuggestionsPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver {
 
 	/* Components */
     protected JLabel sugLabel = new JLabel();
     protected JScrollPane filmsPane;
-    private FilmManager manager;
+    private FilmManagerPanel manager;
 
     /**
      * Constructor of {@code SuggestionsPanel} 
@@ -49,10 +50,12 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
         this.add(sugLabel, BorderLayout.NORTH);
 
         // JScrollPane
-        manager = new RentFilmManager(new GridLayout(0, 4), 100);
+        manager = new FilmManagerPanel(new GridLayout(0, 4), 100);
         filmsPane = new JScrollPane(manager, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	filmsPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(filmsPane, BorderLayout.CENTER);
+        
+        GUIManager.getInstance().registerColorTheme(manager);
     }
 
     /**
@@ -61,7 +64,7 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
      *
      * @return FilmManager
      */
-    public FilmManager getFilmManager() { return this.manager; }
+    public FilmManagerPanel getFilmManager() { return this.manager; }
     
     @Override
     public void setLanguage(ResourceBundle rb) {
@@ -69,36 +72,37 @@ public class SuggestionsPanel extends JPanel implements Multilingual, ColorTheme
 
     }
 
-	@Override
-	public void setLight() {
+    @Override
+    public void setColorTheme(ColorThemes colorTheme) {
+	switch(colorTheme) {
+	    case LIGHTTHEME:
 		// This JPanel.
-        this.setBackground(Light.BG.getColor());
-        
-        // Suggestion Label.
+		this.setBackground(Light.BG.getColor());
+	        
+	        // Suggestion Label.
 		this.sugLabel.setForeground(Light.BLACK.getColor());
 		
 		// Film ScrollPane.
 		this.filmsPane.setBackground(Light.BG.getColor());
 		this.filmsPane.getVerticalScrollBar().setBackground(Light.BG.getColor());
 		
-		// Films manager.
-		this.manager.setLight();
-	}
-
-	@Override
-	public void setDark() {
+		break;
+	    case DARKTHEME:
 		// This JPanel.
 		this.setBackground(Dark.BG.getColor());
 		
-        // Suggestion Label.
+		// Suggestion Label.
 		this.sugLabel.setForeground(Dark.FOREGROUND.getColor());
 		
 		// Film ScrollPane.
 		this.filmsPane.setBackground(Dark.BG.getColor());
 		this.filmsPane.getVerticalScrollBar().setBackground(Dark.BG.getColor());
-		
-		// Films manager.
-		this.manager.setDark();
-	}
+
+		break;
+	    default:
+		break;
+	    }
+	
+    }
 
 }
