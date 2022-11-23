@@ -20,12 +20,12 @@ import fc.films.Film;
 import ui.managers.FilmManager;
 import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
-import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.utils.factory.filmpanel.factories.FilmCartPanel;
 import ui.utils.observer.multilingual.IMultilingualObserver;
+import ui.utils.observer.multilingual.MultilingualManager;
 
 @SuppressWarnings("serial")
 public class SearchPage extends JPanel implements IMultilingualObserver, ColorTheme {
@@ -103,6 +103,7 @@ public class SearchPage extends JPanel implements IMultilingualObserver, ColorTh
 	    this.add(mainPanel,BorderLayout.CENTER);
 	    
 	    this.filmManager = FilmManager.getInstance();
+
 	}
 	
 	public void addResult(Film film) { 

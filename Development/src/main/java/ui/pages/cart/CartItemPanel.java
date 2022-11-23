@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 
 import fc.films.Film;
 import ui.utils.Decorations;
-import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;

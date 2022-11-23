@@ -2,11 +2,8 @@ package ui.pages.welcome;
 
 import java.awt.BorderLayout;
 
-import java.util.ResourceBundle;
-
 import javax.swing.JPanel;
 
-import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 
 /**

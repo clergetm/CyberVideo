@@ -7,7 +7,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.Year;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -19,20 +18,13 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import fc.films.AgeRestriction;
-import fc.films.BluRay;
-import fc.films.Categories;
-import fc.films.Film;
-import fc.films.QRCode;
-import fc.films.StatesBluRay;
-import fc.films.Support;
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
-import ui.utils.bundles.Multilingual;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
+import ui.utils.observer.multilingual.MultilingualManager;
 import ui.mainframe.MainFrame;
 import ui.pages.FilmPage;
 import ui.pages.SearchPage;
@@ -61,7 +53,6 @@ public class ActionPanel extends JPanel implements IMultilingualObserver, ColorT
     protected JButton undoButton = new JButton();
     protected JButton redoButton = new JButton();
     protected JButton connectionButton = new JButton();
-    private KeyboardDialog keyboard = new KeyboardDialog();
 
     /*Action pages */
     private HashMap < Integer, JPanel > subActionsPanel = new HashMap < > ();
@@ -95,8 +86,7 @@ public class ActionPanel extends JPanel implements IMultilingualObserver, ColorT
         subActionsPanel.put(MainFrame.ID_RESULT_PAGE, searchPage);
         subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
         current_subAction = MainFrame.ID_RESULT_PAGE;
-        
-    }
+   }
 
     private void createGUI() {
 	this.setLayout(new BorderLayout());
@@ -117,7 +107,7 @@ public class ActionPanel extends JPanel implements IMultilingualObserver, ColorT
         	    Decorations.resetDefaultPlaceholder(tfSearch);
         	}
         	// Get new text
-        	String prompt = keyboard.showKeyboardDialog(placeholder, tfSearch);
+        	String prompt = KeyboardDialog.showKeyboardDialog(placeholder, tfSearch);
  
         	// If empty prompt
         	if (prompt.equals("")) {
@@ -245,7 +235,6 @@ public class ActionPanel extends JPanel implements IMultilingualObserver, ColorT
         connectionButton.setBackground(Light.BLUE.getColor());
         connectionButton.setForeground(Light.WHITE.getColor());
         
-        keyboard.setLight();
         cartPanel.setLight();
         searchPage.setLight();
     }
@@ -268,7 +257,6 @@ public class ActionPanel extends JPanel implements IMultilingualObserver, ColorT
         connectionButton.setBackground(Dark.BLUE.getColor());
         connectionButton.setForeground(Dark.FOREGROUND.getColor());
 
-        keyboard.setDark();
         cartPanel.setDark();
         searchPage.setDark();
     }

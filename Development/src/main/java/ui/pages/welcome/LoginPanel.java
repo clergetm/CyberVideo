@@ -25,6 +25,7 @@ import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
+import ui.utils.observer.multilingual.MultilingualManager;
 
 /**
  * LoginPanel is part of the WelcomePage.
@@ -42,7 +43,6 @@ class LoginPanel extends JPanel implements IMultilingualObserver, ColorTheme {
     protected JTextField tfID = new JTextField();
     protected JPasswordField tfPassword = new JPasswordField();
     protected JButton connection = new JButton(), createAccount = new JButton(), continueWithoutConn = new JButton();
-    protected KeyboardDialog keyboard = new KeyboardDialog();
 
     /*Options*/
     private final int maxW = 350, W = (int)(maxW * 0.9),
@@ -96,7 +96,7 @@ class LoginPanel extends JPanel implements IMultilingualObserver, ColorTheme {
                     Decorations.resetDefaultPlaceholder(tfID);
                 }
                 // Get new text
-                String prompt = keyboard.showKeyboardDialog(keyboardTitleID, tfID);
+                String prompt = KeyboardDialog.showKeyboardDialog(keyboardTitleID, tfID);
 
                 // If empty prompt
                 if (prompt.equals("")) {
@@ -142,7 +142,7 @@ class LoginPanel extends JPanel implements IMultilingualObserver, ColorTheme {
                 tfPassword.setEchoChar((char) 0);
 
                 // Get new prompt
-                String prompt = keyboard.showKeyboardDialog(keyboardTitlePassword, tfPassword);
+                String prompt = KeyboardDialog.showKeyboardDialog(keyboardTitlePassword, tfPassword);
 
                 // If empty prompt
                 if (prompt.equals("")) {
@@ -236,7 +236,6 @@ class LoginPanel extends JPanel implements IMultilingualObserver, ColorTheme {
         // KeyboardDialog
         keyboardTitleID = rb.getString("login_id_vk_frameName");
         keyboardTitlePassword = rb.getString("login_pw_vk_frameName");
-        keyboard.setLanguage(rb);
     }
 
     @Override
@@ -273,8 +272,6 @@ class LoginPanel extends JPanel implements IMultilingualObserver, ColorTheme {
         this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
         this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
 
-        // KeyboardDialog
-        this.keyboard.setLight();
     }
 
     @Override
@@ -312,7 +309,5 @@ class LoginPanel extends JPanel implements IMultilingualObserver, ColorTheme {
         this.continueWithoutConn.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 18));
         this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Dark.PINK.getColor(), 1));
 
-        // KeyboardDialog
-        this.keyboard.setDark();
     }
 }

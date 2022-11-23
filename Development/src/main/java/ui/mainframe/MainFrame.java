@@ -1,7 +1,7 @@
 package ui.mainframe;
 
 import ui.utils.Decorations;
-import ui.utils.bundles.Multilingual;
+import ui.utils.KeyboardDialog;
 import ui.utils.colors.ColorTheme;
 import ui.utils.colors.Dark;
 import ui.utils.colors.Light;
@@ -14,7 +14,6 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.time.Year;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -67,6 +66,7 @@ public class MainFrame extends JFrame implements ColorTheme {
 	
 	/* Languages */
 	private MultilingualManager langManager;
+	
 	/**
 	 * Constructor of Main.
 	 * Initialize the AL2000 Functional Core.
@@ -102,8 +102,7 @@ public class MainFrame extends JFrame implements ColorTheme {
 	    /* Initialize GUI */
 	    this.createGUI();
 	    this.setLight();
-	    
-	    
+	       
 	    /* Languages */
 	    this.langManager = MultilingualManager.getInstance();
 	    this.langManager.register(this.welcomePage.getSuggestionsPanel());
@@ -112,7 +111,7 @@ public class MainFrame extends JFrame implements ColorTheme {
 	    this.langManager.register(this.actionPanel.getCartPanel());
 	    this.langManager.register(this.actionPanel.getSearchPage());
 	    this.langManager.register(this.actionPanel.getFilmPage());
-	    
+	    this.langManager.register(KeyboardDialog.getInstance());
 	    this.langManager.refresh();
 	    /* Interaction */
 	    new Interaction(this);    
