@@ -82,14 +82,14 @@ public class Interaction implements ActionListener {
             // Handle Language Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_EN:
             // Change from English to French
-            UIManager.getInstance().notifyObservers(Languages.FRENCH);
+            UIManager.getInstance().notifyMultilingualObservers(Languages.FRENCH);
             mainFrame.getTopBarPanel().languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
             mainFrame.getTopBarPanel().languageSwitch.setActionCommand(TopBarPanel.ACTION_FR);
             break;
             
         case TopBarPanel.ACTION_FR:
             // Change from French to English
-            UIManager.getInstance().notifyObservers(Languages.ENGLISH);
+            UIManager.getInstance().notifyMultilingualObservers(Languages.ENGLISH);
             mainFrame.getTopBarPanel().languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
             mainFrame.getTopBarPanel().languageSwitch.setActionCommand(TopBarPanel.ACTION_EN);
             break;

@@ -71,7 +71,7 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	this.itemPanel.add(item);
 	this.revalidate();
 	this.repaint();
-	UIManager.getInstance().register(item);
+	UIManager.getInstance().registerMultilingual(item);
 	UIManager.getInstance().refreshMultilingual();
     }
     
@@ -85,7 +85,7 @@ public class CartPanel extends JPanel implements IMultilingualObserver, ColorThe
 	this.itemPanel.remove(item);
 	this.revalidate();
 	this.repaint();
-	UIManager.getInstance().unregister(item);
+	UIManager.getInstance().unregisterMultilingual(item);
 
     }
     

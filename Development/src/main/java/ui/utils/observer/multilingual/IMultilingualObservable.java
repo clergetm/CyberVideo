@@ -15,7 +15,7 @@ public interface IMultilingualObservable {
      *
      * @param multilingualObserver the observer.
      */
-    void register(IMultilingualObserver multilingualObserver);
+    void registerMultilingual(IMultilingualObserver multilingualObserver);
     
     /**
      * Remove an observer.
@@ -23,7 +23,7 @@ public interface IMultilingualObservable {
      *
      * @param multilingualObserver the observer.
      */
-    void unregister(IMultilingualObserver multilingualObserver);
+    void unregisterMultilingual(IMultilingualObserver multilingualObserver);
     
     /**
      * Change languages of all observers.
@@ -31,5 +31,5 @@ public interface IMultilingualObservable {
      *
      * @param language the language to set.
      */
-    void notifyObservers(Languages language);
+    void notifyMultilingualObservers(Languages language);
 }

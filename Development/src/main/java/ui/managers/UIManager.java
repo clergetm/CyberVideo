@@ -71,24 +71,24 @@ public class UIManager implements IMultilingualObservable, IColorThemeObservable
      * @author MathysC
      */
     public void refreshMultilingual() {
-	this.notifyObservers(this.getCurrentLang());
+	this.notifyMultilingualObservers(this.getCurrentLang());
 	
     }
     
     @Override
-    public void register(IMultilingualObserver multilingualObserver) {
+    public void registerMultilingual(IMultilingualObserver multilingualObserver) {
 	this.multilinguals.add(multilingualObserver);
 
     }
 
     @Override
-    public void unregister(IMultilingualObserver multilingualObserver) {
+    public void unregisterMultilingual(IMultilingualObserver multilingualObserver) {
 	this.multilinguals.remove(multilingualObserver);
 
     }
 
     @Override
-    public void notifyObservers(Languages language) {
+    public void notifyMultilingualObservers(Languages language) {
 	this.setCurrentLang(language);
 	this.multilinguals.forEach(o -> o.setLanguage(language.getResourceBundle()));
 

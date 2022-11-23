@@ -105,13 +105,13 @@ public class MainFrame extends JFrame implements ColorTheme {
 	       
 	    /* Languages */
 	    this.langManager = UIManager.getInstance();
-	    this.langManager.register(this.welcomePage.getSuggestionsPanel());
-	    this.langManager.register(this.welcomePage.getLoginPanel());
-	    this.langManager.register(this.actionPanel);
-	    this.langManager.register(this.actionPanel.getCartPanel());
-	    this.langManager.register(this.actionPanel.getSearchPage());
-	    this.langManager.register(this.actionPanel.getFilmPage());
-	    this.langManager.register(KeyboardDialog.getInstance());
+	    this.langManager.registerMultilingual(this.welcomePage.getSuggestionsPanel());
+	    this.langManager.registerMultilingual(this.welcomePage.getLoginPanel());
+	    this.langManager.registerMultilingual(this.actionPanel);
+	    this.langManager.registerMultilingual(this.actionPanel.getCartPanel());
+	    this.langManager.registerMultilingual(this.actionPanel.getSearchPage());
+	    this.langManager.registerMultilingual(this.actionPanel.getFilmPage());
+	    this.langManager.registerMultilingual(KeyboardDialog.getInstance());
 	    this.langManager.refreshMultilingual();
 	    /* Interaction */
 	    new Interaction(this);    
