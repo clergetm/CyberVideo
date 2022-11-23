@@ -117,24 +117,24 @@ public class UIManager implements IMultilingualObservable, IColorThemeObservable
     * @author MathysC
     */
     public void refreshColorTheme() {
-    	this.notifyObservers(this.getCurrentColorTheme());
+    	this.notifyColorThemeObservers(this.getCurrentColorTheme());
     	
     }
         
     @Override
-    public void register(IColorThemeObserver colorThemeObserver) {
+    public void registerColorTheme(IColorThemeObserver colorThemeObserver) {
 	this.colorthemes.add(colorThemeObserver);
 	
     }
 
     @Override
-    public void unregister(IColorThemeObserver colorThemeObserver) {
+    public void unregisterColorTheme(IColorThemeObserver colorThemeObserver) {
 	this.colorthemes.remove(colorThemeObserver);
 	
     }
 
     @Override
-    public void notifyObservers(ColorThemes color) {
+    public void notifyColorThemeObservers(ColorThemes color) {
 	this.colorthemes.forEach(o -> o.setColorTheme(color));
 	
     }

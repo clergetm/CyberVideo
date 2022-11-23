@@ -16,7 +16,7 @@ public interface IColorThemeObservable {
      *
      * @param colorThemeObserver the observer.
      */
-    void register(IColorThemeObserver colorThemeObserver);
+    void registerColorTheme(IColorThemeObserver colorThemeObserver);
     
     /**
      * Remove an observer.
@@ -24,7 +24,7 @@ public interface IColorThemeObservable {
      *
      * @param colorThemeObserver the observer.
      */
-    void unregister(IColorThemeObserver colorThemeObserver);
+    void unregisterColorTheme(IColorThemeObserver colorThemeObserver);
     
     /**
      * Change color theme of all observers.
@@ -32,5 +32,5 @@ public interface IColorThemeObservable {
      *
      * @param color the color to set.
      */
-    void notifyObservers(ColorThemes color);
+    void notifyColorThemeObservers(ColorThemes color);
 }
