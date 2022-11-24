@@ -1,0 +1,16 @@
+INSERT INTO CreditCards VALUES(1,1,1);
+INSERT INTO Logins VALUES (1,'password');
+INSERT INTO Subscribers VALUES(1,1,1,'Jean','Lambert',TO_DATE('19900401','YYYYMMDD'));
+INSERT INTO SupportCards VALUES(1,'CC');
+INSERT INTO SubscriberCards VALUES(1,1,3,'ALL',10.0);
+INSERT INTO OwnedCards VALUES(1,1);
+INSERT INTO SubscriberCards VALUES(2,1,3,'ALL',10.0);
+INSERT INTO OwnedCards VALUES(1,2);
+INSERT INTO SubscriberCards VALUES(3,1,3,'ALL',10.0);
+INSERT INTO OwnedCards VALUES(1,3);
+INSERT INTO SubscriberCards VALUES(4,1,3,'ALL',10.0);
+INSERT INTO OwnedCards VALUES(1,4);
+INSERT INTO SubscriberCards VALUES(5,1,3,'ALL',10.0);
+INSERT INTO OwnedCards VALUES(1,5);
+INSERT INTO SubscriberCards VALUES(6,1,3,'ALL',10.0);
+INSERT INTO OwnedCards VALUES(1,6);

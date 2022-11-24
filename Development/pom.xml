@@ -19,13 +19,13 @@
         	<version>${junit.jupiter.version}</version>
         	<scope>test</scope>
         </dependency>
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-		<dependency>
-		    <groupId>org.junit.jupiter</groupId>
-		    <artifactId>junit-jupiter-api</artifactId>
-		    <version>${junit.jupiter.version}</version>
-		    <scope>test</scope>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
         	<groupId>com.google.zxing</groupId>
         	<artifactId>core</artifactId>
@@ -36,5 +36,10 @@
         	<artifactId>javase</artifactId>
         	<version>3.3.2</version>
         </dependency>
-  </dependencies>
+        <dependency>
+          <groupId>com.oracle</groupId>
+          <artifactId>ojdbc11</artifactId>
+          <version>21.6.0.0.0</version>
+        </dependency>
+    </dependencies>
 </project>
