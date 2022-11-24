@@ -49,7 +49,7 @@ public abstract class FilmPanel extends JPanel {
      */
     protected FilmPanel(Film film) {
 	this.film = film;
-	// TODO #8
+	// TODO #8 Find a way to put the right poster for each movie
 	posterImage = Decorations.getImg(Decorations.IMG_FILM.toString()); 
 	this.createGUI();
 	this.setScale(100);

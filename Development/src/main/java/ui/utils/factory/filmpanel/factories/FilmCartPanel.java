@@ -13,7 +13,6 @@ public class FilmCartPanel extends FilmPanel {
 
     public FilmCartPanel(Film film) {
 	super(film);
-	// TODO Auto-generated constructor stub
     }
 
     @Override

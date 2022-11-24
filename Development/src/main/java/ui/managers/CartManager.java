@@ -32,17 +32,16 @@ public class CartManager implements ICartObservable, ActionListener{
 	FilmEvents event = FilmEvents.getFromName(e.getActionCommand());
 	switch (event){
 	case ADDTOCART:
-//	    TODO TOCART
-//	    TODO récupérer le film et le supportType
+//	    TODO #29 récupérer le film et le supportType
 	    CartButton source = (CartButton)e.getSource();
 	    this.notifyObservers(FilmEvents.ADDTOCART, source.getFilm(), source.getSupportType());
 	    break;
 	case REMOVEFROMCART:
-//	    TODO REMOVE
+//	    TODO #29 REMOVE
 	    break;
 	case RENT:
-//	    TODO RENT
-//	    TODO récupérer le film et le supportType
+//	    TODO #29 RENT récupérer le film et le supportType
+//	    TODO #29 maybe dissociate RENT actions and CART actions
 	    this.notifyObservers(null, null, null);
 	    break;
 	default:

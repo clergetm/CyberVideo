@@ -25,17 +25,18 @@ import ui.utils.observer.multilingual.IMultilingualObserver;
 /**
  * Class that implement a Virtual Keyboard that the client can use to type in TextFields.
  * @author MathysC
- *
  */
 @SuppressWarnings("serial")
 public class KeyboardDialog extends JDialog implements ActionListener, IMultilingualObserver, IColorThemeObserver {
-
 
     private String entry = ""; // text of the TextField.
 
     /* Characters */
     // Alphabet in lower and upper cases.
-    private final int beginUpperCase = 65, endUpperCase = 91, beginLowerCase = 97, endLowerCase = 123;
+    private static final int UPPERCASE_A = 65;
+    private static final int UPPERCASE_Z = 91;
+    private static final int LOWERCASE_A = 97;
+    private static final int LOWERCASE_Z = 123;
     private final char[] specialChars = {
         '!', '@', '#', '$', '%',
         '&', '*', '(', ')', '-',
@@ -46,24 +47,27 @@ public class KeyboardDialog extends JDialog implements ActionListener, IMultilin
     
     /* Components */
     private JTextField textField = new JTextField(100);
-    private JPanel keysPanel = new JPanel(), specialPanel = new JPanel(), actionsPanel = new JPanel(),
-    		lowerCasePanel = new JPanel(), upperCasePanel = new JPanel();
-    private JButton valButton = new JButton(),
-        bspaceButton = new JButton(),
-        spaceButton = new JButton();
+    private JPanel keysPanel = new JPanel();
+    private JPanel specialPanel = new JPanel();
+    private JPanel actionsPanel = new JPanel();
+    private JPanel lowerCasePanel = new JPanel();
+    private JPanel upperCasePanel = new JPanel();
+    private JButton valButton = new JButton();
+    private JButton bspaceButton = new JButton();
+    private JButton spaceButton = new JButton();
     private JButton[] actionButtons = {
         valButton,
         bspaceButton,
         spaceButton
     };
-
+    
     /* Actions */
-    public static final String VAL_ACT = "Validate", // Action Names.
-        BSPACE_ACT = "Back_space",
-        SPACE_ACT = "Space",
-
-	/*Icon */
-		ICO_KEYBOARD = "Keyboard";
+    public static final String VAL_ACT = "Validate";
+    public static final String BSPACE_ACT = "Back_space";
+    public static final String SPACE_ACT = "Space";
+    
+    /* Icons */
+    public static final String ICO_KEYBOARD = "Keyboard";
 	
     private static KeyboardDialog instance;
     
@@ -76,7 +80,10 @@ public class KeyboardDialog extends JDialog implements ActionListener, IMultilin
     private KeyboardDialog() {
         // Set Options.
         super(null, Dialog.ModalityType.APPLICATION_MODAL);
-        this.setIconImage(Decorations.getIco(ICO_KEYBOARD));
+        this.createGUI();
+    }
+    private void createGUI() {
+	this.setIconImage(Decorations.getIco(ICO_KEYBOARD));
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocation(10, 400);
@@ -92,7 +99,6 @@ public class KeyboardDialog extends JDialog implements ActionListener, IMultilin
         keysPanel.add(specialPanel);
         this.add(keysPanel, BorderLayout.CENTER);
 
-        // TODO #41 Find a way to put the component Vertically.
         actionsPanel = getActionKeys();
         this.add(actionsPanel, BorderLayout.EAST);
        
@@ -115,7 +121,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, IMultilin
      */
     private JPanel getLowerCaseKeys() {
         JPanel lowerKeys = new JPanel();
-        for (int letter = beginLowerCase; letter < endLowerCase; letter++) {
+        for (int letter = LOWERCASE_A; letter < LOWERCASE_Z; letter++) {
             JButton button = new JButton("" + ((char) letter));
             button.addActionListener(this);
             lowerKeys.add(button);
@@ -132,7 +138,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, IMultilin
      */
     private JPanel getUpperCaseKeys() {
         JPanel upperKeys = new JPanel();
-        for (int letter = beginUpperCase; letter < endUpperCase; letter++) {
+        for (int letter = UPPERCASE_A; letter < UPPERCASE_Z; letter++) {
             JButton button = new JButton("" + ((char) letter));
             button.addActionListener(this);
             upperKeys.add(button);

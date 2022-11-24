@@ -38,7 +38,6 @@ public class CartPanel extends JPanel implements IMultilingualObserver, IColorTh
     
     /**
      * Default Constructor of {@code CheckoutPanel}.
-     * TODO Remove this constructor when implementation with client is done
      * @author MathysC
      *
      */
