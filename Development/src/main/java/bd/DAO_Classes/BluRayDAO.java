@@ -3,6 +3,7 @@ package bd.DAO_Classes;
 import fc.films.BluRay;
 import fc.films.Film;
 import fc.films.StatesBluRay;
+import fc.films.Support;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ public class BluRayDAO<BluRay> extends DAO<BluRay>{
     public BluRay read(int id) {
         
         try{
+            BluRay bluray;
 
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Films NATURAL JOIN BluRays WHERE filmID ="+id);
             
@@ -32,7 +34,7 @@ public class BluRayDAO<BluRay> extends DAO<BluRay>{
                 FilmsDAO<Film> filmDAO= new FilmsDAO<Film>(this.connect);
                 Film film = (Film) filmDAO.read(id);
 
-                BluRay bluray = new BluRay(price,state,film.getTitle(),film.getSynopsis(),film.getActors(),film.getFNDirector(),film.getLNDirector(),film.getRestriction(),film.getCategories());
+                bluray = new BluRay(price,state,film.getTitle(),film.getSynopsis(),film.getActors(),film.getFNDirector(),film.getLNDirector(),film.getRestriction(),film.getCategories());
             }
             
         }

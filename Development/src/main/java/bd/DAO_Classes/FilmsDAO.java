@@ -21,6 +21,7 @@ public class FilmsDAO<Film> extends DAO<Film>{
     public Film read(int id) {
         
         try{
+            Film film;
 
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Films JOIN FilmCategories WHERE filmID ="+id);
             ResultSet resultActorName = this.connect.createStatement().executeQuery("SELECT CONCAT(actorFirstName,' ',actorLastName) AS actorName FROM FilmsActors NATURAL JOIN Actors WHERE filmID ="+id);
@@ -56,7 +57,7 @@ public class FilmsDAO<Film> extends DAO<Film>{
                 }*/
 
 
-                Film film = new Film(title,synopsis,actors,year,FNDirector,LNDirector,restriction,categories,supports);
+                film = new Film(title,synopsis,actors,year,FNDirector,LNDirector,restriction,categories,supports);
             }
             
         }
