@@ -2,6 +2,7 @@ package ui.pages;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.time.Year;
@@ -107,6 +108,9 @@ public class FilmPage extends JPanel implements ColorTheme {
 		infoPanel.add(synopsisLabel);
 		JTextArea synopsisText = new JTextArea(1,5);
 		synopsisText.setText(film.getSynopsis());
+		synopsisText.setMaximumSize(new Dimension(Short.MAX_VALUE,100));
+		synopsisText.setEditable(false);
+		synopsisText.setFocusable(false);
 		synopsisText.setLineWrap(true);
 		synopsisText.setWrapStyleWord(true);
 		synopsisText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
@@ -118,6 +122,9 @@ public class FilmPage extends JPanel implements ColorTheme {
 		infoPanel.add(actorsLabel);
 		JTextArea actorsText = new JTextArea(1,2);
 		actorsText.setText(film.toStringActors());
+		actorsText.setMaximumSize(new Dimension(Short.MAX_VALUE,20));	
+		actorsText.setFocusable(false);
+		actorsText.setEditable(false);
 		actorsText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
 		actorsText.setOpaque(false);
 		infoPanel.add(actorsText);
@@ -126,11 +133,14 @@ public class FilmPage extends JPanel implements ColorTheme {
 		directorLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
 		infoPanel.add(directorLabel);
 		JTextArea directorsText = new JTextArea(1,1);
+		directorsText.setMaximumSize(new Dimension(Short.MAX_VALUE,20));	
+		directorsText.setEditable(false);
+		directorsText.setFocusable(false);
 		directorsText.setText(film.getNamesDirector());
 		directorsText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
 		directorsText.setOpaque(false);
 		infoPanel.add(directorsText);
-
+		infoPanel.add(Box.createVerticalGlue());
 
 		FilmCartPanel filmCartPanel = new FilmCartPanel(film);
 		filmCartPanel.setScale(200);
