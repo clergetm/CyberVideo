@@ -30,17 +30,14 @@ public class BluRayDAO<BluRay> extends DAO<BluRay>{
                 double price = result.getDouble("price");
                 StatesBluRay state = StatesBluRay.valueOf(result.getString("state"));
 
-                //We use the filmDAO class to instanciate a Film linked with the BluRay
-                FilmsDAO<Film> filmDAO= new FilmsDAO<Film>(this.connect);
-                Film film = (Film) filmDAO.read(id);
-
-                bluray = new BluRay(price,state,film.getTitle(),film.getSynopsis(),film.getActors(),film.getFNDirector(),film.getLNDirector(),film.getRestriction(),film.getCategories());
+                bluray = new BluRay(price,state);
             }
+
+            return bluray;
             
         }
         catch (SQLException e) { e.printStackTrace(); }
         
-        return bluray;
     }
 
     @Override

@@ -59,11 +59,12 @@ public class FilmsDAO<Film> extends DAO<Film>{
 
                 film = new Film(title,synopsis,actors,year,FNDirector,LNDirector,restriction,categories,supports);
             }
+
+            return film;
             
         }
         catch (SQLException e) { e.printStackTrace(); }
         
-        return film;
     }
 
     @Override
