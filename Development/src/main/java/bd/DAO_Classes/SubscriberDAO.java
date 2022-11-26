@@ -1,5 +1,6 @@
 package bd.DAO_Classes;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -7,12 +8,14 @@ import java.util.Date;
 import fc.clients.Subscriber;
 import ui.utils.observer.colortheme.palettes.Dark;
 
-public class SubscriberDAO<Subscriber> extends DAO {
+public class SubscriberDAO<Subscriber> extends DAO<Subscriber> {
+
+    public SubscriberDAO(Connection conn) {
+        super(conn);
+    }
 
     @Override
-    public Object read(int id) {
-
-        
+    public Subscriber read(int id) {
 
         try{
             Subscriber subscriber;
@@ -36,19 +39,19 @@ public class SubscriberDAO<Subscriber> extends DAO {
     }
 
     @Override
-    public boolean create(Object obj) {
+    public boolean create(Subscriber obj) {
 
         return false;
     }
 
     @Override
-    public boolean update(Object obj) {
+    public boolean update(Subscriber obj) {
 
         return false;
     }
 
     @Override
-    public boolean delete(Object obj) {
+    public boolean delete(Subscriber obj) {
 
         return false;
     }
