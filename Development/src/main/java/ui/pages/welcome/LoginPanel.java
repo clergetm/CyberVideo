@@ -3,8 +3,8 @@ package ui.pages.welcome;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
@@ -19,6 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import ui.GUIComponent;
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
 import ui.utils.observer.colortheme.ColorThemes;
@@ -34,23 +35,30 @@ import ui.utils.observer.multilingual.IMultilingualObserver;
  *
  */
 @SuppressWarnings("serial")
-class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver {
-
-    private String placeholderID = "", placeholderPassword = "", keyboardTitleID = "", keyboardTitlePassword = "";
-
-    /* Components */
-    protected JLabel loginPanelLabel = new JLabel();
-    protected JTextField tfID = new JTextField();
-    protected JPasswordField tfPassword = new JPasswordField();
-    protected JButton connection = new JButton(), createAccount = new JButton(), continueWithoutConn = new JButton();
+class LoginPanel extends JPanel implements GUIComponent, IMultilingualObserver, IColorThemeObserver {
 
     /*Options*/
-    private final int maxW = 350, W = (int)(maxW * 0.9),
-        HTextField = 50, HButton = 75;
-
+    private static final int MAX_WIDTH = 350;
+    private static final int WIDTH = (int)(MAX_WIDTH * 0.9);
+    private static final int TEXTFIELD_HEIGHT = 50;
+    private static final int BUTTON_HEIGHT = 75;
     // Size of rigid areas placed between JComponent to create gaps.
-    private final Dimension SMALLRIGID = Decorations.sizeConverter(new Dimension(25, 25));
-    private final Dimension BIGRIGID = Decorations.sizeConverter(new Dimension(75, 75));
+    private static final Dimension SMALL_RIGID = Decorations.sizeConverter(new Dimension(25, 25));
+    private static final Dimension BIG_RIGID = Decorations.sizeConverter(new Dimension(75, 75));
+
+    /* Components */
+    private JLabel loginLabel;
+    private JTextField tfID;
+    private JPasswordField tfPassword;
+    private JButton connection;
+    private JButton createAccount;
+    private JButton continueWithoutConn;
+    /* Placeholders */
+    private String phID = "";
+    private String phPWD = "";
+    /* Dialog titles */
+    private String keyboardTitleID = "";
+    private String keyboardTitlePWD = "";
 
     /**
      * Constructor of {@code LoginPanel} 
@@ -59,48 +67,46 @@ class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObs
      *
      */
     public LoginPanel() {
+	loginLabel = new JLabel();
+	tfID = new JTextField();
+	tfPassword = new JPasswordField();
+	connection = new JButton();
+	createAccount = new JButton();
+	continueWithoutConn = new JButton();
+	this.createGUI();
+	
+    }
+
+    @Override
+    public void createGUI() {
         // JPanel options
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Set Login JLabel.
-        loginPanelLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loginPanelLabel.setBorder(new EmptyBorder(10, 20, 50, 20));
-        loginPanelLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
-        this.add(loginPanelLabel);
+        loginLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loginLabel.setBorder(new EmptyBorder(10, 20, 50, 20));
+        loginLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
+        this.add(loginLabel);
 
-        this.add(Box.createRigidArea(SMALLRIGID));
+        this.add(Box.createRigidArea(SMALL_RIGID));
 
         // Set ID JTextField.
-        setComponent(tfID, W, HTextField, Component.CENTER_ALIGNMENT);
+        setComponent(tfID, WIDTH, TEXTFIELD_HEIGHT, Component.CENTER_ALIGNMENT);
         tfID.setColumns(25);
 
-        tfID.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseReleased(MouseEvent e) { /* Unused. */ }
-
-            @Override
-            public void mousePressed(MouseEvent e) { /* Unused. */ }
-
-            @Override
-            public void mouseExited(MouseEvent e) { /* Unused. */ }
-
-            @Override
-            public void mouseEntered(MouseEvent e) { /* Unused. */ }
-
+        tfID.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 // if text is default value
-                if (tfID.getText().equals(placeholderID)) {
+                if (tfID.getText().equals(phID)) {
                     Decorations.resetDefaultPlaceholder(tfID);
                 }
                 // Get new text
                 String prompt = KeyboardDialog.showKeyboardDialog(keyboardTitleID, tfID);
-
+    
                 // If empty prompt
                 if (prompt.equals("")) {
-                    Decorations.setDefaultPlaceholder(tfID, placeholderID);
+                    Decorations.setDefaultPlaceholder(tfID, phID);
                 } else {
                     tfID.setText(prompt);
                 }
@@ -109,32 +115,20 @@ class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObs
 
         this.add(tfID);
 
-        this.add(Box.createRigidArea(SMALLRIGID)); // Gap.
+        this.add(Box.createRigidArea(SMALL_RIGID)); // Gap.
 
         // Set Password JPasswordField.
-        setComponent(tfPassword, W, HTextField, Component.CENTER_ALIGNMENT);
+        setComponent(tfPassword, WIDTH, TEXTFIELD_HEIGHT, Component.CENTER_ALIGNMENT);
         tfPassword.setColumns(25);
         tfPassword.setEchoChar((char) 0);
 
 
-        tfPassword.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseReleased(MouseEvent e) { /* Unused. */ }
-
-            @Override
-            public void mousePressed(MouseEvent e) { /* Unused. */ }
-
-            @Override
-            public void mouseExited(MouseEvent e) { /* Unused. */ }
-
-            @Override
-            public void mouseEntered(MouseEvent e) { /* Unused. */ }
+        tfPassword.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 // If nothing has been written. Remove the PlaceHolder.
-                if (Arrays.equals(tfPassword.getPassword(), placeholderPassword.toCharArray())) {
+                if (Arrays.equals(tfPassword.getPassword(), phPWD.toCharArray())) {
                     Decorations.resetDefaultPlaceholder(tfPassword);
                 }
 
@@ -142,12 +136,12 @@ class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObs
                 tfPassword.setEchoChar((char) 0);
 
                 // Get new prompt
-                String prompt = KeyboardDialog.showKeyboardDialog(keyboardTitlePassword, tfPassword);
+                String prompt = KeyboardDialog.showKeyboardDialog(keyboardTitlePWD, tfPassword);
 
                 // If empty prompt
                 if (prompt.equals("")) {
                     // Set to default
-                    Decorations.setDefaultPlaceholder(tfPassword, placeholderPassword);
+                    Decorations.setDefaultPlaceholder(tfPassword, phPWD);
                 } else {
                     // Hide what’s written.
                     tfPassword.setEchoChar('*');
@@ -158,44 +152,44 @@ class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObs
 
         this.add(tfPassword);
 
-        this.add(Box.createRigidArea(SMALLRIGID)); // Gap.
+        this.add(Box.createRigidArea(SMALL_RIGID)); // Gap.
 
         // Set connection JButton.
-        setComponent(connection, W / 2, HButton / 2, Component.LEFT_ALIGNMENT); // Component.LEFT_ALIGNMENT but a bit centered.
+        setComponent(connection, WIDTH / 2, BUTTON_HEIGHT / 2, Component.LEFT_ALIGNMENT); // Component.LEFT_ALIGNMENT but a bit centered.
         this.add(connection);
 
-        this.add(Box.createRigidArea(BIGRIGID)); // Gap.
+        this.add(Box.createRigidArea(BIG_RIGID)); // Gap.
 
         // Set create account JButton.
-        setComponent(createAccount, W, HButton, Component.CENTER_ALIGNMENT);
+        setComponent(createAccount, WIDTH, BUTTON_HEIGHT, Component.CENTER_ALIGNMENT);
         this.add(createAccount);
 
-        this.add(Box.createRigidArea(BIGRIGID)); // Gap.
+        this.add(Box.createRigidArea(BIG_RIGID)); // Gap.
 
         // set continue without connection JButton
-        setComponent(continueWithoutConn, W, HButton, Component.CENTER_ALIGNMENT);
+        setComponent(continueWithoutConn, WIDTH, BUTTON_HEIGHT, Component.CENTER_ALIGNMENT);
         this.add(continueWithoutConn);
 
-        this.setMinimumSize(new Dimension(maxW, 100));
-        this.setPreferredSize(new Dimension(maxW, 100));
-        this.setMaximumSize(new Dimension(maxW, 100));
+        this.setPreferredSize(new Dimension(MAX_WIDTH, 100));
+        
     }
-
+    
     /**
      * Private method to better reading of the constructor.
      * Set options of the given {@code component}.
      * @author MathysC
      *
      * @param component The component to set.
-     * @param W	The Width of the component.
-     * @param H The Height of the component.
+     * @param width	The Width of the component.
+     * @param height The Height of the component.
      * @param alignment The alignment of the component.
      */
-    private void setComponent(JComponent component, int W, int H, float alignment) {
+    private void setComponent(JComponent component, int width, int height, float alignment) {
         component.setAlignmentX(alignment);
-        component.setMinimumSize(Decorations.sizeConverter(new Dimension(W, H)));
-        component.setPreferredSize(Decorations.sizeConverter(new Dimension(W, H)));
-        component.setMaximumSize(Decorations.sizeConverter(new Dimension(W, H)));
+        component.setMinimumSize(Decorations.sizeConverter(new Dimension(width, height)));
+        component.setPreferredSize(Decorations.sizeConverter(new Dimension(width, height)));
+        component.setMaximumSize(Decorations.sizeConverter(new Dimension(width, height)));
+        
     }
 
     /**
@@ -207,22 +201,22 @@ class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObs
     public void setLanguage(ResourceBundle rb) {
 
         // Label
-        loginPanelLabel.setText(rb.getString("login_label"));
+        loginLabel.setText(rb.getString("login_label"));
 
         // ID JTextField
         // If the field wasn’t change. Change the placeholder
-        if (tfID.getText().equals(placeholderID))
+        if (tfID.getText().equals(phID))
             Decorations.setDefaultPlaceholder(tfID, rb.getString("login_id_placeholder"));
 
         // And change the String value for condition in FocusListener.
-        placeholderID = rb.getString("login_id_placeholder");
+        phID = rb.getString("login_id_placeholder");
 
         // Password JPasswordField
         // If the field wasn’t change. Change the placeholder
-        if (Arrays.equals(tfPassword.getPassword(), placeholderPassword.toCharArray()))
+        if (Arrays.equals(tfPassword.getPassword(), phPWD.toCharArray()))
             Decorations.setDefaultPlaceholder(tfPassword, rb.getString("login_pw_placeholder"));
         // And change the String value for condition in FocusListener.
-        placeholderPassword = rb.getString("login_pw_placeholder");
+        phPWD = rb.getString("login_pw_placeholder");
 
         // connection JButton
         connection.setText(rb.getString("login_in"));
@@ -235,7 +229,7 @@ class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObs
 
         // KeyboardDialog
         keyboardTitleID = rb.getString("login_id_vk_frameName");
-        keyboardTitlePassword = rb.getString("login_pw_vk_frameName");
+        keyboardTitlePWD = rb.getString("login_pw_vk_frameName");
     }
 
     @Override
@@ -247,7 +241,7 @@ class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObs
 	        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
 
 	        // Label
-	        this.loginPanelLabel.setForeground(Light.BLACK.getColor());
+	        this.loginLabel.setForeground(Light.BLACK.getColor());
 	        // ID TextField
 	        this.tfID.setBackground(Light.REVERSE_BG.getColor());
 	        this.tfID.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
@@ -281,7 +275,7 @@ class LoginPanel extends JPanel implements IMultilingualObserver, IColorThemeObs
 	        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUND.getColor()));
 
 	        // Label
-	        this.loginPanelLabel.setForeground(Dark.FOREGROUND.getColor());
+	        this.loginLabel.setForeground(Dark.FOREGROUND.getColor());
 
 	        // Id TextField
 	        this.tfID.setBackground(Dark.PURPLE.getColor());
