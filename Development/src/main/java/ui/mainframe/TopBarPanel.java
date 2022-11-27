@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ui.GUIComponent;
 import ui.utils.Decorations;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
@@ -26,7 +27,7 @@ import javax.swing.JButton;
  *
  */
 @SuppressWarnings("serial")
-public class TopBarPanel extends JPanel implements IColorThemeObserver {
+public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObserver {
     
     /* Actions */
     public static final String ACTION_EN = "Switch_to_fr";
@@ -64,53 +65,8 @@ public class TopBarPanel extends JPanel implements IColorThemeObserver {
      *
      */
     public TopBarPanel() {
-        // Set JPanel’s options.
-        this.setLayout(new BorderLayout());
-
-        // Logo.
-        logo.setPreferredSize(dimLogo);
-        logo.setIcon(Decorations.getImg(IMG_LOGO));
-        logo.setBorder(Decorations.getDefaultBorder());
-        this.add(logo, BorderLayout.WEST);
-
-        // Buttons’ JPanel.
-        options.setLayout(new FlowLayout(FlowLayout.TRAILING));
-        options.setBorder(Decorations.getDefaultBorder());
-        this.add(options, BorderLayout.EAST);
-        
-        // Search Button
-        setButton(searchButton, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_SEARCH_LIGHT), ACTION_SEARCH);
-        
-        // Color switch button.
-        setButton(colorSwitch, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_LIGHT), ACTION_LIGHT);
-
-        // Language switch button.
-        setButton(languageSwitch, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_EN), ACTION_EN);
-
-        // Ask for help button.
-        setButton(askForHelpButton, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
-
-    }
-
-    /**
-     * Set options of the given {@code component}.
-     * Private method to better reading of the constructor.
-     * @author MathysC
-     *
-     * @param button The JButton to set.
-     * @param dim The dimension of the button.
-     * @param icon The icon of the button.
-     * @param command The actionCommand of the button.
-     */
-    private void setButton(JButton button, Dimension dim, ImageIcon icon, String command) {
-        button.setMinimumSize(dim);
-        button.setPreferredSize(dim);
-        button.setMaximumSize(dim);
-        button.setIcon(icon);
-        button.setActionCommand(command);
-        button.setContentAreaFilled(false); // transparent
-        button.setBorderPainted(false); // without border
-        this.options.add(button);
+	this.createGUI();
+	
     }
 
     /**
@@ -153,6 +109,58 @@ public class TopBarPanel extends JPanel implements IColorThemeObserver {
         return searchButton;
     }
 
+    /**
+     * Set options of the given {@code component}.
+     * Private method to better reading of the constructor.
+     * @author MathysC
+     *
+     * @param button The JButton to set.
+     * @param dim The dimension of the button.
+     * @param icon The icon of the button.
+     * @param command The actionCommand of the button.
+     */
+    private void setButton(JButton button, Dimension dim, ImageIcon icon, String command) {
+        button.setMinimumSize(dim);
+        button.setPreferredSize(dim);
+        button.setMaximumSize(dim);
+        button.setIcon(icon);
+        button.setActionCommand(command);
+        button.setContentAreaFilled(false); // transparent
+        button.setBorderPainted(false); // without border
+        this.options.add(button);
+        
+    }
+    
+    @Override
+    public void createGUI() {
+        // Set JPanel’s options.
+        this.setLayout(new BorderLayout());
+
+        // Logo.
+        logo.setPreferredSize(dimLogo);
+        logo.setIcon(Decorations.getImg(IMG_LOGO));
+        logo.setBorder(Decorations.getDefaultBorder());
+        this.add(logo, BorderLayout.WEST);
+
+        // Buttons’ JPanel.
+        options.setLayout(new FlowLayout(FlowLayout.TRAILING));
+        options.setBorder(Decorations.getDefaultBorder());
+        this.add(options, BorderLayout.EAST);
+        
+        // Search Button.
+        setButton(searchButton, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_SEARCH_LIGHT), ACTION_SEARCH);
+        
+        // Color switch button.
+        setButton(colorSwitch, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_LIGHT), ACTION_LIGHT);
+
+        // Language switch button.
+        setButton(languageSwitch, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_EN), ACTION_EN);
+
+        // Ask for help button.
+        setButton(askForHelpButton, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
+	
+    }
+    
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {

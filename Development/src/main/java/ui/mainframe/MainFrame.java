@@ -6,6 +6,7 @@ import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
+import ui.GUIComponent;
 import ui.managers.FilmManager;
 import ui.managers.GUIManager;
 import ui.pages.actions.ActionPanel;
@@ -36,7 +37,7 @@ import fc.films.Support;
  * Main Class of AL2000. Initialize the machine Interface.
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame implements IColorThemeObserver {
+public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserver {
 
 	/* Icon */
 	public static final String ICO_APP = "App";
@@ -174,12 +175,8 @@ public class MainFrame extends JFrame implements IColorThemeObserver {
 	    return actionPanel;
 	}
 	
-	/**
-	 * Create and set all GUI Components.
-	 * @author MathysC
-	 *
-	 */
-	private void createGUI() {
+	@Override
+	public void createGUI() {
 	    
 	    // Set Icon
 	    this.setIconImage(Decorations.getIco(ICO_APP));
