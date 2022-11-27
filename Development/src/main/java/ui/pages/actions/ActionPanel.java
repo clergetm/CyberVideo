@@ -25,72 +25,144 @@ import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
+import ui.GUIComponent;
 import ui.mainframe.MainFrame;
 import ui.pages.FilmPage;
 import ui.pages.SearchPage;
 import ui.pages.cart.CartPanel;
 
 @SuppressWarnings("serial")
-public class ActionPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver {
+public class ActionPanel extends JPanel implements GUIComponent, IMultilingualObserver, IColorThemeObserver {
 
-    /* Search Items */
-    public static final String[] boxItems = {
-        "Title",
-        "Actor",
-        "Director"
-    };
-
-    /* Action Center Panel Part*/
-    protected JPanel actionCenterPanel = new JPanel(new BorderLayout());
-    protected JPanel topPanel = new JPanel(new BorderLayout());
-
-    /* Top Panel Components */
-    protected JPanel searchPanel = new JPanel(new FlowLayout());
-    protected JTextField tfSearch = new JTextField();
-    private String placeholder = "";
-    protected JComboBox <String> filterCBox = new JComboBox <> (boxItems);
-    protected JPanel commandPanel = new JPanel(new FlowLayout());
-    protected JButton undoButton = new JButton();
-    protected JButton redoButton = new JButton();
-    protected JButton connectionButton = new JButton();
-
-    /*Action pages */
-    private HashMap < Integer, JPanel > subActionsPanel = new HashMap < > ();
-//  TODO #39 change JPanel when FilmPage added
-    protected FilmPage filmPage = new FilmPage(); 
-    protected SearchPage searchPage = new SearchPage();
-    private int current_subAction;
-    /*Action actions*/
+    /* Actions */
     public static final String ACTION_UNDO = "Undo";
     public static final String ACTION_REDO = "Redo";
-
     /* Images */
     public static final String IMG_UNDO_LIGHT = "undoLight";
     public static final String IMG_UNDO_DARK = "undoDark";
     public static final String IMG_REDO_LIGHT = "redoLight";
     public static final String IMG_REDO_DARK = "redoDark";
+    /* Search Items */
+    private static final String[] BOX_ITEMS = {
+        "Title",
+        "Actor",
+        "Director"
+    };
 
+    /* Components */
+    private JPanel topPanel;
+    /* Top Part */
+    private JPanel searchPanel;
+    private JTextField tfSearch;
+    private JComboBox <String> filterCBox;
+    private JPanel commandPanel;
+    private JButton undoButton;
+    private JButton redoButton;
+    private JButton connectionButton;
+    /* Center Part */
+    private JPanel centerPanel;
+    private FilmPage filmPage; 
+    private SearchPage searchPage;
     /* Cart Part */
-    protected CartPanel cartPanel = new CartPanel();
+    private CartPanel cartPanel;
+    
+    /*Action pages */
+    private HashMap <Integer, JPanel> actionPanels;
+    private int currentActionPanel;
+  
+    private String placeholder;
 
     /**
-     * Constructor of ActionPanel, represent the Cart, and several Command buttons.
+     * Constructor of {@code ActionPanel}, represent the Cart, and several Command buttons.
      * @author MathysC
-     *
      */
     public ActionPanel() {
 //      TODO implement Client
-//	public ActionPanel(Client client){
+	topPanel = new JPanel(new BorderLayout());
+	searchPanel = new JPanel(new FlowLayout());
+	tfSearch = new JTextField();
+	filterCBox = new JComboBox <> (BOX_ITEMS);
+	commandPanel = new JPanel(new FlowLayout());
+	undoButton = new JButton();
+	redoButton = new JButton();
+	connectionButton = new JButton();
+	centerPanel = new JPanel(new BorderLayout());
+	filmPage = new FilmPage(); 
+	searchPage = new SearchPage();
+	cartPanel = new CartPanel();
 	this.createGUI();
+	
         /* Initialize subPanel map */
-        subActionsPanel.put(MainFrame.ID_RESULT_PAGE, searchPage);
-        subActionsPanel.put(MainFrame.ID_FILM_PAGE, filmPage);
-        current_subAction = MainFrame.ID_RESULT_PAGE;
+	actionPanels = new HashMap<>();
+        actionPanels.put(MainFrame.ID_RESULT_PAGE, searchPage);
+        actionPanels.put(MainFrame.ID_FILM_PAGE, filmPage);
+        currentActionPanel = MainFrame.ID_RESULT_PAGE;
    }
 
-    private void createGUI() {
+    /**
+     * Remove the current subAction Panel and add another one.
+     * @author MathysC
+     *
+     * @param id The ID of the Page to show.
+     */
+    public void changeCurrentActionPage(int id) {
+        this.centerPanel.remove(this.actionPanels.get(currentActionPanel));
+        this.centerPanel.add(this.actionPanels.get(id), BorderLayout.CENTER);
+        currentActionPanel = id;
+    }
+
+    /**
+     * @author MathysC
+     * @return the undo Button
+     */
+    public JButton getUndoButton() {
+        return undoButton;
+    }
+
+    /**
+     * @author MathysC
+     * @return the redo Button
+     */
+    public JButton getRedoButton() {
+        return redoButton;
+    }
+
+    /**
+     * @author MathysC
+     * @return the connection Button
+     */
+    public JButton getConnectionButton() {
+        return connectionButton;
+    }
+    
+    /**
+     * @author MathysC
+     * @return the cartPanel
+     */
+    public CartPanel getCartPanel() {
+	return cartPanel;
+    }
+
+    /**
+     * @author MathysC
+     * @return the searchPage
+     */
+    public SearchPage getSearchPage() {
+	return searchPage;
+    }
+
+    /**
+     * @author MathysC
+     * @return the filmPage
+     */
+    public FilmPage getFilmPage() {
+	return filmPage;
+    }
+
+    @Override
+    public void createGUI() {
 	this.setLayout(new BorderLayout());
-        actionCenterPanel.setOpaque(false);
+        centerPanel.setOpaque(false);
         topPanel.setOpaque(false);
         searchPanel.setOpaque(false);
         commandPanel.setOpaque(false);
@@ -166,57 +238,13 @@ public class ActionPanel extends JPanel implements IMultilingualObserver, IColor
 
         topPanel.add(commandPanel, BorderLayout.EAST);
 
-        actionCenterPanel.add(topPanel, BorderLayout.NORTH);
+        centerPanel.add(topPanel, BorderLayout.NORTH);
 
-        this.add(actionCenterPanel, BorderLayout.CENTER);
+        this.add(centerPanel, BorderLayout.CENTER);
         this.add(cartPanel, BorderLayout.EAST);
-    }
-
-    /**
-     * Remove the current subAction Panel and add another one.
-     * @author MathysC
-     *
-     * @param id The ID of the Page to show.
-     */
-    public void changeCurrentActionPage(int id) {
-        this.actionCenterPanel.remove(this.subActionsPanel.get(current_subAction));
-        this.actionCenterPanel.add(this.subActionsPanel.get(id), BorderLayout.CENTER);
-        current_subAction = id;
-    }
-
-    public JButton getUndoButton() {
-        return undoButton;
-    }
-
-    public JButton getRedoButton() {
-        return redoButton;
-    }
-
-    public JButton getConnectionButton() {
-        return connectionButton;
+        
     }
     
-    /**
-     * @return the cartPanel
-     */
-    public CartPanel getCartPanel() {
-	return cartPanel;
-    }
-
-    /**
-     * @return the searchPage
-     */
-    public SearchPage getSearchPage() {
-	return searchPage;
-    }
-
-    /**
-     * @return the filmPage
-     */
-    public FilmPage getFilmPage() {
-	return filmPage;
-    }
-
     @Override
     public void setLanguage(ResourceBundle rb) {
         connectionButton.setText(rb.getString("login_in"));
