@@ -40,31 +40,27 @@ public class MainFrame extends JFrame implements IColorThemeObserver {
 
 	/* Icon */
 	public static final String ICO_APP = "App";
-
 	/* Banners */
 	public static final String IMG_BANNER_IT = "BannerIT";
 	public static final String IMG_BANNER_POLICE = "BannerPOLICE";
 	public static final String IMG_BANNER_DESERT = "BannerDESERT";
+	/* Pages */
+	public static final int ID_WELCOME_PAGE = 0;
+	public static final int ID_RESULT_PAGE = 1;
+	public static final int ID_FILM_PAGE = 2;
 	
 	/* Components */
 	private TopBarPanel topBarPanel;
 	private JLabel banner;
 	private WelcomePage welcomePage;
 	private ActionPanel actionPanel;
-	
 	/* Pages */
 	private HashMap<Integer, JPanel> pages;
 	private int currentPage;
-	public static final int ID_WELCOME_PAGE = 0;
-	public static final int ID_RESULT_PAGE = 1;
-	public static final int ID_FILM_PAGE = 2;
-
 	/* FC */
 	private AL2000 fc;
-	
 	/* Films */
 	private FilmManager filmManager; 
-	
 	/* Languages and Color Themes */
 	private GUIManager guiManager;
 	
@@ -152,6 +148,30 @@ public class MainFrame extends JFrame implements IColorThemeObserver {
 	    
 	    this.filmManager.addFilm(film);
 	    this.actionPanel.getSearchPage().addResult(film);
+	}
+	
+	/**
+	 * @author MathysC
+	 * @return the topBarPanel
+	 */
+	public TopBarPanel getTopBarPanel() {
+	    return topBarPanel;
+	}
+
+	/**
+	 * @author MathysC
+	 * @return the welcomePage
+	 */
+	public WelcomePage getWelcomePage() {
+	    return welcomePage;
+	}
+
+	/**
+	 * @author MathysC
+	 * @return the actionPanel
+	 */
+	public ActionPanel getActionPanel() {
+	    return actionPanel;
 	}
 	
 	/**
@@ -252,25 +272,4 @@ public class MainFrame extends JFrame implements IColorThemeObserver {
 	    SwingUtilities.invokeLater(() -> new MainFrame().start());    
 	}
 
-	/**
-	 * @return the topBarPanel
-	 */
-	public TopBarPanel getTopBarPanel() {
-	    return topBarPanel;
-	}
-
-	/**
-	 * @return the welcomePage
-	 */
-	public WelcomePage getWelcomePage() {
-	    return welcomePage;
-	}
-
-	/**
-	 * @return the actionPanel
-	 */
-	public ActionPanel getActionPanel() {
-	    return actionPanel;
-	}
-	
 }
