@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import ui.GUIComponent;
 import ui.managers.GUIManager;
 import ui.managers.panels.FilmManagerPanel;
 import ui.utils.Decorations;
@@ -27,12 +28,12 @@ import ui.utils.observer.multilingual.IMultilingualObserver;
  *
  */
 @SuppressWarnings("serial")
-public class SuggestionsPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver {
+public class SuggestionsPanel extends JPanel implements GUIComponent, IMultilingualObserver, IColorThemeObserver {
 
-	/* Components */
-    protected JLabel sugLabel = new JLabel();
-    protected JScrollPane filmsPane;
-    private FilmManagerPanel manager;
+    /* Components */
+    private JLabel sugLabel;
+    private JScrollPane filmsPane;
+    private FilmManagerPanel suggestionManager;
 
     /**
      * Constructor of {@code SuggestionsPanel} 
@@ -41,7 +42,14 @@ public class SuggestionsPanel extends JPanel implements IMultilingualObserver, I
      *
      */
     public SuggestionsPanel() {
-        // JPanel Options.
+        sugLabel = new JLabel();
+        this.createGUI();
+        
+    }
+    
+    @Override
+    public void createGUI() {
+	// JPanel Options.
         this.setLayout(new BorderLayout());
 
         // Label
@@ -50,21 +58,14 @@ public class SuggestionsPanel extends JPanel implements IMultilingualObserver, I
         this.add(sugLabel, BorderLayout.NORTH);
 
         // JScrollPane
-        manager = new FilmManagerPanel(new GridLayout(0, 4), 100);
-        filmsPane = new JScrollPane(manager, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        suggestionManager = new FilmManagerPanel(new GridLayout(0, 4), 100);
+        filmsPane = new JScrollPane(suggestionManager, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	filmsPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(filmsPane, BorderLayout.CENTER);
         
-        GUIManager.getInstance().registerColorTheme(manager);
+        GUIManager.getInstance().registerColorTheme(suggestionManager);
+	
     }
-
-    /**
-     * Getter of filmManager of {@code SuggestionsPanel}
-     * @author MathysC
-     *
-     * @return FilmManager
-     */
-    public FilmManagerPanel getFilmManager() { return this.manager; }
     
     @Override
     public void setLanguage(ResourceBundle rb) {
