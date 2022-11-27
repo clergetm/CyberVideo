@@ -10,20 +10,20 @@ import javax.swing.border.EmptyBorder;
  * @author Clarisse
  */
 enum SCREEN {
-	HEIGHT(864),
-	WIDTH(1536),
-	CURENT_HEIGHT((int)java.awt.Toolkit.getDefaultToolkit().getScreenSize().getHeight()),
-	CURENT_WIDTH((int)java.awt.Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+    HEIGHT(864),
+    WIDTH(1536),
+    CURRENT_HEIGHT((int)java.awt.Toolkit.getDefaultToolkit().getScreenSize().getHeight()),
+    CURRENT_WIDTH((int)java.awt.Toolkit.getDefaultToolkit().getScreenSize().getWidth());
 	
-	private int length;
+    private int length;
 
-	SCREEN(int l){
-		this.length = l;
-	}
+    SCREEN(int lgt){
+	this.length = lgt;
+    }
 
-	public int getLength() {
-		return this.length;
-	}
+    public int getLength() {
+	return this.length;
+    }
 }
 
 
@@ -41,8 +41,8 @@ public enum Decorations {
 
     private String decoration;
 
-    Decorations(String o) {
-        this.decoration = o;
+    Decorations(String dcrt) {
+        this.decoration = dcrt;
     }
     
     /**
@@ -86,8 +86,8 @@ public enum Decorations {
      * @return the dimension based on the current screen size
      */
     public static Dimension sizeConverter(Dimension dim) {
-	return new Dimension((dim.width*SCREEN.CURENT_WIDTH.getLength())/SCREEN.WIDTH.getLength(),
-		(dim.height*SCREEN.CURENT_HEIGHT.getLength())/SCREEN.HEIGHT.getLength());
+	return new Dimension((dim.width*SCREEN.CURRENT_WIDTH.getLength())/SCREEN.WIDTH.getLength(),
+		(dim.height*SCREEN.CURRENT_HEIGHT.getLength())/SCREEN.HEIGHT.getLength());
     }
     
     /**
