@@ -55,10 +55,10 @@ public class Interaction implements ActionListener {
         this.mainFrame = m;
 
         /* Listeners */
-        mainFrame.getTopBarPanel().languageSwitch.addActionListener(this);
-        mainFrame.getTopBarPanel().askForHelpButton.addActionListener(this);
-        mainFrame.getTopBarPanel().colorSwitch.addActionListener(this);
-        mainFrame.getTopBarPanel().searchButton.addActionListener(this);
+        mainFrame.getTopBarPanel().getLanguageSwitch().addActionListener(this);
+        mainFrame.getTopBarPanel().getAskForHelpButton().addActionListener(this);
+        mainFrame.getTopBarPanel().getColorSwitch().addActionListener(this);
+        mainFrame.getTopBarPanel().getSearchButton().addActionListener(this);
         mainFrame.getActionPanel().getUndoButton().addActionListener(this);
         mainFrame.getActionPanel().getRedoButton().addActionListener(this);
         mainFrame.getActionPanel().getConnectionButton().addActionListener(this);
@@ -71,28 +71,28 @@ public class Interaction implements ActionListener {
         case TopBarPanel.ACTION_SEARCH:
             // Go to Search Page
             mainFrame.changeCurrentPage(MainFrame.ID_RESULT_PAGE);
-            mainFrame.getTopBarPanel().searchButton.setActionCommand(TopBarPanel.ACTION_WELCOME);
+            mainFrame.getTopBarPanel().getSearchButton().setActionCommand(TopBarPanel.ACTION_WELCOME);
             break;
 
         case TopBarPanel.ACTION_WELCOME:
             // Go to Welcome Page
             mainFrame.changeCurrentPage(MainFrame.ID_WELCOME_PAGE);
-            mainFrame.getTopBarPanel().searchButton.setActionCommand(TopBarPanel.ACTION_SEARCH);
+            mainFrame.getTopBarPanel().getSearchButton().setActionCommand(TopBarPanel.ACTION_SEARCH);
             break;
             
             // Handle Language Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_EN:
             // Change from English to French
             GUIManager.getInstance().notifyMultilingualObservers(Languages.FRENCH);
-            mainFrame.getTopBarPanel().languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
-            mainFrame.getTopBarPanel().languageSwitch.setActionCommand(TopBarPanel.ACTION_FR);
+            mainFrame.getTopBarPanel().getLanguageSwitch().setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
+            mainFrame.getTopBarPanel().getLanguageSwitch().setActionCommand(TopBarPanel.ACTION_FR);
             break;
             
         case TopBarPanel.ACTION_FR:
             // Change from French to English
             GUIManager.getInstance().notifyMultilingualObservers(Languages.ENGLISH);
-            mainFrame.getTopBarPanel().languageSwitch.setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
-            mainFrame.getTopBarPanel().languageSwitch.setActionCommand(TopBarPanel.ACTION_EN);
+            mainFrame.getTopBarPanel().getLanguageSwitch().setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
+            mainFrame.getTopBarPanel().getLanguageSwitch().setActionCommand(TopBarPanel.ACTION_EN);
             break;
 
             // Handle askForHelp button from the TopBarPanel.

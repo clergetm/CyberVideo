@@ -27,18 +27,7 @@ import javax.swing.JButton;
  */
 @SuppressWarnings("serial")
 public class TopBarPanel extends JPanel implements IColorThemeObserver {
-
-    /* Components */
-    protected JLabel logo = new JLabel();
-    protected JPanel options = new JPanel();
-    protected JButton colorSwitch = new JButton();
-    protected JButton languageSwitch = new JButton();
-    protected JButton askForHelpButton = new JButton();
-    protected JButton searchButton = new JButton();
     
-    /* Options */
-    private final Dimension DIM_LOGO = new Dimension(200, 150);
-
     /* Actions */
     public static final String ACTION_EN = "Switch_to_fr";
     public static final String ACTION_FR = "Switch_to_en";
@@ -47,7 +36,7 @@ public class TopBarPanel extends JPanel implements IColorThemeObserver {
     public static final String ACTION_LIGHT = "Switch_to_Dark";
     public static final String ACTION_SEARCH = "Go_to_Search_page";
     public static final String ACTION_WELCOME = "Go_to_Welcome_page";
-    /* Icons */
+    /* Images */
     public static final String IMG_LOGO = "Light_Logo";
     public static final String IMG_FR = "CurrentFR";
     public static final String IMG_EN = "CurrentEN";
@@ -55,9 +44,19 @@ public class TopBarPanel extends JPanel implements IColorThemeObserver {
     public static final String IMG_DARK = "CurrentDark";
     public static final String IMG_QUESTION_LIGHT = "QuestionLight";
     public static final String IMG_QUESTION_DARK = "QuestionDark";
-    
     public static final String IMG_SEARCH_LIGHT = "searchLight";
     public static final String IMG_SEARCH_DARK = "searchDark";
+
+    /* Components */
+    private JLabel logo = new JLabel();
+    private JPanel options = new JPanel();
+    private JButton colorSwitch = new JButton();
+    private JButton languageSwitch = new JButton();
+    private JButton askForHelpButton = new JButton();
+    private JButton searchButton = new JButton();   
+    /* Options */
+    private final Dimension dimLogo = Decorations.sizeConverter(new Dimension(200, 150));
+
     /**
      * Constructor of TopBar.
      * Set JPanel options and add components.
@@ -69,7 +68,7 @@ public class TopBarPanel extends JPanel implements IColorThemeObserver {
         this.setLayout(new BorderLayout());
 
         // Logo.
-        logo.setPreferredSize(DIM_LOGO);
+        logo.setPreferredSize(dimLogo);
         logo.setIcon(Decorations.getImg(IMG_LOGO));
         logo.setBorder(Decorations.getDefaultBorder());
         this.add(logo, BorderLayout.WEST);
@@ -114,41 +113,82 @@ public class TopBarPanel extends JPanel implements IColorThemeObserver {
         this.options.add(button);
     }
 
-	@Override
-	public void setColorTheme(ColorThemes colorTheme) {
-	    switch(colorTheme) {
-	    case LIGHTTHEME:
-		// This Panel
-		this.setBackground(Light.BG.getColor());
-		this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Light.BLACK.getColor()));
+    /**
+     * @author MathysC
+     * @return the options
+     */
+    public JPanel getOptions() {
+        return options;
+    }
 
-		// Options Panel
-		this.options.setBackground(Light.BG.getColor());
+    /**
+     * @author MathysC
+     * @return the colorSwitch
+     */
+    public JButton getColorSwitch() {
+        return colorSwitch;
+    }
 
-		// Buttons
-		colorSwitch.setIcon(Decorations.getImg(IMG_LIGHT));
-		colorSwitch.setActionCommand(ACTION_LIGHT);
-		askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_LIGHT));
-		searchButton.setIcon(Decorations.getImg(IMG_SEARCH_LIGHT));
-		break;
+    /**
+     * @author MathysC
+     * @return the languageSwitch
+     */
+    public JButton getLanguageSwitch() {
+        return languageSwitch;
+    }
+
+    /**
+     * @author MathysC
+     * @return the askForHelpButton
+     */
+    public JButton getAskForHelpButton() {
+        return askForHelpButton;
+    }
+
+    /**
+     * @author MathysC
+     * @return the searchButton
+     */
+    public JButton getSearchButton() {
+        return searchButton;
+    }
+
+    @Override
+    public void setColorTheme(ColorThemes colorTheme) {
+	switch(colorTheme) {
+	case LIGHTTHEME:
+	    // This Panel
+	    this.setBackground(Light.BG.getColor());
+	    this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Light.BLACK.getColor()));
+
+	    // Options Panel
+	    this.options.setBackground(Light.BG.getColor());
+
+	    // Buttons
+	    colorSwitch.setIcon(Decorations.getImg(IMG_LIGHT));
+	    colorSwitch.setActionCommand(ACTION_LIGHT);
+	    askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_LIGHT));
+	    searchButton.setIcon(Decorations.getImg(IMG_SEARCH_LIGHT));
+	    break;
 		
-	    case DARKTHEME:
-		// This Panel
-		this.setBackground(Dark.BG.getColor());
-		this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Dark.FOREGROUND.getColor()));
+	case DARKTHEME:
+	    // This Panel
+	    this.setBackground(Dark.BG.getColor());
+	    this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Dark.FOREGROUND.getColor()));
+	    // Options Panel
+	    this.options.setBackground(Dark.BG.getColor());
 
-		// Options Panel
-		this.options.setBackground(Dark.BG.getColor());
-		
-		// Buttons
-		colorSwitch.setIcon(Decorations.getImg(IMG_DARK));
-		colorSwitch.setActionCommand(ACTION_DARK);
-		askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_DARK));
-		searchButton.setIcon(Decorations.getImg(IMG_SEARCH_DARK));
-		break;
-	    default:
-		break;
-	    }
+	    // Buttons
+	    colorSwitch.setIcon(Decorations.getImg(IMG_DARK));
+	    colorSwitch.setActionCommand(ACTION_DARK);
+	    askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_DARK));
+	    searchButton.setIcon(Decorations.getImg(IMG_SEARCH_DARK));
+	    break;
 	    
+	default:
+	    break;
 	}
+	
+    }
+    
 }
