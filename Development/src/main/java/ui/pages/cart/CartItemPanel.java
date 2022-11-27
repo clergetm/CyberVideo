@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fc.films.Film;
+import ui.GUIComponent;
 import ui.utils.Decorations;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
@@ -23,15 +24,15 @@ import ui.utils.observer.multilingual.IMultilingualObserver;
  *
  */
 @SuppressWarnings("serial")
-public class CartItemPanel extends JPanel implements IMultilingualObserver, IColorThemeObserver {
+public class CartItemPanel extends JPanel implements GUIComponent, IMultilingualObserver, IColorThemeObserver {
 
-    private JLabel poster = new JLabel(); // Poster on the left.
-    private JPanel cartOptions = new JPanel(); // Options on the right
-    private JLabel titleLabel = new JLabel(); // Title on the top right.
-    private JPanel bottomPanel = new JPanel(); // Buttons on the bottom right.
-    private JLabel supportLabel = new JLabel();
-    private JButton moreButton = new JButton();
-    private JButton removeButton = new JButton();
+    private JLabel poster; // Poster on the left.
+    private JPanel cartOptions; // Options on the right
+    private JLabel titleLabel; // Title on the top right.
+    private JPanel bottomPanel; // Buttons on the bottom right.
+    private JLabel supportLabel; // e.g. `Blu-Ray` or `QR Code`.
+    private JButton moreButton; // Go to FilmPage.
+    private JButton removeButton; // Remove from the cart.
 
     /**
      * Constructor of {@code CartItemPanel}. Create the GUI
@@ -41,24 +42,36 @@ public class CartItemPanel extends JPanel implements IMultilingualObserver, ICol
      * @param supportType How the film is wanted. 
      */
     public CartItemPanel(Film film, String supportType) {
-        this.setLayout(new GridLayout(0,2));
-        this.setBorder(Decorations.getDefaultBorder());
-        cartOptions.setLayout(new BorderLayout());
-        
-        /* Poster */
+	poster = new JLabel();
+	cartOptions = new JPanel();
+	titleLabel = new JLabel();
+	bottomPanel = new JPanel();
+	supportLabel = new JLabel();
+	moreButton = new JButton();
+	removeButton = new JButton();
+	
+	this.createGUI();
+        titleLabel.setText(film.getTitle());
+        supportLabel.setText(supportType);
         // poster.setIcon(film.getIcon()); // TODO #8 getter of the film Icon
         poster.setIcon(Decorations.getImg(Decorations.IMG_FILM.toString()));
+
+    }
+
+    @Override
+    public void createGUI() {
+	this.setLayout(new GridLayout(0,2));
+        this.setBorder(Decorations.getDefaultBorder());
+        
+        /* Poster */
         this.add(poster);
         
         /* Cart Options */
-        // Same size as the poster.
+        cartOptions.setLayout(new BorderLayout());
         cartOptions.setPreferredSize(poster.getPreferredSize());        
-        
-        titleLabel.setText(film.getTitle());
         cartOptions.add(titleLabel,BorderLayout.NORTH);
         
         bottomPanel.setLayout(new GridLayout(3,0));
-        supportLabel.setText(supportType);
         bottomPanel.add(supportLabel);
         
         moreButton.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
@@ -67,8 +80,9 @@ public class CartItemPanel extends JPanel implements IMultilingualObserver, ICol
         
         cartOptions.add(bottomPanel, BorderLayout.SOUTH);
         this.add(cartOptions);
+	
     }
-
+    
     @Override
     public void setLanguage(ResourceBundle rb) {
         this.moreButton.setText(rb.getString("checkout_info"));
