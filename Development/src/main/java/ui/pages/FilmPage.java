@@ -1,10 +1,8 @@
 package ui.pages;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.time.Year;
 import java.util.ResourceBundle;
 
 
@@ -13,45 +11,48 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import fc.films.AgeRestriction;
-import fc.films.BluRay;
-import fc.films.Categories;
 import fc.films.Film;
-import fc.films.QRCode;
-import fc.films.StatesBluRay;
-import fc.films.Support;
+import ui.GUIComponent;
 import ui.utils.Decorations;
 import ui.utils.factory.filmpanel.factories.FilmCartPanel;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
-import ui.utils.observer.colortheme.palettes.Dark;
-import ui.utils.observer.colortheme.palettes.Light;
 import ui.utils.observer.multilingual.IMultilingualObserver;
 
 
+/**
+ * The FilmPage graphically presents the information of a film
+ * @author MathysC
+ *
+ */
 @SuppressWarnings("serial")
-public class FilmPage extends JPanel implements IMultilingualObserver, IColorThemeObserver{
+public class FilmPage extends JPanel implements GUIComponent, IMultilingualObserver, IColorThemeObserver{
 
+    /* Components */
     private JPanel infoPanel; // Info on right : all the text
     private JPanel posterPanel;
-
     private JLabel titleLabel;
     private JLabel actorsLabel;
     private JLabel synopsisLabel;
     private JLabel directorLabel;
 
+    /**
+     * Default constructor of {@code FilmPage}
+     * @author MathysC
+     *
+     */
     public FilmPage() {
 	// Initialisaiton des attributs d'instances 
 	infoPanel= new JPanel();
 	posterPanel = new JPanel();
-	setLayout(new BorderLayout());
 	createGUI();
 
     }
 
-    private void createGUI() {
+    @Override
+    public void createGUI() {
+	setLayout(new BorderLayout());
 	infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-	
 	titleLabel = new JLabel("TITRE");
 	titleLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
 	infoPanel.add(titleLabel);
@@ -72,67 +73,66 @@ public class FilmPage extends JPanel implements IMultilingualObserver, IColorThe
 	
 	}
 
-	private void showFilm(FilmCartPanel filmCart) {
-	    Film film = filmCart.getFilm();
+    public void showFilm(FilmCartPanel filmCart) {
+	Film film = filmCart.getFilm();
 
-	    infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-
-
-	    titleLabel.setText(film.getTitle());
-	    titleLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
-	    infoPanel.add(titleLabel);
-
-	    // Informations for the synopsis
-	    synopsisLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
-	    infoPanel.add(synopsisLabel);
-	    JTextArea synopsisText = new JTextArea(1,5);
-	    synopsisText.setText(film.getSynopsis());
-	    synopsisText.setMaximumSize(new Dimension(Short.MAX_VALUE,100));
-	    synopsisText.setEditable(false);
-	    synopsisText.setFocusable(false);
-	    synopsisText.setLineWrap(true);
-	    synopsisText.setWrapStyleWord(true);
-	    synopsisText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
-	    synopsisText.setOpaque(false);
-	    infoPanel.add(synopsisText);
-
-	    // Informations for actors
-	    actorsLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
-	    infoPanel.add(actorsLabel);
-	    JTextArea actorsText = new JTextArea(1,2);
-	    actorsText.setText(film.toStringActors());
-	    actorsText.setMaximumSize(new Dimension(Short.MAX_VALUE,20));	
-	    actorsText.setFocusable(false);
-	    actorsText.setEditable(false);
-	    actorsText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
-	    actorsText.setOpaque(false);
-	    infoPanel.add(actorsText);
-
-	    // Information for the director
-	    directorLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
-	    infoPanel.add(directorLabel);
-	    JTextArea directorsText = new JTextArea(1,1);
-	    directorsText.setMaximumSize(new Dimension(Short.MAX_VALUE,20));	
-	    directorsText.setEditable(false);
-	    directorsText.setFocusable(false);
-	    directorsText.setText(film.getNamesDirector());
-	    directorsText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
-	    directorsText.setOpaque(false);
-	    infoPanel.add(directorsText);
-	    infoPanel.add(Box.createVerticalGlue());
-
-	    FilmCartPanel filmCartPanel = new FilmCartPanel(film);
-	    filmCartPanel.setScale(200);
-	    posterPanel.setLayout(new BoxLayout(posterPanel,BoxLayout.Y_AXIS));
-	    posterPanel.add(Box.createVerticalGlue());
-	    posterPanel.add(filmCartPanel);
-	    posterPanel.add(Box.createVerticalGlue());
+	infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
 
-	    this.add(posterPanel, BorderLayout.WEST);
-	    this.add(infoPanel, BorderLayout.CENTER);	
+	titleLabel.setText(film.getTitle());
+	titleLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 20));
+	infoPanel.add(titleLabel);
+
+	// Informations for the synopsis
+	synopsisLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
+	infoPanel.add(synopsisLabel);
+	JTextArea synopsisText = new JTextArea(1,5);
+	synopsisText.setText(film.getSynopsis());
+	synopsisText.setMaximumSize(new Dimension(Short.MAX_VALUE,100));
+	synopsisText.setEditable(false);
+	synopsisText.setFocusable(false);
+	synopsisText.setLineWrap(true);
+	synopsisText.setWrapStyleWord(true);
+	synopsisText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
+	synopsisText.setOpaque(false);
+	infoPanel.add(synopsisText);
+
+	// Informations for actors
+	actorsLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
+	infoPanel.add(actorsLabel);
+	JTextArea actorsText = new JTextArea(1,2);
+	actorsText.setText(film.toStringActors());
+	actorsText.setMaximumSize(new Dimension(Short.MAX_VALUE,20));	
+	actorsText.setFocusable(false);
+	actorsText.setEditable(false);
+	actorsText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
+	actorsText.setOpaque(false);
+	infoPanel.add(actorsText);
+
+	// Information for the director
+	directorLabel.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 16));
+	infoPanel.add(directorLabel);
+	JTextArea directorsText = new JTextArea(1,1);
+	directorsText.setMaximumSize(new Dimension(Short.MAX_VALUE,20));	
+	directorsText.setEditable(false);
+	directorsText.setFocusable(false);
+	directorsText.setText(film.getNamesDirector());
+	directorsText.setFont(Decorations.FONT_BASIC.getFont(Font.PLAIN, 12));
+	directorsText.setOpaque(false);
+	infoPanel.add(directorsText);
+	infoPanel.add(Box.createVerticalGlue());
+
+	FilmCartPanel filmCartPanel = new FilmCartPanel(film);
+	filmCartPanel.setScale(200);
+	posterPanel.setLayout(new BoxLayout(posterPanel,BoxLayout.Y_AXIS));
+	posterPanel.add(Box.createVerticalGlue());
+	posterPanel.add(filmCartPanel);
+	posterPanel.add(Box.createVerticalGlue());
+
+	this.add(posterPanel, BorderLayout.WEST);
+	this.add(infoPanel, BorderLayout.CENTER);	
 	    
-	}
+    }
 
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
