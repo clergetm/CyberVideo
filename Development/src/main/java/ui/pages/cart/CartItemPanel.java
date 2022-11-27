@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import fc.films.Film;
 import ui.GUIComponent;
 import ui.utils.Decorations;
+import ui.utils.Resources;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
@@ -54,7 +55,7 @@ public class CartItemPanel extends JPanel implements GUIComponent, IMultilingual
         titleLabel.setText(film.getTitle());
         supportLabel.setText(supportType);
         // poster.setIcon(film.getIcon()); // TODO #8 getter of the film Icon
-        poster.setIcon(Decorations.getImg(Decorations.IMG_FILM.toString()));
+        poster.setIcon(Resources.getImg(Resources.IMG_FILM.toString()));
 
     }
 

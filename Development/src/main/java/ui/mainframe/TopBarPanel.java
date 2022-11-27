@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import ui.GUIComponent;
 import ui.utils.Decorations;
+import ui.utils.Resources;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
@@ -138,7 +139,7 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
 
         // Logo.
         logo.setPreferredSize(dimLogo);
-        logo.setIcon(Decorations.getImg(IMG_LOGO));
+        logo.setIcon(Resources.getImg(IMG_LOGO));
         logo.setBorder(Decorations.getDefaultBorder());
         this.add(logo, BorderLayout.WEST);
 
@@ -148,16 +149,16 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
         this.add(options, BorderLayout.EAST);
         
         // Search Button.
-        setButton(searchButton, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_SEARCH_LIGHT), ACTION_SEARCH);
+        setButton(searchButton, Decorations.getDefaultButtonDimension(), Resources.getImg(IMG_SEARCH_LIGHT), ACTION_SEARCH);
         
         // Color switch button.
-        setButton(colorSwitch, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_LIGHT), ACTION_LIGHT);
+        setButton(colorSwitch, Decorations.getDefaultButtonDimension(), Resources.getImg(IMG_LIGHT), ACTION_LIGHT);
 
         // Language switch button.
-        setButton(languageSwitch, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_EN), ACTION_EN);
+        setButton(languageSwitch, Decorations.getDefaultButtonDimension(), Resources.getImg(IMG_EN), ACTION_EN);
 
         // Ask for help button.
-        setButton(askForHelpButton, Decorations.getDefaultButtonDimension(), Decorations.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
+        setButton(askForHelpButton, Decorations.getDefaultButtonDimension(), Resources.getImg(IMG_QUESTION_LIGHT), ACTION_HELP);
 	
     }
     
@@ -173,10 +174,10 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
 	    this.options.setBackground(Light.BG.getColor());
 
 	    // Buttons
-	    colorSwitch.setIcon(Decorations.getImg(IMG_LIGHT));
+	    colorSwitch.setIcon(Resources.getImg(IMG_LIGHT));
 	    colorSwitch.setActionCommand(ACTION_LIGHT);
-	    askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_LIGHT));
-	    searchButton.setIcon(Decorations.getImg(IMG_SEARCH_LIGHT));
+	    askForHelpButton.setIcon(Resources.getImg(IMG_QUESTION_LIGHT));
+	    searchButton.setIcon(Resources.getImg(IMG_SEARCH_LIGHT));
 	    break;
 		
 	case DARKTHEME:
@@ -187,10 +188,10 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
 	    this.options.setBackground(Dark.BG.getColor());
 
 	    // Buttons
-	    colorSwitch.setIcon(Decorations.getImg(IMG_DARK));
+	    colorSwitch.setIcon(Resources.getImg(IMG_DARK));
 	    colorSwitch.setActionCommand(ACTION_DARK);
-	    askForHelpButton.setIcon(Decorations.getImg(IMG_QUESTION_DARK));
-	    searchButton.setIcon(Decorations.getImg(IMG_SEARCH_DARK));
+	    askForHelpButton.setIcon(Resources.getImg(IMG_QUESTION_DARK));
+	    searchButton.setIcon(Resources.getImg(IMG_SEARCH_DARK));
 	    break;
 	    
 	default:

@@ -17,6 +17,7 @@ import fc.films.Film;
 import fc.films.Support;
 import ui.managers.GUIManager;
 import ui.utils.Decorations;
+import ui.utils.Resources;
 import ui.utils.factory.filmpanel.products.FilmPanelButton;
 
 /**
@@ -50,7 +51,7 @@ public abstract class FilmPanel extends JPanel {
     protected FilmPanel(Film film) {
 	this.film = film;
 	// TODO #8 Find a way to put the right poster for each movie
-	posterImage = Decorations.getImg(Decorations.IMG_FILM.toString()); 
+	posterImage = Resources.getImg(Resources.IMG_FILM.toString()); 
 	this.createGUI();
 	this.setScale(100);
     }

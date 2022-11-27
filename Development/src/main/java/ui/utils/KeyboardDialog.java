@@ -83,7 +83,7 @@ public class KeyboardDialog extends JDialog implements ActionListener, IMultilin
         this.createGUI();
     }
     private void createGUI() {
-	this.setIconImage(Decorations.getIco(ICO_KEYBOARD));
+	this.setIconImage(Resources.getIco(ICO_KEYBOARD));
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocation(10, 400);

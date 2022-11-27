@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 
 import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
+import ui.utils.Resources;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
@@ -272,8 +273,8 @@ public class ActionPanel extends JPanel implements GUIComponent, IMultilingualOb
 	        filterCBox.setForeground(Light.WHITE.getColor());
 
 	        // Buttons
-	        undoButton.setIcon(Decorations.getImg(IMG_UNDO_LIGHT));
-	        redoButton.setIcon(Decorations.getImg(IMG_REDO_LIGHT));
+	        undoButton.setIcon(Resources.getImg(IMG_UNDO_LIGHT));
+	        redoButton.setIcon(Resources.getImg(IMG_REDO_LIGHT));
 	        connectionButton.setBackground(Light.BLUE.getColor());
 	        connectionButton.setForeground(Light.WHITE.getColor());
 	        
@@ -290,8 +291,8 @@ public class ActionPanel extends JPanel implements GUIComponent, IMultilingualOb
 	        filterCBox.setForeground(Dark.FOREGROUND.getColor());
 	        
 	        // Buttons
-	        undoButton.setIcon(Decorations.getImg(IMG_UNDO_DARK));
-	        redoButton.setIcon(Decorations.getImg(IMG_REDO_DARK));
+	        undoButton.setIcon(Resources.getImg(IMG_UNDO_DARK));
+	        redoButton.setIcon(Resources.getImg(IMG_REDO_DARK));
 	        connectionButton.setBackground(Dark.BLUE.getColor());
 	        connectionButton.setForeground(Dark.FOREGROUND.getColor());
 

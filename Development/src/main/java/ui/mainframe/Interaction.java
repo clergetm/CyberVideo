@@ -1,7 +1,7 @@
 package ui.mainframe;
 
 import ui.managers.GUIManager;
-import ui.utils.Decorations;
+import ui.utils.Resources;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.multilingual.Languages;
 
@@ -84,20 +84,20 @@ public class Interaction implements ActionListener {
         case TopBarPanel.ACTION_EN:
             // Change from English to French
             GUIManager.getInstance().notifyMultilingualObservers(Languages.FRENCH);
-            mainFrame.getTopBarPanel().getLanguageSwitch().setIcon(Decorations.getImg(TopBarPanel.IMG_FR));
+            mainFrame.getTopBarPanel().getLanguageSwitch().setIcon(Resources.getImg(TopBarPanel.IMG_FR));
             mainFrame.getTopBarPanel().getLanguageSwitch().setActionCommand(TopBarPanel.ACTION_FR);
             break;
             
         case TopBarPanel.ACTION_FR:
             // Change from French to English
             GUIManager.getInstance().notifyMultilingualObservers(Languages.ENGLISH);
-            mainFrame.getTopBarPanel().getLanguageSwitch().setIcon(Decorations.getImg(TopBarPanel.IMG_EN));
+            mainFrame.getTopBarPanel().getLanguageSwitch().setIcon(Resources.getImg(TopBarPanel.IMG_EN));
             mainFrame.getTopBarPanel().getLanguageSwitch().setActionCommand(TopBarPanel.ACTION_EN);
             break;
 
             // Handle askForHelp button from the TopBarPanel.
         case TopBarPanel.ACTION_HELP:
-            playSound(Decorations.getSndPath(SND_STORERING));
+            playSound(Resources.getSndPath(SND_STORERING));
             break;
 
             // Handle Color Switch Button from the TopBarPanel.

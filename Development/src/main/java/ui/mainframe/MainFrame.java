@@ -1,7 +1,7 @@
 package ui.mainframe;
 
-import ui.utils.Decorations;
 import ui.utils.KeyboardDialog;
+import ui.utils.Resources;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
@@ -179,7 +179,7 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	public void createGUI() {
 	    
 	    // Set Icon
-	    this.setIconImage(Decorations.getIco(ICO_APP));
+	    this.setIconImage(Resources.getIco(ICO_APP));
 		
 	    // Put the Frame on Full Screen
 	    this.setUndecorated(true);
@@ -193,7 +193,7 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	    this.add(this.topBarPanel, BorderLayout.NORTH);
 
 	    // Add a banner.
-	    banner = new JLabel(Decorations.getImg(IMG_BANNER_DESERT));
+	    banner = new JLabel(Resources.getImg(IMG_BANNER_DESERT));
 	    banner.setOpaque(false);
 	    this.add(banner, BorderLayout.WEST);
 
