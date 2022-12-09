@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.json.JSONObject;
 
 public class ImdbAPI {
     public static void main(String[] args){
@@ -28,12 +27,6 @@ public class ImdbAPI {
             reader.close();
             String result = responce.toString();
             getFilmTitleData(result);
-            
-            /*JSONObject object = new JSONObject(result);
-            String title = object.getString("title");
-            String year = object.getString("year");
-            System.out.println("Title: "+title);
-            System.out.println("Year: "+year);*/
 
         }catch(Exception e){
             e.printStackTrace();
