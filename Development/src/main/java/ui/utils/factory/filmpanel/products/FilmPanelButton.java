@@ -22,10 +22,6 @@ public abstract class FilmPanelButton extends JButton implements IColorThemeObse
     
 //    FIXME Refactor in FONT ENUM
     private Font buttonFont = Decorations.FONT_BASIC.getFont(Font.BOLD, 12);
-//    FIXME TOO
-    public Font getButtonFont() {
-	return this.buttonFont;
-    }
     
     protected FilmPanelButton(Film film, String supportType) {
 	this.film = film;
@@ -50,6 +46,11 @@ public abstract class FilmPanelButton extends JButton implements IColorThemeObse
 	return supportType;
     }
    
+    //  FIXME TOO
+    public Font getButtonFont() {
+	return this.buttonFont;
+    }
+  
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
