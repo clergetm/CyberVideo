@@ -228,7 +228,7 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	@Override
 	public void setColorTheme(ColorThemes colorTheme) {
 	    switch(colorTheme) {
-	    case LIGHTTHEME:
+	    case LIGHT_THEME:
 		// This JFrame
 		this.setBackground(Light.BG.getColor());
 
@@ -236,7 +236,7 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 		banner.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Light.BG.getColor()));
 
 		break;
-	    case DARKTHEME:
+	    case DARK_THEME:
 		// This JFrame
 		this.setBackground(Dark.BG.getColor());
 		// Banner

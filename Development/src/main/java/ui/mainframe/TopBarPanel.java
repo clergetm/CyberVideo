@@ -165,7 +165,7 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	case LIGHTTHEME:
+	case LIGHT_THEME:
 	    // This Panel
 	    this.setBackground(Light.BG.getColor());
 	    this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Light.BLACK.getColor()));
@@ -180,7 +180,7 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
 	    searchButton.setIcon(Resources.getImg(IMG_SEARCH_LIGHT));
 	    break;
 		
-	case DARKTHEME:
+	case DARK_THEME:
 	    // This Panel
 	    this.setBackground(Dark.BG.getColor());
 	    this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Dark.FOREGROUND.getColor()));

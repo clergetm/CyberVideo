@@ -223,7 +223,7 @@ public class KeyboardDialog extends JDialog implements GUIComponent, ActionListe
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	case LIGHTTHEME:
+	case LIGHT_THEME:
 	    // This Dialog.
 	    this.setBackground(Light.BG.getColor());
 
@@ -251,7 +251,7 @@ public class KeyboardDialog extends JDialog implements GUIComponent, ActionListe
 	    this.spaceButton.setBackground(Light.WHITE.getColor());
 	    this.spaceButton.setForeground(Light.REVERSE_FG.getColor());
 	    break;
-	case DARKTHEME:
+	case DARK_THEME:
 	    // This Dialog.
 	    this.setBackground(Dark.BG.getColor());
 	    // Characters.

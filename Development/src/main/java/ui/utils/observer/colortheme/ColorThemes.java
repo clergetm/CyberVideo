@@ -9,6 +9,6 @@ package ui.utils.observer.colortheme;
  * @see ui.utils.observer.colortheme.palettes.Light
  */
 public enum ColorThemes {
-    LIGHTTHEME,
-    DARKTHEME;
+    LIGHT_THEME,
+    DARK_THEME;
 }

@@ -159,7 +159,7 @@ public class SearchPage extends JPanel implements GUIComponent, IMultilingualObs
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	    case LIGHTTHEME:
+	    case LIGHT_THEME:
 		mainPanel.setBackground(Light.BG.getColor());
 		resultsLabel.setForeground(Light.REVERSE_FG.getColor());
 		mostRentedLabel.setForeground(Light.REVERSE_FG.getColor());
@@ -171,7 +171,7 @@ public class SearchPage extends JPanel implements GUIComponent, IMultilingualObs
 		    button.setFont(Decorations.FONT_BASIC.getFont(Font.BOLD, 12));
 		}
 		break;
-	    case DARKTHEME:
+	    case DARK_THEME:
 		mainPanel.setBackground(Dark.BG.getColor());
 		resultsLabel.setForeground(Dark.FOREGROUND.getColor());
 		mostRentedLabel.setForeground(Dark.FOREGROUND.getColor());	

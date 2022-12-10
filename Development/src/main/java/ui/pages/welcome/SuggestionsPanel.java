@@ -76,7 +76,7 @@ public class SuggestionsPanel extends JPanel implements GUIComponent, IMultiling
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	    case LIGHTTHEME:
+	    case LIGHT_THEME:
 		// This JPanel.
 		this.setBackground(Light.BG.getColor());
 	        
@@ -88,7 +88,7 @@ public class SuggestionsPanel extends JPanel implements GUIComponent, IMultiling
 		this.filmsPane.getVerticalScrollBar().setBackground(Light.BG.getColor());
 		
 		break;
-	    case DARKTHEME:
+	    case DARK_THEME:
 		// This JPanel.
 		this.setBackground(Dark.BG.getColor());
 		

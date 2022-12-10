@@ -54,11 +54,11 @@ public abstract class FilmPanelButton extends JButton implements IColorThemeObse
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	case LIGHTTHEME:
+	case LIGHT_THEME:
 	    this.setBackground(Light.BLUE.getColor());
 	    this.setForeground(Light.WHITE.getColor());
 	    break;
-	case DARKTHEME:
+	case DARK_THEME:
 	    this.setBackground(Dark.BLUE.getColor());
 	    this.setForeground(Dark.FOREGROUND.getColor());
 	    break;

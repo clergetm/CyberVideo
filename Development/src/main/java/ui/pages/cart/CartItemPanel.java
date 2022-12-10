@@ -93,7 +93,7 @@ public class CartItemPanel extends JPanel implements GUIComponent, IMultilingual
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	    case LIGHTTHEME:
+	    case LIGHT_THEME:
 		// This JPanel
 	        this.setBackground(this.getParent().getBackground());
 
@@ -120,7 +120,7 @@ public class CartItemPanel extends JPanel implements GUIComponent, IMultilingual
 	        this.removeButton.setBackground(Light.BLUE.getColor());
 	        this.removeButton.setForeground(Light.WHITE.getColor());
 		break;
-	    case DARKTHEME:
+	    case DARK_THEME:
 		// This JPanel
 	        this.setBackground(this.getParent().getBackground());
 

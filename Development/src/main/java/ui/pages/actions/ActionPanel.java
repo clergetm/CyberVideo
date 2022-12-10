@@ -261,7 +261,7 @@ public class ActionPanel extends JPanel implements GUIComponent, IMultilingualOb
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	    case LIGHTTHEME:
+	    case LIGHT_THEME:
 	        // Panels
 	        this.setBackground(Light.BG.getColor());
 	        
@@ -279,7 +279,7 @@ public class ActionPanel extends JPanel implements GUIComponent, IMultilingualOb
 	        connectionButton.setForeground(Light.WHITE.getColor());
 	        
 		break;
-	    case DARKTHEME:
+	    case DARK_THEME:
 		//Panels
 	        this.setBackground(Dark.BG.getColor());
 	        

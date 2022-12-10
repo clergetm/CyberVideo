@@ -103,12 +103,12 @@ public class Interaction implements ActionListener {
             // Handle Color Switch Button from the TopBarPanel.
         case TopBarPanel.ACTION_LIGHT:
             // Change from Light to Dark theme.
-            GUIManager.getInstance().notifyColorThemeObservers(ColorThemes.DARKTHEME);
+            GUIManager.getInstance().notifyColorThemeObservers(ColorThemes.DARK_THEME);
             break;
             
         case TopBarPanel.ACTION_DARK:
             // Change from Dark to Light theme.
-            GUIManager.getInstance().notifyColorThemeObservers(ColorThemes.LIGHTTHEME);
+            GUIManager.getInstance().notifyColorThemeObservers(ColorThemes.LIGHT_THEME);
             break;
         default:
             throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());

@@ -235,7 +235,7 @@ class LoginPanel extends JPanel implements GUIComponent, IMultilingualObserver, 
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	    case LIGHTTHEME:
+	    case LIGHT_THEME:
 		// This JPanel
 	        this.setBackground(Light.WHITE.getColor());
 	        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
@@ -269,7 +269,7 @@ class LoginPanel extends JPanel implements GUIComponent, IMultilingualObserver, 
 	        this.continueWithoutConn.setBorder(BorderFactory.createLineBorder(Light.BLACK.getColor(), 1));
 
 		break;
-	    case DARKTHEME:
+	    case DARK_THEME:
 		// This JPanel
 	        this.setBackground(Dark.BG.getColor());
 	        this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUND.getColor()));

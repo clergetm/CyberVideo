@@ -137,10 +137,10 @@ public class FilmPage extends JPanel implements GUIComponent, IMultilingualObser
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	case LIGHTTHEME:
+	case LIGHT_THEME:
 	    break;
 	    
-	case DARKTHEME:
+	case DARK_THEME:
 	    break;
 	    
 	default:

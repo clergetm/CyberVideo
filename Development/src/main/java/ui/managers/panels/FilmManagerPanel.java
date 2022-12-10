@@ -69,10 +69,10 @@ public class FilmManagerPanel extends JPanel implements IColorThemeObserver{
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	    case LIGHTTHEME:
+	    case LIGHT_THEME:
 		this.setBackground(Light.BG.getColor());
 		break;
-	    case DARKTHEME:
+	    case DARK_THEME:
 		this.setBackground(Dark.BG.getColor());
 		break;
 	    default:

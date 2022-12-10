@@ -129,7 +129,7 @@ public class CartPanel extends JPanel implements GUIComponent, ICartObserver, IM
     @Override
     public void setColorTheme(ColorThemes colorTheme) {
 	switch(colorTheme) {
-	case LIGHTTHEME:
+	case LIGHT_THEME:
 	    // This Panel
 	    this.setBackground(Light.BG.getColor());
 	    this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Light.BLACK.getColor()));
@@ -141,7 +141,7 @@ public class CartPanel extends JPanel implements GUIComponent, ICartObserver, IM
 	    this.checkoutButton.setForeground(Light.WHITE.getColor());
 		
 	    break;
-	case DARKTHEME:
+	case DARK_THEME:
 	    // This Panel
 	    this.setBackground(Dark.BG.getColor());
 	    this.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Dark.FOREGROUND.getColor()));

@@ -37,7 +37,7 @@ public class GUIManager implements IMultilingualObservable, IColorThemeObservabl
 	this.currentLang = Languages.ENGLISH;
 	
 	// LightTheme is the default color Theme.
-	this.currentColorTheme = ColorThemes.LIGHTTHEME;
+	this.currentColorTheme = ColorThemes.LIGHT_THEME;
     }
     
     public static GUIManager getInstance() {
