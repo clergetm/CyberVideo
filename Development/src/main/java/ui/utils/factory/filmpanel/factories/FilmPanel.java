@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import fc.films.Film;
 import fc.films.Support;
+import ui.GUIComponent;
 import ui.managers.GUIManager;
 import ui.utils.Decorations;
 import ui.utils.Resources;
@@ -29,18 +30,19 @@ import ui.utils.factory.filmpanel.products.FilmPanelButton;
  * @author MathysC
  */
 @SuppressWarnings("serial")
-public abstract class FilmPanel extends JPanel {
-    protected Film film;
+public abstract class FilmPanel extends JPanel implements GUIComponent {
 
+    private static final Dimension DIM_BUTTON = Decorations.sizeConverter(new Dimension(85, 25));
+    private static final Dimension DIM_POSTER = Decorations.sizeConverter(new Dimension(100, 150));
+    
+    private Film film;
+    private Map<String, FilmPanelButton> buttonMap;
+
+    /* Components */
     private JPanel mainPanel;
+    protected JPanel buttonPanel;
     private JLabel poster;
     private ImageIcon posterImage;
-    
-    protected JPanel buttonPanel;
-    private Map<String, FilmPanelButton> buttonMap = new HashMap<>();
-
-    private Dimension dimButton = Decorations.sizeConverter(new Dimension(85, 25));
-    private Dimension dimPoster = Decorations.sizeConverter(new Dimension(100, 150));
     
     /**
      * Constructor of FilmPanel
@@ -50,17 +52,69 @@ public abstract class FilmPanel extends JPanel {
      */
     protected FilmPanel(Film film) {
 	this.film = film;
+	this.buttonMap = new HashMap<>();
 	// TODO #8 Find a way to put the right poster for each movie
 	posterImage = Resources.getImg(Resources.IMG_FILM.toString()); 
 	this.createGUI();
 	this.setScale(100);
     }
     
-    /**
-     * Create the GUI of the FilmPanel.
+    /** 
      * @author MathysC
+     *
+     * @param supportType the type of the support.
+     * @return A button with a concrete implementation
      */
-    private void createGUI() {
+    protected abstract FilmPanelButton createButton(String supportType);
+    
+    /**
+     * @author MathysC
+     *
+     * @param percent the percent to scale the panel to.
+     * @requires percent must be positive or will be reset to 100.
+     */
+    public void setScale(double percent) {
+	int base = 100;
+	percent = (percent < 0) ? base : percent;
+	// Scale the poster
+	poster.setIcon(new ImageIcon( 
+		posterImage.getImage()
+		.getScaledInstance(
+			(int) (percent * DIM_POSTER.getWidth() / base),
+			(int) (percent * DIM_POSTER.getHeight() / base),
+			java.awt.Image.SCALE_SMOOTH)));
+	
+	// Scale the buttons
+	for(JButton button : buttonMap.values()) {
+	    // Scale the font
+	    // FIXME use Enum font
+	    Font tempFont = ((FilmPanelButton) button).getButtonFont();
+	    Font derivedfont = tempFont.deriveFont((float) (percent * tempFont.getSize() / base));
+	    button.setSize(
+		    (int) (percent * DIM_BUTTON.getWidth() / base),
+		    (int) (percent * DIM_BUTTON.getHeight() / base));
+	    button.setFont(derivedfont);
+	}
+    }
+
+    /**
+     * @author MathysC
+     * @return the film
+     */
+    public Film getFilm() {
+	return film;
+    }
+
+    /**
+     * @author MathysC
+     * @return the buttonMap
+     */
+    public Map<String, FilmPanelButton> getButtonMap() {
+	return buttonMap;
+    }
+    
+    @Override
+    public void createGUI() {
 	this.setLayout(new FlowLayout());
 	this.setOpaque(false);
 	
@@ -102,61 +156,5 @@ public abstract class FilmPanel extends JPanel {
 	
 	mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 	this.add(mainPanel);
-    }
-    
-    /** 
-     * @author MathysC
-     *
-     * @param supportType the type of the support.
-     * @return A button with a concrete implementation
-     */
-    protected abstract FilmPanelButton createButton(String supportType);
-    
-    /**
-     * @author MathysC
-     *
-     * @param percent the percent to scale the panel to.
-     * @requires percent must be positive or will be reset to 100.
-     */
-    public void setScale(double percent) {
-	int base = 100;
-	percent = (percent < 0) ? base : percent;
-	// Scale the poster
-	poster.setIcon(new ImageIcon( 
-		posterImage.getImage()
-		.getScaledInstance(
-			(int) (percent * dimPoster.getWidth() / base),
-			(int) (percent * dimPoster.getHeight() / base),
-			java.awt.Image.SCALE_SMOOTH)));
-	
-
-	
-	// Scale the buttons
-	for(JButton button : buttonMap.values()) {
-	    // Scale the font
-	    // FIXME use Enum font
-	    Font tempFont = ((FilmPanelButton) button).getButtonFont();
-	    Font derivedfont = tempFont.deriveFont((float) (percent * tempFont.getSize() / base));
-	    button.setSize(
-		    (int) (percent * dimButton.getWidth() / base),
-		    (int) (percent * dimButton.getHeight() / base));
-	    button.setFont(derivedfont);
-	}
-    }
-
-    /**
-     * @author MathysC
-     * @return the film
-     */
-    public Film getFilm() {
-	return film;
-    }
-
-    /**
-     * @author MathysC
-     * @return the buttonMap
-     */
-    public Map<String, FilmPanelButton> getButtonMap() {
-	return buttonMap;
     }
 }
