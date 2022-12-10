@@ -63,11 +63,15 @@ public enum Resources {
     IMG_BUTTON("Test_Button"),
     IMG_FILM("Test_Film");
     
-    @SuppressWarnings("unused")
     private String resource;
     
     Resources(String rsc){
 	this.resource = rsc;
+    }
+    
+    @Override
+    public String toString() {
+	return this.resource;
     }
     
     /**
@@ -108,7 +112,7 @@ public enum Resources {
      * @return the path of an icon. 
      */
     public static String getIcoPath(String name) {
-	return Decorations.class.getResource(PATH.ICO + name + FORMAT.ICO).getPath();
+	return Resources.class.getResource(PATH.ICO + name + FORMAT.ICO).getPath();
     }
     
     /**
@@ -119,7 +123,7 @@ public enum Resources {
      * @return the path of an image. 
      */
     public static String getImgPath(String name) {
-	return Decorations.class.getResource(PATH.IMG + name + FORMAT.IMG).getPath();
+	return Resources.class.getResource(PATH.IMG + name + FORMAT.IMG).getPath();
     }
     
     /**
@@ -130,6 +134,6 @@ public enum Resources {
      * @return the path of a sound file. 
      */
     public static String getSndPath(String name) {
-	return Decorations.class.getResource(PATH.SND + name + FORMAT.SND).getPath();
+	return Resources.class.getResource(PATH.SND + name + FORMAT.SND).getPath();
     } 
 }
