@@ -93,7 +93,7 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 
 //	    TODO add Film from fc in filmManager
 	   
-	    this.filmManager.getCartManager().register(this.actionPanel.getCartPanel());
+	    this.filmManager.getCartManager().registerCart(this.actionPanel.getCartPanel());
 //	    TODO register client in CartManager
 	    
 	    

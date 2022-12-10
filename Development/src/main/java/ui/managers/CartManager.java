@@ -34,7 +34,7 @@ public class CartManager implements ICartObservable, ActionListener{
 	case ADDTOCART:
 //	    TODO #29 récupérer le film et le supportType
 	    CartButton source = (CartButton)e.getSource();
-	    this.notifyObservers(FilmEvents.ADDTOCART, source.getFilm(), source.getSupportType());
+	    this.notifyCartObservers(FilmEvents.ADDTOCART, source.getFilm(), source.getSupportType());
 	    break;
 	case REMOVEFROMCART:
 //	    TODO #29 REMOVE
@@ -42,7 +42,7 @@ public class CartManager implements ICartObservable, ActionListener{
 	case RENT:
 //	    TODO #29 RENT récupérer le film et le supportType
 //	    TODO #29 maybe dissociate RENT actions and CART actions
-	    this.notifyObservers(null, null, null);
+	    this.notifyCartObservers(null, null, null);
 	    break;
 	default:
 	    throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());
@@ -51,19 +51,19 @@ public class CartManager implements ICartObservable, ActionListener{
     }
 
     @Override
-    public void register(ICartObserver cartObserver) {
+    public void registerCart(ICartObserver cartObserver) {
 	this.cartObservers.add(cartObserver);
 	
     }
 
     @Override
-    public void unregister(ICartObserver cartObserver) {
+    public void unregisterCart(ICartObserver cartObserver) {
 	this.cartObservers.remove(cartObserver);
 	
     }
 
     @Override
-    public void notifyObservers(FilmEvents event, Film film, String supportType) {
+    public void notifyCartObservers(FilmEvents event, Film film, String supportType) {
 	this.cartObservers.forEach(o -> o.update(event, film, supportType));
 	
     }

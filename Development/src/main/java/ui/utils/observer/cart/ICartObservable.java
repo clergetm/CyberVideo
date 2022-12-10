@@ -17,7 +17,7 @@ public interface ICartObservable {
      *
      * @param cartObserver The observer to register.
      */
-    void register(ICartObserver cartObserver);
+    void registerCart(ICartObserver cartObserver);
     
     /**
      * Remove an observer.
@@ -25,7 +25,7 @@ public interface ICartObservable {
      *
      * @param cartObserver The observer to unregister.
      */
-    void unregister(ICartObserver cartObserver);
+    void unregisterCart(ICartObserver cartObserver);
     
     /**
      * Notify observers of any change depending on the Event
@@ -35,5 +35,5 @@ public interface ICartObservable {
      * @param film The film related to this change.
      * @param supportType The supportType related to this Film.
      */
-    void notifyObservers(FilmEvents event, Film film, String supportType);
+    void notifyCartObservers(FilmEvents event, Film film, String supportType);
 }
