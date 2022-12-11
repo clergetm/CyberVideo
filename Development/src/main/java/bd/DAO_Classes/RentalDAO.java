@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import fc.Rental;
 import fc.films.Film;
 
-public class RentalDAO<Rental> extends DAO<Rental> {
+public class RentalDAO extends DAO<Rental> {
 
     public RentalDAO(Connection conn) {
         super(conn);
@@ -15,9 +16,10 @@ public class RentalDAO<Rental> extends DAO<Rental> {
     @Override
     public Rental read(int id) {
 
-        try{
-            Rental rental;
+        Rental rental = null;
 
+        try{
+            
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Rentals NATURAL JOIN BluRays NATURAL JOIN SupportFilms WHERE rentalsID ="+id);
             
             if(result.first()){
@@ -29,10 +31,10 @@ public class RentalDAO<Rental> extends DAO<Rental> {
                 rental = new Rental(tarif,film);
             }
 
-            return rental;
-            
         }
         catch (SQLException e) { e.printStackTrace(); }
+
+        return rental;
         
     }
 

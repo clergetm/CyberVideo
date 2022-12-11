@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BluRayDAO<BluRay> extends DAO<BluRay>{
+public class BluRayDAO extends DAO<BluRay>{
     
     public BluRayDAO(Connection conn)
     {
@@ -20,8 +20,9 @@ public class BluRayDAO<BluRay> extends DAO<BluRay>{
     @Override
     public BluRay read(int id) {
         
+        BluRay bluray = null;
         try{
-            BluRay bluray;
+            
 
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Films NATURAL JOIN BluRays WHERE filmID ="+id);
             
@@ -32,11 +33,10 @@ public class BluRayDAO<BluRay> extends DAO<BluRay>{
 
                 bluray = new BluRay(price,state);
             }
-
-            return bluray;
             
         }
         catch (SQLException e) { e.printStackTrace(); }
+        return bluray;
         
     }
 
