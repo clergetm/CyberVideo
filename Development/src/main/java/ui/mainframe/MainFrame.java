@@ -15,6 +15,8 @@ import ui.pages.welcome.WelcomePage;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
@@ -137,11 +139,11 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 						+ " but the truth is far beyond his imagination...",
 				director_lname = "Wachowski",
 				director_fname = "Lana";
-	    final String[] actors = {"Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"};
+	    final ArrayList<String> actors = new ArrayList<>(Arrays.asList("Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"));
 	    final AgeRestriction restriction = AgeRestriction.EVERYONE;
-	    final Categories[] categories = {Categories.ACTION, Categories.DRAMAS};
+	    final ArrayList<Categories> categories = new ArrayList<>(Arrays.asList(Categories.ACTION, Categories.DRAMAS));
 	    final Year year = Year.of(1999);
-	    final Support[] supports = {new BluRay(22.5, StatesBluRay.RENTED), new QRCode(), new BluRay(22.50, StatesBluRay.AVAILABLE)};
+	    final ArrayList<Support> supports = new ArrayList<>(Arrays.asList(new BluRay(22.5, StatesBluRay.RENTED), new QRCode(""), new BluRay(22.50, StatesBluRay.AVAILABLE)));
 		
 	    /* Create an instance of a Film for test Film class */
 	    Film film = new Film(title, synopsis, actors, director_fname, director_lname, year, categories, restriction, supports);

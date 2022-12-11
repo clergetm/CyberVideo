@@ -11,8 +11,8 @@ import fc.films.Support;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Year;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class FilmsDAO extends DAO<Film>{
     
@@ -41,7 +41,7 @@ public class FilmsDAO extends DAO<Film>{
                     actors.add(resultActorName.getString("actorName"));
                 }
 
-                int year = result.getInt("year");
+                Year year = Year.of(result.getInt("year"));
 
                 String FNDirector = result.getString("directorFirstName");
 
@@ -54,7 +54,7 @@ public class FilmsDAO extends DAO<Film>{
                     categories.add(Categories.valueOf(resultCatName.getString("catName")));
                 }
 
-                Support[] supports;
+                ArrayList<Support >supports = new ArrayList<>();
 
                 if(resultSupp.getString("typeFilm") == "BR"){
                     ResultSet resultSuppID = this.connect.createStatement().executeQuery("SELECT price, state FROM BluRays WHERE supportFilmID="+resultSupp.getString("supportFilmID"));
@@ -67,7 +67,7 @@ public class FilmsDAO extends DAO<Film>{
                     supports.add(new QRCode(resultSuppID.getString("link")));
                 }
 
-                film = new Film(title,synopsis,actors,year,FNDirector,LNDirector,restriction,categories,supports);
+                film = new Film(title, synopsis, actors, FNDirector, LNDirector, year, categories, restriction, supports);
             }            
             
         }
