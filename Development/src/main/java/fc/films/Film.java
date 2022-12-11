@@ -1,7 +1,7 @@
 package fc.films;
 
 import java.time.Year;
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * Film is an abstract class that can implements the bluray class and the QRcode class
@@ -12,13 +12,13 @@ public class Film {
 
 	private String title;
 	private String synopsis;
-	private String[] actors;
+	private List<String> actors;
 	private String directorFname;
 	private String directorLname;
 	private Year year;
-	private Categories[] categories;
+	private List<Categories> categories;
 	private AgeRestriction restriction;
-	private Support[] supports;
+	private List<Support> supports;
 	
 	/**
 	 * Constructor of the class Film
@@ -26,19 +26,21 @@ public class Film {
 	 * @param synopsis is the summary of the film
 	 * @param actors is the list of the actors of the film
 	 * @param FNDirector is the first name of the director of the film
-	 * @param LNDirector is the last name of the director of the film
+	 * @param directorLastName is the last name of the director of the film
 	 * @param year is the year of the film's release
 	 * @param categories is the list of the different categories to which the film belongs
 	 * @param restriction is the age restriction of the films
 	 * @param supports is the list of the different supports that exist for a film
 	 */
-	public Film(String title, String synopsis, String[] actors, String FNDirector, String LNDirector,
-			Year year, Categories[] categories, AgeRestriction restriction, Support[] supports) {
+	public Film(String title, String synopsis, 
+		List<String> actors, String directorFirstName, String directorLastName,
+		Year year, List<Categories> categories, AgeRestriction restriction, 
+		List<Support> supports) {
 		this.title=title;
 		this.synopsis=synopsis;
 		this.actors=actors;
-		this.directorFname=FNDirector;
-		this.directorLname=LNDirector;
+		this.directorFname=directorFirstName;
+		this.directorLname=directorLastName;
 		this.year=year;
 		this.categories=categories;
 		this.restriction=restriction;
@@ -67,7 +69,7 @@ public class Film {
 	 *
 	 * @return film’s actors.
 	 */
-	public String[] getActors() {
+	public List<String> getActors() {
 		return this.actors;
 	}
 
@@ -110,7 +112,7 @@ public class Film {
 	 *
 	 * @return film’s categories
 	 */
-	public Categories[] getCategories() {
+	public List<Categories> getCategories() {
 		return this.categories;
 	}
 	
@@ -126,15 +128,18 @@ public class Film {
 	 * 
 	 * @return the list of the different supports
 	 */
-	public Support[] getSupports() {
+	public List<Support> getSupports() {
 		return this.supports;
 	}
 
 	public String toStringActors() {
-		String tempActors = "";
-		for(int i=0;i<actors.length-2;i++) {
-			tempActors=tempActors+actors[i]+", ";
-		}
-		return tempActors+actors[actors.length-1]+".";
+	    StringBuilder bld = new StringBuilder();
+	    for(String a: this.actors) {
+		bld.append(a+", ");
+	    }
+	    bld.substring(bld.length()-2);
+	    bld.append(".");
+	    return bld.toString();
+		
 	}	
 }
