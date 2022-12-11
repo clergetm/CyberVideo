@@ -2,7 +2,7 @@ package fc.clients;
 
 import java.util.Date;
 
-public class Subscriber {
+public class Subscriber extends Client {
     private String firstName;
     private String lastName;
     private Date birthDate;
@@ -13,6 +13,11 @@ public class Subscriber {
         this.lastName = lastName;
         this.birthDate = birthDate;
     }
+    
+	@Override
+	public int getSizeCart() {
+		return 3;
+	}
 
     public void askCard() {}
     
@@ -46,5 +51,6 @@ public class Subscriber {
         this.birthDate = birthDate;
     }
     
+    // TODO
     public Login getLogin(){ return null;}
 }

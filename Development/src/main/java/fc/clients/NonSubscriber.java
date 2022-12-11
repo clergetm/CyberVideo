@@ -10,8 +10,6 @@ public class NonSubscriber extends Client {
 
 	@Override
 	public int getSizeCart() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
-	
 }
