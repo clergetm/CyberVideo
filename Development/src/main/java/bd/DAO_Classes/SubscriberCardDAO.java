@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SubscriberCardDAO<SubscriberCard> extends DAO<SubscriberCard> {
+import fc.clients.cards.SubscriberCard;
+
+public class SubscriberCardDAO extends DAO<SubscriberCard> {
 
     public SubscriberCardDAO(Connection conn) {
         super(conn);
@@ -12,9 +14,9 @@ public class SubscriberCardDAO<SubscriberCard> extends DAO<SubscriberCard> {
 
     @Override
     public SubscriberCard read(int id) {
-
+        SubscriberCard subscriberCard = null;
         try{
-            SubscriberCard subscriberCard;
+            
 
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM SubscriberCards WHERE subCardID ="+id);
             
@@ -25,12 +27,10 @@ public class SubscriberCardDAO<SubscriberCard> extends DAO<SubscriberCard> {
 
                 subscriberCard = new SubscriberCard(balance,limitweek);
             }
-
-            return subscriberCard;
             
         }
         catch (SQLException e) { e.printStackTrace(); }
-        
+        return subscriberCard;
     }
 
     @Override

@@ -1,16 +1,13 @@
 package bd.DAO_Classes;
 
 import fc.films.BluRay;
-import fc.films.Film;
 import fc.films.StatesBluRay;
-import fc.films.Support;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.SQLException;;
 
-public class BluRayDAO<BluRay> extends DAO<BluRay>{
+public class BluRayDAO extends DAO<BluRay>{
     
     public BluRayDAO(Connection conn)
     {
@@ -20,8 +17,9 @@ public class BluRayDAO<BluRay> extends DAO<BluRay>{
     @Override
     public BluRay read(int id) {
         
+        BluRay bluray = null;
         try{
-            BluRay bluray;
+            
 
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Films NATURAL JOIN BluRays WHERE filmID ="+id);
             
@@ -32,11 +30,10 @@ public class BluRayDAO<BluRay> extends DAO<BluRay>{
 
                 bluray = new BluRay(price,state);
             }
-
-            return bluray;
             
         }
         catch (SQLException e) { e.printStackTrace(); }
+        return bluray;
         
     }
 

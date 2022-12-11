@@ -1,16 +1,20 @@
 package bd.DAO_Classes;
 
 import fc.films.AgeRestriction;
+import fc.films.BluRay;
 import fc.films.Categories;
 import fc.films.Film;
+import fc.films.QRCode;
+import fc.films.StatesBluRay;
 import fc.films.Support;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class FilmsDAO<Film> extends DAO<Film>{
+public class FilmsDAO extends DAO<Film>{
     
     public FilmsDAO(Connection conn)
     {
@@ -19,16 +23,15 @@ public class FilmsDAO<Film> extends DAO<Film>{
 
     @Override
     public Film read(int id) {
-        
+        Film film = null;
         try{
-            Film film;
 
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Films JOIN FilmCategories WHERE filmID ="+id);
             ResultSet resultActorName = this.connect.createStatement().executeQuery("SELECT CONCAT(actorFirstName,' ',actorLastName) AS actorName FROM FilmsActors NATURAL JOIN Actors WHERE filmID ="+id);
             ResultSet resultCatName = this.connect.createStatement().executeQuery("SELECT catName FROM FilmsCategories NATURAL JOIN Categories WHERE filmID ="+id);
-            ResultSet resultSuppID = this.connect.createStatement().executeQuery("SELECT supportFilmID FROM SupportFilms WHERE filmID="+id);
+            ResultSet resultSupp = this.connect.createStatement().executeQuery("SELECT supportFilmID, typeFilm FROM SupportFilms WHERE filmID="+id);
 
-            if(result.first() && resultActorName.first() && resultCatName.first() && resultSuppID.first()){
+            if(result.first() && resultActorName.first() && resultCatName.first() && resultSupp.first()){
                 String title = result.getString("title");
 
                 String synopsis = result.getString("synopsis");
@@ -51,19 +54,25 @@ public class FilmsDAO<Film> extends DAO<Film>{
                     categories.add(Categories.valueOf(resultCatName.getString("catName")));
                 }
 
-                /*ArrayList<Integer> supports = new ArrayList<Integer>();
-                while(resultActorName.next()){
-                    supports.add(resultSuppID.getInt("supportFilmID"));
-                }*/
+                Support[] supports;
 
+                if(resultSupp.getString("typeFilm") == "BR"){
+                    ResultSet resultSuppID = this.connect.createStatement().executeQuery("SELECT price, state FROM BluRays WHERE supportFilmID="+resultSupp.getString("supportFilmID"));
+                    if(resultSuppID.first())
+                    supports.add(new BluRay(resultSuppID.getDouble("price"), StatesBluRay.valueOf(resultSuppID.getString("state"))));
+                }
+                if(resultSupp.getString("typeFilm") == "QR"){
+                    ResultSet resultSuppID = this.connect.createStatement().executeQuery("SELECT QRCodeID, link FROM QRCodes WHERE supportFilmID="+resultSupp.getString("supportFilmID"));
+                    if(resultSuppID.first())
+                    supports.add(new QRCode(resultSuppID.getString("link")));
+                }
 
                 film = new Film(title,synopsis,actors,year,FNDirector,LNDirector,restriction,categories,supports);
-            }
-
-            return film;
+            }            
             
         }
         catch (SQLException e) { e.printStackTrace(); }
+        return film;
         
     }
 

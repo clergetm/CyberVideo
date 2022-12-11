@@ -6,9 +6,8 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import fc.clients.Subscriber;
-import ui.utils.observer.colortheme.palettes.Dark;
 
-public class SubscriberDAO<Subscriber> extends DAO<Subscriber> {
+public class SubscriberDAO extends DAO<Subscriber> {
 
     public SubscriberDAO(Connection conn) {
         super(conn);
@@ -17,8 +16,9 @@ public class SubscriberDAO<Subscriber> extends DAO<Subscriber> {
     @Override
     public Subscriber read(int id) {
 
+        Subscriber subscriber = null;
         try{
-            Subscriber subscriber;
+            
 
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Subscribers WHERE subID ="+id);
             
@@ -30,11 +30,10 @@ public class SubscriberDAO<Subscriber> extends DAO<Subscriber> {
 
                 subscriber = new Subscriber(firstName,lastName,birthDate);
             }
-
-            return subscriber;
             
         }
         catch (SQLException e) { e.printStackTrace(); }
+        return subscriber;
         
     }
 
