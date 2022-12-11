@@ -20,8 +20,10 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
  *
  */
 public class QRCode extends Support {
+	private String link;
 	
-	public QRCode() {
+	public QRCode(String link) {
+		this.link = link;
 	}
 
 	@Override

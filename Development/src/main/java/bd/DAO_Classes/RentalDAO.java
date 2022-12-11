@@ -25,7 +25,7 @@ public class RentalDAO extends DAO<Rental> {
             if(result.first()){
 
                 int tarif = result.getInt("price");
-                FilmsDAO<Film> filmDAO = new FilmsDAO<Film>(connect);
+                FilmsDAO filmDAO = new FilmsDAO(connect);
                 Film film = filmDAO.read(result.getInt("filmID"));
 
                 rental = new Rental(tarif,film);

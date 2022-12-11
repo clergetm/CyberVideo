@@ -1,14 +1,11 @@
 package bd.DAO_Classes;
 
 import fc.films.BluRay;
-import fc.films.Film;
 import fc.films.StatesBluRay;
-import fc.films.Support;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.SQLException;;
 
 public class BluRayDAO extends DAO<BluRay>{
     
