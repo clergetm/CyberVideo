@@ -106,6 +106,16 @@ public class CreateDatabase
       executeSqlScript(conn,deleteTablesTrigger5);
       //-------------------------------END TRIGGERS TEST----------------------------//
 
+      //------------------------INSERTING Films from IMDB API-----------------------//
+      executeSqlScript(conn,createTable);
+      ImdbAPI imdb = new ImdbAPI();
+      String[][] filmData = ImdbAPI.getData();
+      for (int i=0;i<250;i++){
+        stmt.executeUpdate("INSERT INTO Films Values("+Integer.parseInt(filmData[i][0])+","+filmData[i][1]+","+filmData[i][2]+","+filmData[i][3]+","+filmData[i][4]+","+filmData[i][5]+","+filmData[i][6]+")");
+      }
+      displayTable(stmt, "SELECT * FROM Films");
+      //---------------------------------------------------------------------------//
+      
       System.out.println("Database successfully created...");
 
       //-------------------------------DAO Initialisation----------------------------//
