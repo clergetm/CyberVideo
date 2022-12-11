@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import fc.Rental;
+import fc.clients.cards.Card;
 import fc.films.Film;
+import fc.films.Support;
 
 public class RentalDAO extends DAO<Rental> {
 
@@ -23,12 +25,12 @@ public class RentalDAO extends DAO<Rental> {
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Rentals NATURAL JOIN BluRays NATURAL JOIN SupportFilms WHERE rentalsID ="+id);
             
             if(result.first()){
-
-                int tarif = result.getInt("price");
+        	//FIXME
                 FilmsDAO filmDAO = new FilmsDAO(connect);
                 Film film = filmDAO.read(result.getInt("filmID"));
-
-                rental = new Rental(tarif,film);
+                Card card = null;
+                Support support = null;
+                rental = new Rental(film, card, support);
             }
 
         }
