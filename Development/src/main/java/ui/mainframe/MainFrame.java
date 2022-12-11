@@ -175,6 +175,37 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	    return actionPanel;
 	}
 	
+	/**
+	 * Change the current displayed Page
+	 * @author MathysC
+	 *
+	 * @param id The id number of the page to display.
+	 */
+	public void changeCurrentPage(int id) {
+	    this.remove(this.pages.get(currentPage));
+	    this.revalidate();
+	    this.repaint();
+
+	    this.add(this.pages.get(id), BorderLayout.CENTER);
+	    this.currentPage = id;
+
+	    if(id != ID_WELCOME_PAGE) {
+		this.actionPanel.changeCurrentActionPage(id);
+	    }
+
+	    this.pack();
+	}
+	
+	/**
+	 * Start the MainFrame
+	 * @author MathysC
+	 * 
+	 */
+	public void start() {
+	    this.setVisible(true);
+	    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
 	@Override
 	public void createGUI() {
 	    
@@ -204,27 +235,6 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	    this.pack();    
 	}
 	
-	/**
-	 * Change the current displayed Page
-	 * @author MathysC
-	 *
-	 * @param id The id number of the page to display.
-	 */
-	public void changeCurrentPage(int id) {
-	    this.remove(this.pages.get(currentPage));
-	    this.revalidate();
-	    this.repaint();
-
-	    this.add(this.pages.get(id), BorderLayout.CENTER);
-	    this.currentPage = id;
-
-	    if(id != ID_WELCOME_PAGE) {
-		this.actionPanel.changeCurrentActionPage(id);
-	    }
-
-	    this.pack();
-	}
-	
 	@Override
 	public void setColorTheme(ColorThemes colorTheme) {
 	    switch(colorTheme) {
@@ -248,17 +258,7 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	    }
 	    
 	}
-	
-	/**
-	 * Start the MainFrame
-	 * @author MathysC
-	 * 
-	 */
-	public void start() {
-	    this.setVisible(true);
-	    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-	}
-	
+
 	/**
 	 * Run the Main Window of AL2000.
 	 * @author MathysC

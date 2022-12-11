@@ -50,14 +50,14 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
     public static final String IMG_SEARCH_DARK = "searchDark";
 
     /* Components */
-    private JLabel logo = new JLabel();
-    private JPanel options = new JPanel();
-    private JButton colorSwitch = new JButton();
-    private JButton languageSwitch = new JButton();
-    private JButton askForHelpButton = new JButton();
-    private JButton searchButton = new JButton();   
+    private JLabel logo;
+    private JPanel options;
+    private JButton colorSwitch;
+    private JButton languageSwitch;
+    private JButton askForHelpButton;
+    private JButton searchButton;   
     /* Options */
-    private final Dimension dimLogo = Decorations.sizeConverter(new Dimension(200, 150));
+    private static final Dimension dimLogo = Decorations.sizeConverter(new Dimension(200, 150));
 
     /**
      * Constructor of TopBar.
@@ -66,6 +66,12 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
      *
      */
     public TopBarPanel() {
+	logo = new JLabel();
+	options = new JPanel();
+	colorSwitch = new JButton();
+	languageSwitch = new JButton();
+	askForHelpButton = new JButton();
+	searchButton = new JButton();   
 	this.createGUI();
 	
     }

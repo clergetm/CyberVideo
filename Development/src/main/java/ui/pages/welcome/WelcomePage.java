@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 public class WelcomePage extends JPanel {
 
     /* Components */
-    protected SuggestionsPanel suggestionsPanel = new SuggestionsPanel();
-    protected LoginPanel loginPanel = new LoginPanel();
+    private SuggestionsPanel suggestionsPanel = new SuggestionsPanel();
+    private LoginPanel loginPanel = new LoginPanel();
 
     /**
      * Constructor of WelcomePage

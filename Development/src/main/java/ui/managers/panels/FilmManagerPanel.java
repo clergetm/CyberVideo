@@ -25,7 +25,7 @@ import ui.utils.observer.colortheme.palettes.Light;
 @SuppressWarnings("serial")
 public class FilmManagerPanel extends JPanel implements IColorThemeObserver{
     
-    protected ArrayList<FilmPanel> films = new ArrayList<>();
+    protected ArrayList<FilmPanel> films;
     protected double percent; // Scale of FilmPanels
     
     /**
@@ -38,6 +38,7 @@ public class FilmManagerPanel extends JPanel implements IColorThemeObserver{
     public FilmManagerPanel(LayoutManager layout, double percent) {
 	this.setLayout(layout);
 	this.percent = percent;
+	this.films = new ArrayList<>();
     }
 
     /**

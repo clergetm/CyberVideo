@@ -21,22 +21,6 @@ import javax.sound.sampled.SourceDataLine;
  * @author MathysC
  *
  */
-
-/*
- *				+-------------+
- *				| Interaction |
- *				+-------------+
- *					   |
- *				       |
- *				+-------------+
- *				| 	 Main	  |
- *				+-------------+
- *					   |
- *					   |
- *		+---------------------------+
- *		| All others sub Components |
- * 		+---------------------------+ 
- */
 public class Interaction implements ActionListener {
 
     private MainFrame mainFrame;

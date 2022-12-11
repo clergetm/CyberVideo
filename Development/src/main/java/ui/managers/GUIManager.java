@@ -23,6 +23,7 @@ public class GUIManager implements IMultilingualObservable, IColorThemeObservabl
     private ColorThemes currentColorTheme;
     
     private static GUIManager instance = null;
+    
     /**
      * Default constructor of {@code MultilingualManager}.
      * Set the default language to ENGLISH.
@@ -40,6 +41,12 @@ public class GUIManager implements IMultilingualObservable, IColorThemeObservabl
 	this.currentColorTheme = ColorThemes.LIGHT_THEME;
     }
     
+    /**
+     * Getter of the only Instance of GUIManager.
+     * @author MathysC
+     *
+     * @return the GUIManager.
+     */
     public static GUIManager getInstance() {
 	if(instance == null) {
 	    instance = new GUIManager();
@@ -48,6 +55,7 @@ public class GUIManager implements IMultilingualObservable, IColorThemeObservabl
 	return instance;
 	
     }
+    
     /**
      * @author MathysC
      * @return the currentLang
@@ -141,6 +149,10 @@ public class GUIManager implements IMultilingualObservable, IColorThemeObservabl
     }
 
     
+    /**
+     * Refresh the whole application options (e.g. language).
+     * @author MathysC
+     */
     public void refreshUI() {
 	this.refreshMultilingual();
 	this.refreshColorTheme();
