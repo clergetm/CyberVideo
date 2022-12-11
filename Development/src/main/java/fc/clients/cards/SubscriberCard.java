@@ -52,7 +52,6 @@ public class SubscriberCard extends Card{
         for(int i = 0; i < size; i++){
             rentals[i] = rentalHistoric.get(i);
         }
-
         return rentals;
     }
 
