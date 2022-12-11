@@ -1,14 +1,13 @@
 package fc.al2000;
 
-import java.util.ArrayList;
-
 import fc.clients.Client;
 import fc.clients.cards.Card;
-import fc.films.AgeRestriction;
-import fc.films.BluRay;
-import fc.films.Categories;
-import fc.films.Film;
-import fc.films.StatesBluRay;
+
+/**
+ * 
+ * @author Clarisse
+ *
+ */
 
 public class AL2000 {
 
@@ -27,9 +26,7 @@ public class AL2000 {
 	}
 	
 	public Card getCard() {
-		// TODO
-		//return client.getCreditCard();
-		return null;
+		return connectedClient.getCreditCard();
 	}
 	
 	public Printer getPrinter() {
