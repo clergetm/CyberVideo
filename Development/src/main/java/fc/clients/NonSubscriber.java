@@ -1,10 +1,8 @@
 package fc.clients;
 
 /**
- * 
- * @author Clarisse
- *
  * Class that allows to represent non-subscriber customers 
+ * @author Clarisse
  */
 public class NonSubscriber extends Client {
 
