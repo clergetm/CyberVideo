@@ -7,11 +7,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  * @author EvanP
- * Class that connects to IMDB API and select 250 films to import in database.
+ * Class that connects to IMDB API
  */
 public class ImdbAPI {
+
+    protected Connection connect = null;
+
+    public ImdbAPI(Connection conn){
+        this.connect = conn;
+    }
 
     /**
    * Connection management with the imdb api.
@@ -21,8 +30,8 @@ public class ImdbAPI {
    * @return
    */
 
-    public static String[][] getData(){
-        HttpURLConnection connection = null;
+    public void getData(){
+        HttpURLConnection connection = null; 
         final String myAPIKey = "k_sfenmowl";
         try{
             URL url = new URL("https://imdb-api.com/en/API/Top250Movies/"+myAPIKey);
@@ -40,9 +49,7 @@ public class ImdbAPI {
             }
             reader.close();
             String result = responce.toString();
-            String[][] filmData = getFilmData(result);
-
-            return filmData;
+            insertFilmData(result);
 
         }catch(Exception e){
             e.printStackTrace();
@@ -57,75 +64,70 @@ public class ImdbAPI {
    * @param film the film information retrieved in html
    * @return a string array containing the information of the 250 films
    */
-    static String[][] getFilmData(String film){
-        String [][] filmData;
-        filmData = new String[250][8];
-        int titlePos = 0;
-        int titleEnd = 0;
-        int yearPos = 0;
-        int yearEnd = 0;
-        int actorPos = 0;
-        int actorEnd = 0;
-        int directorPos = 0;
-        int directorEnd = 0;
-        Random rand = new Random();
-        int generateNumber;
-        String filmTitle = "";
-        String filmYear;
-        String filmDirector = "";
-        String filmDirectorFirstName = "";
-        String filmDirectorLastName = "";
-        String filmActors = "";
-        String[] directorNames;
-        for(int i=0;i<250;i++){
-            titlePos = film.indexOf("title",titlePos+1);
-            titleEnd = film.indexOf("fullTitle",titleEnd+1);
-            filmTitle = film.substring(titlePos+8, titleEnd-3);
+    public void insertFilmData(String film){
 
-            yearPos = film.indexOf("year",yearPos+1);
-            yearEnd = film.indexOf("\"image\"",yearEnd+1);
-            filmYear = film.substring(yearPos+7, yearEnd-2);
+        try{
+            int titlePos = 0;
+            int titleEnd = 0;
+            int yearPos = 0;
+            int yearEnd = 0;
+            int actorPos = 0;
+            int actorEnd = 0;
+            int directorPos = 0;
+            int directorEnd = 0;
+            Random rand = new Random();
+            int generateNumber;
+            String filmRestrictedAge = "";
+            String filmTitle = "";
+            int filmYear = 0;
+            String filmDirector = "";
+            String filmDirectorFirstName = "";
+            String filmDirectorLastName = "";
+            String filmActors = "";
+            String[] directorNames;
 
-            directorPos = film.indexOf("crew",directorPos+1);
-            directorEnd = film.indexOf("(dir.)",directorEnd+1);
-            filmDirector = film.substring(directorPos+7, directorEnd-1);
-            directorNames = filmDirector.split(" ");
-            filmDirectorFirstName = directorNames[0];
-            filmDirectorLastName = directorNames[1];
+            for(int i=0;i<250;i++){
+                titlePos = film.indexOf("title",titlePos+1);
+                titleEnd = film.indexOf("fullTitle",titleEnd+1);
+                filmTitle = film.substring(titlePos+8, titleEnd-3);
 
-            actorPos = film.indexOf("(dir.)",actorPos+1);
-            actorEnd = film.indexOf("\"imDbRating\"",actorEnd+1);
-            filmActors = film.substring(actorPos+8, actorEnd-2);
+                yearPos = film.indexOf("year",yearPos+1);
+                yearEnd = film.indexOf("\"image\"",yearEnd+1);
+                filmYear = Integer.parseInt(film.substring(yearPos+7, yearEnd-2));
 
-            filmData[i][0] = Integer.toString(i); //filmID
-            filmData[i][1] = filmTitle; //title
-            filmData[i][2] = filmYear; //year
-            filmData[i][3] = "Synopsis not available"; //synopsis
-            filmData[i][4] = filmDirectorFirstName; //DirectorFirstName
-            filmData[i][5] = filmDirectorLastName; //DirectorLastName
+                directorPos = film.indexOf("crew",directorPos+1);
+                directorEnd = film.indexOf("(dir.)",directorEnd+1);
+                filmDirector = film.substring(directorPos+7, directorEnd-1);
+                directorNames = filmDirector.split(" ");
+                filmDirectorFirstName = directorNames[0];
+                filmDirectorLastName = directorNames[1];
 
-            generateNumber = rand.nextInt(5); //restrictedAge
-            switch(generateNumber){
-                case 0:
-                    filmData[i][6] = "M10" ;
-                    break;
-                case 1:
-                    filmData[i][6] = "M12" ;
-                    break;
-                case 2:
-                    filmData[i][6] = "M16" ;
-                    break;
-                case 3:
-                    filmData[i][6] = "M18" ;
-                    break;
-                case 4:
-                    filmData[i][6] = "ALL" ;
-                    break;
+                actorPos = film.indexOf("(dir.)",actorPos+1);
+                actorEnd = film.indexOf("\"imDbRating\"",actorEnd+1);
+                filmActors = film.substring(actorPos+8, actorEnd-2);
+
+                generateNumber = rand.nextInt(5); //restrictedAge
+                switch(generateNumber){
+                    case 0:
+                        filmRestrictedAge = "M10" ;
+                        break;
+                    case 1:
+                        filmRestrictedAge = "M12" ;
+                        break;
+                    case 2:
+                        filmRestrictedAge = "M16" ;
+                        break;
+                    case 3:
+                        filmRestrictedAge = "M18" ;
+                        break;
+                    case 4:
+                        filmRestrictedAge = "ALL" ;
+                        break;
+                }
+
+                this.connect.createStatement().executeUpdate("INSERT INTO Films Values("+i+","+filmTitle+","+filmYear+",'Synopsis not available',"+filmDirectorFirstName+","+filmDirectorLastName+","+filmRestrictedAge+")");
+                this.connect.createStatement().executeUpdate("INSERT INTO Actors Values("+i+","+filmActors+")");
             }
-            
-            filmData[i][7] = filmActors;
-
-        }
-        return filmData;
+        }catch (SQLException e) { e.printStackTrace(); }
     }
 }

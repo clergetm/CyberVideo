@@ -7,7 +7,6 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.Scanner;
 
-
 //Run with this command : java -classpath projectpath\CyberVideo\Development\src\main\java\bd\ojdbc11.jar CreateDatabase.java
 
 /**
@@ -108,14 +107,12 @@ public class CreateDatabase
 
       //------------------------INSERTING Films from IMDB API-----------------------//
       executeSqlScript(conn,createTable);
-      ImdbAPI imdb = new ImdbAPI();
-      String[][] filmData = ImdbAPI.getData();
-      for (int i=0;i<250;i++){
-        stmt.executeUpdate("INSERT INTO Films Values("+Integer.parseInt(filmData[i][0])+","+filmData[i][1]+","+filmData[i][2]+","+filmData[i][3]+","+filmData[i][4]+","+filmData[i][5]+","+filmData[i][6]+")");
-      }
+      ImdbAPI imdb = new ImdbAPI(conn);
+      imdb.getData();
       displayTable(stmt, "SELECT * FROM Films");
+      displayTable(stmt, "SELECT * FROM Actors");
       //---------------------------------------------------------------------------//
-      
+
       System.out.println("Database successfully created...");
 
       //-------------------------------DAO Initialisation----------------------------//
