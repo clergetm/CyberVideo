@@ -58,19 +58,9 @@ public class FilmManager {
 	/*
 	 * Put in the map only if the film is not already in.
 	 */
-	if(this.films.putIfAbsent(film, entries) != null) {
-	    successfullyAdded = false;
-	} else {
-	    // Add all needed listener
-	    entries.getCartPanel().getButtonMap().forEach((k,b) -> b.addActionListener(cartManager));
-//	    TODO create rentManager
-//	    entries.getRentPanel().getButtonMap().forEach((k,b) -> b.addActionListener(rentManager));
-	    
-		
-	    // After adding all necessary button. Refresh the GUI
-	    GUIManager.getInstance().refreshColorTheme();
-	    successfullyAdded = true;
-	}
+	successfullyAdded = (this.films.putIfAbsent(film, entries) != null);
+	// After adding all necessary button. Refresh the GUI
+	GUIManager.getInstance().refreshColorTheme();
 
 	return successfullyAdded;
     }
