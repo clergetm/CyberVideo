@@ -78,7 +78,6 @@ public class ActionPanel extends JPanel implements GUIComponent, IMultilingualOb
      * @author MathysC
      */
     public ActionPanel() {
-//      TODO implement Client
 	topPanel = new JPanel(new BorderLayout());
 	searchPanel = new JPanel(new FlowLayout());
 	tfSearch = new JTextField();
