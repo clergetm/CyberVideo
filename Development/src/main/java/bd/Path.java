@@ -6,7 +6,7 @@ package bd;
  *
  */
 public enum Path {
-   RSC("databases/"),
+   RSC("/databases/"),
    SCRIPTS(RSC+"scripts/"),
    TRIGGER_TESTS(SCRIPTS+"trigger_tests/"),
    CREDENTIALS(RSC+"credentials/");
@@ -23,6 +23,10 @@ public enum Path {
 	this.pth = string;
     }
 
+    @Override
+    public String toString() {
+	return this.pth;
+    }
     /**
      * Get the path of the given fileName.
      * @author MathysC
@@ -31,6 +35,7 @@ public enum Path {
      * @return The path to the file. null if not found.
      */
     public String getPath(String fileName) {
+	System.out.println(this.pth+fileName);
 	return Path.class.getResource(this.pth+fileName).getFile();
     }
 }
