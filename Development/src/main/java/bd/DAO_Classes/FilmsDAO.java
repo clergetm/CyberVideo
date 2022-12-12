@@ -26,10 +26,10 @@ public class FilmsDAO extends DAO<Film>{
         Film film = null;
         try{
 
-            ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Films JOIN FilmCategories WHERE filmID ="+id);
-            ResultSet resultActorName = this.connect.createStatement().executeQuery("SELECT CONCAT(actorFirstName,' ',actorLastName) AS actorName FROM FilmsActors NATURAL JOIN Actors WHERE filmID ="+id);
-            ResultSet resultCatName = this.connect.createStatement().executeQuery("SELECT catName FROM FilmsCategories NATURAL JOIN Categories WHERE filmID ="+id);
-            ResultSet resultSupp = this.connect.createStatement().executeQuery("SELECT supportFilmID, typeFilm FROM SupportFilms WHERE filmID="+id);
+            ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery("SELECT * FROM Films NATURAL JOIN FilmsCategories WHERE filmID ="+id);
+            ResultSet resultActorName = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery("SELECT CONCAT(CONCAT(actorFirstName,''),actorLastName) AS actorName FROM FilmsActors NATURAL JOIN Actors WHERE filmID ="+id);
+            ResultSet resultCatName = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery("SELECT catName FROM FilmsCategories NATURAL JOIN Categories WHERE filmID ="+id);
+            ResultSet resultSupp = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery("SELECT supportFilmID, typeFilm FROM SupportFilms WHERE filmID="+id);
 
             if(result.first() && resultActorName.first() && resultCatName.first() && resultSupp.first()){
                 String title = result.getString("title");

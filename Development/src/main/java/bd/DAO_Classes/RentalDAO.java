@@ -32,8 +32,8 @@ public class RentalDAO extends DAO<Rental> {
         	//FIXME
                 FilmsDAO filmDAO = new FilmsDAO(connect);
                 Film film = filmDAO.read(result.getInt("filmID"));
-                Card card = Card.valueOf(result.getInt("supportCardID"));
-
+                //Card card = Card.valueOf(result.getInt("supportCardID"));
+                Card card = null;
                 Support support = null;
                 ResultSet resultSuppID = this.connect.createStatement().executeQuery("SELECT price, state FROM BluRays NATURAL JOIN WHERE supportFilmID="+result.getString("supportFilmID"));
                 ResultSet resultSuppIDbis = this.connect.createStatement().executeQuery("SELECT link FROM QRCodes NATURAL JOIN WHERE supportFilmID="+result.getString("supportFilmID"));

@@ -5,9 +5,10 @@ import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.Scanner;
 
+import bd.DAO_Classes.DAO;
+import bd.DAO_Classes.FilmsDAO;
 import bd.utils.Path;
-
-//Run with this command : java -classpath projectpath\CyberVideo\Development\src\main\java\bd\ojdbc11.jar CreateDatabase.java
+import fc.films.Film;
 
 /**
  * @author EvanP
@@ -55,17 +56,39 @@ public class CreateDatabase
 
 
       //------------------------INSERTING Films from IMDB API-----------------------//
+      stmt.executeUpdate("INSERT INTO Categories Values(1,'HORROR')");
+      stmt.executeUpdate("INSERT INTO Categories Values(2,'COMEDY')");
+      stmt.executeUpdate("INSERT INTO Categories Values(3,'ROMANTIC')");
+      stmt.executeUpdate("INSERT INTO Categories Values(4,'ACTION')");
+
+      displayTable(stmt, "SELECT * FROM Categories");
       ImdbAPI imdb = new ImdbAPI(conn);
       imdb.getData();
+      System.out.println("\tFILMS\n");
       displayTable(stmt, "SELECT * FROM Films");
+      System.out.println("\tActors\n");
       displayTable(stmt, "SELECT * FROM Actors");
+      System.out.println("\tFilmActors\n");
+      displayTable(stmt, "SELECT * FROM FilmsActors");
+      System.out.println("\tCategories\n");
+      displayTable(stmt, "SELECT * FROM Categories");
+      System.out.println("\tFILMSCategories\n");
+      displayTable(stmt, "SELECT * FROM FilmsCategories");
+      System.out.println("\tSupportFilms\n");
+      displayTable(stmt, "SELECT * FROM SupportFilms");
       //---------------------------------------------------------------------------//
 
       System.out.println("Database successfully created...");
 
       //-------------------------------DAO Initialisation----------------------------//
       
-      //MainDAO<Films> daoFilms = new FilmsDAO(conn);
+      DAO<Film> daoFilms = new FilmsDAO(conn);
+      Film film = daoFilms.read(1);
+      System.out.println(film.getTitle());
+      System.out.println(film.getYear());
+      System.out.println(film.getFNDirector());
+      System.out.println(film.getLNDirector());
+      System.out.println(film.getSynopsis());
 
       //Closing the connection object
       conn.close();

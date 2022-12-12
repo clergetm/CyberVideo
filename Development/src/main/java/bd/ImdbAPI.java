@@ -10,6 +10,7 @@ import java.util.Random;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  * @author EvanP
@@ -33,7 +34,7 @@ public class ImdbAPI {
 
     public void getData(){
         HttpURLConnection connection = null; 
-        final String myAPIKey = "k_sfenmowl";
+        final String myAPIKey = "k_f1j4cxkh";
         try{
             URL url = new URL("https://imdb-api.com/en/API/Top250Movies/"+myAPIKey);
             connection = (HttpURLConnection)url.openConnection();
@@ -79,6 +80,7 @@ public class ImdbAPI {
             Random rand = new Random();
             int generateNumber;
             String filmRestrictedAge = "";
+            int filmCategorieID = 1;
             String filmTitle = "";
             int filmYear = 0;
             String filmDirector = "";
@@ -87,7 +89,7 @@ public class ImdbAPI {
             String filmActors = "";
             String[] directorNames;
 
-            for(int i=0;i<250;i++){
+            for(int i=0;i<50;i++){
                 titlePos = film.indexOf("title",titlePos+1);
                 titleEnd = film.indexOf("fullTitle",titleEnd+1);
                 filmTitle = film.substring(titlePos+8, titleEnd-3);
@@ -125,6 +127,23 @@ public class ImdbAPI {
                         filmRestrictedAge = "ALL" ;
                         break;
                 }
+
+                generateNumber = rand.nextInt(4); //catName
+                switch(generateNumber){
+                    case 0:
+                        filmCategorieID = 1 ;
+                        break;
+                    case 1:
+                        filmCategorieID = 2 ;
+                        break;
+                    case 2:
+                        filmCategorieID = 3 ;
+                        break;
+                    case 3:
+                        filmCategorieID = 4 ;
+                        break;
+                }
+
                 String synopsis = "Synopsis not available";
 
                 String sql = "INSERT INTO Films (title,year,synopsis,directorFirstName,directorLastName,restrictedAge) Values(?,?,?,?,?,?)";
@@ -136,11 +155,53 @@ public class ImdbAPI {
                 preparedStmt.setString(5, filmDirectorLastName);
                 preparedStmt.setString(6, filmRestrictedAge);
                 preparedStmt.execute();
+                preparedStmt.close();
 
-                /*String sqlbis = "INSERT INTO FilmsActors (actorID) Values(?)";
-                PreparedStatement preparedStmtbis = this.connect.prepareStatement(sqlbis);
-                preparedStmtbis.setString(1, filmActors);
-                preparedStmtbis.execute();*/
+                sql = "INSERT INTO FilmsCategories (categorieID) Values(?)";
+                preparedStmt = this.connect.prepareStatement(sql);
+                preparedStmt.setInt(1, filmCategorieID);
+                preparedStmt.execute();
+                preparedStmt.close();
+
+                sql = ("INSERT INTO SupportFilms Values(supportFilmID_sequence.nextval,?,'BR')");
+                preparedStmt = this.connect.prepareStatement(sql);
+                preparedStmt.setInt(1, i+1);
+                preparedStmt.execute();
+                this.connect.createStatement().executeUpdate("INSERT INTO BluRays (supportFilmID,price) Values(supportFilmID_sequence.currval,10.0)");
+                preparedStmt.close();
+
+                sql = ("INSERT INTO SupportFilms Values(supportFilmID_sequence.nextval,?,'QR')");
+                preparedStmt = this.connect.prepareStatement(sql);
+                preparedStmt.setInt(1, i+1);
+                preparedStmt.execute();
+                this.connect.createStatement().executeUpdate("INSERT INTO QRCodes (supportFilmID,link) Values(supportFilmID_sequence.currval,'https://www.cybervideo/location/qrcode.com')");
+                preparedStmt.close();
+
+                String[] ActorNames = filmActors.split(" ");
+                String ActorFirstName = ActorNames[0];
+                ActorNames = ActorNames[1].split(",");
+                String ActorLastName = ActorNames[0];
+                sql = "SELECT actorID FROM Actors WHERE actorFirstName = ? AND actorLastName = ? ";
+                preparedStmt = this.connect.prepareStatement(sql);
+                preparedStmt.setString(1,ActorFirstName);
+                preparedStmt.setString(2,ActorLastName);
+                ResultSet rs = preparedStmt.executeQuery();
+                if(!rs.next()){ //If actor in the film is not in Actors table then we add him
+                    sql = "INSERT INTO Actors (actorFirstName,actorLastName) Values(?,?)";
+                    preparedStmt = this.connect.prepareStatement(sql);                   
+                    preparedStmt.setString(1, ActorFirstName);
+                    preparedStmt.setString(2, ActorLastName);
+                    preparedStmt.execute();
+                    preparedStmt.close();
+                }
+                
+                sql = "INSERT INTO FilmsActors (actorID) SELECT actorID FROM Actors WHERE actorFirstName = ? AND actorLastName = ? ";
+                preparedStmt = this.connect.prepareStatement(sql);
+                preparedStmt.setString(1, ActorFirstName);
+                preparedStmt.setString(2, ActorLastName);
+                preparedStmt.execute();
+                preparedStmt.close();
+
             }
         }catch (SQLException e) { e.printStackTrace(); }
     }

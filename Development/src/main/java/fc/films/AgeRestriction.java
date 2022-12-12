@@ -1,10 +1,10 @@
 package fc.films;
 
 public enum AgeRestriction {
-	MINUS10,
-	MINUS12,
-	MINUS16,
-	MINUS18,
-	EVERYONE
+	M10,
+	M12,
+	M16,
+	M18,
+	ALL
 	
 }
