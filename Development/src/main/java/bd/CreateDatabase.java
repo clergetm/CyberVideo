@@ -64,6 +64,8 @@ public class CreateDatabase
       displayTable(stmt, "SELECT * FROM Categories");
       ImdbAPI imdb = new ImdbAPI(conn);
       imdb.getData();
+
+      //----------------------PRINT TABLE CREATED WITH DATA INSERTED----------------------------//
       System.out.println("\tFILMS\n");
       displayTable(stmt, "SELECT * FROM Films");
       System.out.println("\tActors\n");
@@ -76,19 +78,9 @@ public class CreateDatabase
       displayTable(stmt, "SELECT * FROM FilmsCategories");
       System.out.println("\tSupportFilms\n");
       displayTable(stmt, "SELECT * FROM SupportFilms");
-      //---------------------------------------------------------------------------//
+      //---------------------------------------------------------------------------------------//
 
       System.out.println("Database successfully created...");
-
-      //-------------------------------DAO Initialisation----------------------------//
-      
-      DAO<Film> daoFilms = new FilmsDAO(conn);
-      Film film = daoFilms.read(1);
-      System.out.println(film.getTitle());
-      System.out.println(film.getYear());
-      System.out.println(film.getFNDirector());
-      System.out.println(film.getLNDirector());
-      System.out.println(film.getSynopsis());
 
       //Closing the connection object
       conn.close();

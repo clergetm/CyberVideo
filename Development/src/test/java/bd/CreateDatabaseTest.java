@@ -11,7 +11,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import bd.DAO_Classes.DAO;
 import bd.utils.Path;
+import fc.films.Film;
 import utils.LifecycleLoggerTest;
 
 class CreateDatabaseTest implements LifecycleLoggerTest {
@@ -113,5 +115,14 @@ class CreateDatabaseTest implements LifecycleLoggerTest {
 	    e.printStackTrace();
 	}
     }
+
+	@Test
+    void DAOTest() {
+		DAO<Film> daoFilms = DAOFactory.getFilmsDAO();
+      	for(int i=1;i<10;i++){
+        	Film film = daoFilms.read(1);
+        	System.out.println("-TITLE:"+film.getTitle()+" -YEAR:"+film.getYear()+" -DIRECTOR:"+film.getFNDirector()+film.getLNDirector()+" -SYNOPSIS:"+film.getSynopsis());
+		}
+	}
 
 }
