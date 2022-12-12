@@ -35,7 +35,6 @@ public enum Path {
      * @return The path to the file. null if not found.
      */
     public String getPath(String fileName) {
-	System.out.println(this.pth+fileName);
 	return Path.class.getResource(this.pth+fileName).getFile();
     }
 }
