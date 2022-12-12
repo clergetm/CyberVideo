@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,8 +19,10 @@ import javax.swing.SwingConstants;
 import fc.films.Film;
 import fc.films.Support;
 import ui.GUIComponent;
+import ui.mainframe.MainFrame;
 import ui.managers.GUIManager;
 import ui.utils.Decorations;
+import ui.utils.GoToFilmPageAdapter;
 import ui.utils.Resources;
 import ui.utils.factory.filmpanel.products.FilmPanelButton;
 
@@ -53,9 +58,16 @@ public abstract class FilmPanel extends JPanel implements GUIComponent {
     protected FilmPanel(Film film) {
 	this.film = film;
 	this.buttonMap = new HashMap<>();
+	
+	mainPanel = new JPanel(new BorderLayout());
+	poster = new JLabel();
+	poster.addMouseListener(new GoToFilmPageAdapter(this));
+	buttonPanel = new JPanel(new FlowLayout());
+
 	// TODO #8 Find a way to put the right poster for each movie
 	posterImage = Resources.getImg(Resources.IMG_FILM.toString()); 
 	this.createGUI();
+	
 	this.setScale(100);
     }
     
@@ -118,16 +130,13 @@ public abstract class FilmPanel extends JPanel implements GUIComponent {
 	this.setLayout(new FlowLayout());
 	this.setOpaque(false);
 	
-	mainPanel = new JPanel(new BorderLayout());
 	mainPanel.setOpaque(false);
 	
-	poster = new JLabel();
 	poster.setOpaque(false);
 	poster.setHorizontalAlignment(SwingConstants.CENTER);
 	mainPanel.add(poster, BorderLayout.CENTER);
 	
 	// Buttons
-	buttonPanel = new JPanel(new FlowLayout());
 	buttonPanel.setOpaque(false);
 	
 	/**
