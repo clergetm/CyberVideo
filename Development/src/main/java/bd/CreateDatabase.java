@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.Scanner;
 
+import bd.utils.Path;
+
 //Run with this command : java -classpath projectpath\CyberVideo\Development\src\main\java\bd\ojdbc11.jar CreateDatabase.java
 
 /**
@@ -53,7 +55,6 @@ public class CreateDatabase
 
 
       //------------------------INSERTING Films from IMDB API-----------------------//
-          executeSqlScript(conn,createTable);
       ImdbAPI imdb = new ImdbAPI(conn);
       imdb.getData();
       displayTable(stmt, "SELECT * FROM Films");

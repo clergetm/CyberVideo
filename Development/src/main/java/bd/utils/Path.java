@@ -1,4 +1,4 @@
-package bd;
+package bd.utils;
 
 /**
  * Enumerations of Path used in database related classes.
