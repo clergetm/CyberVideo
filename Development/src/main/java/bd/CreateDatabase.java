@@ -25,17 +25,7 @@ public class CreateDatabase
     try
     { 
       File createTable = new File(Path.SCRIPTS.getPath("createTable.sql"));
-      File max5CardsTrigger = new File(Path.TRIGGER_TESTS.getPath("test_trigger_max_5_cards.sql"));
-      File creditAfter20RentalsTrigger = new File(Path.TRIGGER_TESTS.getPath("test_trigger_credit_after_20_rentals.sql"));
-      File max1YearHistoric = new File(Path.TRIGGER_TESTS.getPath("test_trigger_max_1_year_historic.sql"));
-      File max1YearRentals = new File(Path.TRIGGER_TESTS.getPath("test_trigger_max_1_year_rentals.sql"));
-      File stolenAfter30Days = new File(Path.TRIGGER_TESTS.getPath("test_trigger_stolen.sql"));
-      File deleteTablesTrigger1 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger1.sql"));
-      File deleteTablesTrigger2 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger2.sql"));
-      File deleteTablesTrigger3 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger3.sql"));
-      File deleteTablesTrigger4 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger4.sql"));
-      File deleteTablesTrigger5 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger5.sql"));
-
+      
       //Loading the JDBC Driver class
       Class.forName("oracle.jdbc.driver.OracleDriver");
 
@@ -61,43 +51,9 @@ public class CreateDatabase
       stmt.executeUpdate("CREATE OR REPLACE TRIGGER stolen_after_30_days AFTER UPDATE ON Rentals BEGIN UPDATE Blurays SET state = 'STOLEN' WHERE blurayID IN (SELECT blurayID FROM Blurays NATURAL JOIN Rentals WHERE (SYSDATE - beginDate) > 30); END;");
       System.out.println("\tTriggers created\n");
 
-      //------------------------INSERTING VALUES AND DISPLAY TABLE TEST WITH THE DATABASE CREATED------------------------//
-      System.out.println("\t\tINSERTING VALUES AND DISPLAY TABLE TEST WITH THE DATABASE CREATED\n");
-      stmt.executeUpdate("INSERT INTO Films Values(10,'Les dents de la mer',1975,'Histoire de requins...','Steven','Spielberg','M16')");
-      displayTable(stmt, "SELECT * FROM Films");
-      //-----------------------------------------------END TEST----------------------------------------------------------//
-
-      //--------------------------------TRIGGERS TESTING---------------------------//
-      System.out.println("\tTRIGGERS TESTING\n");
-      System.out.println("\t\tMax 5 cards Trigger TEST\n");
-      displayTable(stmt, "SELECT count(*) FROM OwnedCards WHERE subID = 1");
-      executeSqlScript(conn,max5CardsTrigger);
-      displayTable(stmt, "SELECT count(*) FROM OwnedCards WHERE subID = 1");
-      executeSqlScript(conn,deleteTablesTrigger1);
-
-      System.out.println("\t\tCredit After 20 Rentals Trigger TEST\n");
-      executeSqlScript(conn,creditAfter20RentalsTrigger);
-      displayTable(stmt, "SELECT balance FROM SubscriberCards");
-      executeSqlScript(conn,deleteTablesTrigger2);
-
-      System.out.println("\t\tMax 1 year historic of credit cards Trigger TEST\n");
-      executeSqlScript(conn,max1YearHistoric);
-      displayTable(stmt, "SELECT * FROM HistoricCreditCards");
-      executeSqlScript(conn,deleteTablesTrigger3);
-
-      System.out.println("\t\tMax 1 year rentals Trigger TEST\n");
-      executeSqlScript(conn,max1YearRentals);
-      displayTable(stmt, "SELECT * FROM Rentals");
-      executeSqlScript(conn,deleteTablesTrigger4);
-
-      System.out.println("\t\tStolen after 30 days TEST\n");
-      executeSqlScript(conn,stolenAfter30Days);
-      displayTable(stmt, "SELECT * FROM Rentals NATURAL JOIN Blurays");
-      executeSqlScript(conn,deleteTablesTrigger5);
-      //-------------------------------END TRIGGERS TEST----------------------------//
 
       //------------------------INSERTING Films from IMDB API-----------------------//
-      executeSqlScript(conn,createTable);
+          executeSqlScript(conn,createTable);
       ImdbAPI imdb = new ImdbAPI(conn);
       imdb.getData();
       displayTable(stmt, "SELECT * FROM Films");
