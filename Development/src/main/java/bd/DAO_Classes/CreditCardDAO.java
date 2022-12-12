@@ -29,7 +29,7 @@ public class CreditCardDAO extends DAO<CreditCard> {
             
             ResultSet result = stmt.executeQuery();
             if(result.first()) {
-        	card = new CreditCard(result.getInt("CREDITCARDNUM"));
+        		card = new CreditCard(result.getInt("supportCardID"));
             }
         }
         catch (SQLException e) { e.printStackTrace(); }
