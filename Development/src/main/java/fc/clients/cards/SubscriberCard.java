@@ -24,11 +24,12 @@ public class SubscriberCard extends Card{
 	 * @param balance the current balance on the card
 	 * @param limitWeek the maximum number of rentals possible per week
 	 */
-	public SubscriberCard(double balance, int limitWeek){
-		this.balance = balance;
-		this.limitWeek = limitWeek;
-		forbiddenCategories = new ArrayList<Categories>();
-		rentalHistoric = new ArrayList<Rental>();
+	public SubscriberCard(int numCard, double balance, int limitWeek){
+	    super(numCard);
+	    this.balance = balance;
+	    this.limitWeek = limitWeek;
+	    forbiddenCategories = new ArrayList<Categories>();
+	    rentalHistoric = new ArrayList<Rental>();
 	}
 
 	/**

@@ -10,9 +10,10 @@ public abstract class Card {
     
     /**
      * the constructor
-     * @param number the unique number that represents the card
+     * @param numCard the unique number that represents the card
      */
-    public Card() {
+    protected Card(int numCard) {
+	this.number = numCard;
     }
     
     /**

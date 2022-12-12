@@ -6,4 +6,8 @@ package fc.clients.cards;
  */
 public class CreditCard extends Card {
 
+    public CreditCard(int numCard) {
+	super(numCard);
+    }
+
 }
