@@ -30,7 +30,7 @@ public class SubscriberCard extends Card{
 		this.limitWeek = limitWeek;
 		forbiddenCategories = new ArrayList<Categories>();
 		rentalHistoric = new ArrayList<Rental>();
-		this.restriction=AgeRestriction.EVERYONE;
+		this.restriction=AgeRestriction.ALL;
 	}
 
 	/**
