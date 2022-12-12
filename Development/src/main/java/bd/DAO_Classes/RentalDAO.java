@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import fc.Rental;
 import fc.clients.cards.Card;
+import fc.clients.cards.CreditCard;
+import fc.clients.cards.SubscriberCard;
 import fc.films.BluRay;
 import fc.films.Film;
 import fc.films.QRCode;
@@ -29,11 +31,21 @@ public class RentalDAO extends DAO<Rental> {
             ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Rentals NATURAL JOIN BluRays NATURAL JOIN SupportFilms WHERE rentalsID ="+id);
             
             if(result.first()){
-        	//FIXME
                 FilmsDAO filmDAO = new FilmsDAO(connect);
                 Film film = filmDAO.read(result.getInt("filmID"));
-                //Card card = Card.valueOf(result.getInt("supportCardID"));
+                
+                ResultSet resultCreditCard = this.connect.createStatement().executeQuery("SELECT creditID FROM CreditCards WHERE supportCardID ="+result.getString("supportCardID"));
+                ResultSet resultSubCard = this.connect.createStatement().executeQuery("SELECT subCardID FROM SubscriberCards WHERE supportCardID ="+result.getString("supportCardID"));
                 Card card = null;
+                if (resultSubCard.first()){
+                    SubscriberCardDAO subCardDAO = new SubscriberCardDAO(this.connect);
+                    card = subCardDAO.read(resultSubCard.getInt("subCardID"));
+                }
+                else if(resultCreditCard.first()){
+                    CreditCardDAO creditCardDAO = new CreditCardDAO(this.connect);
+                    card = creditCardDAO.read(resultCreditCard.getInt("creditID"));
+                }
+                
                 Support support = null;
                 ResultSet resultSuppID = this.connect.createStatement().executeQuery("SELECT price, state FROM BluRays NATURAL JOIN WHERE supportFilmID="+result.getString("supportFilmID"));
                 ResultSet resultSuppIDbis = this.connect.createStatement().executeQuery("SELECT link FROM QRCodes NATURAL JOIN WHERE supportFilmID="+result.getString("supportFilmID"));
