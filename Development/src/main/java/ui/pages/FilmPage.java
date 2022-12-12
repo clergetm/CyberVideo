@@ -15,6 +15,7 @@ import fc.films.Film;
 import ui.GUIComponent;
 import ui.utils.Decorations;
 import ui.utils.factory.filmpanel.factories.FilmCartPanel;
+import ui.utils.factory.filmpanel.factories.FilmPanel;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.multilingual.IMultilingualObserver;
@@ -73,7 +74,7 @@ public class FilmPage extends JPanel implements GUIComponent, IMultilingualObser
 	
 	}
 
-    public void showFilm(FilmCartPanel filmCart) {
+    public void showFilm(FilmPanel filmCart) {
 	Film film = filmCart.getFilm();
 
 	infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
