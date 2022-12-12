@@ -67,6 +67,8 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	/* Languages and Color Themes */
 	private GUIManager guiManager;
 	
+	private static MainFrame instance = null;
+	
 	/**
 	 * Constructor of Main.
 	 * Initialize the AL2000 Functional Core.
@@ -74,7 +76,7 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	 * @author MathysC
 	 *
 	 */
-	public MainFrame() {
+	private MainFrame() {
 	    super("AL2000");
 	    
 	    /*Initialize Components */
@@ -87,17 +89,18 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	    this.pages = new HashMap<>();
 	    this.pages.put(ID_WELCOME_PAGE, welcomePage);
 	    this.pages.put(ID_RESULT_PAGE, actionPanel);
+	    this.pages.put(ID_FILM_PAGE, actionPanel);
 	    
 	    // ! Initialize FC before the GUI (atleast this.setLanguage and this.setLight functions)
 	    this.fc = new AL2000();
 	    
 	    this.filmManager = FilmManager.getInstance();   
-
+	    
 //	    TODO add Film from fc in filmManager
 	   
 	    this.filmManager.getCartManager().registerCart(this.actionPanel.getCartPanel());
 //	    TODO register client in CartManager
-	    
+	     
 	    
 	    /* Initialize GUI */
 	    this.createGUI();
@@ -154,6 +157,21 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	}
 	
 	/**
+	 * Get the only instance of {@code MainFrame}
+	 * @author MathysC
+	 *
+	 * @return The MainFrame instance.
+	 */
+	public static MainFrame getInstance() {
+	    if(instance == null) {
+		instance = new MainFrame();
+	    }
+	    
+	    return instance;
+	}
+	
+	
+	/**
 	 * @author MathysC
 	 * @return the topBarPanel
 	 */
@@ -184,11 +202,11 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	 * @param id The id number of the page to display.
 	 */
 	public void changeCurrentPage(int id) {
-	    this.remove(this.pages.get(currentPage));
+	    this.remove(pages.get(currentPage));
 	    this.revalidate();
 	    this.repaint();
 
-	    this.add(this.pages.get(id), BorderLayout.CENTER);
+	    this.add(pages.get(id), BorderLayout.CENTER);
 	    this.currentPage = id;
 
 	    if(id != ID_WELCOME_PAGE) {
@@ -268,7 +286,7 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	 * @param args
 	 */
 	public static void main(String[] args) {
-	    SwingUtilities.invokeLater(() -> new MainFrame().start());    
+	    SwingUtilities.invokeLater(() -> MainFrame.getInstance().start());    
 	}
 
 }
