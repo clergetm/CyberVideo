@@ -76,7 +76,25 @@ class LoginPanel extends JPanel implements GUIComponent, IMultilingualObserver, 
 	this.createGUI();
 	
     }
-
+    
+    /**
+     * Private method to better reading of the constructor.
+     * Set options of the given {@code component}.
+     * @author MathysC
+     *
+     * @param component The component to set.
+     * @param width	The Width of the component.
+     * @param height The Height of the component.
+     * @param alignment The alignment of the component.
+     */
+    private void setComponent(JComponent component, int width, int height, float alignment) {
+        component.setAlignmentX(alignment);
+        component.setMinimumSize(Decorations.sizeConverter(new Dimension(width, height)));
+        component.setPreferredSize(Decorations.sizeConverter(new Dimension(width, height)));
+        component.setMaximumSize(Decorations.sizeConverter(new Dimension(width, height)));
+        
+    }
+    
     @Override
     public void createGUI() {
         // JPanel options
@@ -173,24 +191,7 @@ class LoginPanel extends JPanel implements GUIComponent, IMultilingualObserver, 
         this.setPreferredSize(new Dimension(MAX_WIDTH, 100));
         
     }
-    
-    /**
-     * Private method to better reading of the constructor.
-     * Set options of the given {@code component}.
-     * @author MathysC
-     *
-     * @param component The component to set.
-     * @param width	The Width of the component.
-     * @param height The Height of the component.
-     * @param alignment The alignment of the component.
-     */
-    private void setComponent(JComponent component, int width, int height, float alignment) {
-        component.setAlignmentX(alignment);
-        component.setMinimumSize(Decorations.sizeConverter(new Dimension(width, height)));
-        component.setPreferredSize(Decorations.sizeConverter(new Dimension(width, height)));
-        component.setMaximumSize(Decorations.sizeConverter(new Dimension(width, height)));
-        
-    }
+
 
     /**
      * {@inheritDoc}

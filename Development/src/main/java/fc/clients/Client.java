@@ -22,7 +22,7 @@ public abstract class Client {
     /**
      * the constructor of the Client class
      */
-    public Client(){
+    protected Client(){
     	creditCard = null;
         filmCart = new ArrayList<>();
     }
@@ -59,22 +59,6 @@ public abstract class Client {
     }
 
     /**
-     * method that represents the action of the client retrieving a bluray br
-     * @param br
-     */
-    public void takeBluRay(BluRay br){
-
-    }
-
-    /**
-     * method that represents the action of the client returning a bluray br
-     * @param br
-     */
-    public void returnBluRay(BluRay br){
-
-    }
-
-    /**
      * remove film from cart
      * @param film
      */
@@ -97,5 +81,21 @@ public abstract class Client {
      */
     public void emptyCart() {
     	//TODO
+    }
+    
+    /**
+     * method that represents the action of the client retrieving a bluray br
+     * @param br
+     */
+    public void takeBluRay(BluRay br){
+
+    }
+
+    /**
+     * method that represents the action of the client returning a bluray br
+     * @param br
+     */
+    public void returnBluRay(BluRay br){
+
     }
 }

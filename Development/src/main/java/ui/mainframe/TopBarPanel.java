@@ -57,7 +57,7 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
     private JButton askForHelpButton;
     private JButton searchButton;   
     /* Options */
-    private static final Dimension dimLogo = Decorations.sizeConverter(new Dimension(200, 150));
+    private static final Dimension DIM_LOGO = Decorations.sizeConverter(new Dimension(200, 150));
 
     /**
      * Constructor of TopBar.
@@ -144,7 +144,7 @@ public class TopBarPanel extends JPanel implements GUIComponent, IColorThemeObse
         this.setLayout(new BorderLayout());
 
         // Logo.
-        logo.setPreferredSize(dimLogo);
+        logo.setPreferredSize(DIM_LOGO);
         logo.setIcon(Resources.getImg(IMG_LOGO));
         logo.setBorder(Decorations.getDefaultBorder());
         this.add(logo, BorderLayout.WEST);
