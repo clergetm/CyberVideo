@@ -26,7 +26,7 @@ class FilmTest implements LifecycleLoggerTest{
     protected final String director_lname = "Wachowski";
     protected final String director_fname = "Lana";
     protected final ArrayList<String> actors = new ArrayList<>(Arrays.asList("Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"));
-    protected final AgeRestriction restriction = AgeRestriction.EVERYONE;
+    protected final AgeRestriction restriction = AgeRestriction.ALL;
     protected final ArrayList<Categories> categories = new ArrayList<>(Arrays.asList(Categories.ACTION, Categories.DRAMAS));
     protected final Year year = Year.of(1999);
     protected final ArrayList<Support> supports = new ArrayList<>(Arrays.asList(new BluRay(22.5, StatesBluRay.RENTED), new QRCode(""), new BluRay(22.50, StatesBluRay.AVAILABLE)));

@@ -143,7 +143,7 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	    final String director_lname = "Wachowski";
 	    final String director_fname = "Lana";
 	    final ArrayList<String> actors = new ArrayList<>(Arrays.asList("Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"));
-	    final AgeRestriction restriction = AgeRestriction.EVERYONE;
+	    final AgeRestriction restriction = AgeRestriction.ALL;
 	    final ArrayList<Categories> categories = new ArrayList<>(Arrays.asList(Categories.ACTION, Categories.DRAMAS));
 	    final Year year = Year.of(1999);
 	    final ArrayList<Support> supports = new ArrayList<>(Arrays.asList(new BluRay(22.5, StatesBluRay.RENTED), new QRCode(""), new BluRay(22.50, StatesBluRay.AVAILABLE)));

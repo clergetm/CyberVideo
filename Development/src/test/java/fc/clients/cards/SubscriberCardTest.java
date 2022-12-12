@@ -44,15 +44,15 @@ class SubscriberCardTest {
 
 	@Test
 	final void testGetAgeRestriction() {
-		Assertions.assertNotEquals(AgeRestriction.EVERYONE, subCard.getAgeRestriction());
+		Assertions.assertNotEquals(AgeRestriction.ALL, subCard.getAgeRestriction());
 	}
 	
 	@Test
 	final void testSetAgeRestriction() {
-		subCard.setAgeRestriction(AgeRestriction.MINUS12);
-		Assertions.assertEquals(AgeRestriction.MINUS12, subCard.getAgeRestriction());
-		Assertions.assertNotEquals(AgeRestriction.EVERYONE, subCard.getAgeRestriction());
-		subCard.setAgeRestriction(AgeRestriction.EVERYONE);
+		subCard.setAgeRestriction(AgeRestriction.M12);
+		Assertions.assertEquals(AgeRestriction.M12, subCard.getAgeRestriction());
+		Assertions.assertNotEquals(AgeRestriction.ALL, subCard.getAgeRestriction());
+		subCard.setAgeRestriction(AgeRestriction.ALL);
 	}
 
 	@Test
