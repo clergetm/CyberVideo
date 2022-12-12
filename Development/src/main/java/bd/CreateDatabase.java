@@ -26,24 +26,24 @@ public class CreateDatabase
   {
     try
     { 
-      File createTable = new File("createTable.sql");
-      File max5CardsTrigger = new File("testTrigger/test_trigger_max_5_cards.sql");
-      File creditAfter20RentalsTrigger = new File("testTrigger/test_trigger_credit_after_20_rentals.sql");
-      File max1YearHistoric = new File("testTrigger/test_trigger_max_1_year_historic.sql");
-      File max1YearRentals = new File("testTrigger/test_trigger_max_1_year_rentals.sql");
-      File stolenAfter30Days = new File("testTrigger/test_trigger_stolen.sql");
-      File deleteTablesTrigger1 = new File("testTrigger/deleteTablesTrigger1.sql");
-      File deleteTablesTrigger2 = new File("testTrigger/deleteTablesTrigger2.sql");
-      File deleteTablesTrigger3 = new File("testTrigger/deleteTablesTrigger3.sql");
-      File deleteTablesTrigger4 = new File("testTrigger/deleteTablesTrigger4.sql");
-      File deleteTablesTrigger5 = new File("testTrigger/deleteTablesTrigger5.sql");
+      File createTable = new File(Path.SCRIPTS.getPath("createTable.sql"));
+      File max5CardsTrigger = new File(Path.TRIGGER_TESTS.getPath("test_trigger_max_5_cards.sql"));
+      File creditAfter20RentalsTrigger = new File(Path.TRIGGER_TESTS.getPath("test_trigger_credit_after_20_rentals.sql"));
+      File max1YearHistoric = new File(Path.TRIGGER_TESTS.getPath("test_trigger_max_1_year_historic.sql"));
+      File max1YearRentals = new File(Path.TRIGGER_TESTS.getPath("test_trigger_max_1_year_rentals.sql"));
+      File stolenAfter30Days = new File(Path.TRIGGER_TESTS.getPath("test_trigger_stolen.sql"));
+      File deleteTablesTrigger1 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger1.sql"));
+      File deleteTablesTrigger2 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger2.sql"));
+      File deleteTablesTrigger3 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger3.sql"));
+      File deleteTablesTrigger4 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger4.sql"));
+      File deleteTablesTrigger5 = new File(Path.TRIGGER_TESTS.getPath("deleteTablesTrigger5.sql"));
 
       //Loading the JDBC Driver class
       Class.forName("oracle.jdbc.driver.OracleDriver");
 
       //Importing connection logs from oracleLogs.properties file
       Properties dbProps = new Properties();
-      dbProps.load(new FileInputStream("oracleLogs.properties"));
+      dbProps.load(new FileInputStream(Path.CREDENTIALS.getPath("oracleLogs.properties")));
       
       String url = dbProps.getProperty("URL");
       String user = dbProps.getProperty("User");
