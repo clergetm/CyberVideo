@@ -48,6 +48,14 @@ public class SubscriberCard extends Card{
 		limitWeek = value;
 	}
 
+
+	/**
+	 * @return the balance on the card
+	 */
+	public double getBalance() {
+		return balance;
+	}
+
 	/**
 	 * @return the age restriction of the card.
 	 */
@@ -64,7 +72,6 @@ public class SubscriberCard extends Card{
 	}
 
 	/**
-	 * 
 	 * @return the ArrayList of the forbidden categories
 	 */
 	public ArrayList<Categories> getForbiddenCategories() {
