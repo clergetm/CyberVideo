@@ -11,27 +11,28 @@ import fc.films.QRCode;
 
 class QRCodeTest {
 
-	/* Create an instance of a QRcode for test QRcode class */
-	protected QRCode qrcode = new QRCode();
+    /* Create an instance of a QRcode for test QRcode class */
+    protected final String code = "https://www.cybervideo/location/qrcode.com";
+    protected QRCode qrcode = new QRCode(code);
 	
-	@Test
-	void testGetType() {
-		Assertions.assertEquals("QRCode", qrcode.getType());
-	    Assertions.assertNotEquals("BluRay", qrcode.getType());
+    @Test
+    void testGetType() {
+	Assertions.assertEquals("QRCode", qrcode.getType());
+	Assertions.assertNotEquals("BluRay", qrcode.getType());
     }
 
-	@Test
-	void testGetTariff() {
-		Assertions.assertEquals(4, qrcode.getTariff());
-	}
+    @Test
+    void testGetTariff() {
+	Assertions.assertEquals(4, qrcode.getTariff());
+    }
 
-	@Test
-	void testIsAvailable() {
-		Assertions.assertTrue(qrcode.isAvailable());
-	}
+    @Test
+    void testIsAvailable() {
+	Assertions.assertTrue(qrcode.isAvailable());
+    }
 
-	@Test
-	void testGenerateQRCode() throws WriterException, IOException {
-		Assertions.assertEquals("https://www.cybervideo/location/qrcode.com", qrcode.generateQRCode());
-	}
+    @Test
+    void testGenerateQRCode() throws WriterException, IOException {
+	Assertions.assertEquals("https://www.cybervideo/location/qrcode.com", qrcode.generateQRCode());
+    }
 }

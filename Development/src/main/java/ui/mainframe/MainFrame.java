@@ -131,14 +131,14 @@ public class MainFrame extends JFrame implements GUIComponent, IColorThemeObserv
 	    
 	    
 	    
-		/* Create Film attributes */
-	    final String title = "The Matrix",
-		    synopsis = "Thomas A. Anderson is a man living two lives. "
+	    /* Create Film attributes */
+	    final String title = "The Matrix";
+	    final String synopsis = "Thomas A. Anderson is a man living two lives. "
 						+ "By day he is an average computer programmer and by night "
 						+ "a hacker known as Neo. Neo has always questioned his reality,"
-						+ " but the truth is far beyond his imagination...",
-				director_lname = "Wachowski",
-				director_fname = "Lana";
+						+ " but the truth is far beyond his imagination...";
+	    final String director_lname = "Wachowski";
+	    final String director_fname = "Lana";
 	    final ArrayList<String> actors = new ArrayList<>(Arrays.asList("Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"));
 	    final AgeRestriction restriction = AgeRestriction.EVERYONE;
 	    final ArrayList<Categories> categories = new ArrayList<>(Arrays.asList(Categories.ACTION, Categories.DRAMAS));
