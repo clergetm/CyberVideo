@@ -23,7 +23,7 @@ public abstract class Client {
      * the constructor of the Client class
      */
     public Client(){
-    	creditCard = new CreditCard();
+    	creditCard = null;
         filmCart = new ArrayList<>();
     }
     
