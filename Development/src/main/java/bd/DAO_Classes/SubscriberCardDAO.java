@@ -24,8 +24,9 @@ public class SubscriberCardDAO extends DAO<SubscriberCard> {
 
                 double balance = result.getDouble("balance");
                 int limitweek = result.getInt("limitWeek");
+                int supportCardID = result.getInt("supportCardID");
 
-                //subscriberCard = new SubscriberCard(balance,limitweek);
+                subscriberCard = new SubscriberCard(supportCardID,balance,limitweek);
             }
             
         }
