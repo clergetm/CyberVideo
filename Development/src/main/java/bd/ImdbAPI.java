@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.Random;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -124,9 +125,22 @@ public class ImdbAPI {
                         filmRestrictedAge = "ALL" ;
                         break;
                 }
+                String synopsis = "Synopsis not available";
 
-                this.connect.createStatement().executeUpdate("INSERT INTO Films Values("+i+","+filmTitle+","+filmYear+",'Synopsis not available',"+filmDirectorFirstName+","+filmDirectorLastName+","+filmRestrictedAge+")");
-                this.connect.createStatement().executeUpdate("INSERT INTO Actors Values("+i+","+filmActors+")");
+                String sql = "INSERT INTO Films (title,year,synopsis,directorFirstName,directorLastName,restrictedAge) Values(?,?,?,?,?,?)";
+                PreparedStatement preparedStmt = this.connect.prepareStatement(sql);
+                preparedStmt.setString(1, filmTitle);
+                preparedStmt.setInt(2, filmYear);
+                preparedStmt.setString(3, synopsis);
+                preparedStmt.setString(4, filmDirectorFirstName);
+                preparedStmt.setString(5, filmDirectorLastName);
+                preparedStmt.setString(6, filmRestrictedAge);
+                preparedStmt.execute();
+
+                /*String sqlbis = "INSERT INTO FilmsActors (actorID) Values(?)";
+                PreparedStatement preparedStmtbis = this.connect.prepareStatement(sqlbis);
+                preparedStmtbis.setString(1, filmActors);
+                preparedStmtbis.execute();*/
             }
         }catch (SQLException e) { e.printStackTrace(); }
     }
