@@ -25,11 +25,12 @@ public class SubscriberCard extends Card{
 	 * @param limitWeek the maximum number of rentals possible per week
 	 */
 	public SubscriberCard(int numCard, double balance, int limitWeek){
-	    super(numCard);
-	    this.balance = balance;
-	    this.limitWeek = limitWeek;
-	    forbiddenCategories = new ArrayList<Categories>();
-	    rentalHistoric = new ArrayList<Rental>();
+		super(numCard);
+		this.balance = balance;
+		this.limitWeek = limitWeek;
+		forbiddenCategories = new ArrayList<Categories>();
+		rentalHistoric = new ArrayList<Rental>();
+		this.restriction=AgeRestriction.EVERYONE;
 	}
 
 	/**
@@ -47,12 +48,34 @@ public class SubscriberCard extends Card{
 		limitWeek = value;
 	}
 
+
+	/**
+	 * @return the balance on the card
+	 */
+	public double getBalance() {
+		return balance;
+	}
+
+	/**
+	 * @return the age restriction of the card.
+	 */
+	public AgeRestriction getAgeRestriction(){
+		return restriction;
+	}
+
 	/**
 	 * add or change age restrictions on the card
 	 * @param newRestriction
 	 */
 	public void setAgeRestriction(AgeRestriction newRestriction){
 		this.restriction = newRestriction;
+	}
+
+	/**
+	 * @return the ArrayList of the forbidden categories
+	 */
+	public ArrayList<Categories> getForbiddenCategories() {
+		return forbiddenCategories;
 	}
 
 	/**
