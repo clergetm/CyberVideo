@@ -12,7 +12,7 @@ import ui.utils.observer.colortheme.palettes.Dark;
 import ui.utils.observer.colortheme.palettes.Light;
 
 /**
- * Common Interface for Film Panel Buttons.
+ * Common Abstract class for Film Panel Buttons.
  * @author MathysC
  */
 @SuppressWarnings("serial")
@@ -23,6 +23,13 @@ public abstract class FilmPanelButton extends JButton implements IColorThemeObse
 //    FIXME Refactor in FONT ENUM
     private Font buttonFont = Decorations.FONT_BASIC.getFont(Font.BOLD, 12);
     
+    /**
+     * Super constructor for Concrete {@code FilmPanelButton} implementation. 
+     * @author MathysC
+     *
+     * @param film The Film.
+     * @param supportType The chosen support Type.
+     */
     protected FilmPanelButton(Film film, String supportType) {
 	this.film = film;
 	this.supportType = supportType;
