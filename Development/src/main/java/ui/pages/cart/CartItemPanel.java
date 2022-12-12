@@ -11,8 +11,10 @@ import javax.swing.JPanel;
 
 import fc.films.Film;
 import ui.GUIComponent;
+
 import ui.utils.Decorations;
 import ui.utils.Resources;
+import ui.utils.factory.filmpanel.products.RemoveFromCartButton;
 import ui.utils.observer.colortheme.ColorThemes;
 import ui.utils.observer.colortheme.IColorThemeObserver;
 import ui.utils.observer.colortheme.palettes.Dark;
@@ -49,7 +51,7 @@ public class CartItemPanel extends JPanel implements GUIComponent, IMultilingual
 	bottomPanel = new JPanel();
 	supportLabel = new JLabel();
 	moreButton = new JButton();
-	removeButton = new JButton();
+	removeButton = new RemoveFromCartButton(film, supportType);
 	
 	this.createGUI();
         titleLabel.setText(film.getTitle());
@@ -59,6 +61,25 @@ public class CartItemPanel extends JPanel implements GUIComponent, IMultilingual
 
     }
 
+    /**
+     * 
+     * @author MathysC
+     *
+     * @return the title of the Film.
+     */
+    public String getFilmTitle() {
+	return this.titleLabel.getText();
+    }
+    
+    /**
+     * 
+     * @author MathysC
+     *
+     * @return The type of support.
+     */
+    public String getSupportType() { 
+	return this.supportLabel.getText();
+    }
     @Override
     public void createGUI() {
 	this.setLayout(new GridLayout(0,2));

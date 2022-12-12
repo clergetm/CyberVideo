@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import fc.films.Film;
 import ui.utils.factory.filmpanel.products.CartButton;
+import ui.utils.factory.filmpanel.products.RemoveFromCartButton;
 import ui.utils.observer.cart.ICartObservable;
 import ui.utils.observer.cart.ICartObserver;
 
@@ -16,15 +17,21 @@ import ui.utils.observer.cart.ICartObserver;
  * @see ui.managers.FilmEvents
  */
 public class CartManager implements ICartObservable, ActionListener{
- 
+    public static final int NORMAL_CART_SIZE = 1;
+    public static final int SUBSCRIBER_CART_SIZE = 3;
+
     private ArrayList<ICartObserver> cartObservers;
-    
+    private int maxSize;
+    private int currentSize;
     /**
      * Default constructor of {@code CartManager}.
      * @author MathysC
      */
     public CartManager() {
 	this.cartObservers = new ArrayList<>();
+	this.maxSize = NORMAL_CART_SIZE;
+	this.currentSize = 0;
+	
     }
     
     @Override
@@ -32,17 +39,22 @@ public class CartManager implements ICartObservable, ActionListener{
 	FilmEvents event = FilmEvents.getFromName(e.getActionCommand());
 	switch (event){
 	case ADDTOCART:
-//	    TODO #29 récupérer le film et le supportType
-	    CartButton source = (CartButton)e.getSource();
-	    this.notifyCartObservers(FilmEvents.ADDTOCART, source.getFilm(), source.getSupportType());
+	    if(currentSize < maxSize ) {
+//	    	TODO #29 récupérer le film et le supportType
+		CartButton source = (CartButton)e.getSource();
+		this.notifyCartObservers(FilmEvents.ADDTOCART, source.getFilm(), source.getSupportType());
+		this.currentSize++;
+	    }
 	    break;
 	case REMOVEFROMCART:
-//	    TODO #29 REMOVE
+	    RemoveFromCartButton source = (RemoveFromCartButton)e.getSource();
+	    this.notifyCartObservers(FilmEvents.REMOVEFROMCART, source.getFilm(), source.getSupportType());
+	    this.currentSize--;
 	    break;
 	case RENT:
 //	    TODO #29 RENT récupérer le film et le supportType
 //	    TODO #29 maybe dissociate RENT actions and CART actions
-	    this.notifyCartObservers(null, null, null);
+//	    this.notifyCartObservers(null, null, null);
 	    break;
 	default:
 	    throw new IllegalArgumentException("Unexpected value: " + e.getActionCommand());

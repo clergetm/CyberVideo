@@ -111,8 +111,19 @@ public class CartPanel extends JPanel implements GUIComponent, ICartObserver, IM
 	    
 	    break;
 	case REMOVEFROMCART:
-	    // TODO Retrouver le bon cartItemPanel
-	    
+	    /**
+	     * We must remove the cartItem from the itemPanel by looking through the Components 
+	     * because we must remove the CartItemPanel from observers ArrayLists.
+	     */
+	    for(Component c: this.itemPanel.getComponents()) {
+		 CartItemPanel cartItem = (CartItemPanel) c;
+		 
+		 if(cartItem.getFilmTitle().equals(film.getTitle()) && cartItem.getSupportType().equals(supportType)) {
+		     this.removeFromCart(cartItem);
+		     break;
+		 }
+		 
+	    }
 	    break;
 	default:
 	    break;
