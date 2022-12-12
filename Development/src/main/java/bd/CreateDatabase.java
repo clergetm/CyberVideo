@@ -1,10 +1,8 @@
 package bd;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
-import java.util.Properties;
 import java.util.Scanner;
 
 //Run with this command : java -classpath projectpath\CyberVideo\Development\src\main\java\bd\ojdbc11.jar CreateDatabase.java
@@ -41,16 +39,9 @@ public class CreateDatabase
       //Loading the JDBC Driver class
       Class.forName("oracle.jdbc.driver.OracleDriver");
 
-      //Importing connection logs from oracleLogs.properties file
-      Properties dbProps = new Properties();
-      dbProps.load(new FileInputStream(Path.CREDENTIALS.getPath("oracleLogs.properties")));
-      
-      String url = dbProps.getProperty("URL");
-      String user = dbProps.getProperty("User");
-      String password = dbProps.getProperty("Password");
 
       //Creating the connection object and the statement
-      Connection conn = DriverManager.getConnection(url,user,password); 
+      Connection conn = DBConnection.getInstance(); 
       Statement stmt = conn.createStatement();
 
       //Executing the DB creation request
